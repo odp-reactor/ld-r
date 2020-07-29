@@ -24,9 +24,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
   },
+  "lint-staged": {
+    "*.js": ["./node_modules/.bin/eslint --fix", "git add"]
+    },
   "license": "Apache-2.0",
   "dependencies": {
     "animate.css": "^3.7.0",
@@ -116,6 +119,7 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "husky": "^3.1.0",
     "json-loader": "^0.5.7",
+    "lint-staged": "^10.2.11",
     "nodemon": "^2.0.1",
     "postcss-loader": "^3.0.0",
     "react-hot-loader": "^4.12.18",
