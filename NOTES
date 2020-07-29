@@ -1,0 +1,13 @@
+to build the local virtuoso instance do:
+
+$ docker run --name local-virtuoso -p 8890:8890 -p 1111:1111   \
+            -e DBA_PASSWORD=virtuoso -e SPARQL_UPDATE=true     \
+            -e DEFAULT_GRAPH=http://localhost/configurations   \
+            -v /home/linux/mnt/extension/programs/virtuoso/data:/data \
+            -d tenforce/virtuoso
+
+then :
+
+$ docker stop local-virtuoso
+$ docker start local-virtuoso
+

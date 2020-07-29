@@ -1,0 +1,16 @@
+#dbpedia query: programming language, designer and description
+
+select distinct 
+
+?pLanguage ?designer ?abstract ?designerBirthPlace
+
+where {
+
+    ?pLanguage a <http://dbpedia.org/ontology/ProgrammingLanguage> .
+    ?pLanguage <http://dbpedia.org/ontology/designer> ?designer .
+    ?pLanguage <http://dbpedia.org/ontology/abstract> ?abstract.
+    ?designer <http://dbpedia.org/ontology/birthPlace> ?designerBirthPlace .
+
+    FILTER(LANG(?abstract) = "it")
+
+ } LIMIT 1000

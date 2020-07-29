@@ -1,0 +1,4 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+
+<http://virtuoso.local/virtuoso-configs.ttl> rdfs:label "File to upload for ld-r example dynamic configurations" .
