@@ -1,3 +1,5 @@
+# local virtuoso store 
+
 to build the local virtuoso instance do:
 
 $ docker run --name local-virtuoso -p 8890:8890 -p 1111:1111   \
@@ -11,3 +13,18 @@ then :
 $ docker stop local-virtuoso
 $ docker start local-virtuoso
 
+# steps to dev
+
+### sync upstream
+    git fetch upstream
+    git checkout master
+    git merge upstream/master
+
+### push on fork 
+    git push origin <branch>
+    
+### commit
+    git add <file> // to stage
+    git commit -m "{m}" // this will run husky with lint-staged and --fix option
+
+    
