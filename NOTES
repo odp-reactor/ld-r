@@ -27,4 +27,5 @@ $ docker start local-virtuoso
     git add <file> // to stage
     git commit -m "{m}" // this will run husky with lint-staged and --fix option
 
-    
+### sync non master branches
+    git checkout -b <mynamefortheirbranch> upstream/<theirbranch>
