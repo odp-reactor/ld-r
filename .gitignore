@@ -3,10 +3,10 @@ build
 *.log
 logs/*.log
 tmp.js
-configs/server.js
-configs/facets.js
-configs/reactor.js
-configs/general.js
+#configs/server.js
+#configs/facets.js
+#configs/reactor.js
+#configs/general.js
 plugins/email/config.js
 *.lock
 react-codemod
