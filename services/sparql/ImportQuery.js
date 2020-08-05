@@ -1,6 +1,6 @@
 'use strict';
 import validUrl from 'valid-url';
-class ImportQuery{
+class ImportQuery {
     constructor() {
         this.prefixes = `
         PREFIX ldr: <https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#>
@@ -14,40 +14,40 @@ class ImportQuery{
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
         PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
         `;
-        this.query='';
+        this.query = '';
     }
     getPrefixes() {
         return this.prefixes;
     }
-    prepareGraphName(graphName){
-        let gStart = 'GRAPH <'+ graphName +'> { ';
+    prepareGraphName(graphName) {
+        let gStart = 'GRAPH <' + graphName + '> { ';
         let gEnd = ' } ';
-        if(!graphName || graphName === 'default'){
-            gStart =' ';
+        if (!graphName || graphName === 'default') {
+            gStart = ' ';
             gEnd = ' ';
         }
-        return {gStart: gStart, gEnd: gEnd}
+        return { gStart: gStart, gEnd: gEnd }
     }
     csvBatchInsert(endpointParameters, user, graphName, jsonld) {
         //todo: consider different value types
-        let {gStart, gEnd} = this.prepareGraphName(graphName);
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
         let userSt = '';
-        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
-            userSt=` ldr:createdBy <${user.id}> ;`;
+        if (user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
+            userSt = ` ldr:createdBy <${user.id}> ;`;
         }
         let date = new Date();
         let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
-        jsonld['@graph'].forEach((node, index)=>{
+        jsonld['@graph'].forEach((node, index) => {
             let propsSt = '';
-            for(let prop in node){
-                if(prop && prop !== '@type' && prop !=='@id'){
-                    propsSt = propsSt + `${validUrl.isUri(prop.toString()) ? '<'+prop+'>': prop} ${validUrl.isUri(node[prop].toString()) ? '<'+node[prop]+'>': '"""'+node[prop]+'"""'} ; `;
+            for (let prop in node) {
+                if (prop && prop !== '@type' && prop !== '@id') {
+                    propsSt = propsSt + `${validUrl.isUri(prop.toString()) ? '<' + prop + '>' : prop} ${validUrl.isUri(node[prop].toString()) ? '<' + node[prop] + '>' : '"""' + node[prop] + '"""'} ; `;
                 }
             }
             this.query = this.query + `
             INSERT DATA {
                 ${gStart}
-                    ${validUrl.isUri(node['@id'].toString()) ? '<'+node['@id']+'>': node['@id']} a ${node['@type']} ;
+                    ${validUrl.isUri(node['@id'].toString()) ? '<' + node['@id'] + '>' : node['@id']} a ${node['@type']} ;
                     ${propsSt}
                     ${userSt}
                     ldr:createdOn "${currentDate}"^^xsd:dateTime .
@@ -58,12 +58,12 @@ class ImportQuery{
         //add prefixes
         let prefixes = '';
         //add ldr prefix
-        if(!jsonld['@context']['ldr']){
+        if (!jsonld['@context']['ldr']) {
             prefixes = 'PREFIX ldr: <https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#>';
         }
-        for(let prop in jsonld['@context']){
+        for (let prop in jsonld['@context']) {
             let val = jsonld['@context'][prop];
-            if((typeof val) === 'string'){
+            if ((typeof val) === 'string') {
                 prefixes = prefixes + `
                 PREFIX ${prop}: <${val}>
                 `;

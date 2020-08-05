@@ -17,10 +17,10 @@ class Geocoder {
 
     /**
      * Returns a cluster of promises returning, once resolved, an array of Coordinates {@link Coordinates}
-     * for the input address queries
+     * for the input addresses
      *
      * @param {Address[]} addresses an ordered list of addresses to resolve
-     * @returns {Coordinates[]} coordinates an ordered list of coordinates
+     * @returns {Coordinates[]} an ordered list of coordinates
      */
     resolveCoordinates(addresses) {
         let addressQueryPromises = [];

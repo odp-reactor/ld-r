@@ -9,6 +9,12 @@ export default {
 	'http://virtuoso.local/configurations': {
 	    host: 'localhost', port: 8890, path: '/sparql', endpointType: 'virtuoso'
 	},
+	'http://dpedia.org/sparql': {
+            host: 'dbpedia.org', port: 80, path: '/sparql', graphName: 'default', endpointType: 'virtuoso'
+	},
+	'http://dati.beniculturali.it/sparql': {
+	    host: 'dati.beniculturali.it', port: 80, path: '/sparql', graphName: 'default', endpointType: 'virtuoso'
+	},
     },
     dbpediaLookupService: [
         { host: 'lookup.dbpedia.org' }

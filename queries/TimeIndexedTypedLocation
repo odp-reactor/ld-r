@@ -119,16 +119,19 @@ PREFIX arco:    <https://w3id.org/arco/ontology/arco/>
 PREFIX a-loc:   <https://w3id.org/arco/ontology/location/>
 PREFIX cis:     <http://dati.beniculturali.it/cis/>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX l0:	<https://w3id.org/italia/onto/l0/>
 
 SELECT DISTINCT
-?featureLabel ?feature
+?featureLabel ?feature ?toponymName
 
 WHERE {
     ?feature        rdfs:label                         ?featureLabel .
     {
-        SELECT DISTINCT ?feature WHERE
+        SELECT DISTINCT ?feature ?toponymName WHERE
             {
                       ?location               a-loc:atLocation                    ?feature .
+		      ?feature		      a-loc:hasToponymInTime		  ?toponym .
+		      ?toponym		      l0:name				  ?toponymName .
             }
     }
     #FILTER regex(str(?SiteAddressLabel), "Italia", "i")
@@ -223,6 +226,7 @@ WHERE
 
 ### Query to get time interval for a location
 
+PREFIX arco:	 <https://w3id.org/arco/ontology/arco/>
 PREFIX a-loc:    <https://w3id.org/arco/ontology/location/>
 PREFIX tiapit:   <https://w3id.org/italia/onto/TI/>
 
@@ -232,7 +236,7 @@ WHERE
 {
 	?location      a-loc:isTimeIndexedTypedLocationOf    ?culturalProperty  ;
 		       tiapit:atTime		             ?timeInterval      .
-        ?timeInterval  tiapit:startTime                      ?start		;
-		       tiapit:endTime			     ?end		.
+        ?timeInterval  arco:startTime                        ?start		;
+		       arco:endTime			     ?end		.
 }
 

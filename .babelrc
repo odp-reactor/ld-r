@@ -1,6 +1,15 @@
 {
-  "presets": [["es2015", { "modules": false }], "env", "react"],
-  "plugins": [
-    "add-module-exports"
-  ]
+    "presets": [
+        [
+            "es2015",
+            {
+                "modules": false
+            }
+        ],
+        "env",
+        "react"
+    ],
+    "plugins": [
+        "add-module-exports"
+    ]
 }

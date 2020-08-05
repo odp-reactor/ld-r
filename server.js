@@ -9,7 +9,7 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import path from 'path';
 import serialize from 'serialize-javascript';
-import {navigateAction} from 'fluxible-router';
+import { navigateAction } from 'fluxible-router';
 import debugLib from 'debug';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -25,7 +25,7 @@ import handleUpload from './plugins/import/handleUpload';
 import handleExport from './plugins/export/handleExport';
 //required for generating docs
 import handleDocumentation from './plugins/documentation/handleDocumentation';
-import {enableAuthentication, uploadFolder} from './configs/general';
+import { enableAuthentication, uploadFolder } from './configs/general';
 import cookieSession from 'cookie-session';
 import hogan from 'hogan-express';
 import serverConfig from './configs/server';
@@ -39,10 +39,10 @@ const debug = debugLib('linked-data-reactor');
 const publicRoutes = ['/', '/about'];
 
 const host = process.env.HOST ? process.env.HOST : 'localhost';
-let port = 3000 ;
-if(env === 'production'){
+let port = 3000;
+if (env === 'production') {
     port = process.env.PORT ? process.env.PORT : (serverConfig.serverPort ? serverConfig.serverPort[0] : 3000);
-}else{
+} else {
     port = process.env.PORT ? parseInt(process.env.PORT) + 1 : 3001;
 }
 
@@ -57,7 +57,7 @@ server.use(cookieSession({
 }));
 // server.use(csrf({cookie: true}));
 //for authentication: this part is external to the flux architecture
-if(enableAuthentication){
+if (enableAuthentication) {
     handleAuthentication(server);
 }
 //handling file upload
@@ -105,11 +105,18 @@ fetchrPlugin.registerService(require('./services/custom'));
 server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());
 server.use(compression());
 server.use(bodyParser.json());
+
+/**
+ * This middleware enters inside FLUX flow
+ * 
+ * It creates a context per request  
+ */
+
 server.use((req, res, next) => {
     //check user credentials
     //stop fluxible rendering if not authorized
-    if(enableAuthentication){
-        if(!req.isAuthenticated() && publicRoutes.indexOf(req.url) === -1){
+    if (enableAuthentication) {
+        if (!req.isAuthenticated() && publicRoutes.indexOf(req.url) === -1) {
             //store referrer in session
             req.session.redirectTo = req.url;
             return res.redirect('/login');
@@ -159,11 +166,11 @@ server.use((req, res, next) => {
 });
 
 server.listen(port);
-if(env === 'production'){
+if (env === 'production') {
     console.log('[production environment] Check your application on http://%s:%s', host, port);
-}else{
+} else {
     console.log('[development environment] Proxy server listening on port ' + port);
-    console.log('[development environment] Check your application on http://%s:%s', host, port-1);
+    console.log('[development environment] Check your application on http://%s:%s', host, port - 1);
 }
 
 export default server;

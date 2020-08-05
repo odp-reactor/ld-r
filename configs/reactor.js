@@ -35,22 +35,24 @@ export default {
                 datasetLabel: ['LD-R Configurations'],
                 resourceLabelProperty: ['http://www.w3.org/2000/01/rdf-schema#label']
             },
+/*
             'http://virtuoso.local/mappings': {
                 readOnly: 0,
                 resourceFocusType: ['https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#CSVMapping'],
                 datasetLabel: ['LD-R Mapping Configurations'],
                 resourceLabelProperty: ['http://www.w3.org/2000/01/rdf-schema#label']
             },
+*/
             //example reactor config
 
-	    'http://dati.beniculturali.it/sparql/': {
+/*	    'http://dati.beniculturali.it/sparql/': {
 		readOnly: 0,
                 //allowInlineConfig: 0,
                 resourceFocusType: ['https://w3id.org/arco/ontology/arco/CulturalProperty'],
                 //resourceLabelProperty: ['http://xmlns.com/foaf/0.1/name'],
                 datasetLabel: ['ArCo']
 	    }
-        },
+*/        },
         resource: {
             'generic': {
                 //if enabled, will categorize properties in different tabs based on property categories
@@ -65,11 +67,11 @@ export default {
                 usePropertyCategories: 1,
                 propertyCategories: ['General', 'Specific']
             },
-	    'https://w3id.org/arco/ontology/arco/CulturalProperty': {
+	    /*'https://w3id.org/arco/ontology/arco/CulturalProperty': {
                 treatAsResourceType: 1,
                 usePropertyCategories: 1,
                 propertyCategories: ['General']
-	    },
+	    },*/
         },
         property: {
             'generic': {
@@ -90,11 +92,13 @@ export default {
                 allowNewValue: 0
             },
             'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#cloneOf': {
-                readOnlyProperty: 1,
-                allowPropertyDelete: 0
+		isHidden: 1,
+                readOnlyProperty: 0,
+                allowPropertyDelete: 1
             },
             'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': {
-                allowPropertyDelete: 0,
+                allowPropertyDelete: 1,
+		allowNewValue: 1,
                 objectIViewer: ['PrefixBasedView'],
                 objectIEditor: ['PrefixBasedInput']
             },
@@ -112,7 +116,7 @@ export default {
                 containerDatasetURI: ['http://ld-r.org/users']
             },
             'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#createdOn' : {
-                isHidden: 0,
+                isHidden: 1,
                 allowNewValue: 0,
                 allowPropertyDelete: 0,
                 readOnlyProperty: 1,
@@ -132,18 +136,20 @@ export default {
                     resourceReactor: ['UserResource']
                 }
             },
+/*
             'http://virtuoso.local/mappings': {
                 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#CSVMapping' :{
                     treatAsResourceType: 1,
                     resourceReactor: ['CSVMappingResource']
                 },
+
                 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#CustomMapping' :{
                     treatAsResourceType: 1,
                     objectIEditor: ['PrefixBasedInput'],
                     objectIViewer: ['PrefixBasedView']
                 }
             }
-        },
+*/        },
         dataset_property: {
             //for configuration manager
             'http://virtuoso.local/configurations': {
@@ -510,7 +516,7 @@ export default {
                 }
             },
             //for mappings
-            'http://virtuoso.local/mappings': {
+/*            'http://virtuoso.local/mappings': {
                 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#csvFile': {
                     readOnlyProperty: 1,
                     label: ['CSV File']
@@ -535,7 +541,7 @@ export default {
                     includeOnly: ['classes']
                 }
             }
-        },
+*/        },
         resource_property: {
 
         },
