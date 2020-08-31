@@ -1,4 +1,4 @@
-#TODO list
+# TODO list
 - Design a smart routing algorithm for default routing of components (e.g. based on value types or components metadata).
 - Add interface for more Triple stores other than Virtuoso and Stardog.
 - Consider Language tag in SPARQL Queries.

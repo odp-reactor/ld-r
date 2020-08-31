@@ -1,0 +1,46 @@
+#Literature
+Visual Language, Icons 
+
+#Patterns
+TypedTimeIndexedCulturalEvent
+Harris Matrix, sequenza, regioni, contenimento, sovrapposizione, confine
+
+### ! SCALETTA ! ###
+
+// mezza giornata
+{ aggiungi dati con ld-r to arco - per pattern TimeIndexed...}
+    - usa in reactor dataset config templateResource (to specify the template to create a new resource)
+
+// mezza giornata
+{Leggere questi papers ...
+- https://openaccess.city.ac.uk/id/eprint/175/2/
+- TIMELINE}
+
+// due giorni
+{ crea visualizzazione per pattern }
+
+// un giorno
+{ personalizza sito (usando CustomComponents) }
+
+// ...
+{ pensare a come mappare le icone }
+
+### ! ! ! ! !
+
+3) Harris Matrix es: componente per esperti e per non esperti
+
+#Technology
+react hooks
+redux/flux
+LD-R (Arco)
+graphql
+//fluxible
+
+#Machine Learning
+Analytics Algebra
+
+#Csecurity
+Hacking Web Applications
+WifiPhishing
+SSH Fttp bruteforce
+Exploit

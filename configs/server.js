@@ -7,7 +7,7 @@ export default {
             host: 'localhost', port: 8890, path: '/sparql', endpointType: 'virtuoso'
         },
 	'http://virtuoso.local/configurations': {
-	    host: 'localhost', port: 8890, path: '/sparql', endpointType: 'virtuoso'
+	    host: 'arco.istc.cnr.it', port: 80, path: '/ldr/sparql', endpointType: 'virtuoso'
 	},
 	'http://dpedia.org/sparql': {
             host: 'dbpedia.org', port: 80, path: '/sparql', graphName: 'default', endpointType: 'virtuoso'

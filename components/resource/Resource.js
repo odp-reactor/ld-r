@@ -38,17 +38,13 @@ class Resource extends React.Component {
         //check erros first
         if (this.props.error) {
             return (
-                <div
-                    className="ui fluid container ldr-padding-more"
-                    ref="resource"
-                >
-                    <div className="ui grid">
-                        <div className="ui column">
-                            <div className="ui warning message">
-                                <h2>{this.props.error}</h2>
-                            </div>
+                <div className="ui fluid container ldr-padding-more" ref="resource" > <div className="ui grid">
+                    <div className="ui column">
+                        <div className="ui warning message">
+                            <h2>{this.props.error}</h2>
                         </div>
                     </div>
+                </div>
                 </div>
             );
         }

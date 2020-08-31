@@ -1,0 +1,41 @@
+# Possibilità 1
+Specifica per pattern
+
+action che chiama il servizio pattern_1
+servizio pattern_1 apposito restituisce i dati
+
+oggetto con responsabilità di parsarli (un qualche parsing)
+e li passa alla view
+
+view specifica per questo pattern_1
+
+! nel framework ldr si setta per la resource timeIndexe... 
+  resourceReactor['timeIndexedReactor'] 
+
+# pro, poca astrazione, velocità implementazione
+# ho già la semantica dei dati nella risposta
+# contro: 50 pattern, 50 servizi con la query hardcoded
+
+
+# How to get data ?
+
+In LD-R the flow to get data is the following:
+
+a <NavLink (fluxible)> incapsulate a route  
+a route object (designed by ld-r) defines an action to perform
+a function loadAction (defined by ld-r according to fluxible interface) trigger a service
+a service endpoint (defined by ld-r according to fluxible interface) execute a query
+a queryObject (designed by ld-r) gets data for a resource (properties with depth 1)
+
+PROBLEM: I have just the ID of the resource before query execution so i cannot divert from generic resource query
+Possible solution: Examine the data and if a special visual pattern resource is find do custom query 
+
+service returns params calling a callback and actions receive them in action.payload 
+ResourceStore (defined by ld-r according to fluxible interface) gets data 
+ResourceReactor listen to the state of ResourceStore
+
+Possible solution
+
+
+
+

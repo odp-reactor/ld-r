@@ -71,43 +71,14 @@ export default {
         if (resource === 'resource.properties') {
             category = params.category;
             //SPARQL QUERY
-            datasetURI =
-                params.dataset && params.dataset !== '0'
-                    ? decodeURIComponent(params.dataset)
-                    : 0;
-
+            datasetURI = params.dataset && params.dataset !== '0' ? decodeURIComponent(params.dataset) : 0;
             //control access on authentication
             if (enableAuthentication) {
-                if (!req.user) {
-                    callback(null, {
-                        datasetURI: datasetURI,
-                        graphName: graphName,
-                        resourceURI: resourceURI,
-                        resourceType: '',
-                        currentCategory: 0,
-                        propertyPath: [],
-                        properties: [],
-                        config: {}
-                    });
-                    return 0;
-                } else {
-                    user = req.user;
-                }
-            } else {
-                user = { accountName: 'open' };
-            }
+                if (!req.user) { callback(null, { datasetURI: datasetURI, graphName: graphName, resourceURI: resourceURI, resourceType: '', currentCategory: 0, propertyPath: [], properties: [], config: {} }); return 0; } else { user = req.user; } } 
+            else { user = { accountName: 'open' }; }
             //graph name used for server settings and configs
             getDynamicEndpointParameters(
-                user,
-                datasetURI,
-                endpointParameters => {
-                    graphName = endpointParameters.graphName;
-                    resourceURI = params.resource;
-                    propertyPath = decodeURIComponent(params.propertyPath);
-                    if (propertyPath.length > 1) {
-                        propertyPath = propertyPath.split(',');
-                    }
-                    //for now only check the dataset access levele
+                user, datasetURI, endpointParameters => { graphName = endpointParameters.graphName; resourceURI = params.resource; propertyPath = decodeURIComponent(params.propertyPath); if (propertyPath.length > 1) { propertyPath = propertyPath.split(','); } //for now only check the dataset access levele
                     //todo: extend view access to resource and property level
                     configurator.prepareDatasetConfig(
                         user,
@@ -165,57 +136,15 @@ export default {
                                     graphName,
                                     resourceURI
                                 );
-                            //console.log(query);
+                            console.log(query);
                             //build http uri
                             //send request
                             let props;
-                            rp.get({
-                                uri: getHTTPGetURL(
-                                    getHTTPQuery(
-                                        'read',
-                                        query,
-                                        endpointParameters,
-                                        outputFormat
-                                    )
-                                ),
-                                headers: headers
-                            })
+                            rp.get({ uri: getHTTPGetURL( getHTTPQuery( 'read', query, endpointParameters, outputFormat ) ), headers: headers }) 
                                 .then(function(res) {
                                     //exceptional case for user properties: we hide some admin props from normal users
-                                    utilObject.parseProperties(
-                                        user,
-                                        res,
-                                        datasetURI,
-                                        resourceURI,
-                                        category,
-                                        propertyPath,
-                                        cres => {
-                                            if (
-                                                datasetURI ===
-                                                    authDatasetURI[0] &&
-                                                !parseInt(user.isSuperUser)
-                                            ) {
-                                                props = utilObject.deleteAdminProperties(
-                                                    cres.props
-                                                );
-                                            } else {
-                                                props = cres.props;
-                                            }
-                                            //------------------------------------
-                                            callback(null, {
-                                                datasetURI: datasetURI,
-                                                graphName: graphName,
-                                                resourceURI: resourceURI,
-                                                resourceType: cres.resourceType,
-                                                title: cres.title,
-                                                currentCategory: category,
-                                                propertyPath: propertyPath,
-                                                properties: props,
-                                                config: cres.rconfig
-                                            });
-                                        }
-                                    );
-                                })
+                                    utilObject.parseProperties( user, res, datasetURI, resourceURI, category, propertyPath, cres => { if ( datasetURI === authDatasetURI[0] && !parseInt(user.isSuperUser) ) { props = utilObject.deleteAdminProperties( cres.props ); } else { props = cres.props; } 
+                                        callback(null, { datasetURI: datasetURI, graphName: graphName, resourceURI: resourceURI, resourceType: cres.resourceType, title: cres.title, currentCategory: category, propertyPath: propertyPath, properties: props, config: cres.rconfig }); } ); })
                                 .catch(function(err) {
                                     console.log(err);
                                     if (enableLogs) {
@@ -302,6 +231,11 @@ export default {
                                 resourceURI,
                                 propertyURI,
                                 cres => {
+                                    console.log(
+                                        `[* debug *] props: ${JSON.stringify(
+                                            cres.props
+                                        )}`
+                                    );
                                     callback(null, {
                                         objectURI: objectURI,
                                         objectType: cres.objectType,

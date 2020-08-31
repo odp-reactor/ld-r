@@ -1,0 +1,221 @@
+[
+    {
+        "propertyURI": "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#createdOn",
+        "property": "CreatedOn",
+        "config": {
+            "readOnly": 1,
+            "allowResourceNew": 1,
+            "allowResourceDelete": 1,
+            "allowResourceClone": 1,
+            "allowPropertyNew": 1,
+            "datasetViewer": ["BasicResourceList"],
+            "dynamicResourceDomain": ["http://example.org"],
+            "propertyReactor": ["IndividualProperty"],
+            "objectReactor": ["IndividualObject"],
+            "objectIViewer": ["BasicIndividualView"],
+            "objectIEditor": ["BasicIndividualInput"],
+            "extendedOEditor": ["BasicIndividualDetailEdit"],
+            "extendedOViewer": ["BasicIndividualDetailView"],
+            "shortenURI": 1,
+            "createdOn": [
+                "2020-07-29T08:15:57.765Z",
+                "2020-07-30T07:45:10.913Z",
+                "2020-07-29T15:13:06.394Z"
+            ],
+            "cloneOf": [
+                "http://virtuoso.local/configurations/c1596035634",
+                "http://virtuoso.local/configurations/c1596035111"
+            ],
+            "allowPropertyDelete": 0,
+            "isHidden": 1,
+            "allowNewValue": 0,
+            "readOnlyProperty": 1,
+            "access": true
+        },
+        "instances": [
+            {
+                "value": "2020-08-03T09:48:38.640Z",
+                "valueType": "typed-literal",
+                "dataType": "http://www.w3.org/2001/XMLSchema#dateTime",
+                "lang": "",
+                "extended": 0,
+                "valueLabel": "",
+                "valueTitle": ""
+            }
+        ]
+    },
+    {
+        "propertyURI": "https://w3id.org/italia/onto/CLV/hasGeometry",
+        "property": "HasGeometry",
+        "config": {
+            "readOnly": 0,
+            "allowResourceNew": 1,
+            "allowResourceDelete": 1,
+            "allowResourceClone": 1,
+            "allowPropertyNew": 1,
+            "datasetViewer": ["BasicResourceList"],
+            "dynamicResourceDomain": ["http://example.org"],
+            "propertyReactor": ["IndividualProperty"],
+            "objectReactor": ["IndividualObject"],
+            "objectIViewer": ["BasicIndividualView"],
+            "objectIEditor": ["BasicIndividualInput"],
+            "extendedOEditor": ["BasicIndividualDetailEdit"],
+            "extendedOViewer": ["BasicIndividualDetailView"],
+            "shortenURI": 1,
+            "createdOn": [
+                "2020-07-29T08:15:57.765Z",
+                "2020-07-30T07:45:10.913Z",
+                "2020-07-29T15:13:06.394Z"
+            ],
+            "cloneOf": [
+                "http://virtuoso.local/configurations/c1596035634",
+                "http://virtuoso.local/configurations/c1596035111"
+            ],
+            "allowPropertyDelete": 1
+        },
+        "instances": [
+            {
+                "value": "http://virtuoso.local/n1596549103",
+                "valueType": "uri",
+                "dataType": "",
+                "lang": "",
+                "extended": 6,
+                "valueLabel": "geometry_1",
+                "valueTitle": ""
+            }
+        ]
+    },
+    {
+        "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+        "property": "Label",
+        "config": {
+            "readOnly": 0,
+            "allowResourceNew": 1,
+            "allowResourceDelete": 1,
+            "allowResourceClone": 1,
+            "allowPropertyNew": 1,
+            "datasetViewer": ["BasicResourceList"],
+            "dynamicResourceDomain": ["http://example.org"],
+            "propertyReactor": ["IndividualProperty"],
+            "objectReactor": ["IndividualObject"],
+            "objectIViewer": ["BasicIndividualView"],
+            "objectIEditor": ["BasicIndividualInput"],
+            "extendedOEditor": ["BasicIndividualDetailEdit"],
+            "extendedOViewer": ["BasicIndividualDetailView"],
+            "shortenURI": 1,
+            "createdOn": [
+                "2020-07-29T08:15:57.765Z",
+                "2020-07-30T07:45:10.913Z",
+                "2020-07-29T15:13:06.394Z"
+            ],
+            "cloneOf": [
+                "http://virtuoso.local/configurations/c1596035634",
+                "http://virtuoso.local/configurations/c1596035111"
+            ],
+            "allowPropertyDelete": 1
+        },
+        "instances": [
+            {
+                "value": "site_1",
+                "valueType": "literal",
+                "dataType": "",
+                "lang": "",
+                "extended": 0,
+                "valueLabel": "",
+                "valueTitle": ""
+            }
+        ]
+    },
+    {
+        "propertyURI": "http://dati.beniculturali.it/cis/siteAddress",
+        "property": "SiteAddress",
+        "config": {
+            "readOnly": 0,
+            "allowResourceNew": 1,
+            "allowResourceDelete": 1,
+            "allowResourceClone": 1,
+            "allowPropertyNew": 1,
+            "datasetViewer": ["BasicResourceList"],
+            "dynamicResourceDomain": ["http://example.org"],
+            "propertyReactor": ["IndividualProperty"],
+            "objectReactor": ["IndividualObject"],
+            "objectIViewer": ["BasicIndividualView"],
+            "objectIEditor": ["BasicIndividualInput"],
+            "extendedOEditor": ["BasicIndividualDetailEdit"],
+            "extendedOViewer": ["BasicIndividualDetailView"],
+            "shortenURI": 1,
+            "createdOn": [
+                "2020-07-29T08:15:57.765Z",
+                "2020-07-30T07:45:10.913Z",
+                "2020-07-29T15:13:06.394Z"
+            ],
+            "cloneOf": [
+                "http://virtuoso.local/configurations/c1596035634",
+                "http://virtuoso.local/configurations/c1596035111"
+            ],
+            "allowPropertyDelete": 1
+        },
+        "instances": [
+            {
+                "value": "http://virtuoso.local/n1596548423",
+                "valueType": "uri",
+                "dataType": "",
+                "lang": "",
+                "extended": 4,
+                "valueLabel": "address_1",
+                "valueTitle": ""
+            }
+        ]
+    },
+    {
+        "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "property": "Type",
+        "config": {
+            "readOnly": 0,
+            "allowResourceNew": 1,
+            "allowResourceDelete": 1,
+            "allowResourceClone": 1,
+            "allowPropertyNew": 1,
+            "datasetViewer": ["BasicResourceList"],
+            "dynamicResourceDomain": ["http://example.org"],
+            "propertyReactor": ["IndividualProperty"],
+            "objectReactor": ["IndividualObject"],
+            "objectIViewer": ["PrefixBasedView"],
+            "objectIEditor": ["PrefixBasedInput"],
+            "extendedOEditor": ["BasicIndividualDetailEdit"],
+            "extendedOViewer": ["BasicIndividualDetailView"],
+            "shortenURI": 1,
+            "createdOn": [
+                "2020-07-29T08:15:57.765Z",
+                "2020-07-30T07:45:10.913Z",
+                "2020-07-29T15:13:06.394Z"
+            ],
+            "cloneOf": [
+                "http://virtuoso.local/configurations/c1596035634",
+                "http://virtuoso.local/configurations/c1596035111"
+            ],
+            "allowPropertyDelete": 1,
+            "allowNewValue": 1
+        },
+        "instances": [
+            {
+                "value": "http://dati.beniculturali.it/cis/Site",
+                "valueType": "uri",
+                "dataType": "",
+                "lang": "",
+                "extended": 0,
+                "valueLabel": "",
+                "valueTitle": ""
+            },
+            {
+                "value": "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#Resource",
+                "valueType": "uri",
+                "dataType": "",
+                "lang": "",
+                "extended": 0,
+                "valueLabel": "",
+                "valueTitle": ""
+            }
+        ]
+    }
+]
