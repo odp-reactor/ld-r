@@ -16,3 +16,5 @@ uploaded/*.csv
 uploaded/*.txt
 uploaded/*.tsv
 uploaded/*.json
+.vscode
+WORKFLOW.md

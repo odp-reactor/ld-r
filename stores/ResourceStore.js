@@ -21,6 +21,9 @@ class ResourceStore extends BaseStore {
         this.error = payload.error;
         this.emitChange();
     }
+    updateProperties(payload) {
+        console.log(`[*] Functionality not yet implemented. updateProperties will receive and stored extra data. Payload: ${payload}`);
+    }
     cleanAll() {
         this.properties = [];
         this.datasetURI = '';
@@ -71,7 +74,8 @@ class ResourceStore extends BaseStore {
 ResourceStore.storeName = 'ResourceStore'; // PR open in dispatchr to remove this need
 ResourceStore.handlers = {
     'LOAD_RESOURCE_SUCCESS': 'updatePropertyList',
-    'CLEAN_RESOURCE_SUCCESS': 'cleanResource'
+    'CLEAN_RESOURCE_SUCCESS': 'cleanResource',
+    'LOAD_EXTRA_DATA_SUCCESS' : 'updateProperties'
 };
 
 export default ResourceStore;

@@ -4,38 +4,50 @@ export default {
     config: {
         //---------depth 1------------
         dataset: {
-            'generic': {
+            generic: {
                 resourceFocusType: [],
                 //only allow to view data -> disable edit
                 readOnly: 0,
                 //used for pagination in resource list
                 maxNumberOfResourcesOnPage: 20,
-		allowResourceNew: 1,
-		allowResourceDelete: 1,
-		allowResourceClone: 1,
-		allowPropertyNew: 1,
-                datasetReactor: ['Dataset'],
-                datasetViewer: ['BasicResourceList']
+                allowResourceNew: 1,
+                allowResourceDelete: 1,
+                allowResourceClone: 1,
+                allowPropertyNew: 1,
+                datasetReactor: ["Dataset"],
+                datasetViewer: ["BasicResourceList"]
             },
             //authentication graph
-            'http://virtuoso.local/users': {
+            "http://virtuoso.local/users": {
                 readOnly: 1,
-                resourceFocusType: ['https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#User'],
-                resourceLabelProperty: ['http://xmlns.com/foaf/0.1/accountName'],
+                resourceFocusType: [
+                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#User"
+                ],
+                resourceLabelProperty: [
+                    "http://xmlns.com/foaf/0.1/accountName"
+                ],
                 allowPropertyNew: 1
             },
-            'http://virtuoso.local/configurations': {
+            "http://virtuoso.local/configurations": {
                 readOnly: 0,
                 allowResourceClone: 1,
                 allowPropertyDelete: 1,
                 allowResourceNew: 1,
                 allowPropertyNew: 1,
                 allowNewValue: 1,
-                resourceFocusType: ['https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#ReactorConfig', 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#ServerConfig','https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#FacetsPropertyConfig', 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#FacetsConfig', 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#EnvState'],
-                datasetLabel: ['LD-R Configurations'],
-                resourceLabelProperty: ['http://www.w3.org/2000/01/rdf-schema#label']
-            },
-/*
+                resourceFocusType: [
+                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#ReactorConfig",
+                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#ServerConfig",
+                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#FacetsPropertyConfig",
+                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#FacetsConfig",
+                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#EnvState"
+                ],
+                datasetLabel: ["LD-R Configurations"],
+                resourceLabelProperty: [
+                    "http://www.w3.org/2000/01/rdf-schema#label"
+                ]
+            }
+            /*
             'http://virtuoso.local/mappings': {
                 readOnly: 0,
                 resourceFocusType: ['https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#CSVMapping'],
@@ -45,98 +57,104 @@ export default {
 */
             //example reactor config
 
-/*	    'http://dati.beniculturali.it/sparql/': {
+            /*	    'http://dati.beniculturali.it/sparql/': {
 		readOnly: 0,
                 //allowInlineConfig: 0,
                 resourceFocusType: ['https://w3id.org/arco/ontology/arco/CulturalProperty'],
                 //resourceLabelProperty: ['http://xmlns.com/foaf/0.1/name'],
                 datasetLabel: ['ArCo']
 	    }
-*/        },
+*/
+        },
         resource: {
-            'generic': {
+            generic: {
                 //if enabled, will categorize properties in different tabs based on property categories
                 usePropertyCategories: 0,
                 propertyCategories: [],
                 //used when creating random resources
-                dynamicResourceDomain: ['http://example.org'],
-                resourceReactor: ['Resource']
+                dynamicResourceDomain: ["http://example.org"],
+                resourceReactor: ["Resource"]
             },
-	    'http://dbpedia.org/ontology/EducationalInstitution': {
+            "http://dbpedia.org/ontology/EducationalInstitution": {
                 treatAsResourceType: 1,
                 usePropertyCategories: 1,
-                propertyCategories: ['General', 'Specific']
-            },
-	    /*'https://w3id.org/arco/ontology/arco/CulturalProperty': {
+                propertyCategories: ["General", "Specific"]
+            }
+            /*'https://w3id.org/arco/ontology/arco/CulturalProperty': {
                 treatAsResourceType: 1,
                 usePropertyCategories: 1,
                 propertyCategories: ['General']
 	    },*/
         },
         property: {
-            'generic': {
-                propertyReactor: ['IndividualProperty'],
+            generic: {
+                propertyReactor: ["IndividualProperty"],
                 //following are object-based scope:
-                objectReactor: ['IndividualObject'],
+                objectReactor: ["IndividualObject"],
                 //to view/edit individual object values
-                objectIViewer: ['BasicIndividualView'],
-                objectIEditor: ['BasicIndividualInput'],
-                extendedOEditor: ['BasicIndividualDetailEdit'],
-                extendedOViewer: ['BasicIndividualDetailView'],
+                objectIViewer: ["BasicIndividualView"],
+                objectIEditor: ["BasicIndividualInput"],
+                extendedOEditor: ["BasicIndividualDetailEdit"],
+                extendedOViewer: ["BasicIndividualDetailView"],
                 shortenURI: 1
             },
-            'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#password': {
-                label: ['Password'],
-                objectIViewer: ['PasswordView'],
-                objectIEditor: ['PasswordInput'],
+            /* A test with new functionality */
+            "https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation": {
+                propertyReactor: ["ComplexProperty"],
+                customQuery: ["*", "?p ?o", ""]
+            },
+            "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#password": {
+                label: ["Password"],
+                objectIViewer: ["PasswordView"],
+                objectIEditor: ["PasswordInput"],
                 allowNewValue: 0
             },
-            'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#cloneOf': {
-		isHidden: 1,
+            "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#cloneOf": {
+                isHidden: 1,
                 readOnlyProperty: 0,
                 allowPropertyDelete: 1
             },
-            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': {
+            "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
                 allowPropertyDelete: 1,
-		allowNewValue: 1,
-                objectIViewer: ['PrefixBasedView'],
-                objectIEditor: ['PrefixBasedInput']
+                allowNewValue: 1,
+                objectIViewer: ["PrefixBasedView"],
+                objectIEditor: ["PrefixBasedInput"]
             },
-            'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataType': {
+            "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataType": {
                 allowPropertyDelete: 0,
-                objectIViewer: ['PrefixBasedView'],
-                objectIEditor: ['PrefixBasedInput']
+                objectIViewer: ["PrefixBasedView"],
+                objectIEditor: ["PrefixBasedInput"]
             },
-            'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#createdBy' : {
+            "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#createdBy": {
                 isHidden: 0,
                 allowNewValue: 0,
                 allowPropertyDelete: 0,
                 readOnlyProperty: 1,
-                objectIViewer: ['BasicLinkedIndividualView'],
-                containerDatasetURI: ['http://ld-r.org/users']
+                objectIViewer: ["BasicLinkedIndividualView"],
+                containerDatasetURI: ["http://ld-r.org/users"]
             },
-            'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#createdOn' : {
+            "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#createdOn": {
                 isHidden: 1,
                 allowNewValue: 0,
                 allowPropertyDelete: 0,
-                readOnlyProperty: 1,
+                readOnlyProperty: 1
             },
-            'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resourceQuery' : {
+            "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resourceQuery": {
                 decodeURIComponent: 1
             },
-            'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#selection' : {
+            "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#selection": {
                 decodeURIComponent: 1
             }
         },
         //---------depth 2------------
         dataset_resource: {
-            'http://virtuoso.local/users': {
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#User' :{
+            "http://virtuoso.local/users": {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#User": {
                     treatAsResourceType: 1,
-                    resourceReactor: ['UserResource']
+                    resourceReactor: ["UserResource"]
                 }
-            },
-/*
+            }
+            /*
             'http://virtuoso.local/mappings': {
                 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#CSVMapping' :{
                     treatAsResourceType: 1,
@@ -149,374 +167,482 @@ export default {
                     objectIViewer: ['PrefixBasedView']
                 }
             }
-*/        },
+*/
+        },
         dataset_property: {
             //for configuration manager
-            'http://virtuoso.local/configurations': {
-                'http://www.w3.org/2000/01/rdf-schema#label': {
+            "http://virtuoso.local/configurations": {
+                "http://www.w3.org/2000/01/rdf-schema#label": {
                     allowPropertyDelete: 0,
-                    label: ['Description'],
+                    label: ["Description"],
                     allowNewValue: 0
                 },
-                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': {
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
                     isHidden: 0,
                     shortenURI: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#templateResource': {
-                    label: ['The Template Resource'],
-                    hint: ['If set, this resource will be used as template for new resources.'],
-                    allowNewValue: 0
-                },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#scope': {
-                    hint: ['Determines the type of scope in LD-R'],
-                    objectIEditor: ['BasicOptionInput'],
-                    objectIViewer: ['BasicOptionView'],
-                    options: [
-                        {label: 'Dataset', value: 'D'},
-                        {label: 'Resource', value: 'R'},
-                        {label: 'Property', value: 'P'},
-                        {label: 'Dataset-Resource', value: 'DR'},
-                        {label: 'Dataset-Property', value: 'DP'},
-                        {label: 'Resource-Property', value: 'RP'},
-                        {label: 'Dataset-Resource-Property', value: 'DRP'},
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#templateResource": {
+                    label: ["The Template Resource"],
+                    hint: [
+                        "If set, this resource will be used as template for new resources."
                     ],
                     allowNewValue: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataset': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#scope": {
+                    hint: ["Determines the type of scope in LD-R"],
+                    objectIEditor: ["BasicOptionInput"],
+                    objectIViewer: ["BasicOptionView"],
+                    options: [
+                        { label: "Dataset", value: "D" },
+                        { label: "Resource", value: "R" },
+                        { label: "Property", value: "P" },
+                        { label: "Dataset-Resource", value: "DR" },
+                        { label: "Dataset-Property", value: "DP" },
+                        { label: "Resource-Property", value: "RP" },
+                        { label: "Dataset-Resource-Property", value: "DRP" }
+                    ],
+                    allowNewValue: 0
+                },
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataset": {
                     shortenURI: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property": {
                     shortenURI: 0,
-                    objectIViewer: ['PrefixBasedView'],
-                    objectIEditor: ['PrefixBasedInput']
+                    objectIViewer: ["PrefixBasedView"],
+                    objectIEditor: ["PrefixBasedInput"]
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resource': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resource": {
                     shortenURI: 0,
-                    objectIViewer: ['PrefixBasedView'],
-                    objectIEditor: ['PrefixBasedInput']
+                    objectIViewer: ["PrefixBasedView"],
+                    objectIEditor: ["PrefixBasedInput"]
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resourceFocusType': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resourceFocusType": {
                     shortenURI: 0,
-                    objectIViewer: ['PrefixBasedView'],
-                    objectIEditor: ['PrefixBasedInput']
+                    objectIViewer: ["PrefixBasedView"],
+                    objectIEditor: ["PrefixBasedInput"]
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resourceLabelProperty': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resourceLabelProperty": {
                     shortenURI: 0,
-                    objectIViewer: ['PrefixBasedView'],
-                    objectIEditor: ['PrefixBasedInput']
+                    objectIViewer: ["PrefixBasedView"],
+                    objectIEditor: ["PrefixBasedInput"]
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#config': {
-                    label: ['Configuration'],
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#config": {
+                    label: ["Configuration"],
                     allowExtension: 1,
                     hasBlankNode: 1,
                     extensions: [
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#label',
-                                instances: [{value: 'Label', valueType: 'literal'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#label",
+                                instances: [
+                                    { value: "Label", valueType: "literal" }
+                                ]
                             },
                             config: {
-                                label: ['Label']
+                                label: ["Label"]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-                                instances: [{value: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#FacetsPropertyConfig', valueType: 'uri'}]
+                                propertyURI:
+                                    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                                instances: [
+                                    {
+                                        value:
+                                            "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#FacetsPropertyConfig",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                label: ['Type'],
-                                objectIViewer: ['PrefixBasedView'],
-                                objectIEditor: ['PrefixBasedInput']
+                                label: ["Type"],
+                                objectIViewer: ["PrefixBasedView"],
+                                objectIEditor: ["PrefixBasedInput"]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property',
-                                instances: [{value: 'http://example.com/prop1', valueType: 'uri'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property",
+                                instances: [
+                                    {
+                                        value: "http://example.com/prop1",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                label: ['Property'],
-                                objectIViewer: ['PrefixBasedView'],
-                                objectIEditor: ['PrefixBasedInput']
+                                label: ["Property"],
+                                objectIViewer: ["PrefixBasedView"],
+                                objectIEditor: ["PrefixBasedInput"]
                             }
                         }
                     ]
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#constraint': {
-                    label: ['Constraint'],
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#constraint": {
+                    label: ["Constraint"],
                     allowExtension: 1,
                     hasBlankNode: 1,
                     extensions: [
                         {
                             spec: {
-                                propertyURI: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-                                instances: [{value: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#Constraint', valueType: 'uri'}]
+                                propertyURI:
+                                    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                                instances: [
+                                    {
+                                        value:
+                                            "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#Constraint",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                label: ['Type'],
-                                objectIViewer: ['PrefixBasedView'],
-                                objectIEditor: ['PrefixBasedInput']
+                                label: ["Type"],
+                                objectIViewer: ["PrefixBasedView"],
+                                objectIEditor: ["PrefixBasedInput"]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property',
-                                instances: [{value: 'http://exampleProperty.com', valueType: 'uri'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property",
+                                instances: [
+                                    {
+                                        value: "http://exampleProperty.com",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                label: ['Property'],
-                                objectIViewer: ['PrefixBasedView'],
-                                objectIEditor: ['PrefixBasedInput']
+                                label: ["Property"],
+                                objectIViewer: ["PrefixBasedView"],
+                                objectIEditor: ["PrefixBasedInput"]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#object',
-                                instances: [{value: 'value', valueType: 'literal'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#object",
+                                instances: [
+                                    { value: "value", valueType: "literal" }
+                                ]
                             },
                             config: {
-                                label: ['Object Value']
+                                label: ["Object Value"]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#enabled',
-                                instances: [{value: '1', valueType: 'literal'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#enabled",
+                                instances: [
+                                    { value: "1", valueType: "literal" }
+                                ]
                             },
                             config: {
-                                label: ['Enabled'],
-                                objectIViewer:['ToggleView'],
-                                objectIEditor:['ToggleEdit'],
-                                onValue: ['1'],
-                                offValue: ['0'],
+                                label: ["Enabled"],
+                                objectIViewer: ["ToggleView"],
+                                objectIEditor: ["ToggleEdit"],
+                                onValue: ["1"],
+                                offValue: ["0"]
                             }
-                        },
+                        }
                     ]
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#list': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#list": {
                     shortenURI: 0,
-                    objectIViewer: ['PrefixBasedView'],
-                    objectIEditor: ['PrefixBasedInput']
+                    objectIViewer: ["PrefixBasedView"],
+                    objectIEditor: ["PrefixBasedInput"]
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#treatAsResourceType': {
-                    label: ['Treat as Resource Type'],
-                    hint: ['If set to true, will consider resource URI as type URI for resource'],
-                    objectIViewer:['ToggleView'],
-                    objectIEditor:['ToggleEdit'],
-                    onValue: ['1'],
-                    offValue: ['0'],
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#treatAsResourceType": {
+                    label: ["Treat as Resource Type"],
+                    hint: [
+                        "If set to true, will consider resource URI as type URI for resource"
+                    ],
+                    objectIViewer: ["ToggleView"],
+                    objectIEditor: ["ToggleEdit"],
+                    onValue: ["1"],
+                    offValue: ["0"],
                     allowNewValue: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#useReasoning': {
-                    label: ['Use Reasoning?'],
-                    objectIViewer:['ToggleView'],
-                    objectIEditor:['ToggleEdit'],
-                    onValue: ['1'],
-                    offValue: ['0'],
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#useReasoning": {
+                    label: ["Use Reasoning?"],
+                    objectIViewer: ["ToggleView"],
+                    objectIEditor: ["ToggleEdit"],
+                    onValue: ["1"],
+                    offValue: ["0"],
                     allowNewValue: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#host': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#host": {
                     allowNewValue: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#port': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#port": {
                     allowNewValue: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#path': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#path": {
                     allowNewValue: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#protocol': {
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#protocol": {
                     allowNewValue: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#graphName': {
-                    label: ['Graph Name'],
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#graphName": {
+                    label: ["Graph Name"],
                     hint: ['use "default" to consider all graph names'],
                     allowNewValue: 0
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#endpointType': {
-                    label: ['Endpoint Type'],
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#endpointType": {
+                    label: ["Endpoint Type"],
                     allowNewValue: 0,
-                    objectIEditor: ['BasicOptionInput'],
-                    objectIViewer: ['BasicOptionView'],
+                    objectIEditor: ["BasicOptionInput"],
+                    objectIViewer: ["BasicOptionView"],
                     allowUserDefinedValue: 1,
                     options: [
-                        {label: 'ClioPatria', value: 'cliopatria'},
-                        {label: 'Virtuoso', value: 'virtuoso'},
-                        {label: 'Stardog', value: 'stardog'},
-                        {label: 'Blazegraph', value: 'blazegraph'},
-                        {label: 'GraphDB', value: 'graphdb'},
-                        {label: 'Sesame', value: 'sesame'}
+                        { label: "ClioPatria", value: "cliopatria" },
+                        { label: "Virtuoso", value: "virtuoso" },
+                        { label: "Stardog", value: "stardog" },
+                        { label: "Blazegraph", value: "blazegraph" },
+                        { label: "GraphDB", value: "graphdb" },
+                        { label: "Sesame", value: "sesame" }
                     ]
                 }
             },
             //for user page
-            'http://virtuoso.local/users': {
-                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': {
+            "http://virtuoso.local/users": {
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
                     isHidden: 1
                 },
-                'http://xmlns.com/foaf/0.1/accountName': {
-                    label: ['Username'],
+                "http://xmlns.com/foaf/0.1/accountName": {
+                    label: ["Username"],
                     readOnlyProperty: 1
                 },
-                'http://xmlns.com/foaf/0.1/member': {
-                    label: ['Member of'],
-                    objectIEditor: ['BasicOptionInput'],
-                    objectIViewer: ['BasicOptionView'],
+                "http://xmlns.com/foaf/0.1/member": {
+                    label: ["Member of"],
+                    objectIEditor: ["BasicOptionInput"],
+                    objectIViewer: ["BasicOptionView"],
                     options: [
-                        {label: 'Normal User', value: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#NormalUser'},
-                        {label: 'Special User', value: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#SpecialUser'}
+                        {
+                            label: "Normal User",
+                            value:
+                                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#NormalUser"
+                        },
+                        {
+                            label: "Special User",
+                            value:
+                                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#SpecialUser"
+                        }
                     ],
                     allowNewValue: 1
                 },
-                'http://xmlns.com/foaf/0.1/firstName': {
-                    label: ['First Name']
+                "http://xmlns.com/foaf/0.1/firstName": {
+                    label: ["First Name"]
                 },
-                'http://xmlns.com/foaf/0.1/lastName': {
-                    label: ['Last Name']
+                "http://xmlns.com/foaf/0.1/lastName": {
+                    label: ["Last Name"]
                 },
-                'http://purl.org/dc/terms/created': {
-                    label: ['Created at'],
+                "http://purl.org/dc/terms/created": {
+                    label: ["Created at"],
                     readOnlyProperty: 1
                 },
-                'http://xmlns.com/foaf/0.1/mbox': {
-                    label: ['Email Address'],
+                "http://xmlns.com/foaf/0.1/mbox": {
+                    label: ["Email Address"],
                     readOnlyProperty: 1
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#editorOf': {
-                    label: ['Editor of Scope'],
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#editorOf": {
+                    label: ["Editor of Scope"],
                     allowNewValue: 1,
                     allowExtension: 1,
                     hasBlankNode: 1,
                     extensions: [
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#scope',
-                                instances: [{value: 'D', valueType: 'literal'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#scope",
+                                instances: [
+                                    { value: "D", valueType: "literal" }
+                                ]
                             },
                             config: {
-                                hint: ['Scope of access: e.g. D, DP, R, RP, P , etc.'],
-                                label: ['Scope'],
-                                objectIEditor: ['BasicOptionInput'],
-                                objectIViewer: ['BasicOptionView'],
-                                options: [
-                                    {label: 'Dataset', value: 'D'},
-                                    {label: 'Resource', value: 'R'},
-                                    {label: 'Property', value: 'P'},
-                                    {label: 'Dataset-Resource', value: 'DR'},
-                                    {label: 'Dataset-Property', value: 'DP'},
-                                    {label: 'Resource-Property', value: 'RP'},
-                                    {label: 'Dataset-Resource-Property', value: 'DRP'},
+                                hint: [
+                                    "Scope of access: e.g. D, DP, R, RP, P , etc."
                                 ],
+                                label: ["Scope"],
+                                objectIEditor: ["BasicOptionInput"],
+                                objectIViewer: ["BasicOptionView"],
+                                options: [
+                                    { label: "Dataset", value: "D" },
+                                    { label: "Resource", value: "R" },
+                                    { label: "Property", value: "P" },
+                                    { label: "Dataset-Resource", value: "DR" },
+                                    { label: "Dataset-Property", value: "DP" },
+                                    { label: "Resource-Property", value: "RP" },
+                                    {
+                                        label: "Dataset-Resource-Property",
+                                        value: "DRP"
+                                    }
+                                ]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataset',
-                                instances: [{value: 'http://exampleDataset.org', valueType: 'uri'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataset",
+                                instances: [
+                                    {
+                                        value: "http://exampleDataset.org",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                hint: ['Dataset URI under which the property is exposed.'],
-                                label: ['Dataset']
+                                hint: [
+                                    "Dataset URI under which the property is exposed."
+                                ],
+                                label: ["Dataset"]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resource',
-                                instances: [{value: 'http://exampleResource.org', valueType: 'uri'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resource",
+                                instances: [
+                                    {
+                                        value: "http://exampleResource.org",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                hint: ['Resource URI under which the property is exposed.'],
-                                label: ['Resource'],
-                                objectIEditor: ['PrefixBasedInput'],
-                                objectIViewer: ['PrefixBasedView']
+                                hint: [
+                                    "Resource URI under which the property is exposed."
+                                ],
+                                label: ["Resource"],
+                                objectIEditor: ["PrefixBasedInput"],
+                                objectIViewer: ["PrefixBasedView"]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property',
-                                instances: [{value: 'http://exampleProperty.org', valueType: 'uri'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property",
+                                instances: [
+                                    {
+                                        value: "http://exampleProperty.org",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                hint: ['Property URI'],
-                                label: ['Property'],
-                                objectIEditor: ['PrefixBasedInput'],
-                                objectIViewer: ['PrefixBasedView']
+                                hint: ["Property URI"],
+                                label: ["Property"],
+                                objectIEditor: ["PrefixBasedInput"],
+                                objectIViewer: ["PrefixBasedView"]
                             }
                         }
                     ]
                 },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#viewerOf': {
-                    label: ['Viewer of Scope'],
+                "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#viewerOf": {
+                    label: ["Viewer of Scope"],
                     allowNewValue: 1,
                     allowExtension: 1,
                     hasBlankNode: 1,
                     extensions: [
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#scope',
-                                instances: [{value: 'D', valueType: 'literal'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#scope",
+                                instances: [
+                                    { value: "D", valueType: "literal" }
+                                ]
                             },
                             config: {
-                                hint: ['Scope of access: e.g. D, DP, R, RP, P , etc.'],
-                                label: ['Scope'],
-                                objectIEditor: ['BasicOptionInput'],
-                                objectIViewer: ['BasicOptionView'],
-                                options: [
-                                    {label: 'Dataset', value: 'D'},
-                                    {label: 'Resource', value: 'R'},
-                                    {label: 'Property', value: 'P'},
-                                    {label: 'Dataset-Resource', value: 'DR'},
-                                    {label: 'Dataset-Property', value: 'DP'},
-                                    {label: 'Resource-Property', value: 'RP'},
-                                    {label: 'Dataset-Resource-Property', value: 'DRP'},
+                                hint: [
+                                    "Scope of access: e.g. D, DP, R, RP, P , etc."
                                 ],
+                                label: ["Scope"],
+                                objectIEditor: ["BasicOptionInput"],
+                                objectIViewer: ["BasicOptionView"],
+                                options: [
+                                    { label: "Dataset", value: "D" },
+                                    { label: "Resource", value: "R" },
+                                    { label: "Property", value: "P" },
+                                    { label: "Dataset-Resource", value: "DR" },
+                                    { label: "Dataset-Property", value: "DP" },
+                                    { label: "Resource-Property", value: "RP" },
+                                    {
+                                        label: "Dataset-Resource-Property",
+                                        value: "DRP"
+                                    }
+                                ]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataset',
-                                instances: [{value: 'http://exampleDataset.org', valueType: 'uri'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataset",
+                                instances: [
+                                    {
+                                        value: "http://exampleDataset.org",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                hint: ['Dataset URI under which the property is exposed.'],
-                                label: ['Dataset']
+                                hint: [
+                                    "Dataset URI under which the property is exposed."
+                                ],
+                                label: ["Dataset"]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resource',
-                                instances: [{value: 'http://exampleResource.org', valueType: 'uri'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#resource",
+                                instances: [
+                                    {
+                                        value: "http://exampleResource.org",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                hint: ['Resource URI under which the property is exposed.'],
-                                label: ['Resource'],
-                                objectIEditor: ['PrefixBasedInput'],
-                                objectIViewer: ['PrefixBasedView']
+                                hint: [
+                                    "Resource URI under which the property is exposed."
+                                ],
+                                label: ["Resource"],
+                                objectIEditor: ["PrefixBasedInput"],
+                                objectIViewer: ["PrefixBasedView"]
                             }
                         },
                         {
                             spec: {
-                                propertyURI: 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property',
-                                instances: [{value: 'http://exampleProperty.org', valueType: 'uri'}]
+                                propertyURI:
+                                    "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#property",
+                                instances: [
+                                    {
+                                        value: "http://exampleProperty.org",
+                                        valueType: "uri"
+                                    }
+                                ]
                             },
                             config: {
-                                hint: ['Property URI'],
-                                label: ['Property'],
-                                objectIEditor: ['PrefixBasedInput'],
-                                objectIViewer: ['PrefixBasedView']
+                                hint: ["Property URI"],
+                                label: ["Property"],
+                                objectIEditor: ["PrefixBasedInput"],
+                                objectIViewer: ["PrefixBasedView"]
                             }
                         }
                     ]
                 },
-                'http://xmlns.com/foaf/0.1/organization': {
-                    label: ['Organization'],
+                "http://xmlns.com/foaf/0.1/organization": {
+                    label: ["Organization"],
                     allowNewValue: 1,
-                    objectIViewer: ['BasicDBpediaView'],
-                    objectIEditor: ['DBpediaInput']
+                    objectIViewer: ["BasicDBpediaView"],
+                    objectIEditor: ["DBpediaInput"]
                 }
-            },
+            }
             //for mappings
-/*            'http://virtuoso.local/mappings': {
+            /*            'http://virtuoso.local/mappings': {
                 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#csvFile': {
                     readOnlyProperty: 1,
                     label: ['CSV File']
@@ -541,13 +667,10 @@ export default {
                     includeOnly: ['classes']
                 }
             }
-*/        },
-        resource_property: {
-
+*/
         },
+        resource_property: {},
         //---------depth 3------------
-        dataset_resource_property: {
-
-        }
+        dataset_resource_property: {}
     }
 };
