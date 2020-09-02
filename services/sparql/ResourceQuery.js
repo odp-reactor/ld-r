@@ -31,7 +31,7 @@ class ResourceQuery {
     }
     prepareQueryBody(resourceURI, queryBody) {
         // replace all occurences of a placeholder with resourceURI
-        var resourcePlaceholder = '<resourceURI>';
+        var resourcePlaceholder = 'resourceURI';
         var re = new RegExp(resourcePlaceholder, 'g');
         let cleanQueryBody = queryBody.replace(re, resourceURI);
         return cleanQueryBody;
@@ -75,12 +75,12 @@ class ResourceQuery {
             resourceURI,
             customQueryBody
         );
-        this.query = `SELECT ${selectStatement} WHERE {
-            ${gStart} 
-            ${cleanedQueryBody}
-            ${gEnd}
-        } ${aggregatesBlock}
-        }
+        this.query = `
+            SELECT ${selectStatement} WHERE {
+                ${gStart} 
+                    ${cleanedQueryBody}
+                ${gEnd}
+            } ${aggregatesBlock}
         `;
         return this.query;
     }

@@ -247,6 +247,14 @@ class PropertyReactor extends React.Component {
                     propertyReactor = (
                         <ComplexProperty
                             spec={this.props.spec}
+                            enableAuthentication={
+                                this.props.enableAuthentication
+                            }
+                            readOnly={this.props.readOnly}
+                            datasetURI={this.props.datasetURI}
+                            resource={this.props.resource}
+                            property={this.props.property}
+                            propertyPath={this.props.propertyPath}
                         ></ComplexProperty>
                     );
                     break;

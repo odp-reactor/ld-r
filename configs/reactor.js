@@ -101,7 +101,11 @@ export default {
             /* A test with new functionality */
             "https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation": {
                 propertyReactor: ["ComplexProperty"],
-                customQuery: ["*", "?p ?o", ""]
+                customQuery: [
+                    "?locationType ?startTime ?endTimeB ?lat ?long",
+                    "   <resourceURI> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> ?timeIndexedTypedLocation . ?timeIndexedTypedLocation <http://www.w3.org/2000/01/rdf-schema#label> ?timeIndexedTypedLocationLabel ; <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType ; <https://w3id.org/italia/onto/TI/atTime> ?timeInterval ; <https://w3id.org/arco/ontology/location/atSite>  ?site . ?site <https://w3id.org/italia/onto/CLV/hasGeometry> ?geometry . ?geometry <https://w3id.org/italia/onto/CLV/lat> ?lat ; <https://w3id.org/italia/onto/CLV/long> ?long. ?timeInterval <https://w3id.org/arco/ontology/arco/startTime> ?startTime . OPTIONAL {?timeInterval <https://w3id.org/arco/ontology/arco/endTime> ?endTime .} BIND ( IF (BOUND (?endTime), ?endTime, '' )  as ?endTimeB  ) . ",
+                    ""
+                ]
             },
             "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#password": {
                 label: ["Password"],

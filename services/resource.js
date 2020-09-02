@@ -173,11 +173,6 @@ export default {
                             //build http uri
                             //send request
                             let props;
-                            console.log(
-                                `[* DEBUG *] showing endpoint parameters: ${JSON.stringify(
-                                    endpointParameters
-                                )} `
-                            );
                             rp.get({
                                 uri: getHTTPGetURL(
                                     getHTTPQuery(
@@ -253,6 +248,11 @@ export default {
                 }
             );
         } else if (resource === 'resource.extraData') {
+            console.log(
+                `[*] Debug i've been called: resource.extraData service; params: ${JSON.stringify(
+                    params
+                )}`
+            );
             datasetURI =
                 params.dataset && params.dataset !== '0'
                     ? decodeURIComponent(params.dataset)
@@ -278,26 +278,12 @@ export default {
                 user = { accountName: 'open' };
             }
 
-            let customQueryParams = utilObject.getCustomQueryParamsFromReactorConfig(
-                params.propertyURI
-            );
-
-            let query =
-                queryObject.getPrefixes() +
-                queryObject.getExtraProperties(
-                    graphName,
-                    resourceURI,
-                    customQueryParams[0],
-                    customQueryParams[1],
-                    customQueryParams[2]
-                );
-
             getDynamicEndpointParameters(
                 user,
                 datasetURI,
                 endpointParameters => {
                     graphName = endpointParameters.graphName;
-                    resourceURI = params.resource;
+                    resourceURI = params.resourceURI;
                     propertyPath = decodeURIComponent(params.propertyPath);
                     if (propertyPath.length > 1) {
                         propertyPath = propertyPath.split(',');
@@ -352,7 +338,24 @@ export default {
                                 }
                             }
 
-                            query = params.query;
+                            let customQueryParams = utilObject.getCustomQueryParamsFromReactorConfig(
+                                params.propertyURI
+                            );
+                            console.log(
+                                `[*] After customQueryParams ${customQueryParams}`
+                            );
+
+                            // override to check if standard query works
+                            let query =
+                                queryObject.getPrefixes() +
+                                queryObject.getExtraProperties(
+                                    graphName,
+                                    resourceURI,
+                                    customQueryParams[0],
+                                    customQueryParams[1],
+                                    customQueryParams[2]
+                                );
+                            console.log(query);
 
                             // user,
                             // body,
@@ -374,40 +377,14 @@ export default {
                                 headers: headers
                             })
                                 .then(function(res) {
+                                    // parse response and call callback
                                     utilObject.parseCustomProperties(
-                                        user,
                                         res,
-                                        datasetURI,
-                                        resourceURI,
-                                        category,
-                                        propertyPath,
-                                        cres => {
-                                            if (
-                                                datasetURI ===
-                                                    authDatasetURI[0] &&
-                                                !parseInt(user.isSuperUser)
-                                            ) {
-                                                props = utilObject.deleteAdminProperties(
-                                                    cres.props
-                                                );
-                                            } else {
-                                                props = cres.props;
-                                            }
-                                            callback(null, {
-                                                datasetURI: datasetURI,
-                                                graphName: graphName,
-                                                resourceURI: resourceURI,
-                                                resourceType: cres.resourceType,
-                                                title: cres.title,
-                                                currentCategory: category,
-                                                propertyPath: propertyPath,
-                                                properties: props,
-                                                config: cres.rconfig
-                                            });
-                                        }
+                                        callback
                                     );
                                 })
                                 .catch(function(err) {
+                                    // what to do if error ?????
                                     console.log(err);
                                     if (enableLogs) {
                                         log.info(

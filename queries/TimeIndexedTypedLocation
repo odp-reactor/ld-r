@@ -1,3 +1,35 @@
+## Query for TimeIndexedTypedLocation pattern
+
+SELECT ?locationType ?startTime ?endTimeB ?lat ?long WHERE 
+
+{
+
+   <http://virtuoso.local/n1596028209> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> ?timeIndexedTypedLocation .
+
+   ?timeIndexedTypedLocation <http://www.w3.org/2000/01/rdf-schema#label> ?timeIndexedTypedLocationLabel ;
+
+                             <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType ;
+
+                             <https://w3id.org/italia/onto/TI/atTime> ?timeInterval ;
+
+                             <https://w3id.org/arco/ontology/location/atSite>  ?site .
+
+   ?site       <https://w3id.org/italia/onto/CLV/hasGeometry>           ?geometry .
+   
+   ?geometry    <https://w3id.org/italia/onto/CLV/lat>     ?lat ;
+  
+                <https://w3id.org/italia/onto/CLV/long>    ?long .
+ 
+
+   ?timeInterval          <https://w3id.org/arco/ontology/arco/startTime>   ?startTime .
+
+   OPTIONAL      {?timeInterval                   <https://w3id.org/arco/ontology/arco/endTime>     ?endTime .}
+   
+   BIND ( IF (BOUND (?endTime), ?endTime, '' )  as ?endTimeB  ) .
+
+  } 
+
+
 ### Number of cultural property with a location in ArCo
 
 PREFIX arco:     <https://w3id.org/arco/ontology/arco/>

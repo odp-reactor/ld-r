@@ -32,7 +32,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ResourceStore from '../../stores/ResourceStore';
-import loadExtraResource from '../../actions/loadExtraResource';
+import loadExtraData from '../../actions/loadExtraData';
 
 import { connectToStores } from 'fluxible-addons-react';
 
@@ -46,8 +46,8 @@ class ComplexProperty extends React.Component {
     }
 
     fetchExtraData() {
-        this.context.executeAction(loadExtraResource, {
-            dataset: this.props.datasetURI,
+        this.context.executeAction(loadExtraData, {
+            dataset: this.props.datasetURI, //missing
             resourceURI: this.props.resource,
             propertyPath: this.props.propertyPath,
             propertyURI: this.props.spec.propertyURI
@@ -55,10 +55,10 @@ class ComplexProperty extends React.Component {
     }
 
     render() {
-        return this.props.resource ? (
-            <div>[*] Functionality in progress, loading data</div>
+        return this.props.ResourceStore.extraData ? (
+            <div>{JSON.stringify(this.props.ResourceStore.extraData)}</div>
         ) : (
-            <div>[*] Functionality in progress, data loaded</div>
+            <div>{'data loading? spinner'}</div>
         );
     }
 }

@@ -1,4 +1,4 @@
-import {BaseStore} from 'fluxible/addons';
+import { BaseStore } from 'fluxible/addons';
 import ResourceStoreUtil from './utils/ResourceStoreUtil';
 let utilObject = new ResourceStoreUtil();
 
@@ -15,14 +15,18 @@ class ResourceStore extends BaseStore {
         this.currentCategory = payload.currentCategory;
         this.propertyPath = payload.propertyPath;
         // this.properties = payload.properties;
-        this.properties = utilObject.preservePropertiesOrder(this.properties, payload.properties);
+        this.properties = utilObject.preservePropertiesOrder(
+            this.properties,
+            payload.properties
+        );
         this.title = payload.title ? payload.title : payload.resourceURI;
         this.config = payload.config;
         this.error = payload.error;
         this.emitChange();
     }
     updateProperties(payload) {
-        console.log(`[*] Functionality not yet implemented. updateProperties will receive and stored extra data. Payload: ${payload}`);
+        this.extraData = payload['extraData'];
+        this.emitChange();
     }
     cleanAll() {
         this.properties = [];
@@ -51,7 +55,8 @@ class ResourceStore extends BaseStore {
             properties: this.properties,
             propertyPath: this.propertyPath,
             config: this.config,
-            error: this.error
+            error: this.error,
+            extraData: this.extraData
         };
     }
     dehydrate() {
@@ -68,14 +73,15 @@ class ResourceStore extends BaseStore {
         this.propertyPath = state.propertyPath;
         this.config = state.config;
         this.error = state.error;
+        this.extraData = state.extraData;
     }
 }
 
 ResourceStore.storeName = 'ResourceStore'; // PR open in dispatchr to remove this need
 ResourceStore.handlers = {
-    'LOAD_RESOURCE_SUCCESS': 'updatePropertyList',
-    'CLEAN_RESOURCE_SUCCESS': 'cleanResource',
-    'LOAD_EXTRA_DATA_SUCCESS' : 'updateProperties'
+    LOAD_RESOURCE_SUCCESS: 'updatePropertyList',
+    CLEAN_RESOURCE_SUCCESS: 'cleanResource',
+    LOAD_EXTRA_DATA_SUCCESS: 'updateProperties'
 };
 
 export default ResourceStore;

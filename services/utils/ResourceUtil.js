@@ -2,6 +2,9 @@
 import async from 'async';
 import Configurator from './Configurator';
 import { checkEditAccess } from './accessManagement';
+
+import { config } from '../../configs/reactor';
+
 function compareProps(a, b) {
     if (a.property < b.property) return -1;
     if (a.property > b.property) return 1;
@@ -320,19 +323,35 @@ class ResourceUtil {
         });
         return output;
     }
-    parseCustomProperties(
-        user,
-        body,
-        datasetURI,
-        resourceURI,
-        category,
-        propertyPath,
-        callback
-    ) {
-        console.log(
-            `[*] This object should be parsed: ${JSON.stringify(body)} `
-        );
+
+    /**
+     * The function is used to parse data received by a custom query.
+     * We move in the context of {@link loadExtraData} action , called
+     * when you need more data to be displayed other than the ones provided by standard ld-r query.
+     *
+     * @param {Object} body Data returned by fluxible service after querying SPARQL endpoint
+     * @param {Function} callback Function to call after action succeeds
+     */
+    parseCustomProperties(body, callback) {
+        const receivedData = JSON.parse(body);
+        const rows = receivedData['results']['bindings'];
+        let dataToReturn = [];
+        // iterate over the returned rows
+
+        for (let i = 0; i < rows.length; i++) {
+            let objectToReturn = {};
+            // iterate over the fields (the ?x, ?y ... of the SELECT statement)
+            for (const field of receivedData['head']['vars']) {
+                objectToReturn[field] = rows[i][field].value;
+            }
+            dataToReturn[i] = objectToReturn;
+        }
+
+        callback(null, {
+            extraData: dataToReturn
+        });
     }
+
     getCustomQueryParamsFromReactorConfig(property) {
         if (config.property[property]) {
             if (config.property[property].customQuery)
