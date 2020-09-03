@@ -10,7 +10,7 @@ let webpackConfig = {
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-            react: path.resolve('./node_modules/react'),
+            react: path.resolve('./node_modules/react')
         }
     },
     entry: {
@@ -32,11 +32,17 @@ let webpackConfig = {
                 exclude: /node_modules/,
                 loader: 'babel-loader'
             },
-	    {
+            // {
+            //     test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+            //     loader: "url-loader?limit=10000"
+            // },
+            {
                 test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
-                loader: 'url-loader?limit=100000'
-	    },
-            { test: /\.css$/,
+                loader: 'file-loader'
+            },
+
+            {
+                test: /\.css$/,
                 use: [
                     {
                         loader: 'style-loader'

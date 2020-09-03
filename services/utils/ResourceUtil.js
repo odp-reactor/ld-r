@@ -332,17 +332,18 @@ class ResourceUtil {
      * @param {Object} body Data returned by fluxible service after querying SPARQL endpoint
      * @param {Function} callback Function to call after action succeeds
      */
-    parseCustomProperties(body, callback) {
+    parseExtraData(body, callback) {
         const receivedData = JSON.parse(body);
-        const rows = receivedData['results']['bindings'];
+        const sparqlRows = receivedData['results']['bindings'];
         let dataToReturn = [];
         // iterate over the returned rows
 
-        for (let i = 0; i < rows.length; i++) {
+        for (let i = 0; i < sparqlRows.length; i++) {
             let objectToReturn = {};
             // iterate over the fields (the ?x, ?y ... of the SELECT statement)
-            for (const field of receivedData['head']['vars']) {
-                objectToReturn[field] = rows[i][field].value;
+            for (const sparqlVariable of receivedData['head']['vars']) {
+                objectToReturn[sparqlVariable] =
+                    sparqlRows[i][sparqlVariable].value;
             }
             dataToReturn[i] = objectToReturn;
         }
@@ -352,7 +353,7 @@ class ResourceUtil {
         });
     }
 
-    getCustomQueryParamsFromReactorConfig(property) {
+    getCustomQuery(property) {
         if (config.property[property]) {
             if (config.property[property].customQuery)
                 return config.property[property].customQuery;
@@ -362,6 +363,7 @@ class ResourceUtil {
             return `[!] Err: no configuration key find for property ${property}`;
         }
     }
+
     buildConfigFromExtensions(extensions) {
         let config = {};
         extensions.forEach(function(el, i) {

@@ -24,7 +24,7 @@ class ResourceStore extends BaseStore {
         this.error = payload.error;
         this.emitChange();
     }
-    updateProperties(payload) {
+    updateExtraData(payload) {
         this.extraData = payload['extraData'];
         this.emitChange();
     }
@@ -81,7 +81,7 @@ ResourceStore.storeName = 'ResourceStore'; // PR open in dispatchr to remove thi
 ResourceStore.handlers = {
     LOAD_RESOURCE_SUCCESS: 'updatePropertyList',
     CLEAN_RESOURCE_SUCCESS: 'cleanResource',
-    LOAD_EXTRA_DATA_SUCCESS: 'updateProperties'
+    LOAD_EXTRA_DATA_SUCCESS: 'updateExtraData'
 };
 
 export default ResourceStore;

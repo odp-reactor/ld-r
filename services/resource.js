@@ -338,24 +338,21 @@ export default {
                                 }
                             }
 
-                            let customQueryParams = utilObject.getCustomQueryParamsFromReactorConfig(
+                            let customQueryLines = utilObject.getCustomQuery(
                                 params.propertyURI
                             );
-                            console.log(
-                                `[*] After customQueryParams ${customQueryParams}`
-                            );
 
-                            // override to check if standard query works
                             let query =
                                 queryObject.getPrefixes() +
                                 queryObject.getExtraProperties(
                                     graphName,
                                     resourceURI,
-                                    customQueryParams[0],
-                                    customQueryParams[1],
-                                    customQueryParams[2]
+                                    customQueryLines[0],
+                                    customQueryLines[1],
+                                    customQueryLines[2]
                                 );
-                            console.log(query);
+
+                            console.log(`[* debug ] custom query ${query} `);
 
                             // user,
                             // body,
@@ -378,10 +375,7 @@ export default {
                             })
                                 .then(function(res) {
                                     // parse response and call callback
-                                    utilObject.parseCustomProperties(
-                                        res,
-                                        callback
-                                    );
+                                    utilObject.parseExtraData(res, callback);
                                 })
                                 .catch(function(err) {
                                     // what to do if error ?????

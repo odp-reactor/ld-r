@@ -10,7 +10,7 @@ import updateIndividualObjectDetail from '../../actions/updateIndividualObjectDe
 import updateAggObject from '../../actions/updateAggObject';
 import deleteAggObject from '../../actions/deleteAggObject';
 import IndividualProperty from '../property/IndividualProperty';
-import ComplexProperty from '../property/ComplexProperty';
+import OntologyDesignPattern from '../pattern/OntologyDesignPattern';
 
 class PropertyReactor extends React.Component {
     constructor(props) {
@@ -243,9 +243,9 @@ class PropertyReactor extends React.Component {
                         />
                     );
                     break;
-                case 'ComplexProperty':
+                case 'OntologyDesignPattern':
                     propertyReactor = (
-                        <ComplexProperty
+                        <OntologyDesignPattern
                             spec={this.props.spec}
                             enableAuthentication={
                                 this.props.enableAuthentication
@@ -255,7 +255,7 @@ class PropertyReactor extends React.Component {
                             resource={this.props.resource}
                             property={this.props.property}
                             propertyPath={this.props.propertyPath}
-                        ></ComplexProperty>
+                        ></OntologyDesignPattern>
                     );
                     break;
                 default:
