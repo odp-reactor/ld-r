@@ -97,11 +97,6 @@ export default {
             }
             //graph name used for server settings and configs
 
-            console.log(
-                `[* DEBUG *] showing endpoint parameters before get dynamic endpoint parameters: ${JSON.stringify(
-                    endpointParameters
-                )} `
-            );
             getDynamicEndpointParameters(
                 user,
                 datasetURI,
@@ -169,7 +164,7 @@ export default {
                                     graphName,
                                     resourceURI
                                 );
-                            console.log(query);
+
                             //build http uri
                             //send request
                             let props;
@@ -248,11 +243,6 @@ export default {
                 }
             );
         } else if (resource === 'resource.extraData') {
-            console.log(
-                `[*] Debug i've been called: resource.extraData service; params: ${JSON.stringify(
-                    params
-                )}`
-            );
             datasetURI =
                 params.dataset && params.dataset !== '0'
                     ? decodeURIComponent(params.dataset)
@@ -351,8 +341,6 @@ export default {
                                     customQueryLines[1],
                                     customQueryLines[2]
                                 );
-
-                            console.log(`[* debug ] custom query ${query} `);
 
                             // user,
                             // body,
@@ -464,11 +452,6 @@ export default {
                                 resourceURI,
                                 propertyURI,
                                 cres => {
-                                    console.log(
-                                        `[* debug *] props: ${JSON.stringify(
-                                            cres.props
-                                        )}`
-                                    );
                                     callback(null, {
                                         objectURI: objectURI,
                                         objectType: cres.objectType,

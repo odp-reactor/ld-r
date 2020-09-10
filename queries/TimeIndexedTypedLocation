@@ -1,6 +1,6 @@
 ## Query for TimeIndexedTypedLocation pattern
 
-SELECT ?locationType ?startTime ?endTimeB ?lat ?long WHERE 
+SELECT ?locationType ?startTime ?endTimeB ?lat ?long ?siteLabel WHERE 
 
 {
 
@@ -14,7 +14,8 @@ SELECT ?locationType ?startTime ?endTimeB ?lat ?long WHERE
 
                              <https://w3id.org/arco/ontology/location/atSite>  ?site .
 
-   ?site       <https://w3id.org/italia/onto/CLV/hasGeometry>           ?geometry .
+   ?site       <https://w3id.org/italia/onto/CLV/hasGeometry>           ?geometry ;
+               <http://www.w3.org/2000/01/rdf-schema#label>             ?siteLabel .
    
    ?geometry    <https://w3id.org/italia/onto/CLV/lat>     ?lat ;
   

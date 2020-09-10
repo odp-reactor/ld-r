@@ -3,6 +3,7 @@ build
 *.log
 logs/*.log
 tmp.js
+Notes.md
 #configs/server.js
 #configs/facets.js
 #configs/reactor.js
