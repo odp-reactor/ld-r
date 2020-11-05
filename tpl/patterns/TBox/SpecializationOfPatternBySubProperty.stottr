@@ -1,0 +1,14 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix opla:       <http://ontologydesignpatterns.org/opla/> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix ax:         <http://tpl.ottr.xyz/owl/axiom/0.1/> .
+
+odp-tpl:SpecializationOfPatternBySubProperty[ opla:Pattern ?pattern , 
+                                           opla:Pattern ?specializedPattern, 
+                                           ottr:IRI ?subProperty, 
+                                           ottr:IRI ?property ] :: {
+    odp-tpl:SpecializationOfPattern(?pattern, ?specializedPattern),
+    ax:SubPropertyOf(?subProperty, ?property)
+} .
+

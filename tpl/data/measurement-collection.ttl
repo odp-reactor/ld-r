@@ -1,0 +1,103 @@
+@prefix a-dd:  <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix opla:  <http://ontologydesignpatterns.org/opla/> .
+@prefix odp-col: <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#> .
+
+<https://w3id.org/arco/resource/Measurement/0900303617-1-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900303617-1-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1500624103-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500624103-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/1500624103-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1100263580-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100263580-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/1100263580-1-height> .
+
+<https://w3id.org/arco/resource/Measurement/0500238693-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500238693-1> .
+
+<https://w3id.org/arco/resource/Measurement/0500091358-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500091358-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1500624103-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1100263580-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1500291798-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/0900439132-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900439132-1> .
+
+<https://w3id.org/arco/resource/Measurement/1500291798-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500291798-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0500091358-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1500291798-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500291798-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/1500291798-1-height> .
+
+<https://w3id.org/arco/resource/Measurement/1500624103-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500624103-1> .
+
+<https://w3id.org/arco/resource/Measurement/1200534230-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1200534230-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0500091358-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500091358-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/0500091358-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0900303617-1-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900303617-1-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/0900303617-1-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1500296686-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500296686-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/1500296686-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0300211797-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300211797-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/0300211797-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1200534230-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1200534230-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/1200534230-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0900439132-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/0300211797-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300211797-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1500296686-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0300211797-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1200534230-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0500238693-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500238693-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/0500238693-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0900303617-1-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0500238693-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/1500296686-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500296686-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0900439132-1>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900439132-1> ;
+        odp-col:hasMember              <https://w3id.org/arco/resource/Measurement/0900439132-1-height> .
+
+<https://w3id.org/arco/resource/Measurement/1100263580-1-height>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100263580-1> .

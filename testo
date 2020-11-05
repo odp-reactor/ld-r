@@ -1,0 +1,48 @@
+statement_1 a rdf:Statement ;
+           :subject collection_1;
+           :predicate   rdf:type;
+           :object      Collection .
+
+...
+
+statemnt_n 
+
+
+statement_1    opla:isStatementOf    pattern_instance_1.              
+
+
+pattern_instance_1  opla:isPatternInstanceOf  measurement_collection . 
+
+
+
+DA VALUTARE!
+# 1) measurement_collection individuo dentro l'ontologia in cui il pattern viene definito (file owl del modulo ArCo ) in questo caso denotative
+# 2) file owl per il pattern e measurement_collection nel file owl. 
+
+
+measurement_collection rdf:type opla:Pattern .
+measurement_collection opla:specializationOfPattern odp:collection .
+
+
+
+# opla:PatternInstance
+
+# o individuo nell ontologia oppure file esterno / ed è istanza di tipo Pattern
+
+
+SELECT * ?instance WHERE
+
+{    
+    ?instance a PatternCollection .
+}
+
+
+================================================
+
+MeasurementCollection specializationOfPattern Collection
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+
+odp-tpl:MeasurementCollectionInstance[ ottr:IRI ?collection, List<ottr:IRI> ?measurements, ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+    odp-tpl:CollectionInstance(?collection, ?measurements, ?instanceIRI, ?instanceType)
+} .

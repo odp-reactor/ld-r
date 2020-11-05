@@ -1,0 +1,27 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix odp-pat:    <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
+@prefix odp-tis:    <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
+@prefix odp-sit:    <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
+@prefix odp-ti:     <http://www.ontologydesignpatterns.org/cp/owl/timeinterval.owl#> .
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+
+odp-tpl:TimeIndexedTypedLocation[ 
+                                  owl:Class ?timeIndexedTypedLocation=a-loc:TimeIndexedTypedLocation,
+                                  owl:Class ?timeIndexedSituation=odp-tis:TimeIndexedSituation,
+                                  owl:Class ?culturalProperty=a-loc:CulturalProperty,
+                                  owl:Class ?timeInterval=odp-ti:TimeInterval,
+                                  owl:ObjectProperty ?hasTimeIndexedTypedLocation=a-loc:hasTimeIndexedTypedLocation,
+                                  owl:ObjectProperty ?isTimeIndexedTypedLocationOf=a-loc:isTimeIndexedTypedLocationOf,
+                                  owl:ObjectProperty ?atTime=odp-tis:atTime
+                              ] :: {
+    odp-tpl:InverseOf(?hasTimeIndexedTypedLocation, ?isTimeIndexedTypedLocationOf),
+    odp-tpl:Pattern(a-loc:time-indexed-typed-location),
+    odp-tpl:ComponentOfPattern(odp-pat:time-interval, a-loc:time-indexed-typed-location),
+    odp-tpl:SpecializationOfPatternBySubClass(a-loc:time-indexed-typed-location, odp-pat:time-indexed-situation, ?timeIndexedTypedLocation, ?timeIndexedSituation),
+    odp-tpl:TimeIndexedSituation(?timeIndexedTypedLocation, ?timeIndexedSituation, ?culturalProperty, ?timeInterval, ?hasTimeIndexedTypedLocation, ?isTimeIndexedTypedLocationOf, ?atTime, none, none),
+    o-rdfs:DomainRange(?atTime, ?timeIndexedTypedLocation, ?timeInterval)
+} .

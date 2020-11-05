@@ -1,0 +1,13 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix opla:       <http://ontologydesignpatterns.org/opla/> .
+@prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+
+
+odp-tpl:SpecializationOfPatternBySubClass[ opla:Pattern ?pattern , 
+                                           opla:Pattern ?specializedPattern, 
+                                           owl:Class ?subClass, 
+                                           owl:Class ?class ] :: {
+    odp-tpl:SpecializationOfPattern(?pattern, ?specializedPattern),
+    o-rdfs:SubClassOf(?subClass, ?class)
+} .

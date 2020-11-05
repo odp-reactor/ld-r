@@ -1,0 +1,14 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix odp-pat:    <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
+@prefix odp-sit:	<http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
+
+
+odp-tpl:Situation[ owl:Class ?situation=odp-sit:Situation, owl:Class ?thing=owl:Thing, owl:ObjectProperty ?hasSetting=odp-sit:hasSetting, owl:ObjectProperty ?isSettingFor=odp-sit:isSettingFor ] :: {
+    odp-tpl:Pattern(odp-pat:situation),
+    o-rdfs:DomainRange(?hasSetting, ?thing, ?situation),
+    odp-tpl:InverseOf(?isSettingFor, ?hasSetting)
+} .

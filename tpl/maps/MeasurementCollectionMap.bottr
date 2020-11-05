@@ -1,0 +1,53 @@
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix owl:	<http://www.w3.org/2002/07/owl#> . 
+@prefix xsd:	<http://www.w3.org/2001/XMLSchema#> . 
+@prefix foaf:	<http://xmlns.com/foaf/0.1/> . 
+@prefix dbp:	<http://dbpedia.org/ontology/> . 
+@prefix ex:	    <http://example.com/ns#> . 
+@prefix ottr:	<http://ns.ottr.xyz/0.4/> . 
+@prefix ax:	    <http://tpl.ottr.xyz/owl/axiom/0.1/> . 
+@prefix rstr:	<http://tpl.ottr.xyz/owl/restriction/0.1/> .
+@prefix a-dd:   <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+[] a ottr:InstanceMap ;
+  ottr:source 
+      [ a ottr:SPARQLEndpointSource ; 
+        ottr:sourceURL "https://dati.beniculturali.it/sparql" ] ;
+  ottr:query """
+            SELECT ?collection 
+                   ?members
+                   #?memberCount
+                      # we hack instance URI as UUID() doesn't work in virtuoso => it's new ns + other resource UUID
+                   (URI(CONCAT ("https://w3id.org/arco/resource/MeasurementCollectionPattern", STRAFTER(STR(?collection), "https://w3id.org/arco/resource/MeasurementCollection"))) as ?instanceIRI)
+                   ?instanceType     
+            WHERE
+            {
+                   OPTIONAL {?patternInstanceUnboundable a rdf:PatternInstanceHackToAssignType . }
+                   BIND ( IF (BOUND  (?patternInstanceUnboundable), a-dd:measurement-collection, a-dd:measurement-collection )  as ?instanceType  ) .
+                  {
+                   SELECT ?collection 
+                          (GROUP_CONCAT(DISTINCT ?member; SEPARATOR=";") AS ?members)
+                          #(COUNT(DISTINCT ?member) AS ?memberCount)      
+                   WHERE
+                   {
+	                        ?collection a-dd:hasMeasurement ?member.
+                          ?collection a a-dd:MeasurementCollection . 
+                          ?member a a-dd:Measurement .
+                   }
+                   GROUP BY ?collection 
+                   #HAVING (count(distinct ?member) > 1)
+                  }
+            }    
+            LIMIT 10 
+""";
+  ottr:template odp-tpl:MeasurementCollection ;
+  ottr:argumentMaps (
+    [ ottr:type ottr:IRI ]                          ## ?collection
+    [ ottr:type (rdf:List ottr:IRI); 
+      ottr:translationSettings [ ottr:listSep ";"]  ## ?collectionMembers
+    ] 
+    [ ottr:type ottr:IRI ]                          ## ?instanceIRI
+    [ ottr:type ottr:IRI ]                          ## ?instanceType
+  ) .

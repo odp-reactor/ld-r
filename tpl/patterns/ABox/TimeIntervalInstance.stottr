@@ -1,0 +1,17 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix odp-ti:     <http://www.ontologydesignpatterns.org/cp/owl/timeinterval.owl#> .
+
+
+# SuperClass
+
+odp-tpl:TimeIntervalInstance[ ottr:IRI ?timeInterval, ? ottr:IRI ?startDate , ? ottr:IRI ?endDate , ? ottr:IRI ?date, ? ottr:IRI ?instanceIRI, ? ottr:IRI ?instanceType ] :: {
+    odp-tpl:Pattern(?instanceIRI, ?instanceType, (?timeInterval, ?startDate, ?endDate, ?date), none),
+    ottr:Triple(?timeInterval, odp-ti:hasIntervalDate, ?date),
+    ottr:Triple(?timeInterval, odp-ti:hasIntervalEndDate, ?endDate),
+    ottr:Triple(?timeInterval, odp-ti:hasIntervalStartDate, ?startDate)    
+} .
+
+

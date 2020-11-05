@@ -1,24 +1,48 @@
-import { enableDynamicReactorConfiguration, enableDynamicServerConfiguration, enableDynamicFacetsConfiguration, configDatasetURI, enableAutomaticConfiguration, authDatasetURI, enableQuerySaveImport, mappingsDatasetURI } from '../../configs/general';
-import { getStaticEndpointParameters, getHTTPQuery, getHTTPGetURL } from '../../services/utils/helpers';
+import {
+    enableDynamicReactorConfiguration,
+    enableDynamicServerConfiguration,
+    enableDynamicFacetsConfiguration,
+    configDatasetURI,
+    enableAutomaticConfiguration,
+    authDatasetURI,
+    enableQuerySaveImport,
+    mappingsDatasetURI
+} from '../../configs/general';
+import {
+    getStaticEndpointParameters,
+    getHTTPQuery,
+    getHTTPGetURL
+} from '../../services/utils/helpers';
 import rp from 'request-promise';
-const ldr_prefix = 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#';
-const sparql_endpoint_error = '**Please also check if the configuration SPARQL endpoint is running and is updateable**';
+const ldr_prefix =
+    'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#';
+const sparql_endpoint_error =
+    '**Please also check if the configuration SPARQL endpoint is running and is updateable**';
 
 class DynamicConfigurator {
     getDynamicDatasets(user, callback) {
         let dynamicReactorDS = { dataset: {} };
         let dynamicFacetsDS = { facets: {} };
-        if (!enableDynamicReactorConfiguration && !enableDynamicFacetsConfiguration) {
+        if (
+            !enableDynamicReactorConfiguration &&
+            !enableDynamicFacetsConfiguration
+        ) {
             callback(dynamicReactorDS, dynamicFacetsDS);
         } else {
             let userSt = '';
             //admin has full power on editing
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for server configs
             const prefixes = `
@@ -99,7 +123,10 @@ class DynamicConfigurator {
                     `;
                 }
             }
-            if (enableDynamicReactorConfiguration && enableDynamicFacetsConfiguration) {
+            if (
+                enableDynamicReactorConfiguration &&
+                enableDynamicFacetsConfiguration
+            ) {
                 if (userSt) {
                     query = `
                     SELECT DISTINCT ?config1 ?config2 ?dataset ?setting ?settingValue WHERE { ${graph}
@@ -152,34 +179,59 @@ class DynamicConfigurator {
             }
             //send request
             let self = this;
-            rp.get({ uri: getHTTPGetURL(getHTTPQuery('read', prefixes + query, endpointParameters, outputFormat)), headers: headers }).then(function (res) {
-                let tmp = self.parseDynamicDatasets(res);
-                callback(tmp.dynamicReactorDS, tmp.dynamicFacetsDS);
-            }).catch(function (err) {
-                console.log('Error in dynamic datasets list query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(dynamicReactorDS, dynamicFacetsDS);
-            });
+            rp.get({
+                uri: getHTTPGetURL(
+                    getHTTPQuery(
+                        'read',
+                        prefixes + query,
+                        endpointParameters,
+                        outputFormat
+                    )
+                ),
+                headers: headers
+            })
+                .then(function(res) {
+                    let tmp = self.parseDynamicDatasets(res);
+                    callback(tmp.dynamicReactorDS, tmp.dynamicFacetsDS);
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in dynamic datasets list query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
+                    callback(dynamicReactorDS, dynamicFacetsDS);
+                });
         }
-
     }
     prepareDynamicServerConfig(user, datasetURI, callback) {
         let config = { sparqlEndpoint: {} };
-        //the following graphs shold be only locally reachable
+        //the following graphs should be only locally reachable
         let exceptions = [configDatasetURI[0], authDatasetURI[0]];
         //do not config if disabled or exceptions
-        if (!enableDynamicServerConfiguration || exceptions.indexOf(datasetURI) !== -1) {
+        if (
+            !enableDynamicServerConfiguration ||
+            exceptions.indexOf(datasetURI) !== -1
+        ) {
             callback(config);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
             //start config
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for server configs
             const prefixes = `
@@ -259,30 +311,67 @@ class DynamicConfigurator {
             }
             //send request
             let self = this;
-            rp.get({ uri: getHTTPGetURL(getHTTPQuery('read', prefixes + query, endpointParameters, outputFormat)), headers: headers }).then(function (res) {
-                config = self.parseServerConfigs(config, datasetURI, res);
-                if (userSt && !config.resultSetCount) {
-                    //if no config was found for user in the auth mode, try to get a random config from other users
-                    rp.get({ uri: getHTTPGetURL(getHTTPQuery('read', prefixes + noAuthQuery, endpointParameters, outputFormat)), headers: headers }).then(function (res) {
-                        config = self.parseServerConfigs(config, datasetURI, res);
+            rp.get({
+                uri: getHTTPGetURL(
+                    getHTTPQuery(
+                        'read',
+                        prefixes + query,
+                        endpointParameters,
+                        outputFormat
+                    )
+                ),
+                headers: headers
+            })
+                .then(function(res) {
+                    config = self.parseServerConfigs(config, datasetURI, res);
+                    if (userSt && !config.resultSetCount) {
+                        //if no config was found for user in the auth mode, try to get a random config from other users
+                        rp.get({
+                            uri: getHTTPGetURL(
+                                getHTTPQuery(
+                                    'read',
+                                    prefixes + noAuthQuery,
+                                    endpointParameters,
+                                    outputFormat
+                                )
+                            ),
+                            headers: headers
+                        })
+                            .then(function(res) {
+                                config = self.parseServerConfigs(
+                                    config,
+                                    datasetURI,
+                                    res
+                                );
+                                callback(config);
+                            })
+                            .catch(function(err) {
+                                console.log(
+                                    'Attempt 2: Error in server config query:',
+                                    prefixes + query
+                                );
+                                console.log(sparql_endpoint_error);
+                                console.log(
+                                    '---------------------------------------------------------'
+                                );
+                                callback(config);
+                            });
+                    } else {
                         callback(config);
-                    }).catch(function (err) {
-                        console.log('Attempt 2: Error in server config query:', prefixes + query);
-                        console.log(sparql_endpoint_error);
-                        console.log('---------------------------------------------------------');
-                        callback(config);
-                    });
-                } else {
+                    }
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in server config query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
                     callback(config);
-                }
-            }).catch(function (err) {
-                console.log('Error in server config query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(config);
-            });
+                });
         }
-
     }
     getSavedQueries(user, callback) {
         let states = {};
@@ -291,13 +380,19 @@ class DynamicConfigurator {
             callback(config);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
             //start config
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for server configs
             const prefixes = `
@@ -349,34 +444,63 @@ class DynamicConfigurator {
             }
             //send request
             let self = this;
-            rp.get({ uri: getHTTPGetURL(getHTTPQuery('read', prefixes + query, endpointParameters, outputFormat)), headers: headers }).then(function (res) {
-                states = self.parseEnvStateConfigs(res);
-                callback(states);
-            }).catch(function (err) {
-                console.log('Error in state config query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(states);
-            });
+            rp.get({
+                uri: getHTTPGetURL(
+                    getHTTPQuery(
+                        'read',
+                        prefixes + query,
+                        endpointParameters,
+                        outputFormat
+                    )
+                ),
+                headers: headers
+            })
+                .then(function(res) {
+                    states = self.parseEnvStateConfigs(res);
+                    callback(states);
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in state config query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
+                    callback(states);
+                });
         }
-
     }
     prepareDynamicFacetsConfig(user, datasetURI, callback) {
         let config = { facets: {} };
         //the following graphs shold be only locally reachable
-        let exceptions = [configDatasetURI[0], authDatasetURI[0], mappingsDatasetURI[0]];
+        let exceptions = [
+            configDatasetURI[0],
+            authDatasetURI[0],
+            mappingsDatasetURI[0]
+        ];
         //do not config if disabled or exceptions
-        if (!enableDynamicFacetsConfiguration || exceptions.indexOf(datasetURI) !== -1) {
+        if (
+            !enableDynamicFacetsConfiguration ||
+            exceptions.indexOf(datasetURI) !== -1
+        ) {
             callback(config);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
             //start config
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for property configs
             const prefixes = `
@@ -451,45 +575,96 @@ class DynamicConfigurator {
             //send request
             //console.log(prefixes + query);
             let self = this;
-            rp.get({ uri: getHTTPGetURL(getHTTPQuery('read', prefixes + query, endpointParameters, outputFormat)), headers: headers }).then(function (res) {
-                config = self.parseFacetsConfigs(config, datasetURI, res);
-                //if no config was found for user in the auth mode, try to get a random config from other users
-                if (userSt && !config.resultSetCount) {
-                    rp.get({ uri: getHTTPGetURL(getHTTPQuery('read', prefixes + noAuthQuery, endpointParameters, outputFormat)), headers: headers }).then(function (res) {
-                        config = self.parseFacetsConfigs(config, datasetURI, res);
+            rp.get({
+                uri: getHTTPGetURL(
+                    getHTTPQuery(
+                        'read',
+                        prefixes + query,
+                        endpointParameters,
+                        outputFormat
+                    )
+                ),
+                headers: headers
+            })
+                .then(function(res) {
+                    config = self.parseFacetsConfigs(config, datasetURI, res);
+                    //if no config was found for user in the auth mode, try to get a random config from other users
+                    if (userSt && !config.resultSetCount) {
+                        rp.get({
+                            uri: getHTTPGetURL(
+                                getHTTPQuery(
+                                    'read',
+                                    prefixes + noAuthQuery,
+                                    endpointParameters,
+                                    outputFormat
+                                )
+                            ),
+                            headers: headers
+                        })
+                            .then(function(res) {
+                                config = self.parseFacetsConfigs(
+                                    config,
+                                    datasetURI,
+                                    res
+                                );
+                                callback(config);
+                            })
+                            .catch(function(err) {
+                                console.log(
+                                    'Attempt2: Error in facets config query:',
+                                    prefixes + query
+                                );
+                                console.log(sparql_endpoint_error);
+                                console.log(
+                                    '---------------------------------------------------------'
+                                );
+                                callback(config);
+                            });
+                    } else {
                         callback(config);
-                    }).catch(function (err) {
-                        console.log('Attempt2: Error in facets config query:', prefixes + query);
-                        console.log(sparql_endpoint_error);
-                        console.log('---------------------------------------------------------');
-                        callback(config);
-                    });
-                } else {
+                    }
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in facets config query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
                     callback(config);
-                }
-            }).catch(function (err) {
-                console.log('Error in facets config query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(config);
-            });
+                });
         }
     }
     prepareDynamicDatasetConfig(user, datasetURI, callback) {
         let config = { dataset: {} };
-        let exceptions = [configDatasetURI[0], authDatasetURI[0], mappingsDatasetURI[0]];
+        let exceptions = [
+            configDatasetURI[0],
+            authDatasetURI[0],
+            mappingsDatasetURI[0]
+        ];
         //do not config if disabled or exceptions
-        if (!enableDynamicReactorConfiguration || exceptions.indexOf(datasetURI) !== -1) {
+        if (
+            !enableDynamicReactorConfiguration ||
+            exceptions.indexOf(datasetURI) !== -1
+        ) {
             callback(config);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
             //start config
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for property configs
             const prefixes = `
@@ -580,47 +755,105 @@ class DynamicConfigurator {
             //send request
             //console.log(prefixes + query);
             let self = this;
-            rp.get({ uri: getHTTPGetURL(getHTTPQuery('read', prefixes + query, endpointParameters, outputFormat)), headers: headers }).then(function (res) {
-                //console.log(res);
-                config = self.parseDatasetConfigs(config, datasetURI, res);
-                //if no config was found for user in the auth mode, try to get a random config from other users
-                if (userSt && !config.resultSetCount) {
-                    rp.get({ uri: getHTTPGetURL(getHTTPQuery('read', prefixes + noAuthQuery, endpointParameters, outputFormat)), headers: headers }).then(function (res) {
-                        //console.log(res);
-                        config = self.parseDatasetConfigs(config, datasetURI, res);
+            rp.get({
+                uri: getHTTPGetURL(
+                    getHTTPQuery(
+                        'read',
+                        prefixes + query,
+                        endpointParameters,
+                        outputFormat
+                    )
+                ),
+                headers: headers
+            })
+                .then(function(res) {
+                    //console.log(res);
+                    config = self.parseDatasetConfigs(config, datasetURI, res);
+                    //if no config was found for user in the auth mode, try to get a random config from other users
+                    if (userSt && !config.resultSetCount) {
+                        rp.get({
+                            uri: getHTTPGetURL(
+                                getHTTPQuery(
+                                    'read',
+                                    prefixes + noAuthQuery,
+                                    endpointParameters,
+                                    outputFormat
+                                )
+                            ),
+                            headers: headers
+                        })
+                            .then(function(res) {
+                                //console.log(res);
+                                config = self.parseDatasetConfigs(
+                                    config,
+                                    datasetURI,
+                                    res
+                                );
+                                callback(config);
+                            })
+                            .catch(function(err) {
+                                console.log(
+                                    'Attempt2: Error in dataset config query:',
+                                    prefixes + query
+                                );
+                                console.log(sparql_endpoint_error);
+                                console.log(
+                                    '---------------------------------------------------------'
+                                );
+                                callback(config);
+                            });
+                    } else {
                         callback(config);
-                    }).catch(function (err) {
-                        console.log('Attempt2: Error in dataset config query:', prefixes + query);
-                        console.log(sparql_endpoint_error);
-                        console.log('---------------------------------------------------------');
-                        callback(config);
-                    });
-                } else {
+                    }
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in dataset config query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
                     callback(config);
-                }
-            }).catch(function (err) {
-                console.log('Error in dataset config query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(config);
-            });
+                });
         }
-
     }
-    createASampleReactorConfig(user, scope, datasetURI, resourceURI, propertyURI, options, callback) {
-        let exceptions = [configDatasetURI[0], authDatasetURI[0], mappingsDatasetURI[0]];
+    createASampleReactorConfig(
+        user,
+        scope,
+        datasetURI,
+        resourceURI,
+        propertyURI,
+        options,
+        callback
+    ) {
+        let exceptions = [
+            configDatasetURI[0],
+            authDatasetURI[0],
+            mappingsDatasetURI[0]
+        ];
         //do not config if disabled or exceptions
-        if (!enableDynamicReactorConfiguration || exceptions.indexOf(datasetURI) !== -1) {
+        if (
+            !enableDynamicReactorConfiguration ||
+            exceptions.indexOf(datasetURI) !== -1
+        ) {
             callback(0);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
             //start config
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for property configs
             const prefixes = `
@@ -635,10 +868,14 @@ class DynamicConfigurator {
                 graph = '';
                 graphEnd = '';
             }
-            let rnc = configDatasetURI[0] + '/rcf' + Math.round(+new Date() / 1000);
+            let rnc =
+                configDatasetURI[0] + '/rcf' + Math.round(+new Date() / 1000);
             //do not add two slashes
             if (configDatasetURI[0].slice(-1) === '/') {
-                rnc = configDatasetURI[0] + 'rcf' + Math.round(+new Date() / 1000);
+                rnc =
+                    configDatasetURI[0] +
+                    'rcf' +
+                    Math.round(+new Date() / 1000);
             }
             let datasetLabel = datasetURI;
             if (options && options.datasetLabel) {
@@ -717,32 +954,56 @@ class DynamicConfigurator {
             //send request
             //console.log(prefixes + query);
             let self = this;
-            let HTTPQueryObject = getHTTPQuery('update', prefixes + query, endpointParameters, outputFormat);
-            rp.post({ uri: HTTPQueryObject.uri, form: HTTPQueryObject.params }).then(function (res) {
-                callback(rnc);
-            }).catch(function (err) {
-                console.log('Error in dataset config creation update query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(0);
-            });
+            let HTTPQueryObject = getHTTPQuery(
+                'update',
+                prefixes + query,
+                endpointParameters,
+                outputFormat
+            );
+            rp.post({ uri: HTTPQueryObject.uri, form: HTTPQueryObject.params })
+                .then(function(res) {
+                    callback(rnc);
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in dataset config creation update query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
+                    callback(0);
+                });
         }
-
     }
     createASampleServerConfig(user, datasetURI, options, callback) {
-        let exceptions = [configDatasetURI[0], authDatasetURI[0], mappingsDatasetURI[0]];
+        let exceptions = [
+            configDatasetURI[0],
+            authDatasetURI[0],
+            mappingsDatasetURI[0]
+        ];
         //do not config if disabled or exceptions
-        if (!enableDynamicReactorConfiguration || exceptions.indexOf(datasetURI) !== -1) {
+        if (
+            !enableDynamicReactorConfiguration ||
+            exceptions.indexOf(datasetURI) !== -1
+        ) {
             callback(0);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
             //start config
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for property configs
             const prefixes = `
@@ -758,16 +1019,20 @@ class DynamicConfigurator {
                 graph = '';
                 graphEnd = '';
             }
-            let rnc = configDatasetURI[0] + '/scf' + Math.round(+new Date() / 1000);
+            let rnc =
+                configDatasetURI[0] + '/scf' + Math.round(+new Date() / 1000);
             //do not add two slashes
             if (configDatasetURI[0].slice(-1) === '/') {
-                rnc = configDatasetURI[0] + 'scf' + Math.round(+new Date() / 1000);
+                rnc =
+                    configDatasetURI[0] +
+                    'scf' +
+                    Math.round(+new Date() / 1000);
             }
             let date = new Date();
             let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
             let protocolSTR = '';
             if (options.protocol) {
-                protocolSTR = ` ldr:protocol """${options.protocol}""";`
+                protocolSTR = ` ldr:protocol """${options.protocol}""";`;
             }
             const query = `
             INSERT DATA { ${graph}
@@ -787,31 +1052,55 @@ class DynamicConfigurator {
             //send request
             //console.log(prefixes + query);
             let self = this;
-            let HTTPQueryObject = getHTTPQuery('update', prefixes + query, endpointParameters, outputFormat);
-            rp.post({ uri: HTTPQueryObject.uri, form: HTTPQueryObject.params }).then(function (res) {
-                callback(rnc);
-            }).catch(function (err) {
-                console.log('Error in server config creation update query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(0);
-            });
+            let HTTPQueryObject = getHTTPQuery(
+                'update',
+                prefixes + query,
+                endpointParameters,
+                outputFormat
+            );
+            rp.post({ uri: HTTPQueryObject.uri, form: HTTPQueryObject.params })
+                .then(function(res) {
+                    callback(rnc);
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in server config creation update query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
+                    callback(0);
+                });
         }
-
     }
-    prepareDynamicResourceConfig(user, datasetURI, resourceURI, resourceType, callback) {
+    prepareDynamicResourceConfig(
+        user,
+        datasetURI,
+        resourceURI,
+        resourceType,
+        callback
+    ) {
         let config = { resource: {}, dataset_resource: {} };
         let exceptions = [configDatasetURI[0], authDatasetURI[0]];
         //do not config if disabled or exceptions
-        if (!enableDynamicReactorConfiguration || exceptions.indexOf(datasetURI) !== -1) {
+        if (
+            !enableDynamicReactorConfiguration ||
+            exceptions.indexOf(datasetURI) !== -1
+        ) {
             callback(config);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
             let typeFilter = [];
-            resourceType.forEach(function (el) {
+            resourceType.forEach(function(el) {
                 if (el) {
                     typeFilter.push(`?resource=<${el}>`);
                 }
@@ -823,15 +1112,16 @@ class DynamicConfigurator {
                 // if(typeFilter.length > 100){
                 //     typeFilterStr = '0 && ';
                 // }
-
             } else {
                 //do not allow treat as type when no type is defined
                 typeFilterStr = '0 && ';
             }
             //start config
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for property configs
             const prefixes = `
@@ -938,36 +1228,75 @@ class DynamicConfigurator {
             //send request
             //console.log(prefixes + query);
             let self = this;
-            let HTTPQueryObject = getHTTPQuery('read', prefixes + query, endpointParameters, outputFormat);
-            rp.post({ uri: HTTPQueryObject.uri, form: HTTPQueryObject.params, headers: headers }).then(function (res) {
-                //console.log(res);
-                config = self.parseResourceConfigs(config, resourceURI, res);
-                callback(config);
-            }).catch(function (err) {
-                console.log('Error in resource config query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(config);
-            });
+            let HTTPQueryObject = getHTTPQuery(
+                'read',
+                prefixes + query,
+                endpointParameters,
+                outputFormat
+            );
+            rp.post({
+                uri: HTTPQueryObject.uri,
+                form: HTTPQueryObject.params,
+                headers: headers
+            })
+                .then(function(res) {
+                    //console.log(res);
+                    config = self.parseResourceConfigs(
+                        config,
+                        resourceURI,
+                        res
+                    );
+                    callback(config);
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in resource config query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
+                    callback(config);
+                });
         }
-
-
     }
-    prepareDynamicPropertyConfig(user, datasetURI, resourceURI, resourceType, propertyURI, callback) {
-        let config = { property: {}, dataset_property: {}, resource_property: {}, dataset_resource_property: {} };
+    prepareDynamicPropertyConfig(
+        user,
+        datasetURI,
+        resourceURI,
+        resourceType,
+        propertyURI,
+        callback
+    ) {
+        let config = {
+            property: {},
+            dataset_property: {},
+            resource_property: {},
+            dataset_resource_property: {}
+        };
         let exceptions = [configDatasetURI[0], authDatasetURI[0]];
         //do not config if disabled or exceptions
-        if (!enableDynamicReactorConfiguration || exceptions.indexOf(datasetURI) !== -1) {
+        if (
+            !enableDynamicReactorConfiguration ||
+            exceptions.indexOf(datasetURI) !== -1
+        ) {
             callback(config);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
             //start config
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for property configs
             const prefixes = `
@@ -1036,19 +1365,39 @@ class DynamicConfigurator {
             //send request
             //console.log(prefixes + query);
             let self = this;
-            rp.get({ uri: getHTTPGetURL(getHTTPQuery('read', prefixes + query, endpointParameters, outputFormat)), headers: headers }).then(function (res) {
-                //console.log(res);
-                config = self.parsePropertyConfigs(config, propertyURI, res);
-                callback(config);
-            }).catch(function (err) {
-                //console.log(err);
-                console.log('Error in property config query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(config);
-            });
+            rp.get({
+                uri: getHTTPGetURL(
+                    getHTTPQuery(
+                        'read',
+                        prefixes + query,
+                        endpointParameters,
+                        outputFormat
+                    )
+                ),
+                headers: headers
+            })
+                .then(function(res) {
+                    //console.log(res);
+                    config = self.parsePropertyConfigs(
+                        config,
+                        propertyURI,
+                        res
+                    );
+                    callback(config);
+                })
+                .catch(function(err) {
+                    //console.log(err);
+                    console.log(
+                        'Error in property config query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
+                    callback(config);
+                });
         }
-
     }
     createASampleFacetsConfig(user, configURI, datasetURI, options, callback) {
         //do not config if disabled
@@ -1056,12 +1405,18 @@ class DynamicConfigurator {
             callback(1);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for property configs
             const prefixes = `
@@ -1108,17 +1463,28 @@ class DynamicConfigurator {
             //send request
             //console.log(prefixes + query);
             let self = this;
-            let HTTPQueryObject = getHTTPQuery('update', prefixes + query, endpointParameters, outputFormat);
-            rp.post({ uri: HTTPQueryObject.uri, form: HTTPQueryObject.params }).then(function (res) {
-                callback(1);
-            }).catch(function (err) {
-                console.log('Error in sample facet config creation update query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(0);
-            });
+            let HTTPQueryObject = getHTTPQuery(
+                'update',
+                prefixes + query,
+                endpointParameters,
+                outputFormat
+            );
+            rp.post({ uri: HTTPQueryObject.uri, form: HTTPQueryObject.params })
+                .then(function(res) {
+                    callback(1);
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in sample facet config creation update query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
+                    callback(0);
+                });
         }
-
     }
     createAnEnvState(user, configURI, options, callback) {
         //do not config if disabled
@@ -1126,12 +1492,18 @@ class DynamicConfigurator {
             callback(1);
         } else {
             let userSt = '';
-            if (user && user.accountName !== 'open' && !Number(user.isSuperUser)) {
+            if (
+                user &&
+                user.accountName !== 'open' &&
+                !Number(user.isSuperUser)
+            ) {
                 userSt = ` ldr:createdBy <${user.id}> ;`;
             }
-            const endpointParameters = getStaticEndpointParameters(configDatasetURI[0]);
+            const endpointParameters = getStaticEndpointParameters(
+                configDatasetURI[0]
+            );
             const graphName = endpointParameters.graphName;
-            const headers = { 'Accept': 'application/sparql-results+json' };
+            const headers = { Accept: 'application/sparql-results+json' };
             const outputFormat = 'application/sparql-results+json';
             //query the triple store for property configs
             const prefixes = `
@@ -1155,10 +1527,26 @@ class DynamicConfigurator {
             ${graph}
                 <${configURI}> a ldr:EnvState ;
                          ldr:dataset <${options.datasetURI}> ;
-                         ldr:selection """${encodeURIComponent(JSON.stringify(options.selection))}""" ;
-                         ${options.pivotConstraint ? 'ldr:pivotConstraint """' + encodeURIComponent(options.pivotConstraint) + '""" ;' : ''}
-                         ${options.searchTerm ? 'ldr:searchTerm """' + options.searchTerm + '""" ;' : ''}
-                         ldr:resourceQuery """${encodeURIComponent(options.resourceQuery)}""" ;
+                         ldr:selection """${encodeURIComponent(
+        JSON.stringify(options.selection)
+    )}""" ;
+                         ${
+    options.pivotConstraint
+        ? 'ldr:pivotConstraint """' +
+                                   encodeURIComponent(options.pivotConstraint) +
+                                   '""" ;'
+        : ''
+}
+                         ${
+    options.searchTerm
+        ? 'ldr:searchTerm """' +
+                                   options.searchTerm +
+                                   '""" ;'
+        : ''
+}
+                         ldr:resourceQuery """${encodeURIComponent(
+        options.resourceQuery
+    )}""" ;
                          ldr:page "${options.page}" ;
                          ldr:createdOn "${currentDate}"^^xsd:dateTime;
                          ${userSt}
@@ -1169,23 +1557,34 @@ class DynamicConfigurator {
             //send request
             //console.log(prefixes + query);
             let self = this;
-            let HTTPQueryObject = getHTTPQuery('update', prefixes + query, endpointParameters, outputFormat);
-            rp.post({ uri: HTTPQueryObject.uri, form: HTTPQueryObject.params }).then(function (res) {
-                callback(1);
-            }).catch(function (err) {
-                console.log('Error in new env state creation update query:', prefixes + query);
-                console.log(sparql_endpoint_error);
-                console.log('---------------------------------------------------------');
-                callback(0);
-            });
+            let HTTPQueryObject = getHTTPQuery(
+                'update',
+                prefixes + query,
+                endpointParameters,
+                outputFormat
+            );
+            rp.post({ uri: HTTPQueryObject.uri, form: HTTPQueryObject.params })
+                .then(function(res) {
+                    callback(1);
+                })
+                .catch(function(err) {
+                    console.log(
+                        'Error in new env state creation update query:',
+                        prefixes + query
+                    );
+                    console.log(sparql_endpoint_error);
+                    console.log(
+                        '---------------------------------------------------------'
+                    );
+                    callback(0);
+                });
         }
-
     }
     parsePropertyConfigs(config, propertyURI, body) {
         let output = config;
         let parsed = JSON.parse(body);
         let settingProp = '';
-        parsed.results.bindings.forEach(function (el) {
+        parsed.results.bindings.forEach(function(el) {
             settingProp = el.setting.value.replace(ldr_prefix, '').trim();
             if (el.scope.value === 'P') {
                 if (!output.property[propertyURI]) {
@@ -1193,15 +1592,22 @@ class DynamicConfigurator {
                 }
                 //assume that all values will be stored in an array expect numbers: Not-a-Number
                 if (!isNaN(el.settingValue.value)) {
-                    output.property[propertyURI][settingProp] = Number(el.settingValue.value);
+                    output.property[propertyURI][settingProp] = Number(
+                        el.settingValue.value
+                    );
                 } else {
                     if (!output.property[propertyURI][settingProp]) {
-                        output.property[propertyURI][settingProp] = []
+                        output.property[propertyURI][settingProp] = [];
                     }
-                    if (output.property[propertyURI][settingProp].indexOf(el.settingValue.value) === -1) {
-                        output.property[propertyURI][settingProp].push(el.settingValue.value);
+                    if (
+                        output.property[propertyURI][settingProp].indexOf(
+                            el.settingValue.value
+                        ) === -1
+                    ) {
+                        output.property[propertyURI][settingProp].push(
+                            el.settingValue.value
+                        );
                     }
-
                 }
             } else if (el.scope.value === 'DP') {
                 if (!output.dataset_property[el.dataset.value]) {
@@ -1212,61 +1618,112 @@ class DynamicConfigurator {
                 }
                 //assume that all values will be stored in an array expect numbers: Not-a-Number
                 if (!isNaN(el.settingValue.value)) {
-                    output.dataset_property[el.dataset.value][propertyURI][settingProp] = Number(el.settingValue.value);
+                    output.dataset_property[el.dataset.value][propertyURI][
+                        settingProp
+                    ] = Number(el.settingValue.value);
                 } else {
-                    if (!output.dataset_property[el.dataset.value][propertyURI][settingProp]) {
-                        output.dataset_property[el.dataset.value][propertyURI][settingProp] = [];
+                    if (
+                        !output.dataset_property[el.dataset.value][propertyURI][
+                            settingProp
+                        ]
+                    ) {
+                        output.dataset_property[el.dataset.value][propertyURI][
+                            settingProp
+                        ] = [];
                     }
-                    if (output.dataset_property[el.dataset.value][propertyURI][settingProp].indexOf(el.settingValue.value) === -1) {
-                        output.dataset_property[el.dataset.value][propertyURI][settingProp].push(el.settingValue.value);
+                    if (
+                        output.dataset_property[el.dataset.value][propertyURI][
+                            settingProp
+                        ].indexOf(el.settingValue.value) === -1
+                    ) {
+                        output.dataset_property[el.dataset.value][propertyURI][
+                            settingProp
+                        ].push(el.settingValue.value);
                     }
-
                 }
-
             } else if (el.scope.value === 'RP') {
                 if (!output.resource_property[el.resource.value]) {
                     output.resource_property[el.resource.value] = {};
                 }
                 if (!output.resource_property[el.resource.value][propertyURI]) {
-                    output.resource_property[el.resource.value][propertyURI] = {};
+                    output.resource_property[el.resource.value][
+                        propertyURI
+                    ] = {};
                 }
                 //assume that all values will be stored in an array expect numbers: Not-a-Number
                 if (!isNaN(el.settingValue.value)) {
-                    output.resource_property[el.resource.value][propertyURI][settingProp] = Number(el.settingValue.value);
+                    output.resource_property[el.resource.value][propertyURI][
+                        settingProp
+                    ] = Number(el.settingValue.value);
                 } else {
-                    if (!output.resource_property[el.resource.value][propertyURI][settingProp]) {
-                        output.resource_property[el.resource.value][propertyURI][settingProp] = [];
+                    if (
+                        !output.resource_property[el.resource.value][
+                            propertyURI
+                        ][settingProp]
+                    ) {
+                        output.resource_property[el.resource.value][
+                            propertyURI
+                        ][settingProp] = [];
                     }
-                    if (output.resource_property[el.resource.value][propertyURI][settingProp].indexOf(el.settingValue.value) === -1) {
-                        output.resource_property[el.resource.value][propertyURI][settingProp].push(el.settingValue.value);
+                    if (
+                        output.resource_property[el.resource.value][
+                            propertyURI
+                        ][settingProp].indexOf(el.settingValue.value) === -1
+                    ) {
+                        output.resource_property[el.resource.value][
+                            propertyURI
+                        ][settingProp].push(el.settingValue.value);
                     }
-
                 }
-
-
             } else if (el.scope.value === 'DRP') {
                 if (!output.dataset_resource_property[el.dataset.value]) {
                     output.dataset_resource_property[el.dataset.value] = {};
                 }
-                if (!output.dataset_resource_property[el.dataset.value][el.resource.value]) {
-                    output.dataset_resource_property[el.dataset.value][el.resource.value] = {};
+                if (
+                    !output.dataset_resource_property[el.dataset.value][
+                        el.resource.value
+                    ]
+                ) {
+                    output.dataset_resource_property[el.dataset.value][
+                        el.resource.value
+                    ] = {};
                 }
-                if (!output.dataset_resource_property[el.dataset.value][el.resource.value][propertyURI]) {
-                    output.dataset_resource_property[el.dataset.value][el.resource.value][propertyURI] = {};
+                if (
+                    !output.dataset_resource_property[el.dataset.value][
+                        el.resource.value
+                    ][propertyURI]
+                ) {
+                    output.dataset_resource_property[el.dataset.value][
+                        el.resource.value
+                    ][propertyURI] = {};
                 }
                 //assume that all values will be stored in an array expect numbers: Not-a-Number
                 if (!isNaN(el.settingValue.value)) {
-                    output.dataset_resource_property[el.dataset.value][el.resource.value][propertyURI][settingProp] = Number(el.settingValue.value);
+                    output.dataset_resource_property[el.dataset.value][
+                        el.resource.value
+                    ][propertyURI][settingProp] = Number(el.settingValue.value);
                 } else {
-                    if (!output.dataset_resource_property[el.dataset.value][el.resource.value][propertyURI][settingProp]) {
-                        output.dataset_resource_property[el.dataset.value][el.resource.value][propertyURI][settingProp] = [];
+                    if (
+                        !output.dataset_resource_property[el.dataset.value][
+                            el.resource.value
+                        ][propertyURI][settingProp]
+                    ) {
+                        output.dataset_resource_property[el.dataset.value][
+                            el.resource.value
+                        ][propertyURI][settingProp] = [];
                     }
-                    if (output.dataset_resource_property[el.dataset.value][el.resource.value][propertyURI][settingProp].indexOf(el.settingValue.value) === -1) {
-                        output.dataset_resource_property[el.dataset.value][el.resource.value][propertyURI][settingProp].push(el.settingValue.value);
+                    if (
+                        output.dataset_resource_property[el.dataset.value][
+                            el.resource.value
+                        ][propertyURI][settingProp].indexOf(
+                            el.settingValue.value
+                        ) === -1
+                    ) {
+                        output.dataset_resource_property[el.dataset.value][
+                            el.resource.value
+                        ][propertyURI][settingProp].push(el.settingValue.value);
                     }
-
                 }
-
             }
         });
         return output;
@@ -1275,7 +1732,7 @@ class DynamicConfigurator {
         let output = config;
         let parsed = JSON.parse(body);
         let settingProp = '';
-        parsed.results.bindings.forEach(function (el) {
+        parsed.results.bindings.forEach(function(el) {
             settingProp = el.setting.value.replace(ldr_prefix, '').trim();
             if (el.scope.value === 'R') {
                 if (!output.resource[resourceURI]) {
@@ -1283,12 +1740,16 @@ class DynamicConfigurator {
                 }
                 //assume that all values will be stored in an array expect numbers: Not-a-Number
                 if (!isNaN(el.settingValue.value)) {
-                    output.resource[resourceURI][settingProp] = Number(el.settingValue.value);
+                    output.resource[resourceURI][settingProp] = Number(
+                        el.settingValue.value
+                    );
                 } else {
                     if (!output.resource[resourceURI][settingProp]) {
-                        output.resource[resourceURI][settingProp] = []
+                        output.resource[resourceURI][settingProp] = [];
                     }
-                    output.resource[resourceURI][settingProp].push(el.settingValue.value);
+                    output.resource[resourceURI][settingProp].push(
+                        el.settingValue.value
+                    );
                 }
             } else if (el.scope.value === 'DR') {
                 if (!output.dataset_resource[el.dataset.value]) {
@@ -1299,17 +1760,29 @@ class DynamicConfigurator {
                 }
                 //assume that all values will be stored in an array expect numbers: Not-a-Number
                 if (!isNaN(el.settingValue.value)) {
-                    output.dataset_resource[el.dataset.value][resourceURI][settingProp] = Number(el.settingValue.value);
+                    output.dataset_resource[el.dataset.value][resourceURI][
+                        settingProp
+                    ] = Number(el.settingValue.value);
                 } else {
-                    if (!output.dataset_resource[el.dataset.value][resourceURI][settingProp]) {
-                        output.dataset_resource[el.dataset.value][resourceURI][settingProp] = [];
+                    if (
+                        !output.dataset_resource[el.dataset.value][resourceURI][
+                            settingProp
+                        ]
+                    ) {
+                        output.dataset_resource[el.dataset.value][resourceURI][
+                            settingProp
+                        ] = [];
                     }
-                    if (output.dataset_resource[el.dataset.value][resourceURI][settingProp].indexOf(el.settingValue.value) === -1) {
-                        output.dataset_resource[el.dataset.value][resourceURI][settingProp].push(el.settingValue.value);
+                    if (
+                        output.dataset_resource[el.dataset.value][resourceURI][
+                            settingProp
+                        ].indexOf(el.settingValue.value) === -1
+                    ) {
+                        output.dataset_resource[el.dataset.value][resourceURI][
+                            settingProp
+                        ].push(el.settingValue.value);
                     }
-
                 }
-
             }
         });
         return output;
@@ -1317,43 +1790,105 @@ class DynamicConfigurator {
     parseDatasetConfigs(config, datasetURI, body) {
         //list of properties which should be taken into account for access management
         const viewProps = ['hasLimitedAccess', 'readOnly'];
-        const editProps = ['allowResourceClone', 'allowPropertyDelete', 'allowResourceNew', 'allowPropertyNew', 'allowNewValue', 'allowResourceDelete'];
+        const editProps = [
+            'allowResourceClone',
+            'allowPropertyDelete',
+            'allowResourceNew',
+            'allowPropertyNew',
+            'allowNewValue',
+            'allowResourceDelete'
+        ];
         let output = config;
         let parsed = JSON.parse(body);
         let settingProp = '';
         let resultSetCount = parsed.results.bindings.length;
         output.resultSetCount = resultSetCount;
-        parsed.results.bindings.forEach(function (el) {
+        parsed.results.bindings.forEach(function(el) {
             settingProp = '';
             if (el.scope.value === 'D') {
                 if (!output.dataset[datasetURI]) {
                     output.dataset[datasetURI] = {};
                 }
                 if (el.constraintProperty && el.constraintProperty.value) {
-                    if (el.constraintEnabled && Number(el.constraintEnabled.value)) {
+                    if (
+                        el.constraintEnabled &&
+                        Number(el.constraintEnabled.value)
+                    ) {
                         //parse only if enabled
                         if (!output.dataset[datasetURI]['constraint']) {
-                            output.dataset[datasetURI]['constraint'] = {}
+                            output.dataset[datasetURI]['constraint'] = {};
                         }
                         //todo: it only works if only dataType is optional otherwise gives error
-                        if (!output.dataset[datasetURI]['constraint'][el.constraintProperty.value]) {
-                            if (el.constraintObject && el.constraintObject.value) {
-                                if (el.cSetting && el.cSetting.value && el.cSetting.value === 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataType') {
+                        if (
+                            !output.dataset[datasetURI]['constraint'][
+                                el.constraintProperty.value
+                            ]
+                        ) {
+                            if (
+                                el.constraintObject &&
+                                el.constraintObject.value
+                            ) {
+                                if (
+                                    el.cSetting &&
+                                    el.cSetting.value &&
+                                    el.cSetting.value ===
+                                        'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataType'
+                                ) {
                                     //we attach dataType to be handled in SPARQL query
-                                    output.dataset[datasetURI]['constraint'][el.constraintProperty.value] = [el.constraintObject.value + '[dt]' + el.cValue.value];
+                                    output.dataset[datasetURI]['constraint'][
+                                        el.constraintProperty.value
+                                    ] = [
+                                        el.constraintObject.value +
+                                            '[dt]' +
+                                            el.cValue.value
+                                    ];
                                 } else {
-                                    output.dataset[datasetURI]['constraint'][el.constraintProperty.value] = [el.constraintObject.value];
+                                    output.dataset[datasetURI]['constraint'][
+                                        el.constraintProperty.value
+                                    ] = [el.constraintObject.value];
                                 }
                             }
                         } else {
-                            if (el.constraintObject && el.constraintObject.value) {
-                                if (el.cSetting && el.cSetting.value && el.cSetting.value === 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataType') {
-                                    if (output.dataset[datasetURI]['constraint'][el.constraintProperty.value].indexOf(el.constraintObject.value + '[dt]' + el.cValue.value) === -1) {
-                                        output.dataset[datasetURI]['constraint'][el.constraintProperty.value].push(el.constraintObject.value + '[dt]' + el.cValue.value);
+                            if (
+                                el.constraintObject &&
+                                el.constraintObject.value
+                            ) {
+                                if (
+                                    el.cSetting &&
+                                    el.cSetting.value &&
+                                    el.cSetting.value ===
+                                        'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#dataType'
+                                ) {
+                                    if (
+                                        output.dataset[datasetURI][
+                                            'constraint'
+                                        ][el.constraintProperty.value].indexOf(
+                                            el.constraintObject.value +
+                                                '[dt]' +
+                                                el.cValue.value
+                                        ) === -1
+                                    ) {
+                                        output.dataset[datasetURI][
+                                            'constraint'
+                                        ][el.constraintProperty.value].push(
+                                            el.constraintObject.value +
+                                                '[dt]' +
+                                                el.cValue.value
+                                        );
                                     }
                                 } else {
-                                    if (output.dataset[datasetURI]['constraint'][el.constraintProperty.value].indexOf(el.constraintObject.value) === -1) {
-                                        output.dataset[datasetURI]['constraint'][el.constraintProperty.value].push(el.constraintObject.value);
+                                    if (
+                                        output.dataset[datasetURI][
+                                            'constraint'
+                                        ][el.constraintProperty.value].indexOf(
+                                            el.constraintObject.value
+                                        ) === -1
+                                    ) {
+                                        output.dataset[datasetURI][
+                                            'constraint'
+                                        ][el.constraintProperty.value].push(
+                                            el.constraintObject.value
+                                        );
                                     }
                                 }
                             }
@@ -1364,30 +1899,51 @@ class DynamicConfigurator {
                 //assume that all values will be stored in an array expect numbers: Not-a-Number
                 if (!isNaN(el.settingValue.value)) {
                     if (viewProps.indexOf(settingProp) !== -1) {
-                        if (typeof output.dataset[datasetURI][settingProp] === 'undefined') {
-                            output.dataset[datasetURI][settingProp] = Number(el.settingValue.value);
+                        if (
+                            typeof output.dataset[datasetURI][settingProp] ===
+                            'undefined'
+                        ) {
+                            output.dataset[datasetURI][settingProp] = Number(
+                                el.settingValue.value
+                            );
                         } else {
                             //user cannot overwrite these properties if they have 1 as value
-                            output.dataset[datasetURI][settingProp] = Number(el.settingValue.value) || output.dataset[datasetURI][settingProp];
+                            output.dataset[datasetURI][settingProp] =
+                                Number(el.settingValue.value) ||
+                                output.dataset[datasetURI][settingProp];
                         }
                     } else if (editProps.indexOf(settingProp) !== -1) {
-                        if (typeof output.dataset[datasetURI][settingProp] === 'undefined') {
-                            output.dataset[datasetURI][settingProp] = Number(el.settingValue.value);
+                        if (
+                            typeof output.dataset[datasetURI][settingProp] ===
+                            'undefined'
+                        ) {
+                            output.dataset[datasetURI][settingProp] = Number(
+                                el.settingValue.value
+                            );
                         } else {
                             //user cannot overwrite these properties if they have 0 as value
-                            output.dataset[datasetURI][settingProp] = Number(el.settingValue.value) && output.dataset[datasetURI][settingProp];
+                            output.dataset[datasetURI][settingProp] =
+                                Number(el.settingValue.value) &&
+                                output.dataset[datasetURI][settingProp];
                         }
                     } else {
-                        output.dataset[datasetURI][settingProp] = Number(el.settingValue.value);
+                        output.dataset[datasetURI][settingProp] = Number(
+                            el.settingValue.value
+                        );
                     }
                 } else {
                     if (!output.dataset[datasetURI][settingProp]) {
-                        output.dataset[datasetURI][settingProp] = []
+                        output.dataset[datasetURI][settingProp] = [];
                     }
-                    if (output.dataset[datasetURI][settingProp].indexOf(el.settingValue.value) === -1) {
-                        output.dataset[datasetURI][settingProp].push(el.settingValue.value);
+                    if (
+                        output.dataset[datasetURI][settingProp].indexOf(
+                            el.settingValue.value
+                        ) === -1
+                    ) {
+                        output.dataset[datasetURI][settingProp].push(
+                            el.settingValue.value
+                        );
                     }
-
                 }
             }
         });
@@ -1399,7 +1955,7 @@ class DynamicConfigurator {
         let settingProp = '';
         let resultSetCount = parsed.results.bindings.length;
         output.resultSetCount = resultSetCount;
-        parsed.results.bindings.forEach(function (el) {
+        parsed.results.bindings.forEach(function(el) {
             if (!output.facets[datasetURI]) {
                 output.facets[datasetURI] = {};
             }
@@ -1413,8 +1969,12 @@ class DynamicConfigurator {
                 output.facets[datasetURI].config = {};
             }
             if (el.configProperty) {
-                if (!output.facets[datasetURI].config[el.configProperty.value]) {
-                    output.facets[datasetURI].config[el.configProperty.value] = {};
+                if (
+                    !output.facets[datasetURI].config[el.configProperty.value]
+                ) {
+                    output.facets[datasetURI].config[
+                        el.configProperty.value
+                    ] = {};
                 }
             }
 
@@ -1422,28 +1982,42 @@ class DynamicConfigurator {
             if (el.setting) {
                 settingProp = el.setting.value.replace(ldr_prefix, '').trim();
                 if (!isNaN(el.settingValue.value)) {
-                    output.facets[datasetURI].config[el.configProperty.value][settingProp] = Number(el.settingValue.value);
+                    output.facets[datasetURI].config[el.configProperty.value][
+                        settingProp
+                    ] = Number(el.settingValue.value);
                 } else {
-                    if (!output.facets[datasetURI].config[el.configProperty.value][settingProp]) {
-                        output.facets[datasetURI].config[el.configProperty.value][settingProp] = []
+                    if (
+                        !output.facets[datasetURI].config[
+                            el.configProperty.value
+                        ][settingProp]
+                    ) {
+                        output.facets[datasetURI].config[
+                            el.configProperty.value
+                        ][settingProp] = [];
                     }
                     //do not allow duplicate labels
-                    if (output.facets[datasetURI].config[el.configProperty.value][settingProp].indexOf(el.settingValue.value) === -1) {
-                        output.facets[datasetURI].config[el.configProperty.value][settingProp].push(el.settingValue.value);
+                    if (
+                        output.facets[datasetURI].config[
+                            el.configProperty.value
+                        ][settingProp].indexOf(el.settingValue.value) === -1
+                    ) {
+                        output.facets[datasetURI].config[
+                            el.configProperty.value
+                        ][settingProp].push(el.settingValue.value);
                     }
                 }
             }
-
         });
         return output;
     }
     parseServerConfigs(config, datasetURI, body) {
         let output = config;
         let parsed = JSON.parse(body);
-        let settingProp = '', host = '';
+        let settingProp = '',
+            host = '';
         let resultSetCount = parsed.results.bindings.length;
         output.resultSetCount = resultSetCount;
-        parsed.results.bindings.forEach(function (el) {
+        parsed.results.bindings.forEach(function(el) {
             if (!output.sparqlEndpoint[datasetURI]) {
                 output.sparqlEndpoint[datasetURI] = {};
             }
@@ -1453,30 +2027,37 @@ class DynamicConfigurator {
             if(host === 'localhost' || host === '127.0.0.1'){
                 output.sparqlEndpoint[datasetURI].host = 'example.com';
             }else{
-*/                output.sparqlEndpoint[datasetURI].host = host;
+*/ output.sparqlEndpoint[
+                datasetURI
+            ].host = host;
             /*            }
-            */
+             */
             output.sparqlEndpoint[datasetURI].port = el.port.value;
             output.sparqlEndpoint[datasetURI].path = el.path.value;
-            output.sparqlEndpoint[datasetURI].protocol = el.protocol && el.protocol.value ? el.protocol.value : 'http';
-            output.sparqlEndpoint[datasetURI].endpointType = el.endpointType.value;
+            output.sparqlEndpoint[datasetURI].protocol =
+                el.protocol && el.protocol.value ? el.protocol.value : 'http';
+            output.sparqlEndpoint[datasetURI].endpointType =
+                el.endpointType.value;
             //assume that all values will be stored in an array expect numbers: Not-a-Number
             settingProp = el.setting.value.replace(ldr_prefix, '').trim();
             if (!isNaN(el.settingValue.value)) {
-                output.sparqlEndpoint[datasetURI][settingProp] = Number(el.settingValue.value);
+                output.sparqlEndpoint[datasetURI][settingProp] = Number(
+                    el.settingValue.value
+                );
             } else {
                 //exception for graphNameValue
                 if (settingProp === 'graphName') {
-                    output.sparqlEndpoint[datasetURI][settingProp] = el.settingValue.value;
+                    output.sparqlEndpoint[datasetURI][settingProp] =
+                        el.settingValue.value;
                 } else {
                     if (!output.sparqlEndpoint[datasetURI][settingProp]) {
-                        output.sparqlEndpoint[datasetURI][settingProp] = []
+                        output.sparqlEndpoint[datasetURI][settingProp] = [];
                     }
-                    output.sparqlEndpoint[datasetURI][settingProp].push(el.settingValue.value);
+                    output.sparqlEndpoint[datasetURI][settingProp].push(
+                        el.settingValue.value
+                    );
                 }
-
             }
-
         });
         return output;
     }
@@ -1484,17 +2065,21 @@ class DynamicConfigurator {
         let output = {};
         let parsed = JSON.parse(body);
         let settingProp = '';
-        parsed.results.bindings.forEach(function (el) {
+        parsed.results.bindings.forEach(function(el) {
             settingProp = el.setting.value.replace(ldr_prefix, '').trim();
-            settingProp = settingProp.replace('http://www.w3.org/2000/01/rdf-schema#', '').trim();
+            settingProp = settingProp
+                .replace('http://www.w3.org/2000/01/rdf-schema#', '')
+                .trim();
             if (!output[el.state.value]) {
                 output[el.state.value] = {};
             }
             if (!isNaN(el.settingValue.value)) {
-                output[el.state.value][settingProp] = Number(el.settingValue.value);
+                output[el.state.value][settingProp] = Number(
+                    el.settingValue.value
+                );
             } else {
                 if (!output[el.state.value][settingProp]) {
-                    output[el.state.value][settingProp] = []
+                    output[el.state.value][settingProp] = [];
                 }
                 output[el.state.value][settingProp].push(el.settingValue.value);
             }
@@ -1506,7 +2091,7 @@ class DynamicConfigurator {
         let dynamicFacetsDS = { facets: {} };
         let parsed = JSON.parse(body);
         let settingProp = '';
-        parsed.results.bindings.forEach(function (el) {
+        parsed.results.bindings.forEach(function(el) {
             if (el.config2 && el.config2.value) {
                 //facets
                 if (!dynamicFacetsDS.facets[el.dataset.value]) {
@@ -1518,47 +2103,97 @@ class DynamicConfigurator {
                     dynamicReactorDS.dataset[el.dataset.value] = {};
                 }
                 if (el.setting && el.setting.value) {
-                    settingProp = el.setting.value.replace(ldr_prefix, '').trim();
+                    settingProp = el.setting.value
+                        .replace(ldr_prefix, '')
+                        .trim();
                     if (settingProp === 'readOnly') {
-                        if (typeof dynamicReactorDS.dataset[el.dataset.value][settingProp] === 'undefined') {
-                            dynamicReactorDS.dataset[el.dataset.value][settingProp] = Number(el.settingValue.value);
+                        if (
+                            typeof dynamicReactorDS.dataset[el.dataset.value][
+                                settingProp
+                            ] === 'undefined'
+                        ) {
+                            dynamicReactorDS.dataset[el.dataset.value][
+                                settingProp
+                            ] = Number(el.settingValue.value);
                         } else {
                             //this is used to prevent people to switch access
-                            dynamicReactorDS.dataset[el.dataset.value][settingProp] = Number(el.settingValue.value) || dynamicReactorDS.dataset[el.dataset.value][settingProp];
+                            dynamicReactorDS.dataset[el.dataset.value][
+                                settingProp
+                            ] =
+                                Number(el.settingValue.value) ||
+                                dynamicReactorDS.dataset[el.dataset.value][
+                                    settingProp
+                                ];
                         }
                     } else if (settingProp === 'hasLimitedAccess') {
-                        if (typeof dynamicReactorDS.dataset[el.dataset.value][settingProp] === 'undefined') {
-                            dynamicReactorDS.dataset[el.dataset.value][settingProp] = Number(el.settingValue.value);
+                        if (
+                            typeof dynamicReactorDS.dataset[el.dataset.value][
+                                settingProp
+                            ] === 'undefined'
+                        ) {
+                            dynamicReactorDS.dataset[el.dataset.value][
+                                settingProp
+                            ] = Number(el.settingValue.value);
                         } else {
                             //this is used to prevent people to switch access
-                            dynamicReactorDS.dataset[el.dataset.value][settingProp] = Number(el.settingValue.value) || dynamicReactorDS.dataset[el.dataset.value][settingProp];
+                            dynamicReactorDS.dataset[el.dataset.value][
+                                settingProp
+                            ] =
+                                Number(el.settingValue.value) ||
+                                dynamicReactorDS.dataset[el.dataset.value][
+                                    settingProp
+                                ];
                         }
-                    } else if (settingProp === 'position' || settingProp === 'isHidden') {
-                        dynamicReactorDS.dataset[el.dataset.value][settingProp] = Number(el.settingValue.value);
+                    } else if (
+                        settingProp === 'position' ||
+                        settingProp === 'isHidden'
+                    ) {
+                        dynamicReactorDS.dataset[el.dataset.value][
+                            settingProp
+                        ] = Number(el.settingValue.value);
                     } else {
                         //skip the mapping dataset configs
-                        let exceptions = [mappingsDatasetURI[0]]
+                        let exceptions = [mappingsDatasetURI[0]];
                         if (exceptions.indexOf(el.dataset.value) !== -1) {
-                            dynamicReactorDS.dataset[el.dataset.value]['isHidden'] = 1;
+                            dynamicReactorDS.dataset[el.dataset.value][
+                                'isHidden'
+                            ] = 1;
                         }
                         //list of relevant datasets attributes should be defined here:
-                        let relatedProps = ['resourceFocusType', 'datasetLabel', 'metadata', 'datasetCategory'];
+                        let relatedProps = [
+                            'resourceFocusType',
+                            'datasetLabel',
+                            'metadata',
+                            'datasetCategory'
+                        ];
                         if (relatedProps.indexOf(settingProp) !== -1) {
-                            if (!dynamicReactorDS.dataset[el.dataset.value][settingProp]) {
-                                dynamicReactorDS.dataset[el.dataset.value][settingProp] = [];
+                            if (
+                                !dynamicReactorDS.dataset[el.dataset.value][
+                                    settingProp
+                                ]
+                            ) {
+                                dynamicReactorDS.dataset[el.dataset.value][
+                                    settingProp
+                                ] = [];
                             }
-                            if (dynamicReactorDS.dataset[el.dataset.value][settingProp].indexOf(el.settingValue.value) === -1) {
-                                dynamicReactorDS.dataset[el.dataset.value][settingProp].push(el.settingValue.value);
+                            if (
+                                dynamicReactorDS.dataset[el.dataset.value][
+                                    settingProp
+                                ].indexOf(el.settingValue.value) === -1
+                            ) {
+                                dynamicReactorDS.dataset[el.dataset.value][
+                                    settingProp
+                                ].push(el.settingValue.value);
                             }
                         }
                     }
                 }
             }
-
-
         });
-        return { dynamicReactorDS: dynamicReactorDS, dynamicFacetsDS: dynamicFacetsDS };
+        return {
+            dynamicReactorDS: dynamicReactorDS,
+            dynamicFacetsDS: dynamicFacetsDS
+        };
     }
-
 }
 export default DynamicConfigurator;

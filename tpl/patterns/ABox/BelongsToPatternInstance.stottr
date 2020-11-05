@@ -1,0 +1,8 @@
+@prefix opla:       <http://ontologydesignpatterns.org/opla/> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+
+odp-tpl:BelongsToPatternInstance[ ? ottr:IRI ?patternNode , ottr:IRI ?instance ]  :: {
+    ottr:Triple(?patternNode, opla:belongsToPatternInstance, ?instance)
+} .

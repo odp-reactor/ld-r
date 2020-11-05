@@ -1,0 +1,45 @@
+### ODP tpl library namespace
+## The namespace for all the templates relatives to odp 
+##
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+### ODP namespace
+## The namespace for ontology design pattern classes 
+##
+@prefix odp-pat:    <http://www.ontologydesignpatterns.org/cp/owl/> .
+
+### ODP prefixes
+@prefix odp-sit:	<http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
+@prefix odp-col:	<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#> .
+
+### Arco prefixes
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+@prefix a-dd:       <https://w3id.org/arco/ontology/denotative-description/> .
+
+@prefix opla:       <http://ontologydesignpatterns.org/opla/> .
+@prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
+@prefix tiapit:     <https://w3id.org/italia/onto/TI/> .
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> . 
+@prefix foaf:       <http://xmlns.com/foaf/0.1/> . 
+@prefix dbp:        <http://dbpedia.org/ontology/> . 
+@prefix ex:         <http://example.com/ns#> . 
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix ax:         <http://tpl.ottr.xyz/owl/axiom/0.1/> . 
+@prefix rstr:       <http://tpl.ottr.xyz/owl/restriction/0.1/> .
+
+
+odp-tpl:Collection(none, none, none) . 
+
+odp-tpl:MeasurementCollection(a-dd:MeasurementCollection, odp-col:Collection, a-dd:Measurement, a-dd:hasMeasurement) .
+
+odp-tpl:TimeInterval(tiapit:TimeInterval, tiapit:hasIntervalDate, tiapit:hasIntervalEndDate, tiapit:hasIntervalStartDate) .
+
+odp-tpl:Situation(none, none, none, none) .
+
+odp-tpl:TimeIndexedSituation(none, none, none, tiapit:TimeInterval, none, none, none, none, none) .
+
+odp-tpl:TimeIndexedTypedLocation(none, none, none, tiapit:TimeInterval, none, none, none) .
+

@@ -17,61 +17,82 @@
  *          ...
  *          property : {
  *              ':isInvolvedIn' : {
- *                      propertyReactor: ['ComplexProperty'],
+ *                      propertyReactor: ['OntologyDesignPattern'],
  *                      customQuery : ['<selectStatement>', '<queryBody>, '<aggregatesBlock>']
- *                      objectIViewer : ['SituationView']
+ *                      patternIViewer : ['SituationView']
  *                  }
  *              }
  *      }
- *
- * The data received by the SPARQL endpoint will be saved in the ResourceStore
- * ??? decide here how to save in the ResourceStore the additional data
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { config } from '../../configs/reactor';
+import PropertyHeader from '../property/PropertyHeader';
 
 /* Flux
 _________*/
 
-import ResourceStore from '../../stores/ResourceStore'; //store
-import loadExtraData from '../../actions/loadExtraData'; //action
-import { connectToStores } from 'fluxible-addons-react';
+import loadCollection from '../../actions/loadCollection'; //action
+import loadTITLocation from '../../actions/loadTITLocation';
 
 /* Ontology Design Patterns
 ______________________________*/
 
 import TimeIndexedTypedLocation from './viewer/TimeIndexedTypedLocation';
+import Collection from './viewer/Collection';
 
-class OntologyDesignPattern extends React.Component {
+export default class OntologyDesignPattern extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-        this.fetchExtraData();
-    }
-
-    fetchExtraData() {
-        this.context.executeAction(loadExtraData, {
-            dataset: this.props.datasetURI, //missing
-            resourceURI: this.props.resource,
-            propertyPath: this.props.propertyPath,
-            propertyURI: this.props.spec.propertyURI
-        });
+    fetchPatternDataFactory(patternAction) {
+        return () => {
+            this.context.executeAction(patternAction, {
+                dataset: this.props.datasetURI, //missing
+                resourceURI: this.props.resource,
+                propertyPath: this.props.propertyPath,
+                propertyURI: this.props.spec.propertyURI
+            });
+        };
     }
 
     render() {
         // choose the view for pattern based on property
         const patternComponent = this.chooseView(this.props.spec.propertyURI);
-
-        return this.props.ResourceStore.extraData ? (
-            //patternComponent
-            patternComponent
-        ) : (
-            <div>{'data loading? spinner'}</div>
+        return (
+            <div>
+                {this.props.hidePropertyName ||
+                (this.props.config && this.props.config.hidePropertyName) ? (
+                        ''
+                    ) : (
+                        <div className="property-title">
+                            <div className="ui horizontal list">
+                                <div className="item">
+                                    <PropertyHeader
+                                        spec={this.props.spec}
+                                        config={this.props.config}
+                                        size="3"
+                                        datasetURI={this.props.datasetURI}
+                                        resourceURI={this.props.resource}
+                                        propertyURI={this.props.property}
+                                    />
+                                </div>
+                            </div>
+                            <div className="ui dividing header"></div>
+                        </div>
+                    )}
+                <div className="ui list">
+                    <div className="item">
+                        <div className="ui form grid">
+                            <div className="twelve wide column field">
+                                {patternComponent}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 
@@ -89,9 +110,19 @@ class OntologyDesignPattern extends React.Component {
                 patternComponent = (
                     <TimeIndexedTypedLocation
                         timeIndexedTypedLocations={
-                            this.props.ResourceStore.extraData
+                            this.props.PatternStore.extraData
                         }
+                        fetchData={this.fetchPatternDataFactory(
+                            loadTITLocation
+                        )}
                     ></TimeIndexedTypedLocation>
+                );
+                break;
+            case 'Collection':
+                patternComponent = (
+                    <Collection
+                        fetchData={this.fetchPatternDataFactory(loadCollection)}
+                    ></Collection>
                 );
                 break;
             default:
@@ -118,17 +149,3 @@ class OntologyDesignPattern extends React.Component {
         }
     }
 }
-
-OntologyDesignPattern.contextTypes = {
-    executeAction: PropTypes.func.isRequired,
-    getUser: PropTypes.func
-};
-OntologyDesignPattern = connectToStores(
-    OntologyDesignPattern,
-    [ResourceStore],
-    function(context, props) {
-        return { ResourceStore: context.getStore(ResourceStore).getState() };
-    }
-);
-
-export default OntologyDesignPattern;

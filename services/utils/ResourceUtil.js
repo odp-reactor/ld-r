@@ -326,13 +326,11 @@ class ResourceUtil {
 
     /**
      * The function is used to parse data received by a custom query.
-     * We move in the context of {@link loadExtraData} action , called
-     * when you need more data to be displayed other than the ones provided by standard ld-r query.
      *
      * @param {Object} body Data returned by fluxible service after querying SPARQL endpoint
      * @param {Function} callback Function to call after action succeeds
      */
-    parseExtraData(body, callback) {
+    parsePatternData(body, callback) {
         const receivedData = JSON.parse(body);
         const sparqlRows = receivedData['results']['bindings'];
         let dataToReturn = [];
@@ -347,9 +345,9 @@ class ResourceUtil {
             }
             dataToReturn[i] = objectToReturn;
         }
-
+        console.log(dataToReturn);
         callback(null, {
-            extraData: dataToReturn
+            patternData: dataToReturn
         });
     }
 

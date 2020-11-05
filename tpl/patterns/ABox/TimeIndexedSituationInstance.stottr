@@ -1,0 +1,14 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix odp-sit:    <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
+@prefix odp-tis:    <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
+
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+
+odp-tpl:TimeIndexedSituationInstance[ List<ottr:IRI> ?things, ottr:IRI ?situation, ? ottr:IRI ?timeInterval, ? ottr:IRI ?startDate, ? ottr:IRI ?endDate, ? ottr:IRI ?date,  ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+    odp-tpl:Situation(?things, ?situation, ?instanceIRI, ?instanceType),
+    odp-tpl:TimeInterval(?timeInterval, ?startDate, ?endDate, ?date, ?instanceIRI, none),
+    ottr:Triple(?situation, odp-tis:atTime, ?timeInterval)
+} .

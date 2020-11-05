@@ -1,0 +1,4 @@
+@prefix odp-tpl:  <http://www.ontologydesignpatterns.org/tpl#>  .
+
+odp-tpl:TimeIndexedSituation((<thing1>, <thing2>), <situation1>, <timeInterval1>, <1gen2010>, <2gen2020>, none, <timeIndexedSitInstance>, <time-indexed-situation>) .
+

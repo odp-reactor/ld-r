@@ -1,0 +1,83 @@
+@prefix a-dd:  <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix opla:  <http://ontologydesignpatterns.org/opla/> .
+@prefix odp-tis: <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
+@prefix odp-sit: <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix odp-col: <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix odp-pat: <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+a-loc:isTimeIndexedTypedLocationOf
+        owl:inverseOf  a-loc:hasTimeIndexedTypedLocation .
+
+a-dd:hasMeasurement  rdfs:domain  a-dd:MeasurementCollection ;
+        rdfs:range   a-dd:Measurement .
+
+odp-tis:TimeIndexedSituation
+        rdfs:subClassOf  odp-sit:Situation .
+
+odp-tis:isTimeIndexFor
+        owl:inverseOf  odp-tis:hasTimeIndexedSetting .
+
+odp-sit:hasSetting  rdfs:domain  owl:Thing ;
+        rdfs:range   odp-sit:Situation .
+
+odp-pat:collection  a  opla:Pattern .
+
+odp-col:hasMember  rdfs:domain  odp-col:Collection ;
+        rdfs:range   owl:Thing .
+
+<https://w3id.org/italia/onto/TI/hasIntervalDate>
+        a            owl:DatatypeProperty ;
+        rdfs:domain  <https://w3id.org/italia/onto/TI/TimeInterval> .
+
+odp-pat:time-interval
+        a                        opla:Pattern ;
+        opla:componentOfPattern  a-loc:time-indexed-typed-location , odp-pat:time-indexed-situation .
+
+a-dd:measurement-collection
+        a                             opla:Pattern ;
+        opla:specializationOfPattern  odp-pat:collection .
+
+<https://w3id.org/italia/onto/TI/hasIntervalEndDate>
+        a                   owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <https://w3id.org/italia/onto/TI/hasIntervalDate> .
+
+a-loc:hasTimeIndexedTypedLocation
+        rdfs:domain         a-loc:CulturalProperty ;
+        rdfs:range          a-loc:TimeIndexedTypedLocation ;
+        rdfs:subPropertyOf  odp-sit:hasSetting ;
+        owl:inverseOf       a-loc:isTimeIndexedTypedLocationOf .
+
+odp-tis:hasTimeIndexedSetting
+        rdfs:domain         owl:Thing ;
+        rdfs:range          odp-tis:TimeIndexedSituation ;
+        rdfs:subPropertyOf  odp-sit:hasSetting .
+
+odp-pat:time-indexed-situation
+        a                             opla:Pattern ;
+        opla:specializationOfPattern  odp-pat:situation .
+
+a-dd:MeasurementCollection
+        rdfs:subClassOf  odp-col:Collection .
+
+odp-tis:atTime  rdfs:domain  a-loc:TimeIndexedTypedLocation , odp-tis:TimeIndexedSituation ;
+        rdfs:range          <https://w3id.org/italia/onto/TI/TimeInterval> ;
+        rdfs:subPropertyOf  odp-sit:isSettingFor .
+
+<https://w3id.org/italia/onto/TI/hasIntervalStartDate>
+        a                   owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <https://w3id.org/italia/onto/TI/hasIntervalDate> .
+
+a-loc:TimeIndexedTypedLocation
+        rdfs:subClassOf  odp-tis:TimeIndexedSituation .
+
+odp-sit:isSettingFor  owl:inverseOf  odp-sit:hasSetting .
+
+a-loc:time-indexed-typed-location
+        a                             opla:Pattern ;
+        opla:specializationOfPattern  odp-pat:time-indexed-situation .
+
+odp-pat:situation  a  opla:Pattern .

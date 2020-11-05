@@ -242,7 +242,7 @@ export default {
                     );
                 }
             );
-        } else if (resource === 'resource.extraData') {
+        } else if (resource === 'resource.patternData') {
             datasetURI =
                 params.dataset && params.dataset !== '0'
                     ? decodeURIComponent(params.dataset)
@@ -334,7 +334,7 @@ export default {
 
                             let query =
                                 queryObject.getPrefixes() +
-                                queryObject.getExtraProperties(
+                                queryObject.getPatternProperties(
                                     graphName,
                                     resourceURI,
                                     customQueryLines[0],
@@ -363,7 +363,7 @@ export default {
                             })
                                 .then(function(res) {
                                     // parse response and call callback
-                                    utilObject.parseExtraData(res, callback);
+                                    utilObject.parsePatternData(res, callback);
                                 })
                                 .catch(function(err) {
                                     // what to do if error ?????
@@ -894,6 +894,7 @@ export default {
                         endpointParameters,
                         outputFormat
                     );
+
                     rp.post({
                         uri: HTTPQueryObject.uri,
                         form: HTTPQueryObject.params
@@ -1128,6 +1129,7 @@ export default {
                         endpointParameters,
                         outputFormat
                     );
+                    console.log('');
                     rp.post({
                         uri: HTTPQueryObject.uri,
                         form: HTTPQueryObject.params

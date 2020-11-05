@@ -1,0 +1,15 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix odp-pat:    <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix odp-col:    <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#> .
+
+
+odp-tpl:Collection[ owl:Class ?collection=odp-col:Collection, 
+                    owl:Class ?thing=owl:Thing, 
+                    owl:ObjectProperty ?hasMember=odp-col:hasMember ] :: {
+    odp-tpl:Pattern(odp-pat:collection),
+    o-rdfs:DomainRange(?hasMember, ?collection, ?thing)
+} .
+
+

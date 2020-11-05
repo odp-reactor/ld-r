@@ -1,0 +1,15 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix opla:       <http://ontologydesignpatterns.org/opla/> .
+@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+
+odp-tpl:PatternInstance[ ottr:IRI ?pattern, ottr:IRI ?patternInstance, List<ottr:IRI> ?patternNodes, ? ottr:IRI ?patternNode ] :: {
+    ottr:Triple(?patternInstance, opla:isPatternInstanceOf, ?pattern),
+    odp-tpl:ListBelongsToPatternInstance(?patternNodes, ?patternInstance),
+    odp-tpl:BelongsToPatternInstance(?patternNode, ?patternInstance)
+} .
+
+# Every pattern template should implement this template.
+# If the pattern template is a sub pattern of another pattern
+# should pass down the ?instanceIRI and ?patternIRI
+# to the direct pattern template

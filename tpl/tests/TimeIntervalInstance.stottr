@@ -1,0 +1,4 @@
+@prefix odp-tpl:  <http://www.ontologydesignpatterns.org/tpl#>  .
+
+odp-tpl:TimeInterval(<timeInterval>, <20/January/2010>, <20/January/2020>, none, <timeIntervalInstance>, <time-interval>) .
+

@@ -1,0 +1,7 @@
+@prefix odp-tpl:  <http://www.ontologydesignpatterns.org/tpl#>   .
+@prefix opla:       <http://ontologydesignpatterns.org/opla/> .
+
+odp-tpl:ListBelongsToPatternInstance((<node1>, <node2>), <instance>) .
+
+# single element list
+odp-tpl:ListBelongsToPatternInstance((<node3>),<instance>) .

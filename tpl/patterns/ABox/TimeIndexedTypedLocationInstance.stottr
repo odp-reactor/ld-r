@@ -1,0 +1,14 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix odp-sit:    <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
+@prefix odp-tis:    <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+
+
+
+odp-tpl:TimeIndexedTypedLocationInstance[ List<ottr:IRI> ?culturalProperties, ottr:IRI ?situation, ? ottr:IRI ?timeInterval, ? ottr:IRI ?startDate, ? ottr:IRI ?endDate, ? ottr:IRI ?date, ottr:IRI ?locationType,  ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+    ottr:Triple(?situation, a-loc:hasLocationType, ?locationType),
+    odp-tpl:TimeIndexedSituationInstance(?culturalProperties, ?situation, ?timeInterval, ?startDate, ?endDate, ?date, ?instanceIRI, ?instanceType)
+}  .

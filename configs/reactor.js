@@ -1,3 +1,10 @@
+import {
+    musicalInstrumentURIs,
+    measurementURIs
+} from "./pattern_uris/collection";
+
+import { tITLURIs } from "./pattern_uris/timeIndexedTypedLocation";
+
 export default {
     // config = scope + spec
     // scope is one the 15 combination of dataset, resource, property and object
@@ -14,8 +21,9 @@ export default {
                 allowResourceDelete: 1,
                 allowResourceClone: 1,
                 allowPropertyNew: 1,
-                datasetReactor: ["Dataset"],
-                datasetViewer: ["BasicResourceList"]
+                datasetReactor: ["OntologyDesignPatternNetwork"],
+                datasetViewer: ["OntologyDesignPatternNetwork"],
+                query: []
             },
             //authentication graph
             "http://virtuoso.local/users": {
@@ -28,7 +36,7 @@ export default {
                 ],
                 allowPropertyNew: 1
             },
-            "http://virtuoso.local/configurations": {
+            "http://arco.istc.cnr.it/ldr/configurations": {
                 readOnly: 0,
                 allowResourceClone: 1,
                 allowPropertyDelete: 1,
@@ -99,14 +107,35 @@ export default {
                 shortenURI: 1
             },
             /* A test with new functionality */
-            "https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation": {
+            // "https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation": {
+            //     propertyReactor: ["OntologyDesignPattern"],
+            //     customQuery: [
+            //         "?locationType ?startTime ?endTime ?latitude ?longitude ?siteLabel ?city ?depiction",
+            //         `   <resourceURI> <${tITLURIs.hasTimeIndexedTypedLocation}> ?timeIndexedTypedLocation ; <http://xmlns.com/foaf/0.1/depiction> ?depiction. ?timeIndexedTypedLocation <http://www.w3.org/2000/01/rdf-schema#label> ?timeIndexedTypedLocationLabel ; <${tITLURIs.hasLocationType}> ?locationType ; <${tITLURIs.atTime}> ?timeInterval ; <${tITLURIs.atSite}>  ?site . ?site <${tITLURIs.hasGeometry}> ?geometry ; <http://www.w3.org/2000/01/rdf-schema#label> ?siteLabel ; <${tITLURIs.siteAddress}> ?address . ?address <${tITLURIs.hasCity}> ?city . ?geometry <${tITLURIs.lat}> ?latitude ; <${tITLURIs.long}> ?longitude . ?timeInterval <${tITLURIs.startTime}> ?startTime . OPTIONAL {?timeInterval <${tITLURIs.endTime}> ?endTimeNotBound .} BIND ( IF (BOUND (?endTimeNotBound), ?endTimeNotBound, '' )  as ?endTime  ) . `,
+            //         ""
+            //     ],
+            //     patternIViewer: "TimeIndexedTypedLocation"
+            // },
+            "https://virtuoso.local/hasMusicalInstrumentCollection": {
                 propertyReactor: ["OntologyDesignPattern"],
                 customQuery: [
-                    "?locationType ?startTime ?endTime ?latitude ?longitude ?siteLabel",
-                    "   <resourceURI> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> ?timeIndexedTypedLocation . ?timeIndexedTypedLocation <http://www.w3.org/2000/01/rdf-schema#label> ?timeIndexedTypedLocationLabel ; <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType ; <https://w3id.org/italia/onto/TI/atTime> ?timeInterval ; <https://w3id.org/arco/ontology/location/atSite>  ?site . ?site <https://w3id.org/italia/onto/CLV/hasGeometry> ?geometry ; <http://www.w3.org/2000/01/rdf-schema#label> ?siteLabel . ?geometry <https://w3id.org/italia/onto/CLV/lat> ?latitude ; <https://w3id.org/italia/onto/CLV/long> ?longitude . ?timeInterval <https://w3id.org/arco/ontology/arco/startTime> ?startTime . OPTIONAL {?timeInterval <https://w3id.org/arco/ontology/arco/endTime> ?endTimeNotBound .} BIND ( IF (BOUND (?endTimeNotBound), ?endTimeNotBound, '' )  as ?endTime  ) . ",
+                    "?collectionLabel ?entityLabel ?depiction",
+                    `<resourceURI> <${musicalInstrumentURIs.hasCollection}> ?collection . ?collection <${musicalInstrumentURIs.hasMember}> ?entity ; <http://www.w3.org/2000/01/rdf-schema#label> ?collectionLabel . ?entity <http://www.w3.org/2000/01/rdf-schema#label> ?entityLabel ; <http://xmlns.com/foaf/0.1/depiction> ?depiction . `,
                     ""
                 ],
-                patternIViewer: "TimeIndexedTypedLocation"
+                patternIViewer: "Collection"
+            },
+            // "https://w3id.org/arco/ontology/denotative-description/hasMeasurementCollection": {
+            //     propertyReactor: ["OntologyDesignPattern"],
+            //     customQuery: [
+            //         "?collectionLabel ?entityLabel ?depiction ",
+            //         ` <resourceURI> <${measurementURIs.hasCollection}> ?collection . ?collection <http://www.w3.org/2000/01/rdf-schema#label> ?collectionLabel ; <${measurementURIs.hasMember}> ?entity . ?entity <${measurementURIs.hasMemberType}> ?mt . ?mt <http://www.w3.org/2000/01/rdf-schema#label> ?entityLabel .  OPTIONAL {?entity <http://xmlns.com/foaf/0.1/depiction> ?depictionNotBound .} BIND ( IF (BOUND  (?depictionNotBound), ?depictionNotBound, '' )  as ?depiction  ) . `,
+            //         ""
+            //     ],
+            //     patternIViewer: "Collection"
+            // },
+            "http://xmlns.com/foaf/0.1/depiction": {
+                objectIViewer: ["BasicImageView"]
             },
             "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#password": {
                 label: ["Password"],
@@ -115,7 +144,7 @@ export default {
                 allowNewValue: 0
             },
             "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#cloneOf": {
-                isHidden: 1,
+                isHidden: 0,
                 readOnlyProperty: 0,
                 allowPropertyDelete: 1
             },
@@ -176,7 +205,7 @@ export default {
         },
         dataset_property: {
             //for configuration manager
-            "http://virtuoso.local/configurations": {
+            "http://arco.istc.cnr.it/ldr/configurations": {
                 "http://www.w3.org/2000/01/rdf-schema#label": {
                     allowPropertyDelete: 0,
                     label: ["Description"],

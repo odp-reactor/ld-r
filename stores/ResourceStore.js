@@ -24,10 +24,6 @@ class ResourceStore extends BaseStore {
         this.error = payload.error;
         this.emitChange();
     }
-    updateExtraData(payload) {
-        this.extraData = payload['extraData'];
-        this.emitChange();
-    }
     cleanAll() {
         this.properties = [];
         this.datasetURI = '';
@@ -55,8 +51,7 @@ class ResourceStore extends BaseStore {
             properties: this.properties,
             propertyPath: this.propertyPath,
             config: this.config,
-            error: this.error,
-            extraData: this.extraData
+            error: this.error
         };
     }
     dehydrate() {
@@ -73,15 +68,13 @@ class ResourceStore extends BaseStore {
         this.propertyPath = state.propertyPath;
         this.config = state.config;
         this.error = state.error;
-        this.extraData = state.extraData;
     }
 }
 
 ResourceStore.storeName = 'ResourceStore'; // PR open in dispatchr to remove this need
 ResourceStore.handlers = {
     LOAD_RESOURCE_SUCCESS: 'updatePropertyList',
-    CLEAN_RESOURCE_SUCCESS: 'cleanResource',
-    LOAD_EXTRA_DATA_SUCCESS: 'updateExtraData'
+    CLEAN_RESOURCE_SUCCESS: 'cleanResource'
 };
 
 export default ResourceStore;

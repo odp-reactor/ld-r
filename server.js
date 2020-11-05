@@ -41,7 +41,11 @@ const publicRoutes = ['/', '/about'];
 const host = process.env.HOST ? process.env.HOST : 'localhost';
 let port = 3000;
 if (env === 'production') {
-    port = process.env.PORT ? process.env.PORT : (serverConfig.serverPort ? serverConfig.serverPort[0] : 3000);
+    port = process.env.PORT
+        ? process.env.PORT
+        : serverConfig.serverPort
+            ? serverConfig.serverPort[0]
+            : 3000;
 } else {
     port = process.env.PORT ? parseInt(process.env.PORT) + 1 : 3001;
 }
@@ -51,10 +55,12 @@ const server = express();
 server.use(cookieParser());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
-server.use(cookieSession({
-    name: 'LDR',
-    keys: ['u1waegf234ss', 'u2wef23ed5325']
-}));
+server.use(
+    cookieSession({
+        name: 'LDR',
+        keys: ['u1waegf234ss', 'u2wef23ed5325']
+    })
+);
 // server.use(csrf({cookie: true}));
 //for authentication: this part is external to the flux architecture
 if (enableAuthentication) {
@@ -78,25 +84,59 @@ server.engine('html', hogan);
 server.use('/public', express.static(path.join(__dirname, '/build')));
 //server.use('/bower_components', express.static(path.join(__dirname, '/bower_components')));
 //add frontend npm modules here
-server.use('/json3', express.static(path.join(__dirname, '/node_modules/json3')));
-server.use('/es5-shim', express.static(path.join(__dirname, '/node_modules/es5-shim')));
-server.use('/es6-shim', express.static(path.join(__dirname, '/node_modules/es6-shim')));
-server.use('/semantic-ui', express.static(path.join(__dirname, '/node_modules/semantic-ui-css')));
-server.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery')));
-server.use('/animate.css', express.static(path.join(__dirname, '/node_modules/animate.css')));
-server.use('/leaflet', express.static(path.join(__dirname, '/node_modules/leaflet')));
-server.use('/yasgui-yasqe', express.static(path.join(__dirname, '/node_modules/yasgui-yasqe')));
-server.use('/codemirror', express.static(path.join(__dirname, '/node_modules/codemirror')));
-server.use('/jqcloud2', express.static(path.join(__dirname, '/node_modules/jqcloud2')));
+server.use(
+    '/json3',
+    express.static(path.join(__dirname, '/node_modules/json3'))
+);
+server.use(
+    '/es5-shim',
+    express.static(path.join(__dirname, '/node_modules/es5-shim'))
+);
+server.use(
+    '/es6-shim',
+    express.static(path.join(__dirname, '/node_modules/es6-shim'))
+);
+server.use(
+    '/semantic-ui',
+    express.static(path.join(__dirname, '/node_modules/semantic-ui-css'))
+);
+server.use(
+    '/jquery',
+    express.static(path.join(__dirname, '/node_modules/jquery'))
+);
+server.use(
+    '/animate.css',
+    express.static(path.join(__dirname, '/node_modules/animate.css'))
+);
+server.use(
+    '/leaflet',
+    express.static(path.join(__dirname, '/node_modules/leaflet'))
+);
+server.use(
+    '/yasgui-yasqe',
+    express.static(path.join(__dirname, '/node_modules/yasgui-yasqe'))
+);
+server.use(
+    '/codemirror',
+    express.static(path.join(__dirname, '/node_modules/codemirror'))
+);
+server.use(
+    '/jqcloud2',
+    express.static(path.join(__dirname, '/node_modules/jqcloud2'))
+);
 
 server.use('/assets', express.static(path.join(__dirname, '/assets')));
-server.use('/uploaded', express.static(path.join(__dirname, uploadFolder[0].replace('\.', ''))));
+server.use(
+    '/uploaded',
+    express.static(path.join(__dirname, uploadFolder[0].replace('.', '')))
+);
 // Get access to the fetchr plugin instance
 let fetchrPlugin = app.getPlugin('FetchrPlugin');
 // Register our services
 fetchrPlugin.registerService(require('./services/dbpedia'));
 fetchrPlugin.registerService(require('./services/dataset'));
 fetchrPlugin.registerService(require('./services/resource'));
+fetchrPlugin.registerService(require('./services/pattern'));
 fetchrPlugin.registerService(require('./services/facet'));
 fetchrPlugin.registerService(require('./services/admin'));
 fetchrPlugin.registerService(require('./services/import'));
@@ -108,8 +148,8 @@ server.use(bodyParser.json());
 
 /**
  * This middleware enters inside FLUX flow
- * 
- * It creates a context per request  
+ *
+ * It creates a context per request
  */
 
 server.use((req, res, next) => {
@@ -130,47 +170,64 @@ server.use((req, res, next) => {
     });
 
     debug('Executing navigate action');
-    context.getActionContext().executeAction(navigateAction, {
-        url: req.url
-    }, (err) => {
-        if (err) {
-            if (err.statusCode && err.statusCode === 404) {
-                next();
-            } else {
-                next(err);
+    context.getActionContext().executeAction(
+        navigateAction,
+        {
+            url: req.url
+        },
+        err => {
+            if (err) {
+                if (err.statusCode && err.statusCode === 404) {
+                    next();
+                } else {
+                    next(err);
+                }
+                return;
             }
-            return;
+
+            debug('Exposing context state');
+            const exposed =
+                'window.App=' + serialize(app.dehydrate(context)) + ';';
+
+            debug('Rendering Application component into html');
+            const markup = ReactDOM.renderToString(
+                createElementWithContext(context)
+            );
+            const htmlElement = React.createElement(HtmlComponent, {
+                //clientFile: env === 'production' ? 'main.min.js' : 'main.js',
+                //use main.js for both dev and prod modes
+                clientFile: 'main.js',
+                addAssets: env === 'production',
+                context: context.getComponentContext(),
+                state: exposed,
+                markup: markup
+            });
+            const html = ReactDOM.renderToStaticMarkup(htmlElement);
+
+            debug('Sending markup');
+            res.type('html');
+            res.write('<!DOCTYPE html>' + html);
+            res.end();
         }
-
-        debug('Exposing context state');
-        const exposed = 'window.App=' + serialize(app.dehydrate(context)) + ';';
-
-        debug('Rendering Application component into html');
-        const markup = ReactDOM.renderToString(createElementWithContext(context));
-        const htmlElement = React.createElement(HtmlComponent, {
-            //clientFile: env === 'production' ? 'main.min.js' : 'main.js',
-            //use main.js for both dev and prod modes
-            clientFile: 'main.js',
-            addAssets: (env === 'production'),
-            context: context.getComponentContext(),
-            state: exposed,
-            markup: markup
-        });
-        const html = ReactDOM.renderToStaticMarkup(htmlElement);
-
-        debug('Sending markup');
-        res.type('html');
-        res.write('<!DOCTYPE html>' + html);
-        res.end();
-    });
+    );
 });
 
 server.listen(port);
 if (env === 'production') {
-    console.log('[production environment] Check your application on http://%s:%s', host, port);
+    console.log(
+        '[production environment] Check your application on http://%s:%s',
+        host,
+        port
+    );
 } else {
-    console.log('[development environment] Proxy server listening on port ' + port);
-    console.log('[development environment] Check your application on http://%s:%s', host, port - 1);
+    console.log(
+        '[development environment] Proxy server listening on port ' + port
+    );
+    console.log(
+        '[development environment] Check your application on http://%s:%s',
+        host,
+        port - 1
+    );
 }
 
 export default server;
