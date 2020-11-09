@@ -58,4 +58,58 @@ export default class PatternQuery extends SPARQLQuery {
         }`;
         return this.query;
     }
+
+    /**
+     * @description returns all the patterns specialized and number of time they've been specialized
+     * @author Christian Colonna
+     * @date 06-11-2020
+     * @param {string} graphName graph to quuery against
+     * @returns {string} sparql query as string
+     * @memberof PatternQuery
+     */
+    getSpecializationCountPerPattern(graphName) {
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
+        this.query = `SELECT DISTINCT ?pattern (COUNT(?subPattern) AS ?count) WHERE {
+            ${gStart}
+                ?subPattern opla:specializationOfPattern ?pattern .
+            ${gEnd}
+        }`;
+        return this.query;
+    }
+
+    /**
+     * @description returns all the pattern used as components and the number of time they've been used
+     * @author Christian Colonna
+     * @date 06-11-2020
+     * @param {*} graphName
+     * @returns {*}
+     * @memberof PatternQuery
+     */
+    getCompositionCountPerPattern(graphName) {
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
+        this.query = `SELECT DISTINCT ?pattern (COUNT(?pattern) AS ?count) WHERE {
+            ${gStart}
+                ?pattern opla:componentOfPattern ?composedPattern .
+            ${gEnd}
+        }`;
+        return this.query;
+    }
+
+    /**
+     * @description Creates a query retrieving a all the occurrences for a pattern
+     * @author Christian Colonna
+     * @date 09-11-2020
+     * @param {string} graphName the graph to query against
+     * @param {string} id the pattern IRI
+     * @memberof PatternQuery
+     */
+    getInstancesByPattern(graphName, id) {
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
+        this.query = `SELECT DISTINCT ?instance WHERE {
+            ${gStart}
+                ?instance opla:isPatternInstanceOf <${id}> .
+            ${gEnd}
+        }`;
+        return this.query;
+    }
 }

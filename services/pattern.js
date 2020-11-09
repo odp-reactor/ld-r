@@ -33,6 +33,7 @@ let endpointParameters,
     category,
     cGraphName,
     datasetURI,
+    patternURI,
     dg,
     graphName,
     propertyURI,
@@ -53,7 +54,7 @@ export default {
     name: 'pattern',
 
     read: (req, resource, params, config, callback) => {
-        if (resource === 'pattern.instances') {
+        if (resource === 'pattern.list') {
             datasetURI =
                 params.dataset && params.dataset !== '0'
                     ? decodeURIComponent(params.dataset)
@@ -412,6 +413,420 @@ export default {
                             let query =
                                 queryObject.getPrefixes() +
                                 queryObject.getCompositionList(graphName);
+                            console.log(query);
+
+                            rp.get({
+                                uri: getHTTPGetURL(
+                                    getHTTPQuery(
+                                        'read',
+                                        query,
+                                        endpointParameters,
+                                        outputFormat
+                                    )
+                                ),
+                                headers: headers
+                            })
+                                .then(function(res) {
+                                    // parse response and call callback
+                                    utilObject.parsePatternData(res, callback);
+                                })
+                                .catch(function(err) {
+                                    // what to do if error ?????
+                                    console.log(err);
+                                    if (enableLogs) {
+                                        log.info(
+                                            '\n User: ' +
+                                                user.accountName +
+                                                '\n Status Code: \n' +
+                                                err.statusCode +
+                                                '\n Error Msg: \n' +
+                                                err.message
+                                        );
+                                    }
+                                    callback(null, {
+                                        datasetURI: datasetURI,
+                                        graphName: graphName,
+                                        resourceURI: resourceURI,
+                                        resourceType: '',
+                                        title: '',
+                                        currentCategory: 0,
+                                        propertyPath: [],
+                                        properties: [],
+                                        config: {}
+                                    });
+                                });
+                        }
+                    );
+                }
+            );
+        } else if (resource === 'pattern.specializationCount') {
+            datasetURI =
+                params.dataset && params.dataset !== '0'
+                    ? decodeURIComponent(params.dataset)
+                    : 0;
+            //control access on authentication
+            if (enableAuthentication) {
+                if (!req.user) {
+                    callback(null, {
+                        datasetURI: datasetURI,
+                        graphName: graphName,
+                        resourceURI: resourceURI,
+                        resourceType: '',
+                        currentCategory: 0,
+                        propertyPath: [],
+                        properties: [],
+                        config: {}
+                    });
+                    return 0;
+                } else {
+                    user = req.user;
+                }
+            } else {
+                user = { accountName: 'open' };
+            }
+
+            getDynamicEndpointParameters(
+                user,
+                datasetURI,
+                endpointParameters => {
+                    graphName = endpointParameters.graphName;
+                    resourceURI = params.resourceURI;
+                    propertyPath = decodeURIComponent(params.propertyPath);
+                    if (propertyPath.length > 1) {
+                        propertyPath = propertyPath.split(',');
+                    } //for now only check the dataset access level
+                    //todo: extend view access to resource and property level
+                    configurator.prepareDatasetConfig(
+                        user,
+                        1,
+                        datasetURI,
+                        rconfig => {
+                            if (
+                                enableAuthentication &&
+                                rconfig &&
+                                rconfig.hasLimitedAccess &&
+                                parseInt(rconfig.hasLimitedAccess)
+                            ) {
+                                //need to handle access to the dataset
+                                //if user is the editor by default he already has view access
+                                let editAccess = checkEditAccess(
+                                    user,
+                                    datasetURI,
+                                    0,
+                                    0,
+                                    0
+                                );
+                                if (
+                                    !editAccess.access ||
+                                    editAccess.type === 'partial'
+                                ) {
+                                    let viewAccess = checkViewAccess(
+                                        user,
+                                        datasetURI,
+                                        0,
+                                        0,
+                                        0
+                                    );
+                                    if (!viewAccess.access) {
+                                        callback(null, {
+                                            datasetURI: datasetURI,
+                                            graphName: graphName,
+                                            resourceURI: resourceURI,
+                                            resourceType: '',
+                                            currentCategory: 0,
+                                            propertyPath: [],
+                                            properties: [],
+                                            config: {},
+                                            error:
+                                                'You do not have enough permision to access this dataset/resource!'
+                                        });
+                                        return 0;
+                                    }
+                                }
+                            }
+
+                            let query =
+                                queryObject.getPrefixes() +
+                                queryObject.getSpecializationCountPerPattern(
+                                    graphName
+                                );
+                            console.log(query);
+
+                            rp.get({
+                                uri: getHTTPGetURL(
+                                    getHTTPQuery(
+                                        'read',
+                                        query,
+                                        endpointParameters,
+                                        outputFormat
+                                    )
+                                ),
+                                headers: headers
+                            })
+                                .then(function(res) {
+                                    // parse response and call callback
+                                    utilObject.parsePatternData(res, callback);
+                                })
+                                .catch(function(err) {
+                                    // what to do if error ?????
+                                    console.log(err);
+                                    if (enableLogs) {
+                                        log.info(
+                                            '\n User: ' +
+                                                user.accountName +
+                                                '\n Status Code: \n' +
+                                                err.statusCode +
+                                                '\n Error Msg: \n' +
+                                                err.message
+                                        );
+                                    }
+                                    callback(null, {
+                                        datasetURI: datasetURI,
+                                        graphName: graphName,
+                                        resourceURI: resourceURI,
+                                        resourceType: '',
+                                        title: '',
+                                        currentCategory: 0,
+                                        propertyPath: [],
+                                        properties: [],
+                                        config: {}
+                                    });
+                                });
+                        }
+                    );
+                }
+            );
+        } else if (resource === 'pattern.compositionCount') {
+            datasetURI =
+                params.dataset && params.dataset !== '0'
+                    ? decodeURIComponent(params.dataset)
+                    : 0;
+            //control access on authentication
+            if (enableAuthentication) {
+                if (!req.user) {
+                    callback(null, {
+                        datasetURI: datasetURI,
+                        graphName: graphName,
+                        resourceURI: resourceURI,
+                        resourceType: '',
+                        currentCategory: 0,
+                        propertyPath: [],
+                        properties: [],
+                        config: {}
+                    });
+                    return 0;
+                } else {
+                    user = req.user;
+                }
+            } else {
+                user = { accountName: 'open' };
+            }
+
+            getDynamicEndpointParameters(
+                user,
+                datasetURI,
+                endpointParameters => {
+                    graphName = endpointParameters.graphName;
+                    resourceURI = params.resourceURI;
+                    propertyPath = decodeURIComponent(params.propertyPath);
+                    if (propertyPath.length > 1) {
+                        propertyPath = propertyPath.split(',');
+                    } //for now only check the dataset access level
+                    //todo: extend view access to resource and property level
+                    configurator.prepareDatasetConfig(
+                        user,
+                        1,
+                        datasetURI,
+                        rconfig => {
+                            if (
+                                enableAuthentication &&
+                                rconfig &&
+                                rconfig.hasLimitedAccess &&
+                                parseInt(rconfig.hasLimitedAccess)
+                            ) {
+                                //need to handle access to the dataset
+                                //if user is the editor by default he already has view access
+                                let editAccess = checkEditAccess(
+                                    user,
+                                    datasetURI,
+                                    0,
+                                    0,
+                                    0
+                                );
+                                if (
+                                    !editAccess.access ||
+                                    editAccess.type === 'partial'
+                                ) {
+                                    let viewAccess = checkViewAccess(
+                                        user,
+                                        datasetURI,
+                                        0,
+                                        0,
+                                        0
+                                    );
+                                    if (!viewAccess.access) {
+                                        callback(null, {
+                                            datasetURI: datasetURI,
+                                            graphName: graphName,
+                                            resourceURI: resourceURI,
+                                            resourceType: '',
+                                            currentCategory: 0,
+                                            propertyPath: [],
+                                            properties: [],
+                                            config: {},
+                                            error:
+                                                'You do not have enough permision to access this dataset/resource!'
+                                        });
+                                        return 0;
+                                    }
+                                }
+                            }
+
+                            let query =
+                                queryObject.getPrefixes() +
+                                queryObject.getCompositionCountPerPattern(
+                                    graphName
+                                );
+                            console.log(query);
+
+                            rp.get({
+                                uri: getHTTPGetURL(
+                                    getHTTPQuery(
+                                        'read',
+                                        query,
+                                        endpointParameters,
+                                        outputFormat
+                                    )
+                                ),
+                                headers: headers
+                            })
+                                .then(function(res) {
+                                    // parse response and call callback
+                                    utilObject.parsePatternData(res, callback);
+                                })
+                                .catch(function(err) {
+                                    // what to do if error ?????
+                                    console.log(err);
+                                    if (enableLogs) {
+                                        log.info(
+                                            '\n User: ' +
+                                                user.accountName +
+                                                '\n Status Code: \n' +
+                                                err.statusCode +
+                                                '\n Error Msg: \n' +
+                                                err.message
+                                        );
+                                    }
+                                    callback(null, {
+                                        datasetURI: datasetURI,
+                                        graphName: graphName,
+                                        resourceURI: resourceURI,
+                                        resourceType: '',
+                                        title: '',
+                                        currentCategory: 0,
+                                        propertyPath: [],
+                                        properties: [],
+                                        config: {}
+                                    });
+                                });
+                        }
+                    );
+                }
+            );
+        } else if (resource === 'pattern.instances') {
+            patternURI = params.pattern[0];
+
+            datasetURI =
+                params.dataset && params.dataset !== '0'
+                    ? decodeURIComponent(params.dataset)
+                    : 0;
+            //control access on authentication
+            if (enableAuthentication) {
+                if (!req.user) {
+                    callback(null, {
+                        datasetURI: datasetURI,
+                        graphName: graphName,
+                        resourceURI: resourceURI,
+                        resourceType: '',
+                        currentCategory: 0,
+                        propertyPath: [],
+                        properties: [],
+                        config: {}
+                    });
+                    return 0;
+                } else {
+                    user = req.user;
+                }
+            } else {
+                user = { accountName: 'open' };
+            }
+
+            getDynamicEndpointParameters(
+                user,
+                datasetURI,
+                endpointParameters => {
+                    graphName = endpointParameters.graphName;
+                    resourceURI = params.resourceURI;
+                    propertyPath = decodeURIComponent(params.propertyPath);
+                    if (propertyPath.length > 1) {
+                        propertyPath = propertyPath.split(',');
+                    } //for now only check the dataset access level
+                    //todo: extend view access to resource and property level
+                    configurator.prepareDatasetConfig(
+                        user,
+                        1,
+                        datasetURI,
+                        rconfig => {
+                            if (
+                                enableAuthentication &&
+                                rconfig &&
+                                rconfig.hasLimitedAccess &&
+                                parseInt(rconfig.hasLimitedAccess)
+                            ) {
+                                //need to handle access to the dataset
+                                //if user is the editor by default he already has view access
+                                let editAccess = checkEditAccess(
+                                    user,
+                                    datasetURI,
+                                    0,
+                                    0,
+                                    0
+                                );
+                                if (
+                                    !editAccess.access ||
+                                    editAccess.type === 'partial'
+                                ) {
+                                    let viewAccess = checkViewAccess(
+                                        user,
+                                        datasetURI,
+                                        0,
+                                        0,
+                                        0
+                                    );
+                                    if (!viewAccess.access) {
+                                        callback(null, {
+                                            datasetURI: datasetURI,
+                                            graphName: graphName,
+                                            resourceURI: resourceURI,
+                                            resourceType: '',
+                                            currentCategory: 0,
+                                            propertyPath: [],
+                                            properties: [],
+                                            config: {},
+                                            error:
+                                                'You do not have enough permision to access this dataset/resource!'
+                                        });
+                                        return 0;
+                                    }
+                                }
+                            }
+
+                            let query =
+                                queryObject.getPrefixes() +
+                                queryObject.getInstancesByPattern(
+                                    graphName,
+                                    patternURI
+                                );
                             console.log(query);
 
                             rp.get({

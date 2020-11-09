@@ -3,39 +3,69 @@ import { BaseStore } from 'fluxible/addons';
 class PatternStore extends BaseStore {
     constructor(dispatcher) {
         super(dispatcher);
-        this.cleanPatternData();
-        this.cleanPatternSpecializations();
-        this.cleanPatternCompositions();
+        this.cleanData();
+        this.cleanSpecializations();
+        this.cleanCompositions();
+        this.cleanCompositionCount();
+        this.cleanSpecializationCount();
+        this.cleanInstances();
     }
-    updatePatternData(payload) {
+    updateData(payload) {
         this.patternData = payload['patternData'];
         this.emitChange();
     }
-    updatePatternSpecializations(payload) {
-        this.patternSpecializations = payload['patternData'];
+    updateSpecializations(payload) {
+        this.specializations = payload['patternData'];
         this.emitChange();
     }
-    updatePatternCompositions(payload) {
-        this.patternCompositions = payload['patternData'];
+    updateCompositions(payload) {
+        this.compositions = payload['patternData'];
         this.emitChange();
     }
-    cleanPatternData() {
+    updateSpecializationCount(payload) {
+        this.specializationCount = payload['patternData'];
+        this.emitChange();
+    }
+    updateCompositionCount(payload) {
+        this.compositionCount = payload['patternData'];
+        this.emitChange();
+    }
+    updateInstances(payload) {
+        this.instances = payload['patternData'];
+        this.emitChange();
+    }
+    cleanData() {
         this.patternData = null;
         this.emitChange();
     }
-    cleanPatternSpecializations() {
-        this.patternSpecializations = null;
+    cleanSpecializations() {
+        this.specializations = null;
         this.emitChange();
     }
-    cleanPatternCompositions() {
-        this.patternCompositions = null;
+    cleanCompositions() {
+        this.compositions = null;
+        this.emitChange();
+    }
+    cleanSpecializationCount() {
+        this.specializationCount = null;
+        this.emitChange();
+    }
+    cleanCompositionCount() {
+        this.compositionCount = null;
+        this.emitChange();
+    }
+    cleanInstances() {
+        this.instances = null;
         this.emitChange();
     }
     getState() {
         return {
             patternData: this.patternData,
-            patternSpecializations: this.patternSpecializations,
-            patternCompositions: this.patternCompositions
+            specializations: this.specializations,
+            compositions: this.compositions,
+            specializationCount: this.specializationCount,
+            compositionCount: this.compositionCount,
+            instances: this.instances
         };
     }
     dehydrate() {
@@ -43,19 +73,28 @@ class PatternStore extends BaseStore {
     }
     rehydrate(state) {
         this.patternData = state.patternData;
-        this.patternSpecializations = state.patternSpecializations;
-        this.patternCompositions = state.patternCompositions;
+        this.specializations = state.specializations;
+        this.compositions = state.compositions;
+        this.specializationCount = state.specializationCount;
+        this.compositionCount = state.compositionCount;
+        this.instances = state.instances;
     }
 }
 
 PatternStore.storeName = 'PatternStore'; // PR open in dispatchr to remove this need
 PatternStore.handlers = {
-    LOAD_PATTERNS_SUCCESS: 'updatePatternData',
-    CLEAN_PATTERNS_SUCCESS: 'cleanPatternData',
-    LOAD_PATTERN_SPECIALIZATIONS_SUCCESS: 'updatePatternSpecializations',
-    CLEAN_PATTERN_SPECIALIZATIONS_SUCCESS: 'cleanPatternSpecializations',
-    LOAD_PATTERN_COMPOSITIONS_SUCCESS: 'updatePatternCompositions',
-    CLEAN_PATTERN_COMPOSITIONS_SUCCESS: 'cleanPatternCompositions'
+    LOAD_PATTERNS_SUCCESS: 'updateData',
+    CLEAN_PATTERNS_SUCCESS: 'cleanData',
+    LOAD_PATTERN_SPECIALIZATIONS_SUCCESS: 'updateSpecializations',
+    CLEAN_PATTERN_SPECIALIZATIONS_SUCCESS: 'cleanSpecializations',
+    LOAD_PATTERN_COMPOSITIONS_SUCCESS: 'updateCompositions',
+    CLEAN_PATTERN_COMPOSITIONS_SUCCESS: 'cleanCompositions',
+    LOAD_PATTERN_SPECIALIZATION_COUNT_SUCCESS: 'updateSpecializationCount',
+    CLEAN_PATTERN_SPECIALIZATION_COUNT_SUCCESS: 'cleanSpecializationCount',
+    LOAD_PATTERN_COMPOSITION_COUNT_SUCCESS: 'updateCompositionCount',
+    CLEAN_PATTERN_COMPOSITION_COUNT_SUCCESS: 'cleanCompositionCount',
+    LOAD_PATTERN_INSTANCES_SUCCESS: 'updateInstances',
+    CLEAN_PATTERN_INSTANCES_SUCCESS: 'cleanInstances'
 };
 
 export default PatternStore;
