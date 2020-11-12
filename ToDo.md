@@ -1,12 +1,3 @@
-# Daily TODOS
-
-- OntologyDesignPatternNetwork should query
-- ? OntologyDesignPatternNetwork should handle the different views (ODP Hierarchy, ODP Instances ...)
-  ? link between the different views
-- Ld-UI create instance view :) 
-
-- filters
-
 # TODO list
 - Design a smart routing algorithm for default routing of components (e.g. based on value types or components metadata).
 - Add interface for more Triple stores other than Virtuoso and Stardog.

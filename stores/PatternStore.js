@@ -11,7 +11,7 @@ class PatternStore extends BaseStore {
         this.cleanInstances();
     }
     updateData(payload) {
-        this.patternData = payload['patternData'];
+        this.list = payload['patternData'];
         this.emitChange();
     }
     updateSpecializations(payload) {
@@ -35,7 +35,7 @@ class PatternStore extends BaseStore {
         this.emitChange();
     }
     cleanData() {
-        this.patternData = null;
+        this.list = null;
         this.emitChange();
     }
     cleanSpecializations() {
@@ -60,7 +60,7 @@ class PatternStore extends BaseStore {
     }
     getState() {
         return {
-            patternData: this.patternData,
+            list: this.list,
             specializations: this.specializations,
             compositions: this.compositions,
             specializationCount: this.specializationCount,
@@ -72,7 +72,7 @@ class PatternStore extends BaseStore {
         return this.getState();
     }
     rehydrate(state) {
-        this.patternData = state.patternData;
+        this.list = state.list;
         this.specializations = state.specializations;
         this.compositions = state.compositions;
         this.specializationCount = state.specializationCount;

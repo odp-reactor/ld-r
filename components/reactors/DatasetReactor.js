@@ -7,7 +7,7 @@ import getResourcesCount from '../../actions/getResourcesCount';
 import Dataset from '../dataset/Dataset';
 import cloneResource from '../../actions/cloneResource';
 import createResource from '../../actions/createResource';
-import OntologyDesignPatternNetwork from '../dataset/viewer/OntologyDesignPatternNetwork';
+import PatternNetwork from '../dataset/viewer/PatternNetwork';
 
 class DatasetReactor extends React.Component {
     componentDidMount() {}
@@ -67,9 +67,9 @@ class DatasetReactor extends React.Component {
                         />
                     );
                     break;
-                case 'OntologyDesignPatternNetwork':
+                case 'PatternNetwork':
                     datasetReactor = (
-                        <OntologyDesignPatternNetwork
+                        <PatternNetwork
                             enableAuthentication={enableAuthentication}
                             datasetURI={datasetURI}
                             resources={resources}
@@ -86,7 +86,7 @@ class DatasetReactor extends React.Component {
                             onCreateResource={this.handleCreateResource.bind(
                                 this
                             )}
-                        ></OntologyDesignPatternNetwork>
+                        ></PatternNetwork>
                     );
                     break;
                 default:

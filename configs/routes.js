@@ -1,4 +1,5 @@
 import loadDatasets from "../actions/loadDatasets";
+import loadPatternInstances from "../actions/loadPatternInstances";
 import loadDataset from "../actions/loadDataset";
 import loadResource from "../actions/loadResource";
 import loadUsersList from "../actions/loadUsersList";
@@ -172,6 +173,8 @@ export default {
         handler: require("../components/reactors/ResourceReactor"),
         label: "Resource",
         action: (context, payload, done) => {
+            console.log("Resource query");
+            console.log(payload.params);
             //predicate Category
             let category = payload.params.pcategory;
             if (!category) {
@@ -225,6 +228,30 @@ export default {
         label: "Users List",
         action: (context, payload, done) => {
             context.executeAction(loadUsersList, {}, done);
+        }
+    },
+    pattern: {
+        path: "/datasets/:did/patterns/:pid",
+        method: "get",
+        // add checks on fetch data (catch them only if the PatternStore is empty)
+        handler: require("../components/dataset/viewer/PatternInstancesNetwork"),
+        label: "Pattern Instances",
+        action: (context, payload, done) => {
+            console.log("In patterns route");
+            console.log(payload.params);
+            let datasetURI = payload.params.did;
+            let patternURI = payload.params.pid;
+            if (!datasetURI) {
+                datasetURI = 0;
+            }
+            if (!patternURI) {
+                patternURI = 0;
+            }
+            context.executeAction(
+                loadPatternInstances,
+                { dataset: datasetURI, pattern: patternURI },
+                done
+            );
         }
     }
 };

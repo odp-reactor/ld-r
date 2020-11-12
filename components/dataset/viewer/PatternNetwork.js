@@ -14,8 +14,9 @@ import loadPatternInstances from '../../../actions/loadPatternInstances';
 import PatternStore from '../../../stores/PatternStore';
 import ApplicationStore from '../../../stores/ApplicationStore';
 import CustomLoader from '../../CustomLoader';
+import { navigateAction } from 'fluxible-router';
 
-export default class OntologyDesignPatternNetwork extends React.Component {
+export default class PatternNetwork extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -25,24 +26,34 @@ export default class OntologyDesignPatternNetwork extends React.Component {
     }
 
     fetchData() {
-        this.context.executeAction(loadPatterns, {
-            dataset: this.props.datasetURI //missing
-            // resourceURI: this.props.resource,
-            // propertyPath: this.props.propertyPath,
-            // propertyURI: this.props.spec.propertyURI
-        });
-        this.context.executeAction(loadPatternCompositions, {
-            dataset: this.props.datasetURI //missing
-        });
-        this.context.executeAction(loadPatternSpecializations, {
-            dataset: this.props.datasetURI //missing
-        });
-        this.context.executeAction(loadPatternSpecializationCount, {
-            dataset: this.props.datasetURI //missing
-        });
-        this.context.executeAction(loadPatternCompositionCount, {
-            dataset: this.props.datasetURI //missing
-        });
+        if (!this.props.PatternStore.list) {
+            this.context.executeAction(loadPatterns, {
+                dataset: this.props.datasetURI //missing
+                // resourceURI: this.props.resource,
+                // propertyPath: this.props.propertyPath,
+                // propertyURI: this.props.spec.propertyURI
+            });
+        }
+        if (!this.props.PatternStore.compositions) {
+            this.context.executeAction(loadPatternCompositions, {
+                dataset: this.props.datasetURI //missing
+            });
+        }
+        if (!this.props.PatternStore.specializations) {
+            this.context.executeAction(loadPatternSpecializations, {
+                dataset: this.props.datasetURI //missing
+            });
+        }
+        if (!this.props.PatternStore.specializationCount) {
+            this.context.executeAction(loadPatternSpecializationCount, {
+                dataset: this.props.datasetURI //missing
+            });
+        }
+        if (!this.props.PatternStore.compositionCount) {
+            this.context.executeAction(loadPatternCompositionCount, {
+                dataset: this.props.datasetURI //missing
+            });
+        }
     }
 
     render() {
@@ -55,18 +66,16 @@ export default class OntologyDesignPatternNetwork extends React.Component {
             margin: 'auto'
         };
 
-        if (
-            this.props.ApplicationStore.loading == 0 &&
-            this.props.PatternStore.patternData
-        ) {
+        if (this.props.PatternStore.list) {
             if (process.env.BROWSER) {
                 let PatternNetwork = require('ld-ui-react').PatternNetwork;
 
                 // we dependency inject the function to get instances by pattern URI
                 const getInstances = patternURI => {
-                    this.context.executeAction(loadPatternInstances, {
-                        dataset: this.props.datasetURI,
-                        pattern: patternURI
+                    this.context.executeAction(navigateAction, {
+                        url: `/datasets/${encodeURIComponent(
+                            this.props.datasetURI
+                        )}/patterns/${encodeURIComponent(patternURI[0])}`
                     });
                 };
 
@@ -76,24 +85,23 @@ export default class OntologyDesignPatternNetwork extends React.Component {
                         getInstances={getInstances}
                     ></PatternNetwork>
                 );
-            } else {
-                return null;
             }
-        } else
-            return (
-                <div style={datasetContainerStyle}>
-                    <CustomLoader></CustomLoader>
-                </div>
-            );
+        } else return null;
+        // TODO: need to find a way to pospone the loader
+        // return (
+        //         <div style={datasetContainerStyle}>
+        //             <CustomLoader></CustomLoader>
+        //         </div>
+        //     );
     }
 }
 
-OntologyDesignPatternNetwork.contextTypes = {
+PatternNetwork.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
-OntologyDesignPatternNetwork = connectToStores(
-    OntologyDesignPatternNetwork,
+PatternNetwork = connectToStores(
+    PatternNetwork,
     [PatternStore, ApplicationStore],
     function(context, props) {
         return {

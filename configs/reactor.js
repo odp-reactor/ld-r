@@ -21,8 +21,8 @@ export default {
                 allowResourceDelete: 1,
                 allowResourceClone: 1,
                 allowPropertyNew: 1,
-                datasetReactor: ["OntologyDesignPatternNetwork"],
-                datasetViewer: ["OntologyDesignPatternNetwork"],
+                datasetReactor: ["PatternNetwork"],
+                datasetViewer: ["PatternNetwork"],
                 query: []
             },
             //authentication graph

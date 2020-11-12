@@ -597,6 +597,7 @@ export default {
                 }
             );
         } else if (resource === 'pattern.compositionCount') {
+            console.log('compositionCount');
             datasetURI =
                 params.dataset && params.dataset !== '0'
                     ? decodeURIComponent(params.dataset)
@@ -734,7 +735,7 @@ export default {
                 }
             );
         } else if (resource === 'pattern.instances') {
-            patternURI = params.pattern[0];
+            patternURI = params.pattern;
 
             datasetURI =
                 params.dataset && params.dataset !== '0'
@@ -856,6 +857,7 @@ export default {
                                                 '\n Error Msg: \n' +
                                                 err.message
                                         );
+                                        console.log('ERROR HERE');
                                     }
                                     callback(null, {
                                         datasetURI: datasetURI,

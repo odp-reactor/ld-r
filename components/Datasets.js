@@ -154,7 +154,7 @@ class Datasets extends React.Component {
                                     title="go to resource list"
                                 >
                                     {defaultDatasetURI[0]}
-                                </a>{' '}
+                                </a>
                                 <i
                                     className="ui green flag icon"
                                     title="default dataset"
