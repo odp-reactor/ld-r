@@ -3,10 +3,10 @@
 @prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
 @prefix owl:        <http://www.w3.org/2002/07/owl#> . 
 
-odp-tpl:PatternInstance[ ottr:IRI ?pattern, ottr:IRI ?patternInstance, List<ottr:IRI> ?patternNodes, ? ottr:IRI ?patternNode ] :: {
-    ottr:Triple(?patternInstance, opla:isPatternInstanceOf, ?pattern),
-    odp-tpl:ListBelongsToPatternInstance(?patternNodes, ?patternInstance),
-    odp-tpl:BelongsToPatternInstance(?patternNode, ?patternInstance)
+odp-tpl:PatternInstance[ ottr:IRI ?instance, ottr:IRI ?pattern, List<ottr:IRI> ?patternNodes, ? ottr:IRI ?patternNode ] :: {
+    ottr:Triple(?instance, opla:isPatternInstanceOf, ?pattern),
+    odp-tpl:ListBelongsToPatternInstance(?patternNodes, ?instance),
+    odp-tpl:BelongsToPatternInstance(?patternNode, ?instance)
 } .
 
 # Every pattern template should implement this template.

@@ -4,14 +4,16 @@
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
 @prefix odp-sit:    <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
 @prefix odp-tis:    <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
-
+@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
 @prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
 
-
-odp-tpl:SituationInstance[ List<ottr:IRI> ?things, ottr:IRI ?situation, ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
-    odp-tpl:Pattern(?instanceIRI, ?instanceIRI, ?things, ?situation),
+odp-tpl:SituationInstance[ List<ottr:IRI> ?things, ottr:IRI ?thingType, ottr:IRI ?situation, ottr:IRI ?situationType, ! owl:ObjectProperty ?hasSetting=odp-sit:hasSetting, ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+    odp-tpl:PatternInstance(?instanceIRI, ?instanceType, ?things, ?situation),
+    o-rdf:Type(?situation, ?situationType),
+    odp-tpl:ListType(?things, ?thingType),
     cross
-      |  ottr:Triple(++?things, odp-sit:hasSetting, ?situation)
+      |  ottr:Triple(++?things, ?hasSetting, ?situation)
 } .
 
 

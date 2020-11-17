@@ -10,7 +10,6 @@ import loadPatternSpecializations from '../../../actions/loadPatternSpecializati
 import loadPatternCompositions from '../../../actions/loadPatternCompositions';
 import loadPatternCompositionCount from '../../../actions/loadPatternCompositionCount';
 import loadPatternSpecializationCount from '../../../actions/loadPatternSpecializationCount';
-import loadPatternInstances from '../../../actions/loadPatternInstances';
 import PatternStore from '../../../stores/PatternStore';
 import ApplicationStore from '../../../stores/ApplicationStore';
 import CustomLoader from '../../CustomLoader';

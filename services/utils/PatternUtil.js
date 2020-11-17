@@ -9,6 +9,7 @@ const bodyKey = 'body';
 const argumentsKey = 'arguments';
 const viewKey = 'patternIViewer';
 const patternURIKey = 'pattern';
+const patternStateKey = 'stateKey';
 
 /**
  * @description An helper for pattern service. It do stuff such as access pattern config file
@@ -17,7 +18,7 @@ const patternURIKey = 'pattern';
  * @export
  * @class PatternUtil
  */
-export default class PatternUtil {
+class PatternUtil {
     /**
      * @description Search in the pattern config file the query for a given patern
      * @author Christian Colonna
@@ -38,7 +39,7 @@ export default class PatternUtil {
                 `[!] no SELECT query statement found for ${patternURI} in ${configPath}`
             );
         }
-        if (!patternConfig[PatternURI][queryKey][bodyKey]) {
+        if (!patternConfig[patternURI][queryKey][bodyKey]) {
             throw Error(
                 `[!] no query body found for ${patternURI} in ${configPath}`
             );
@@ -76,6 +77,25 @@ export default class PatternUtil {
         if (!patternConfig[patternURI][viewKey]) {
             throw Error(`[!] no view found for ${patternURI} in ${configPath}`);
         } else return patternConfig[patternURI][viewKey];
+    }
+
+    /**
+     * @description Search in the pattern config file the state key for given pattern. All the data
+     *              for the pattern instance are saved under this key. This is necessary to have a
+     *              single central store to keep several pattern data.
+     * @author Christian Colonna
+     * @date 17-11-2020
+     * @param {string} patternURI
+     * @returns {string} state key for given pattern in PatternInstanceStore
+     * @memberof PatternUtil
+     */
+    getStateKey(patternURI) {
+        this.checkConfigForPattern(patternURI);
+        if (!patternConfig[patternURI][patternStateKey]) {
+            throw Error(
+                `[!] no pattern state key found for ${patternURI} in ${configPath}. Specify one or ask developer for a default one`
+            );
+        } else return patternConfig[patternURI][patternStateKey];
     }
 
     /**
@@ -131,6 +151,33 @@ export default class PatternUtil {
         }
     }
 
-    // generic parsePatternData
-    // parse PatternInstanceData it gives a key for every pattern [this to handle a resource may have multiple patterns]
+    /**
+     * The function is used to parse data received by a custom query, they are returned .
+     *
+     * @param {Object} body Data returned by fluxible service after querying SPARQL endpoint
+     * @param {Function} callback Function to call after action succeeds
+     */
+    parsePatternInstanceData(patternKey, body, callback) {
+        const receivedData = JSON.parse(body);
+        const sparqlRows = receivedData['results']['bindings'];
+        let dataToReturn = [];
+        // iterate over the returned rows
+        for (let i = 0; i < sparqlRows.length; i++) {
+            let objectToReturn = {};
+            // iterate over the fields (the ?x, ?y ... of the SELECT statement)
+            for (let j = 0; j < receivedData['head']['vars'].length; j++) {
+                let sparqlVariable = receivedData['head']['vars'][j];
+                objectToReturn[sparqlVariable] =
+                    sparqlRows[i][sparqlVariable].value;
+            }
+            dataToReturn[i] = objectToReturn;
+        }
+        let patternToReturn = {};
+        patternToReturn[patternKey] = dataToReturn;
+        patternToReturn['key'] = patternKey;
+        // when Store receive data do: data = res[res.key]
+        callback(null, patternToReturn);
+    }
 }
+
+export default PatternUtil;

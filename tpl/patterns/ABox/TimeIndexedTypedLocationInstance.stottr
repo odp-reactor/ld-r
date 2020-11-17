@@ -7,8 +7,7 @@
 @prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
 
 
-
-odp-tpl:TimeIndexedTypedLocationInstance[ List<ottr:IRI> ?culturalProperties, ottr:IRI ?situation, ? ottr:IRI ?timeInterval, ? ottr:IRI ?startDate, ? ottr:IRI ?endDate, ? ottr:IRI ?date, ottr:IRI ?locationType,  ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
-    ottr:Triple(?situation, a-loc:hasLocationType, ?locationType),
-    odp-tpl:TimeIndexedSituationInstance(?culturalProperties, ?situation, ?timeInterval, ?startDate, ?endDate, ?date, ?instanceIRI, ?instanceType)
+odp-tpl:TimeIndexedTypedLocationInstance[ ottr:IRI ?culturalProperty, ottr:IRI ?culturalPropertyType, ottr:IRI ?tITL, ottr:IRI ?tITLType, ? ottr:IRI ?timeInterval, ? ottr:IRI ?startDate, ? ottr:IRI ?endDate, ? ottr:IRI ?date, ottr:IRI ?locationType, ! owl:ObjectProperty ?hasTimeIndexedTypedLocation=a-loc:hasTimeIndexedTypedLocation , ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+    ottr:Triple(?tITL, a-loc:hasLocationType, ?locationType),
+    odp-tpl:TimeIndexedSituationInstance((?culturalProperty), ?culturalPropertyType, ?tITL, ?tITLType, ?timeInterval, ?startDate, ?endDate, ?date, ?hasTimeIndexedTypedLocation, ?instanceIRI, ?instanceType)
 }  .

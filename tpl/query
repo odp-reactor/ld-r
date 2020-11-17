@@ -1,0 +1,25 @@
+            SELECT ?collection 
+                   ?collectionType
+                   ?members
+                   ?memberType
+                        
+            WHERE
+            {
+                   ?collection a ?collectionType .
+                   ?member a ?memberType .
+                   ?member rdf:type a-dd:Measurement .
+                   BIND (a-dd:MeasurementCollection as ?collectionType )  .
+                   BIND (a-dd:Measurement as ?memberType ) .
+                  {
+                   SELECT ?collection 
+                          (GROUP_CONCAT(DISTINCT ?member; SEPARATOR=";") AS ?members)
+                         WHERE
+                          {
+	                                ?collection a-dd:hasMeasurement ?member.
+                                    ?collection a a-dd:MeasurementCollection . 
+                                    ?member a a-dd:Measurement .
+                          }
+                         GROUP BY ?collection 
+                  }
+            }     
+            LIMIT 10 

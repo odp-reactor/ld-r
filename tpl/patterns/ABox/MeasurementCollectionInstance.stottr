@@ -1,6 +1,7 @@
 @prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
 
-odp-tpl:MeasurementCollectionInstance[ ottr:IRI ?collection, List<ottr:IRI> ?measurements, ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
-    odp-tpl:CollectionInstance(?collection, ?measurements, ?instanceIRI, ?instanceType)
+odp-tpl:MeasurementCollectionInstance[ ottr:IRI ?collection, ottr:IRI ?collectionType, List<ottr:IRI> ?measurements, ottr:IRI ?measurementType, ! owl:ObjectProperty ?hasMeasurement=a-dd:hasMeasurement, ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+    odp-tpl:CollectionInstance(?collection, ?collectionType, ?measurements, ?measurementType, ?hasMeasurement, ?instanceIRI, ?instanceType)
 } .

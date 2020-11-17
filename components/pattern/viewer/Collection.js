@@ -1,4 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connectToStores } from 'fluxible-addons-react';
+
+import loadPatternInstance from '../../../actions/loadPatternInstance';
+
+import PatternInstanceStore from '../../../stores/PatternInstanceStore';
 
 /**
  * This component is a wrapper around the one provide by the ld-ui-react package.
@@ -15,7 +21,13 @@ class Collection extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchData();
+        if (this.props.instanceResources) {
+            this.context.executeAction(loadPatternInstance, {
+                instanceResources: this.props.instanceResources, // es. culturalProperty use this to bind the query
+                dataset: this.props.dataset,
+                pattern: this.props.pattern // this is used to catch the query in pattern configuration file
+            });
+        }
     }
 
     render() {
@@ -23,10 +35,11 @@ class Collection extends React.Component {
             entityImage: 'custom-collection-image'
         };
         let Collection = require('ld-ui-react').Collection;
-        if (this.props.collection) {
+        let collection = this.props.data.instanceData.collection;
+        if (collection) {
             return (
                 <Collection
-                    entities={this.props.collection}
+                    entities={collection}
                     class={customClasses}
                 ></Collection>
             );
@@ -35,5 +48,18 @@ class Collection extends React.Component {
         }
     }
 }
+
+Collection.contextTypes = {
+    executeAction: PropTypes.func.isRequired,
+    getUser: PropTypes.func
+};
+Collection = connectToStores(Collection, [PatternInstanceStore], function(
+    context,
+    props
+) {
+    return {
+        data: context.getStore(PatternInstanceStore).getInstanceData()
+    };
+});
 
 export default Collection;

@@ -1,5 +1,7 @@
 import SPARQLQuery from './SPARQLQuery';
 
+import URIUtil from '../../components/utils/URIUtil';
+
 export default class PatternQuery extends SPARQLQuery {
     constructor() {
         super();
@@ -174,21 +176,22 @@ export default class PatternQuery extends SPARQLQuery {
                 resourcesToBind.push(resourceToBind);
             }
         });
+
         let cleanedQueryBody = queryBody;
         resourcesToBind.forEach(resource => {
-            let placeholder = `?${resource.type}`;
+            let placeholder = `\\?${URIUtil.getURILabel(resource.type)}`;
             cleanedQueryBody = this.prepareQueryBody(
-                resource.uri,
+                resource.node,
                 placeholder,
                 cleanedQueryBody
             );
         });
         this.query = `
-            SELECT ${selectStatement} WHERE {
+            ${selectStatement} {
                 ${gStart}
                     ${cleanedQueryBody}
                 ${gEnd}
-            } ${aggregatesBlock}
+            } ${aggregatesBlock ? aggregatesBlock : ''}
             `;
         return this.query;
     }
@@ -206,7 +209,9 @@ export default class PatternQuery extends SPARQLQuery {
      * @memberof PatternQuery
      */
     getResourceByType(resources, type) {
-        const resourceURI = resources.find(resources.type == type);
+        const resourceURI = resources.find(resource => {
+            return URIUtil.getURILabel(resource.type) == type;
+        });
         return resourceURI ? resourceURI : undefined;
     }
 }

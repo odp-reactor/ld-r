@@ -601,7 +601,6 @@ export default {
                 }
             );
         } else if (resource === 'pattern.compositionCount') {
-            console.log('compositionCount');
             datasetURI =
                 params.dataset && params.dataset !== '0'
                     ? decodeURIComponent(params.dataset)
@@ -861,7 +860,6 @@ export default {
                                                 '\n Error Msg: \n' +
                                                 err.message
                                         );
-                                        console.log('ERROR HERE');
                                     }
                                     callback(null, {
                                         datasetURI: datasetURI,
@@ -1002,7 +1000,6 @@ export default {
                                                 '\n Error Msg: \n' +
                                                 err.message
                                         );
-                                        console.log('ERROR HERE');
                                     }
                                     callback(null, {
                                         datasetURI: datasetURI,
@@ -1021,10 +1018,7 @@ export default {
                 }
             );
         } else if (resource === 'pattern.instance') {
-            console.log('[*] pattern.instance params');
-            console.log(params);
-
-            patternURI = params.pattern;
+            patternURI = params.instanceResources[0].pattern;
             datasetURI =
                 params.dataset && params.dataset !== '0'
                     ? decodeURIComponent(params.dataset)
@@ -1033,6 +1027,7 @@ export default {
             let instanceResources = params.instanceResources;
             let args = patternUtil.getArguments(patternURI);
             let patternQuery = patternUtil.getQuery(patternURI);
+            let instanceStateKey = patternUtil.getStateKey(patternURI);
 
             //control access on authentication
             if (enableAuthentication) {
@@ -1140,7 +1135,11 @@ export default {
                             })
                                 .then(function(res) {
                                     // parse response and call callback
-                                    utilObject.parsePatternData(res, callback);
+                                    patternUtil.parsePatternInstanceData(
+                                        instanceStateKey,
+                                        res,
+                                        callback
+                                    );
                                 })
                                 .catch(function(err) {
                                     // what to do if error ?????
@@ -1154,7 +1153,6 @@ export default {
                                                 '\n Error Msg: \n' +
                                                 err.message
                                         );
-                                        console.log('ERROR HERE');
                                     }
                                     callback(null, {
                                         datasetURI: datasetURI,

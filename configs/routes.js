@@ -235,8 +235,6 @@ export default {
         handler: require("../components/dataset/viewer/PatternInstancesNetwork"),
         label: "Pattern Instances",
         action: (context, payload, done) => {
-            console.log("In patterns route");
-            console.log(payload.params);
             let datasetURI = payload.params.did;
             let patternURI = payload.params.pid;
             if (!datasetURI) {

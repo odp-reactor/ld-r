@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 
@@ -9,7 +8,6 @@ import PropertyHeader from '../property/PropertyHeader';
 _________*/
 
 import loadPatternInstanceResources from '../../actions/loadPatternInstanceResources';
-import loadPatternInstance from '../../actions/loadPatternInstance';
 
 import PatternInstanceStore from '../../stores/PatternInstanceStore';
 
@@ -29,83 +27,78 @@ export default class Pattern extends React.Component {
     }
 
     componentDidMount() {
-        // fetch data in case we arrive to pattern view from a pattern instance node   pattern instances -> pattern instance
+        // load nodes belonging to given pattern instance
         if (
             this.props.spec.propertyURI ===
-            'http://ontologydesignpatterns.org/opla/isPatternInstanceOf'
+                'http://ontologydesignpatterns.org/opla/isPatternInstanceOf' &&
+            !this.props.PatternInstanceStore.instanceResources
         ) {
             this.context.executeAction(loadPatternInstanceResources, {
                 dataset: this.props.datasetURI,
                 patternInstance: this.props.resource
             });
-
-            this.context.executeAction(loadPatternInstance, {
-                instanceResources: this.props.instanceResources,
-                dataset: this.props.datasetURI,
-                pattern: this.props.patternURI
-            });
-        } else {
-            // fetch data in case we arrive to pattern view from a resource    resource -> pattern
-            this.context.executeAction(loadPatternInstance, {
-                instanceResources: this.props.resource, // es. culturalProperty use this to bind the query
-                dataset: this.props.datasetURI,
-                pattern: patternUtil.getPatternURI(this.props.spec.propertyURI) // this is used to catch the query in pattern configuration file
-            });
         }
+        // you need an alternative when props is another one. ex.
+        // resource hasTimeIndexedTypedLocation
+        // use this.props.resource
     }
 
     render() {
-        console.log('[*] props received by Pattern component');
-        console.log(this.props);
-        const patternComponent = this.chooseView();
+        const patternComponent = this.patternReactor();
         return (
-            <div>
-                {this.props.hidePropertyName ||
-                (this.props.config && this.props.config.hidePropertyName) ? (
-                        ''
-                    ) : (
-                        <div className="property-title">
-                            <div className="ui horizontal list">
-                                <div className="item">
-                                    <PropertyHeader
-                                        spec={this.props.spec}
-                                        config={this.props.config}
-                                        size="3"
-                                        datasetURI={this.props.datasetURI}
-                                        resourceURI={this.props.resource}
-                                        propertyURI={this.props.property}
-                                    />
-                                </div>
-                            </div>
-                            <div className="ui dividing header"></div>
-                        </div>
-                    )}
-                <div className="ui list">
-                    <div className="item">
-                        <div className="ui form grid">
-                            <div className="twelve wide column field">
-                                {patternComponent}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            // <div>
+            //     {this.props.hidePropertyName ||
+            //     (this.props.config && this.props.config.hidePropertyName) ? (
+            //         ""
+            //     ) : (
+            //         <div className="property-title">
+            //             <div className="ui horizontal list">
+            //                 <div className="item">
+            //                     <PropertyHeader
+            //                         spec={this.props.spec}
+            //                         config={this.props.config}
+            //                         size="3"
+            //                         datasetURI={this.props.datasetURI}
+            //                         resourceURI={this.props.resource}
+            //                         propertyURI={this.props.property}
+            //                     />
+            //                 </div>
+            //             </div>
+            //             <div className="ui dividing header"></div>
+            //         </div>
+            //     )}
+            //     <div className="ui list">
+            //         <div className="item">
+            //             <div className="ui form grid">
+            //                 <div className="twelve wide column field">
+            <div>{patternComponent}</div>
+            //                 </div>
+            //             </div>
+            //         </div>
+            //     </div>
         );
     }
 
     /**
-     * Function select the pattern view based
-     * based on user static specified config
+     * Function select the pattern view based on user static specified config
      */
-    chooseView() {
-        let patternComponent;
+    patternReactor() {
         let patternView = '';
+        let patternURI;
+        let instanceResources = this.props.PatternInstanceStore
+            .instanceResources
+            ? this.props.PatternInstanceStore.instanceResources
+            : null;
+        // click on pattern instance node -> pattern visualization
         if (
             this.props.spec.propertyURI ===
             'http://ontologydesignpatterns.org/opla/isPatternInstanceOf'
         ) {
-            if (this.props.patternURI) {
-                patternView = patternUtil.getView(this.props.patternURI);
+            patternURI = instanceResources
+                ? instanceResources[0].pattern
+                : null;
+            if (patternURI) {
+                patternView = patternUtil.getView(patternURI);
             }
         } else
             patternView = patternUtil.getViewByProperty(
@@ -113,15 +106,23 @@ export default class Pattern extends React.Component {
             );
         switch (patternView) {
             case 'TimeIndexedTypedLocation':
-                patternComponent = (
-                    <TimeIndexedTypedLocation></TimeIndexedTypedLocation>
+                return (
+                    <TimeIndexedTypedLocation
+                        pattern={patternURI}
+                        dataset={this.props.datasetURI}
+                        instanceResources={instanceResources}
+                    />
                 );
-                break;
             case 'Collection':
-                patternComponent = <Collection></Collection>;
-                break;
+                return (
+                    <Collection
+                        pattern={patternURI}
+                        dataset={this.props.datasetURI}
+                        instanceResources={instanceResources}
+                    />
+                );
             default:
-                patternComponent = this.props.instanceResources ? (
+                return instanceResources ? (
                     <div style={{ color: 'red' }}>No visual pattern found</div>
                 ) : (
                     <div style={{ color: 'red' }}>
@@ -129,8 +130,6 @@ export default class Pattern extends React.Component {
                     </div>
                 );
         }
-
-        return patternComponent;
     }
 }
 

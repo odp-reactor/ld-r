@@ -1,1803 +1,355 @@
 @prefix opla:  <http://ontologydesignpatterns.org/opla/> .
-@prefix odp-sit: <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix a-loc: <https://w3id.org/arco/ontology/location/> .
 
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530885>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530885-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530885-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530885-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530885-alternative-1> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530869-current>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530886-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530886-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530871-alternative-1>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530902-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530902-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
 <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530887-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530887-alternative-1> ;
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530887-alternative-1> ;
         a-loc:hasLocationType          a-loc:LastLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530872-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530872-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532905-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532905-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532905>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532905-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532905-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532905-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532905-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532755-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532755-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532694-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532694-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532631-current>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530855-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530885-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530885-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532918-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532918-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530934-alternative-1>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530875-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530951-alternative-1>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530885-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532741-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530971>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530971-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530971-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530971-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530971-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532934-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532934-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530886>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530886-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530886-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530886-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530886-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532699-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532694-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530885-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530885-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532711-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532711-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532874-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532874-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530965-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532652>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532652-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532652-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532652-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532652-alternative-1> .
 
 <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530871-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530871-current> ;
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530871-current> ;
         a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530902-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530902-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530902>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530902-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530902-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530902-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530902-alternative-1> .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532915-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532915-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532874-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530859-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532746-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532741-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532652-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532652-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532630-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532921-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532921-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530923-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530923-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532668-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532668-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530906-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532694>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532694-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532694-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532694-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532694-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532709-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532709-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530859-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530859-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532875>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532875-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532875-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532875-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532875-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532664>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532664-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532664-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532664-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532664-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530923>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530923-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530923-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530923-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530923-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532634>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532634-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532634-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532634-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532634-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532613-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532887-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532887-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532630-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532884-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530906-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530964-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532759-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530965>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530965-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530965-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530965-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530965-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532887>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532887-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532887-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532887-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532887-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532648-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530935>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530935-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530935-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530935-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530935-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532920-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532920-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530919-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532678-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532678-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532646>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532646-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532646-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532646-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532646-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532903-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532695-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532695-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530869-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530971-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530918-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530935-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532890-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532890-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532918-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532918-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532886-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532886-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532725-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532742-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532678-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532678-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530972-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530875-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530870-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530916-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530922-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530922-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532762-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532758-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532870>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532870-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532870-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532870-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532870-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530922-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532725-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532725-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530903-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530903-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532875-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530918-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530964-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532619-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532619-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532614-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532614-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532755>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532755-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532755-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532755-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532755-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532710-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532710-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532725>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532725-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532725-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532725-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532725-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530951-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530951-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532906>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532906-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532906-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532906-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532906-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530875>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530875-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530875-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530875-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530875-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532741-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532741-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530932-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530932-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532664-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532614-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532631-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530900>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530900-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530900-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530900-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530900-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530935-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530948-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530948-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532868-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532918>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532918-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532918-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532918-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532918-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532711-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530972>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530972-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530972-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530972-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530972-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530887>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530887-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530887-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530887-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530887-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532683>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532683-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532683-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532683-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532683-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530938-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532679-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532679-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530955-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530870-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530972-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532699-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532699-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532694-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532694-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530919-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530887-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532762-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532902-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532870-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532870-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530899>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530899-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530899-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530899-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530899-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530965-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530965-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532709-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532668-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532695>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532695-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532695-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532695-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532695-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530948-current>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530859-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530859-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530859-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532746-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532746-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530951-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530951-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532741-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532741-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532726-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530869>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530869-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530869-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530906-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530906-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530934-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532919-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532919-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532630-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532630-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530923-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530923-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532931>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532931-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532931-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532931-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532931-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532613-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532710-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530899-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530899-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530906-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530906-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532730-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532730-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530870>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530870-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530870-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530870-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530870-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530948-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530965-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530971-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530971-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530966>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530966-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530966-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530966-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530966-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532762>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532762-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532762-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532762-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532762-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532755-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532647>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532647-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532647-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532647-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532647-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530906>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530906-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530906-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530906-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530906-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530951-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530964-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530964-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532634-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532759-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532759-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532742-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532742-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530916-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530916-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532648-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532648-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532931-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530919-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530919-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530950-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530950-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532615-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532903-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532903-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530900-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530900-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530948>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530948-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530948-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530948-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530948-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532699-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532699-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532886-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530890-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530918>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530918-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530918-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530918-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530918-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532663-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532629>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532629-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532629-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532629-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532629-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532693-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532871>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532871-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532871-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532871-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532871-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532890-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532890-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530871-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530972-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530972-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530875-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530875-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530870-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530870-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532762-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532762-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530858-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530955-current>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530869-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530950-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532758-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532758-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532756>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532756-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532756-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532756-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532756-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532746-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532630>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532630-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532630-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532630-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532630-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532634-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532647-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532647-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530937-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532871-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532871-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530922-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530922-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532726>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532726-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532726-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532726-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532726-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532631-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532631-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530918-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530918-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530900-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532903-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532727-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532920-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532758-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532692-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530972-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530972-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530966-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532919>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532919-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532919-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532919-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532919-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532664-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532664-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532762-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532762-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532756-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532647-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530935-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530935-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530858>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530858-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530858-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530858-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530858-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532920>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532920-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532920-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532920-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532920-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532915-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532915-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532902-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532726-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532726-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532711-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532711-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532652-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532889-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530934-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530934-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532683-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530955>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530955-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530955-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530955-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530955-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532887-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530887-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530887-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530971-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532868-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532664-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532668-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532668-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532663-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532663-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532902>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532902-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532902-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532902-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532902-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530855-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532646-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532874-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532874-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530872-alternative-1>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530899-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
 <https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530871>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530871-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530871-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530871-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530871-alternative-1> .
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530871-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530871-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530871-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530871-alternative-1> .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530934-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530934-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532915-current>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530870-current>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532906-current>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530887-current>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532645-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530869>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530869-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530869-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-alternative-1> .
 
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532889>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532889-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532889-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532889-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532889-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530967>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530967-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530967-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530967-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530967-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532613-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532613-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532710-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532710-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532662-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532678>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532678-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532678-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532678-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532678-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530937>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530937-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530937-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530937-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530937-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532648>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532648-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532648-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532648-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532648-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532693-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532921-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532890>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532890-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532890-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532890-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532890-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530890-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530890-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532889-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532889-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532884-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532884-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532871-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532613-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532613-alternative-1> ;
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530872-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530872-alternative-1> ;
         a-loc:hasLocationType          a-loc:LastLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532759-alternative-1>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530903-current>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532663-current>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530870-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532630-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532630-alternative-1> ;
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530890-alternative-1>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530886-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530886-alternative-1> ;
         a-loc:hasLocationType          a-loc:LastLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530855-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530855-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530899-current>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530858-alternative-1>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530870>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530870-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530870-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530870-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530870-alternative-1> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530900-current>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530855>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530855-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530855-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530855-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530855-alternative-1> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530903-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530903-alternative-1> ;
+        a-loc:hasLocationType          a-loc:LastLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530875-current>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
 <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530871-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530871-alternative-1> ;
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530871-alternative-1> ;
         a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532884-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532884-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530967-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532931-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532931-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532919-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530919>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530919-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530919-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530919-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530919-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532746-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532746-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530937-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530937-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530950>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530950-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530950-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530950-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530950-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532619-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532727-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532727-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532931-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530918-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530918-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532889-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530890-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532631>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532631-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532631-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532631-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532631-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530935-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530935-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532884-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532693-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532693-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530886-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532875-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532727>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532727-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532727-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532727-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532727-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532870-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532725-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532725-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530950-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530950-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532667-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530858-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532662-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530955-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530955-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
 
 <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530858-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530858-current> ;
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530858-current> ;
         a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530875-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530966-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530966-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532884>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532884-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532884-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532884-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532884-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530938-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532648-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532634-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532634-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530932>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530932-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530932-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530932-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530932-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532756-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532756-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530902>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530902-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530902-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530902-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530902-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532875-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532875-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530964-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530964-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532629-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532613>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532613-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532613-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532613-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532613-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532652-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532652-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532646-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532709>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532709-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532709-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532709-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532709-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530899-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532692-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532692-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530859>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530859-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530859-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530859-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530859-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532905-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532694-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532921>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532921-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532921-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532921-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532921-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532887-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532887-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532710>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532710-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532710-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532710-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532710-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530885-alternative-1>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530890-current>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
 <https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530890>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530890-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530890-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530890-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530890-alternative-1> .
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530890-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530890-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530890-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530890-alternative-1> .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530937-current>
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530875>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530875-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530875-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530875-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530875-alternative-1> .
+
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530900>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530900-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530900-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530900-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530900-alternative-1> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530887-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532614-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532614-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532727-current>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530872-current>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532868-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532868-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532692-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532902-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532902-current> ;
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530885-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530885-current> ;
         a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530872-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530872-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532667>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532667-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532667-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532667-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532667-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532662-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532662-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532934-alternative-1>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530859-current>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530938-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530938-alternative-1> ;
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530902-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530902-alternative-1> ;
         a-loc:hasLocationType          a-loc:LastLocation .
 
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532903>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532903-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532903-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532903-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532903-alternative-1> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530900-alternative-1>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530870-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530870-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530887-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530887-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530872-alternative-1>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530887>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530887-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530887-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530887-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530887-alternative-1> .
+
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530859>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530859-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530859-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530859-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530859-alternative-1> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530886-current>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530902-current>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530899-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530899-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530855-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530855-alternative-1> ;
+        a-loc:hasLocationType          a-loc:LastLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530875-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530875-alternative-1> ;
+        a-loc:hasLocationType          a-loc:LastLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530869-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530885-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530885-alternative-1> ;
+        a-loc:hasLocationType          a-loc:LastLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530871-current>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530859-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530859-alternative-1> ;
+        a-loc:hasLocationType          a-loc:LastLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530869-alternative-1> ;
+        a-loc:hasLocationType          a-loc:LastLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530899-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530899-alternative-1> ;
+        a-loc:hasLocationType          a-loc:LastLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530900-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530900-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530858-current>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530875-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530875-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530903-alternative-1>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530890-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530890-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
 
 <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530870-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530870-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530955-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530955-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530872>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530872-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530872-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530872-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530872-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530902-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532683-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532921-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532921-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532915-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530971-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530971-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532868-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532868-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530919-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530919-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530967-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530967-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532679>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532679-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532679-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532679-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532679-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532730-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532646-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532646-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530938>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530938-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530938-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530938-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530938-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532668-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532709-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532709-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532902-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532902-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530900-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532629-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532726-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530859-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532915>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532915-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532915-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532915-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532915-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530967-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530967-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532906-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532906-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532619>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532619-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532619-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532619-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532619-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530948-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530948-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530965-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530965-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532746>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532746-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532746-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532746-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532746-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532647-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532931-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532931-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532871-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532871-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532755-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532755-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530967-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532692>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532692-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532692-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532692-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532692-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532756-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532756-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530951>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530951-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530951-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530951-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530951-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532678-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532634-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532634-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532906-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532695-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532662>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532662-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532662-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532662-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532662-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530869-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532919-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532919-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530886-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530903-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530916-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530916-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532758>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532758-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532758-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532758-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532758-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532700-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532615-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532615-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532886-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532886-alternative-1> ;
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530870-alternative-1> ;
         a-loc:hasLocationType          a-loc:LastLocation .
 
 <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530890-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530890-alternative-1> ;
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530890-alternative-1> ;
         a-loc:hasLocationType          a-loc:LastLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532646-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532646-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532918-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532695-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530922-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532663-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532663-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530886-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530886-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532875-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532875-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532870-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532870-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530869-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530966-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532756-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532667-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532667-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532662-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532662-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530903>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530903-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530903-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530903-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530903-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530855-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532742-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532645-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530903-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530938-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530938-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532614>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532614-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532614-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532614-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532614-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530916-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532905-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530902-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532710-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532700-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532700-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532903-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532903-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532692-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532692-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532741>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532741-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532741-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532741-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532741-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532920-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532920-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532711>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532711-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532711-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532711-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532711-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532758-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532758-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530899-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530899-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530932-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532667-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530872-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532755-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532668>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532668-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532668-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532668-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532668-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532934>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532934-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532934-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532934-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532934-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530937-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530937-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530932-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530932-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532918-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532727-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532727-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532700-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530900-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530900-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532679-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532889-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532889-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530887-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532683-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532683-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530885-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532870-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532874-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532683-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532683-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530871-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532679-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532679-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532647-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532647-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532919-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530885>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530885-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530885-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530885-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530885-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532652-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530923-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532664-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532664-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530932-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532934-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532934-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532921-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532730-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532730-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530923-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530899-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530855-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530855-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530855>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530855-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530855-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530855-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530855-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532629-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532629-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532726-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532726-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532906-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532906-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532730-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532709-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532615-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532615-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532645-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532645-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530886-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530886-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532700-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532700-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532711-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532693>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532693-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532693-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532693-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532693-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532887-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532693-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532693-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532874>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532874-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532874-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532874-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532874-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532663>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532663-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532663-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532663-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532663-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532679-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530922>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530922-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530922-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530922-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530922-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532759>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532759-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532759-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532759-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532759-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532759-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532759-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532934-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530950-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532920-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532615-current>
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530886>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530886-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530886-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530886-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530886-alternative-1> .
+
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530858>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530858-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530858-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530858-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530858-alternative-1> .
+
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530899>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530899-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530899-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530899-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530899-alternative-1> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530885-current>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
 <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530903-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530903-current> ;
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530903-current> ;
         a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
 
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530964>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530964-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530964-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530964-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530964-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532886>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532886-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532886-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532886-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532886-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532699-alternative-1>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530855-current>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530934>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530934-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530934-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530934-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530934-alternative-1> .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532730>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532730-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532730-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532730-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532730-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532619-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532619-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532645>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532645-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532645-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532645-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532645-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532890-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532700>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532700-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532700-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532700-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532700-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532890-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532886-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532615>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532615-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532615-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532615-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532615-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532695-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532695-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532678-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530869-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530966-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530966-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532667-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532667-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532871-alternative-1>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530855-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530855-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532868>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532868-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532868-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532868-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532868-alternative-1> .
 
 <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530858-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530858-alternative-1> ;
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530858-alternative-1> ;
         a-loc:hasLocationType          a-loc:LastLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532645-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532645-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532742-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532742-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532742>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532742-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532742-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532742-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532742-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530875-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530875-alternative-1> ;
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530900-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530900-alternative-1> ;
         a-loc:hasLocationType          a-loc:LastLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532725-current>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530872-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530872-current> ;
+        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530886-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532631-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532631-current> ;
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530859-current>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530859-current> ;
         a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532648-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532648-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530903>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530903-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530903-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530903-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530903-alternative-1> .
 
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530916>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530916-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530916-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530916-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530916-alternative-1> .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532619-current>
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530902-alternative-1>
         opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
 
-<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532614-current>
-        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532905-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532905-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530902-current>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200530902-current> ;
-        a-loc:hasLocationType          a-loc:CurrentPhysicalLocation .
-
-<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532629-alternative-1>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532629-alternative-1> ;
-        a-loc:hasLocationType          a-loc:LastLocation .
-
-<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200532699>
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532699-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern1200532699-alternative-1> ;
-        odp-sit:hasSetting             <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532699-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200532699-alternative-1> .
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1200530872>
+        a                              <https://w3id.org/arco/ontology/arco/CulturalProperty> ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530872-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/1200530872-alternative-1> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530872-current> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530872-alternative-1> .

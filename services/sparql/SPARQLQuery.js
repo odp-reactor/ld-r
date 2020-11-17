@@ -30,7 +30,7 @@ export default class SPARQLQuery {
     prepareQueryBody(resourceURI, resourcePlaceholder, queryBody) {
         // replace all occurences of a placeholder with resourceURI
         var re = new RegExp(resourcePlaceholder, 'g');
-        let cleanQueryBody = queryBody.replace(re, resourceURI);
+        let cleanQueryBody = queryBody.replace(re, `<${resourceURI}>`);
         return cleanQueryBody;
     }
 }
