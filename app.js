@@ -16,6 +16,7 @@ import DatasetAnnotationStore from './stores/DatasetAnnotationStore';
 import QueryImportStore from './stores/QueryImportStore';
 import ImportStore from './stores/ImportStore';
 import PatternStore from './stores/PatternStore';
+import PatternInstanceStore from './stores/PatternInstanceStore';
 
 let app = new Fluxible({
     component: Application,
@@ -33,7 +34,8 @@ let app = new Fluxible({
         DatasetAnnotationStore,
         QueryImportStore,
         ImportStore,
-        PatternStore
+        PatternStore,
+        PatternInstanceStore
     ]
 });
 

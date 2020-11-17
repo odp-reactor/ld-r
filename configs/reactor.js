@@ -106,9 +106,12 @@ export default {
                 extendedOViewer: ["BasicIndividualDetailView"],
                 shortenURI: 1
             },
+            "http://ontologydesignpatterns.org/opla/isPatternInstanceOf": {
+                propertyReactor: ["Pattern"]
+            },
             /* A test with new functionality */
             // "https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation": {
-            //     propertyReactor: ["OntologyDesignPattern"],
+            //     propertyReactor: ["Pattern"],
             //     customQuery: [
             //         "?locationType ?startTime ?endTime ?latitude ?longitude ?siteLabel ?city ?depiction",
             //         `   <resourceURI> <${tITLURIs.hasTimeIndexedTypedLocation}> ?timeIndexedTypedLocation ; <http://xmlns.com/foaf/0.1/depiction> ?depiction. ?timeIndexedTypedLocation <http://www.w3.org/2000/01/rdf-schema#label> ?timeIndexedTypedLocationLabel ; <${tITLURIs.hasLocationType}> ?locationType ; <${tITLURIs.atTime}> ?timeInterval ; <${tITLURIs.atSite}>  ?site . ?site <${tITLURIs.hasGeometry}> ?geometry ; <http://www.w3.org/2000/01/rdf-schema#label> ?siteLabel ; <${tITLURIs.siteAddress}> ?address . ?address <${tITLURIs.hasCity}> ?city . ?geometry <${tITLURIs.lat}> ?latitude ; <${tITLURIs.long}> ?longitude . ?timeInterval <${tITLURIs.startTime}> ?startTime . OPTIONAL {?timeInterval <${tITLURIs.endTime}> ?endTimeNotBound .} BIND ( IF (BOUND (?endTimeNotBound), ?endTimeNotBound, '' )  as ?endTime  ) . `,
@@ -117,7 +120,7 @@ export default {
             //     patternIViewer: "TimeIndexedTypedLocation"
             // },
             "https://virtuoso.local/hasMusicalInstrumentCollection": {
-                propertyReactor: ["OntologyDesignPattern"],
+                propertyReactor: ["Pattern"],
                 customQuery: [
                     "?collectionLabel ?entityLabel ?depiction",
                     `<resourceURI> <${musicalInstrumentURIs.hasCollection}> ?collection . ?collection <${musicalInstrumentURIs.hasMember}> ?entity ; <http://www.w3.org/2000/01/rdf-schema#label> ?collectionLabel . ?entity <http://www.w3.org/2000/01/rdf-schema#label> ?entityLabel ; <http://xmlns.com/foaf/0.1/depiction> ?depiction . `,

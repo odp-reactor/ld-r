@@ -173,8 +173,6 @@ export default {
         handler: require("../components/reactors/ResourceReactor"),
         label: "Resource",
         action: (context, payload, done) => {
-            console.log("Resource query");
-            console.log(payload.params);
             //predicate Category
             let category = payload.params.pcategory;
             if (!category) {

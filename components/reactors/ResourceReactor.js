@@ -64,23 +64,137 @@ class ResourceReactor extends React.Component {
                     // console.log(
                     //     `[* debug *] properties: ${JSON.stringify(properties)}`
                     // );
-                    resourceReactor = ( <Resource enableAuthentication={enableAuthentication} datasetURI={datasetURI} properties={properties} resource={resourceURI} resourceType={resourceType} title={title} currentCategory={currentCategory} propertyPath={propertyPath} config={this.configMinus(config, [ 'resourceReactor' ])} error={error} /> ); 
+                    resourceReactor = (
+                        <Resource
+                            enableAuthentication={enableAuthentication}
+                            datasetURI={datasetURI}
+                            properties={properties}
+                            resource={resourceURI}
+                            resourceType={resourceType}
+                            title={title}
+                            currentCategory={currentCategory}
+                            propertyPath={propertyPath}
+                            config={this.configMinus(config, [
+                                'resourceReactor'
+                            ])}
+                            error={error}
+                        />
+                    );
                     break;
                 case 'UserResource':
-                    resourceReactor = ( <UserResource enableAuthentication={enableAuthentication} datasetURI={datasetURI} properties={properties} resource={resourceURI} resourceType={resourceType} title={title} currentCategory={currentCategory} propertyPath={propertyPath} config={this.configMinus(config, [ 'resourceReactor' ])} error={error} /> ); break;
+                    resourceReactor = (
+                        <UserResource
+                            enableAuthentication={enableAuthentication}
+                            datasetURI={datasetURI}
+                            properties={properties}
+                            resource={resourceURI}
+                            resourceType={resourceType}
+                            title={title}
+                            currentCategory={currentCategory}
+                            propertyPath={propertyPath}
+                            config={this.configMinus(config, [
+                                'resourceReactor'
+                            ])}
+                            error={error}
+                        />
+                    );
+                    break;
                 case 'PersonResource':
-                    resourceReactor = ( <PersonResource enableAuthentication={enableAuthentication} datasetURI={datasetURI} properties={properties} resource={resourceURI} resourceType={resourceType} title={title} currentCategory={currentCategory} propertyPath={propertyPath} config={this.configMinus(config, [ 'resourceReactor' ])} error={error} /> ); break;
+                    resourceReactor = (
+                        <PersonResource
+                            enableAuthentication={enableAuthentication}
+                            datasetURI={datasetURI}
+                            properties={properties}
+                            resource={resourceURI}
+                            resourceType={resourceType}
+                            title={title}
+                            currentCategory={currentCategory}
+                            propertyPath={propertyPath}
+                            config={this.configMinus(config, [
+                                'resourceReactor'
+                            ])}
+                            error={error}
+                        />
+                    );
+                    break;
                 case 'OrgResource':
-                    resourceReactor = ( <OrgResource enableAuthentication={enableAuthentication} datasetURI={datasetURI} properties={properties} resource={resourceURI} resourceType={resourceType} title={title} currentCategory={currentCategory} propertyPath={propertyPath} config={this.configMinus(config, [ 'resourceReactor' ])} error={error} /> ); break;
+                    resourceReactor = (
+                        <OrgResource
+                            enableAuthentication={enableAuthentication}
+                            datasetURI={datasetURI}
+                            properties={properties}
+                            resource={resourceURI}
+                            resourceType={resourceType}
+                            title={title}
+                            currentCategory={currentCategory}
+                            propertyPath={propertyPath}
+                            config={this.configMinus(config, [
+                                'resourceReactor'
+                            ])}
+                            error={error}
+                        />
+                    );
+                    break;
                 case 'CSVMappingResource':
-                    resourceReactor = ( <CSVMappingResource enableAuthentication={enableAuthentication} datasetURI={datasetURI} properties={properties} resource={resourceURI} resourceType={resourceType} title={title} currentCategory={currentCategory} propertyPath={propertyPath} config={this.configMinus(config, [ 'resourceReactor' ])} error={error} /> ); break;
+                    resourceReactor = (
+                        <CSVMappingResource
+                            enableAuthentication={enableAuthentication}
+                            datasetURI={datasetURI}
+                            properties={properties}
+                            resource={resourceURI}
+                            resourceType={resourceType}
+                            title={title}
+                            currentCategory={currentCategory}
+                            propertyPath={propertyPath}
+                            config={this.configMinus(config, [
+                                'resourceReactor'
+                            ])}
+                            error={error}
+                        />
+                    );
+                    break;
                 default:
-                    resourceReactor = ( <Resource enableAuthentication={enableAuthentication} datasetURI={datasetURI} properties={properties} resource={resourceURI} resourceType={resourceType} title={title} currentCategory={currentCategory} propertyPath={propertyPath} config={this.configMinus(config, [ 'resourceReactor' ])} error={error} /> ); }
+                    resourceReactor = (
+                        <Resource
+                            enableAuthentication={enableAuthentication}
+                            datasetURI={datasetURI}
+                            properties={properties}
+                            resource={resourceURI}
+                            resourceType={resourceType}
+                            title={title}
+                            currentCategory={currentCategory}
+                            propertyPath={propertyPath}
+                            config={this.configMinus(config, [
+                                'resourceReactor'
+                            ])}
+                            error={error}
+                        />
+                    );
+            }
         } else {
-            resourceReactor = ( <Resource enableAuthentication={enableAuthentication} datasetURI={datasetURI} properties={properties} resource={resourceURI} resourceType={resourceType} title={title} currentCategory={currentCategory} propertyPath={propertyPath} config={this.configMinus(config, ['resourceReactor'])} error={error} /> ); }
+            resourceReactor = (
+                <Resource
+                    enableAuthentication={enableAuthentication}
+                    datasetURI={datasetURI}
+                    properties={properties}
+                    resource={resourceURI}
+                    resourceType={resourceType}
+                    title={title}
+                    currentCategory={currentCategory}
+                    propertyPath={propertyPath}
+                    config={this.configMinus(config, ['resourceReactor'])}
+                    error={error}
+                />
+            );
+        }
         let newPropDIV = '';
-        if ( !error && config && config.allowPropertyNew && !config.readOnly && (config.userIsCreator || config.userIsEditor) ) 
-        {
+        if (
+            !error &&
+            config &&
+            config.allowPropertyNew &&
+            !config.readOnly &&
+            (config.userIsCreator || config.userIsEditor)
+        ) {
             newPropDIV = (
                 <div className="ui fluid container ldr-padding-more">
                     <div className="ui grid">
@@ -113,6 +227,7 @@ class ResourceReactor extends React.Component {
                                 <button
                                     className="fluid ui primary icon button"
                                     onClick={this.handleNewProperty.bind(this)}
+                                    style={{ maxWidth: 300, margin: 'auto' }}
                                 >
                                     <i className="icon square add"></i>Add
                                     Property/Value

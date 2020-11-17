@@ -6,13 +6,6 @@ class ResourceQuery extends SPARQLQuery {
         super();
         this.prefixes = this.prefixes + '';
     }
-    prepareQueryBody(resourceURI, queryBody) {
-        // replace all occurences of a placeholder with resourceURI
-        var resourcePlaceholder = 'resourceURI';
-        var re = new RegExp(resourcePlaceholder, 'g');
-        let cleanQueryBody = queryBody.replace(re, resourceURI);
-        return cleanQueryBody;
-    }
     createDynamicURI(datasetURI, prefix) {
         let newResourceURI =
             datasetURI + '/' + prefix + Math.round(+new Date() / 1000);
@@ -41,37 +34,25 @@ class ResourceQuery extends SPARQLQuery {
         return this.query;
     }
 
-    /**
-     * Function creates query to retrieve all the patterns in a Knowledge Base
-     * and count the instances for the every pattern
-     */
-    getPatternList(graphName) {
-        let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT ?pattern ?count(DISTINCT ?instance as ?occurences) WHERE {
-            ${gStart}
-               ?istance a ?pattern
-            ${gEnd}
-        }`;
-        return this.query;
-    }
-
     getPatternProperties(
         graphName,
         resourceURI,
         selectStatement,
-        customQueryBody,
+        queryBody,
         aggregatesBlock
     ) {
         // groupByStatement default to ''
         let { gStart, gEnd } = this.prepareGraphName(graphName);
-        let cleanedQueryBody = this.prepareQueryBody(
+        const resourcePlaceholder = 'resourceURI';
+        let cleanQueryBody = this.prepareQueryBody(
             resourceURI,
-            customQueryBody
+            resourcePlaceholder,
+            queryBody
         );
         this.query = `
             SELECT ${selectStatement} WHERE {
                 ${gStart} 
-                    ${cleanedQueryBody}
+                    ${cleanQueryBody}
                 ${gEnd}
             } ${aggregatesBlock}
         `;

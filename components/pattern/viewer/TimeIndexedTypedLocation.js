@@ -1,9 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-import { connectToStores } from 'fluxible-addons-react';
-import TITLocationStore from '../../../stores/TITLocationStore';
-
 /**
  * This component is a wrapper around the one provide by the ld-ui-react package.
  * Define here the props to be passed to that.
@@ -18,10 +14,6 @@ class TimeIndexedTypedLocation extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        this.props.fetchData();
-    }
-
     render() {
         /* 
            We need to check if env is BROWSER as leaflet require window object to
@@ -31,14 +23,12 @@ class TimeIndexedTypedLocation extends React.Component {
         */
         console.log(process.env.BROWSER);
         if (process.env.BROWSER) {
-            if (this.props.TITLocationStore.patternData) {
+            if (this.props.titLocations) {
                 let TimeIndexedTypedLocation = require('ld-ui-react')
                     .TimeIndexedTypedLocation;
                 return (
                     <TimeIndexedTypedLocation
-                        timeIndexedTypedLocations={
-                            this.props.TITLocationStore.patternData
-                        }
+                        timeIndexedTypedLocations={this.props.titLocations}
                     ></TimeIndexedTypedLocation>
                 );
             } else {
@@ -47,19 +37,5 @@ class TimeIndexedTypedLocation extends React.Component {
         } else console.log(`server side, browser => ${process.env.BROWSER}`);
     }
 }
-
-TimeIndexedTypedLocation.contextTypes = {
-    executeAction: PropTypes.func.isRequired,
-    getUser: PropTypes.func
-};
-TimeIndexedTypedLocation = connectToStores(
-    TimeIndexedTypedLocation,
-    [TITLocationStore],
-    function(context, props) {
-        return {
-            TITLocationStore: context.getStore(TITLocationStore).getState()
-        };
-    }
-);
 
 export default TimeIndexedTypedLocation;

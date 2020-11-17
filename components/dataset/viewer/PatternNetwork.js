@@ -57,25 +57,17 @@ export default class PatternNetwork extends React.Component {
     }
 
     render() {
-        const datasetContainerStyle = {
-            height: '100vh',
-            width: '100vw',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: 'auto'
-        };
-
         if (this.props.PatternStore.list) {
             if (process.env.BROWSER) {
                 let PatternNetwork = require('ld-ui-react').PatternNetwork;
 
                 // we dependency inject the function to get instances by pattern URI
-                const getInstances = patternURI => {
+                // node is a Graphin node
+                const getInstances = node => {
                     this.context.executeAction(navigateAction, {
                         url: `/datasets/${encodeURIComponent(
                             this.props.datasetURI
-                        )}/patterns/${encodeURIComponent(patternURI[0])}`
+                        )}/patterns/${encodeURIComponent(node.id)}`
                     });
                 };
 
@@ -85,7 +77,7 @@ export default class PatternNetwork extends React.Component {
                         getInstances={getInstances}
                     ></PatternNetwork>
                 );
-            }
+            } else return null;
         } else return null;
         // TODO: need to find a way to pospone the loader
         // return (

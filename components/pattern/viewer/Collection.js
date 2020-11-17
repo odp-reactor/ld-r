@@ -1,10 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-import { connectToStores } from 'fluxible-addons-react';
-
-import CollectionStore from '../../../stores/CollectionStore';
-
 /**
  * This component is a wrapper around the one provide by the ld-ui-react package.
  * Define here the props to be passed to that.
@@ -28,10 +23,10 @@ class Collection extends React.Component {
             entityImage: 'custom-collection-image'
         };
         let Collection = require('ld-ui-react').Collection;
-        if (this.props.CollectionStore.patternData) {
+        if (this.props.collection) {
             return (
                 <Collection
-                    entities={this.props.CollectionStore.patternData}
+                    entities={this.props.collection}
                     class={customClasses}
                 ></Collection>
             );
@@ -40,16 +35,5 @@ class Collection extends React.Component {
         }
     }
 }
-
-Collection.contextTypes = {
-    executeAction: PropTypes.func.isRequired,
-    getUser: PropTypes.func
-};
-Collection = connectToStores(Collection, [CollectionStore], function(
-    context,
-    props
-) {
-    return { CollectionStore: context.getStore(CollectionStore).getState() };
-});
 
 export default Collection;

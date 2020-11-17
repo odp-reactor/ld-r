@@ -242,7 +242,7 @@ export default {
                     );
                 }
             );
-        } else if (resource === 'resource.patternData') {
+        } else if (resource === 'resource.pattern') {
             datasetURI =
                 params.dataset && params.dataset !== '0'
                     ? decodeURIComponent(params.dataset)

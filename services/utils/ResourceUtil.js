@@ -346,6 +346,7 @@ class ResourceUtil {
             dataToReturn[i] = objectToReturn;
         }
         console.log(dataToReturn);
+        // check patternName in the query result
         callback(null, {
             patternData: dataToReturn
         });
@@ -353,8 +354,8 @@ class ResourceUtil {
 
     getCustomQuery(property) {
         if (config.property[property]) {
-            if (config.property[property].customQuery)
-                return config.property[property].customQuery;
+            if (config.property[property].query)
+                return config.property[property].query;
             else
                 return `[!] Err: no custom query specified for property ${property}`;
         } else {

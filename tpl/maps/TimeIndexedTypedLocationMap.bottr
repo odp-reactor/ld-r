@@ -29,7 +29,7 @@
                             ?date
                             ?locationType
                                # we hack instance URI as UUID() doesn't work in virtuoso => it's new ns + other resource UUID
-                            (URI(CONCAT ("https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern", STRAFTER(STR(?tITL), "https://w3id.org/arco/resource/TimeIndexedTypedLocation/"))) as ?instanceIRI)
+                            (URI(CONCAT ("https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern", STRAFTER(STR(?tITL), "https://w3id.org/arco/resource/TimeIndexedTypedLocation"))) as ?instanceIRI)
                             ?instanceType
              WHERE
                    {

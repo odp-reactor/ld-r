@@ -17,29 +17,35 @@
         ottr:sourceURL "https://dati.beniculturali.it/sparql" ] ;
   ottr:query """
             SELECT ?collection 
+                   ?collectionType
                    ?members
+                   ?memberType
                    #?memberCount
                       # we hack instance URI as UUID() doesn't work in virtuoso => it's new ns + other resource UUID
                    (URI(CONCAT ("https://w3id.org/arco/resource/MeasurementCollectionPattern", STRAFTER(STR(?collection), "https://w3id.org/arco/resource/MeasurementCollection"))) as ?instanceIRI)
                    ?instanceType     
             WHERE
             {
+                   ?collection a ?collectionType .
+                   ?member a ?memberType .
+                   VALUES ?collectionType { a-dd:MeasurementCollection } .
+                   VALUES ?memberType { a-dd:Measurement } .
                    OPTIONAL {?patternInstanceUnboundable a rdf:PatternInstanceHackToAssignType . }
                    BIND ( IF (BOUND  (?patternInstanceUnboundable), a-dd:measurement-collection, a-dd:measurement-collection )  as ?instanceType  ) .
                   {
                    SELECT ?collection 
                           (GROUP_CONCAT(DISTINCT ?member; SEPARATOR=";") AS ?members)
                           #(COUNT(DISTINCT ?member) AS ?memberCount)      
-                   WHERE
-                   {
-	                        ?collection a-dd:hasMeasurement ?member.
-                          ?collection a a-dd:MeasurementCollection . 
-                          ?member a a-dd:Measurement .
-                   }
-                   GROUP BY ?collection 
-                   #HAVING (count(distinct ?member) > 1)
+                         WHERE
+                          {
+	                                ?collection a-dd:hasMeasurement ?member.
+                                  ?collection a a-dd:MeasurementCollection . 
+                                  ?member a a-dd:Measurement .
+                          }
+                         GROUP BY ?collection 
+                         #HAVING (count(distinct ?member) > 1)
                   }
-            }    
+            }     
             LIMIT 10 
 """;
   ottr:template odp-tpl:MeasurementCollection ;

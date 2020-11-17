@@ -5,14 +5,9 @@ import { connectToStores } from 'fluxible-addons-react';
 /* Flux
 _________*/
 
-import loadPatterns from '../../../actions/loadPatterns';
-import loadPatternSpecializations from '../../../actions/loadPatternSpecializations';
-import loadPatternCompositions from '../../../actions/loadPatternCompositions';
-import loadPatternCompositionCount from '../../../actions/loadPatternCompositionCount';
-import loadPatternSpecializationCount from '../../../actions/loadPatternSpecializationCount';
 import PatternStore from '../../../stores/PatternStore';
 import ApplicationStore from '../../../stores/ApplicationStore';
-import CustomLoader from '../../CustomLoader';
+import DatasetStore from '../../../stores/DatasetStore';
 import { navigateAction } from 'fluxible-router';
 
 export default class PatternInstancesNetwork extends React.Component {
@@ -20,33 +15,12 @@ export default class PatternInstancesNetwork extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        this.fetchData();
-    }
-
-    fetchData() {
-        // insert here action to load data if required
-    }
-
     render() {
-        const datasetContainerStyle = {
-            height: '100vh',
-            width: '100vw',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: 'auto'
-        };
-
-        // we dependency inject the function to get instances by pattern URI
-        const getInstance = () => {
-            'running getInstance';
+        const getInstance = node => {
             this.context.executeAction(navigateAction, {
                 url: `/dataset/${encodeURIComponent(
-                    this.props.datasetURI
-                )}/resourceTypeHere/${encodeURIComponent(
-                    'http://www.ontologydesignpatterns.org/cp/owl/collection'
-                )}`
+                    this.props.DatasetStore.dataset.datasetURI
+                )}/resource/${encodeURIComponent(node.id)}`
             });
         };
 
@@ -61,7 +35,7 @@ export default class PatternInstancesNetwork extends React.Component {
                         getInstance={getInstance}
                     ></PatternInstancesNetwork>
                 );
-            }
+            } else return null;
         } else return null;
         // TODO: need to find a way to pospone the loader
         // return (
@@ -78,11 +52,12 @@ PatternInstancesNetwork.contextTypes = {
 };
 PatternInstancesNetwork = connectToStores(
     PatternInstancesNetwork,
-    [PatternStore, ApplicationStore],
+    [PatternStore, ApplicationStore, DatasetStore],
     function(context, props) {
         return {
             PatternStore: context.getStore(PatternStore).getState(),
-            ApplicationStore: context.getStore(ApplicationStore).getState()
+            ApplicationStore: context.getStore(ApplicationStore).getState(),
+            DatasetStore: context.getStore(DatasetStore).getState()
         };
     }
 );
