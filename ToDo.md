@@ -1,29 +1,8 @@
 # TODO list
-- Design a smart routing algorithm for default routing of components (e.g. based on value types or components metadata).
-- Add interface for more Triple stores other than Virtuoso and Stardog.
-- Consider Language tag in SPARQL Queries.
-- Support LD-Fragment for streaming query results (useful esp. in facets).
-- Add infinite scrolling features to facets.
-- Add more customized facets (e.g. for taxonomical data, timeline, etc.).
-- Implement Aggregate Property Reactor.
-- In case of resource access level, find a way to update user session after a new resource is created by the user.
-- Adding Microdata annotations to components
-- test agg objects + Queries
-- add http authentication Support
-- extend export plugin for faceted browser and other cases when not all triples are needed
 
-# Fork TODO list
-- Handle state management for Odp View. At the moment: 
-	for each View/Pattern:
-		- create a pattern action that dispatch pattern events (they all maikes request to the same Endpoint) 
-		- create a pattern store to collect data for the pattern
-		- create a PatternViewWrapper (it wraps the view on the framework side and feed it with params and call fetchData)
-		    - write fetchData calling loadPatternAction
-		- add a switch to OntologyDesignPattern reactor with that Wrapper
+-   analyze faceted browser to understand if you can integrate its facet with PatternInstance visualizations
 
-- Add dynamic configuration for OntologyDesignPattern reactor (creates and reads the config from Configuration Graph instead of file)
-	the action too
-- (demo) add graphql + apollo + next.js + redux state management for ODPs
-
-
-REGISTER FETCHR AND STORE PROVIDER
+-   load multiple instance at the same time
+-   add geocoding possibility from address information if lat/long are not in the KG (TimeIndexedTypedLocationView)
+-   decide interaction you load an instance. Example: Collection is loaded: you see the list of resources, onClick load the instance (you need to pass a onResourceClick to ld-ui-react visualizations)
+-   when all the data required for an instance visualization are not in the KG, land on generic default ones by LD-R

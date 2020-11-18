@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 
-import PropertyHeader from '../property/PropertyHeader';
-
 /* Flux
 _________*/
 
@@ -14,8 +12,8 @@ import PatternInstanceStore from '../../stores/PatternInstanceStore';
 /* Visual Patterns
 ______________________________*/
 
-import TimeIndexedTypedLocation from './viewer/TimeIndexedTypedLocation';
-import Collection from './viewer/Collection';
+import TimeIndexedTypedLocationView from './viewer/TimeIndexedTypedLocationView';
+import CollectionView from './viewer/CollectionView';
 
 import PatternUtil from '../../services/utils/PatternUtil';
 const patternUtil = new PatternUtil();
@@ -106,7 +104,7 @@ export default class Pattern extends React.Component {
         switch (patternView) {
             case 'TimeIndexedTypedLocation':
                 return (
-                    <TimeIndexedTypedLocation
+                    <TimeIndexedTypedLocationView
                         pattern={patternURI}
                         dataset={this.props.datasetURI}
                         instanceResources={instanceResources}
@@ -114,7 +112,7 @@ export default class Pattern extends React.Component {
                 );
             case 'Collection':
                 return (
-                    <Collection
+                    <CollectionView
                         pattern={patternURI}
                         dataset={this.props.datasetURI}
                         instanceResources={instanceResources}
