@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import DatasetStore from '../../stores/DatasetStore';
 import { connectToStores } from 'fluxible-addons-react';
 import { enableAuthentication } from '../../configs/general';
-import getResourcesCount from '../../actions/getResourcesCount';
 import Dataset from '../dataset/Dataset';
 import cloneResource from '../../actions/cloneResource';
 import createResource from '../../actions/createResource';
-import PatternNetwork from '../dataset/viewer/PatternNetwork';
+import PatternNetworkView from '../dataset/viewer/PatternNetworkView';
 
 class DatasetReactor extends React.Component {
     componentDidMount() {}
@@ -69,7 +68,7 @@ class DatasetReactor extends React.Component {
                     break;
                 case 'PatternNetwork':
                     datasetReactor = (
-                        <PatternNetwork
+                        <PatternNetworkView
                             enableAuthentication={enableAuthentication}
                             datasetURI={datasetURI}
                             resources={resources}
@@ -86,7 +85,7 @@ class DatasetReactor extends React.Component {
                             onCreateResource={this.handleCreateResource.bind(
                                 this
                             )}
-                        ></PatternNetwork>
+                        ></PatternNetworkView>
                     );
                     break;
                 default:

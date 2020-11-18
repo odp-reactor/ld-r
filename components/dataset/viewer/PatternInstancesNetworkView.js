@@ -10,7 +10,7 @@ import ApplicationStore from '../../../stores/ApplicationStore';
 import DatasetStore from '../../../stores/DatasetStore';
 import { navigateAction } from 'fluxible-router';
 
-export default class PatternInstancesNetwork extends React.Component {
+export default class PatternInstancesNetworkView extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -24,18 +24,16 @@ export default class PatternInstancesNetwork extends React.Component {
             });
         };
 
-        if (this.props.PatternStore.instances) {
-            if (process.env.BROWSER) {
-                let PatternInstancesNetwork = require('ld-ui-react')
-                    .PatternInstancesNetwork;
+        const PatternInstancesNetwork = require('ld-ui-react')
+            .PatternInstancesNetwork;
 
-                return (
-                    <PatternInstancesNetwork
-                        patterns={this.props.PatternStore}
-                        getInstance={getInstance}
-                    ></PatternInstancesNetwork>
-                );
-            } else return null;
+        if (this.props.PatternStore.instances) {
+            return (
+                <PatternInstancesNetwork
+                    patterns={this.props.PatternStore}
+                    getInstance={getInstance}
+                ></PatternInstancesNetwork>
+            );
         } else return null;
         // TODO: need to find a way to pospone the loader
         // return (
@@ -46,12 +44,12 @@ export default class PatternInstancesNetwork extends React.Component {
     }
 }
 
-PatternInstancesNetwork.contextTypes = {
+PatternInstancesNetworkView.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
-PatternInstancesNetwork = connectToStores(
-    PatternInstancesNetwork,
+PatternInstancesNetworkView = connectToStores(
+    PatternInstancesNetworkView,
     [PatternStore, ApplicationStore, DatasetStore],
     function(context, props) {
         return {

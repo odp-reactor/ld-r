@@ -18,7 +18,6 @@ import TimeIndexedTypedLocation from './viewer/TimeIndexedTypedLocation';
 import Collection from './viewer/Collection';
 
 import PatternUtil from '../../services/utils/PatternUtil';
-
 const patternUtil = new PatternUtil();
 
 export default class Pattern extends React.Component {
@@ -124,11 +123,7 @@ export default class Pattern extends React.Component {
             default:
                 return instanceResources ? (
                     <div style={{ color: 'red' }}>No visual pattern found</div>
-                ) : (
-                    <div style={{ color: 'red' }}>
-                        No resources belonging to pattern instance
-                    </div>
-                );
+                ) : null;
         }
     }
 }

@@ -1,7 +1,6 @@
 import CollectionUris from "./classes/CollectionUris";
 
-/** #PREFIXES */
-const a_dd = "https://w3id.org/arco/ontology/denotative-description/";
+import { a_dd } from "./prefixes";
 
 /**
  * @type {CollectionUris}

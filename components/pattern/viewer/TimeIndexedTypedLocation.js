@@ -1,17 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connectToStores } from 'fluxible-addons-react';
+import fetchInstanceData from './fetchInstanceData';
+import PatternInstanceStore from '../../../stores/PatternInstanceStore';
+
+import CustomLoader from '../../CustomLoader';
 
 /**
- * This component is a wrapper around the one provide by the ld-ui-react package.
- * Define here the props to be passed to that.
- * In future you can define the interaction and event handlers for it.
+ * @description This component is a model for the corresponding view provided by the ld-ui-react package.
  *
- * It takes care to check browser environment
- *
+ * It loads data to pass to the visualization.
+ * It can takes care to check browser environment.
+ * It defines a visualization logic: if no minimum required data are present shift to more generic views
+ *     (Example: no coordinates? Try to geocode them. No result show simpler visualization)
+ * It defines interactive function for the application (onClickHandlers, fetchData ... )
+ * @component
  * @param {Object} props React props
+ * @author Christian Colonna
+ * @class Collection
+ * @extends {React.Component}
  */
-class TimeIndexedTypedLocation extends React.Component {
+class TimeIndexedTypedLocationView extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        fetchInstanceData(this.props, this.context);
     }
 
     render() {
@@ -21,10 +36,10 @@ class TimeIndexedTypedLocation extends React.Component {
            TimeIndexedTypedLocation pattern imports leaflet
             _______________________________________________________________________
         */
-        console.log(process.env.BROWSER);
+        console.log(this.props);
         if (process.env.BROWSER) {
-            if (this.props.titLocations) {
-                let TimeIndexedTypedLocation = require('ld-ui-react')
+            if (this.props.data.instanceData.tITLocations) {
+                let TimeIndexedTypedLocation = require('ld-ui-react/lib/client-side')
                     .TimeIndexedTypedLocation;
                 return (
                     <TimeIndexedTypedLocation
@@ -32,10 +47,28 @@ class TimeIndexedTypedLocation extends React.Component {
                     ></TimeIndexedTypedLocation>
                 );
             } else {
-                return <div>!Spinner!</div>;
+                return (
+                    <div style={{ textAlign: 'center' }}>
+                        <CustomLoader></CustomLoader>
+                    </div>
+                );
             }
-        } else console.log(`server side, browser => ${process.env.BROWSER}`);
+        }
     }
 }
 
-export default TimeIndexedTypedLocation;
+TimeIndexedTypedLocationView.contextTypes = {
+    executeAction: PropTypes.func.isRequired,
+    getUser: PropTypes.func
+};
+TimeIndexedTypedLocationView = connectToStores(
+    TimeIndexedTypedLocationView,
+    [PatternInstanceStore],
+    function(context, props) {
+        return {
+            data: context.getStore(PatternInstanceStore).getInstanceData()
+        };
+    }
+);
+
+export default TimeIndexedTypedLocationView;

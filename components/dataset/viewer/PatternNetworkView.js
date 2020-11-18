@@ -12,10 +12,9 @@ import loadPatternCompositionCount from '../../../actions/loadPatternComposition
 import loadPatternSpecializationCount from '../../../actions/loadPatternSpecializationCount';
 import PatternStore from '../../../stores/PatternStore';
 import ApplicationStore from '../../../stores/ApplicationStore';
-import CustomLoader from '../../CustomLoader';
 import { navigateAction } from 'fluxible-router';
 
-export default class PatternNetwork extends React.Component {
+export default class PatternNetworkView extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -57,26 +56,25 @@ export default class PatternNetwork extends React.Component {
 
     render() {
         if (this.props.PatternStore.list) {
-            if (process.env.BROWSER) {
-                let PatternNetwork = require('ld-ui-react').PatternNetwork;
+            // we dependency inject the function to get instances by pattern URI
+            // node is a Graphin node
 
-                // we dependency inject the function to get instances by pattern URI
-                // node is a Graphin node
-                const getInstances = node => {
-                    this.context.executeAction(navigateAction, {
-                        url: `/datasets/${encodeURIComponent(
-                            this.props.datasetURI
-                        )}/patterns/${encodeURIComponent(node.id)}`
-                    });
-                };
+            const getInstances = node => {
+                this.context.executeAction(navigateAction, {
+                    url: `/datasets/${encodeURIComponent(
+                        this.props.datasetURI
+                    )}/patterns/${encodeURIComponent(node.id)}`
+                });
+            };
 
-                return (
-                    <PatternNetwork
-                        patterns={this.props.PatternStore}
-                        getInstances={getInstances}
-                    ></PatternNetwork>
-                );
-            } else return null;
+            const PatternNetwork = require('ld-ui-react').PatternNetwork;
+
+            return (
+                <PatternNetwork
+                    patterns={this.props.PatternStore}
+                    getInstances={getInstances}
+                ></PatternNetwork>
+            );
         } else return null;
         // TODO: need to find a way to pospone the loader
         // return (
@@ -87,12 +85,12 @@ export default class PatternNetwork extends React.Component {
     }
 }
 
-PatternNetwork.contextTypes = {
+PatternNetworkView.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
-PatternNetwork = connectToStores(
-    PatternNetwork,
+PatternNetworkView = connectToStores(
+    PatternNetworkView,
     [PatternStore, ApplicationStore],
     function(context, props) {
         return {

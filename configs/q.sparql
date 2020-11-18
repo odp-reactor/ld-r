@@ -1,0 +1,54 @@
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+        PREFIX ldr: <https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        PREFIX dcterms: <http://purl.org/dc/terms/>
+        PREFIX void: <http://rdfs.org/ns/void#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+        PREFIX DBpedia: <http://dbpedia.org/ontology/>
+        PREFIX Schema: <http://schema.org/>
+        
+            PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+            
+            SELECT DISTINCT
+                            ?cProp ?depiction ?tITLLabel ?locationType 
+                            ?lat ?long  ?addressLabel  
+                            ?startTime  ?endTime 
+                          WHERE
+                         {
+                GRAPH <http://arco.istc.cnr.it/ldr/arco-toy> { 
+                    
+                       ?cProp <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-alternative-1> .
+                       <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType>  ?locationType .
+                
+                                                     # if no site no chance we can't project it on the map
+                       <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-alternative-1> <https://w3id.org/arco/ontology/location/atSite> ?site .
+                       ?site <https://w3id.org/arco/ontology/location/atSite>     ?siteAddress .
+                
+                       OPTIONAL  { <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-alternative-1> <https://w3id.org/italia/onto/TI/atTime> ?timeInterval } . 
+                       OPTIONAL  { ?timeInterval <https://w3id.org/arco/ontology/arco/startTime> ?startTime2B } .
+                       OPTIONAL  { ?timeInterval <https://w3id.org/arco/ontology/arco/endTime>   ?endTime2B   } .
+                
+                       OPTIONAL  { ?site <https://w3id.org/italia/onto/CLV/hasGeometry> ?geometry .
+                                   ?geometry <https://w3id.org/italia/onto/CLV/lat>     ?lat2B .
+                                   ?geometry <https://w3id.org/italia/onto/CLV/long>    ?long2B .   }
+                       
+                       # catch information to try geocoding lat/long if they are missing       
+                       OPTIONAL { ?siteAddress <http://www.w3.org/2000/01/rdf-schema#label>   ?addressLabel2B .} 
+                               
+                       OPTIONAL  { <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1200530869-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> ?tITLLabel2B .
+                                                                         FILTER langMatches(lang(?tITLLabel2B), "it") }.
+                       OPTIONAL  { ?cProp <http://xmlns.com/foaf/0.1/depiction> ?depiction2B . }.
+                
+                       BIND ( IF (BOUND (?depiction2B), ?depiction2B, ''    )  as ?depiction    ) . 
+                       BIND ( IF (BOUND (?tITLLabel2B), ?tITLLabel2B, ''    )  as ?tITLLabel    ) . 
+                       BIND ( IF (BOUND (?lat2B),  ?lat2B,  ''              )  as ?lat          ) . 
+                       BIND ( IF (BOUND (?long2B), ?long2B, ''              )  as ?long         ) . 
+                       BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .  
+                       BIND ( IF (BOUND (?startTime2B),?startTime2B,      '')  as ?startTime    ) .         
+                       BIND ( IF (BOUND (?endTime2B),  ?endTime2B,        '')  as ?endTime      ) .         
+                
+                 } 
+            } LIMIT 1

@@ -1,10 +1,3 @@
-import {
-    musicalInstrumentURIs,
-    measurementURIs
-} from "./pattern_uris/collection";
-
-import { tITLURIs } from "./pattern_uris/timeIndexedTypedLocation";
-
 export default {
     // config = scope + spec
     // scope is one the 15 combination of dataset, resource, property and object
@@ -55,16 +48,6 @@ export default {
                     "http://www.w3.org/2000/01/rdf-schema#label"
                 ]
             }
-            /*
-            'http://virtuoso.local/mappings': {
-                readOnly: 0,
-                resourceFocusType: ['https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#CSVMapping'],
-                datasetLabel: ['LD-R Mapping Configurations'],
-                resourceLabelProperty: ['http://www.w3.org/2000/01/rdf-schema#label']
-            },
-*/
-            //example reactor config
-
             /*	    'http://dati.beniculturali.it/sparql/': {
 		readOnly: 0,
                 //allowInlineConfig: 0,
@@ -88,11 +71,6 @@ export default {
                 usePropertyCategories: 1,
                 propertyCategories: ["General", "Specific"]
             }
-            /*'https://w3id.org/arco/ontology/arco/CulturalProperty': {
-                treatAsResourceType: 1,
-                usePropertyCategories: 1,
-                propertyCategories: ['General']
-	    },*/
         },
         property: {
             generic: {
@@ -106,37 +84,11 @@ export default {
                 extendedOViewer: ["BasicIndividualDetailView"],
                 shortenURI: 1
             },
+            /* All the opla annotated pattern will be treated by Pattern reactor 
+            ____________________________________________________________________*/
             "http://ontologydesignpatterns.org/opla/isPatternInstanceOf": {
                 propertyReactor: ["Pattern"]
             },
-            /* A test with new functionality */
-            // "https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation": {
-            //     propertyReactor: ["Pattern"],
-            //     customQuery: [
-            //         "?locationType ?startTime ?endTime ?latitude ?longitude ?siteLabel ?city ?depiction",
-            //         `   <resourceURI> <${tITLURIs.hasTimeIndexedTypedLocation}> ?timeIndexedTypedLocation ; <http://xmlns.com/foaf/0.1/depiction> ?depiction. ?timeIndexedTypedLocation <http://www.w3.org/2000/01/rdf-schema#label> ?timeIndexedTypedLocationLabel ; <${tITLURIs.hasLocationType}> ?locationType ; <${tITLURIs.atTime}> ?timeInterval ; <${tITLURIs.atSite}>  ?site . ?site <${tITLURIs.hasGeometry}> ?geometry ; <http://www.w3.org/2000/01/rdf-schema#label> ?siteLabel ; <${tITLURIs.siteAddress}> ?address . ?address <${tITLURIs.hasCity}> ?city . ?geometry <${tITLURIs.lat}> ?latitude ; <${tITLURIs.long}> ?longitude . ?timeInterval <${tITLURIs.startTime}> ?startTime . OPTIONAL {?timeInterval <${tITLURIs.endTime}> ?endTimeNotBound .} BIND ( IF (BOUND (?endTimeNotBound), ?endTimeNotBound, '' )  as ?endTime  ) . `,
-            //         ""
-            //     ],
-            //     patternIViewer: "TimeIndexedTypedLocation"
-            // },
-            "https://virtuoso.local/hasMusicalInstrumentCollection": {
-                propertyReactor: ["Pattern"],
-                customQuery: [
-                    "?collectionLabel ?entityLabel ?depiction",
-                    `<resourceURI> <${musicalInstrumentURIs.hasCollection}> ?collection . ?collection <${musicalInstrumentURIs.hasMember}> ?entity ; <http://www.w3.org/2000/01/rdf-schema#label> ?collectionLabel . ?entity <http://www.w3.org/2000/01/rdf-schema#label> ?entityLabel ; <http://xmlns.com/foaf/0.1/depiction> ?depiction . `,
-                    ""
-                ],
-                patternIViewer: "Collection"
-            },
-            // "https://w3id.org/arco/ontology/denotative-description/hasMeasurementCollection": {
-            //     propertyReactor: ["OntologyDesignPattern"],
-            //     customQuery: [
-            //         "?collectionLabel ?entityLabel ?depiction ",
-            //         ` <resourceURI> <${measurementURIs.hasCollection}> ?collection . ?collection <http://www.w3.org/2000/01/rdf-schema#label> ?collectionLabel ; <${measurementURIs.hasMember}> ?entity . ?entity <${measurementURIs.hasMemberType}> ?mt . ?mt <http://www.w3.org/2000/01/rdf-schema#label> ?entityLabel .  OPTIONAL {?entity <http://xmlns.com/foaf/0.1/depiction> ?depictionNotBound .} BIND ( IF (BOUND  (?depictionNotBound), ?depictionNotBound, '' )  as ?depiction  ) . `,
-            //         ""
-            //     ],
-            //     patternIViewer: "Collection"
-            // },
             "http://xmlns.com/foaf/0.1/depiction": {
                 objectIViewer: ["BasicImageView"]
             },
@@ -191,20 +143,6 @@ export default {
                     resourceReactor: ["UserResource"]
                 }
             }
-            /*
-            'http://virtuoso.local/mappings': {
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#CSVMapping' :{
-                    treatAsResourceType: 1,
-                    resourceReactor: ['CSVMappingResource']
-                },
-
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#CustomMapping' :{
-                    treatAsResourceType: 1,
-                    objectIEditor: ['PrefixBasedInput'],
-                    objectIViewer: ['PrefixBasedView']
-                }
-            }
-*/
         },
         dataset_property: {
             //for configuration manager
@@ -678,33 +616,6 @@ export default {
                     objectIEditor: ["DBpediaInput"]
                 }
             }
-            //for mappings
-            /*            'http://virtuoso.local/mappings': {
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#csvFile': {
-                    readOnlyProperty: 1,
-                    label: ['CSV File']
-                },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#skippedColumns': {
-                    allowNewValue: 1,
-                    allowPropertyDelete: 1,
-                    label: ['Skipped Columns'],
-                    hint: ['The selected columns will not be included in the generated RDF file.']
-                },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#idColumn': {
-                    label: ['ID Column'],
-                    hint: ['A combination of this column and the resource prefix will be used to create URIs for the entities.']
-                },
-                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': {
-                    readOnlyProperty: 1,
-                    isHidden: 1
-                },
-                'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#entityType': {
-                    objectIEditor: ['PrefixBasedInput'],
-                    objectIViewer: ['PrefixBasedView'],
-                    includeOnly: ['classes']
-                }
-            }
-*/
         },
         resource_property: {},
         //---------depth 3------------

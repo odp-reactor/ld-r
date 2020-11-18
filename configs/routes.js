@@ -232,7 +232,7 @@ export default {
         path: "/datasets/:did/patterns/:pid",
         method: "get",
         // add checks on fetch data (catch them only if the PatternStore is empty)
-        handler: require("../components/dataset/viewer/PatternInstancesNetwork"),
+        handler: require("../components/dataset/viewer/PatternInstancesNetworkView"),
         label: "Pattern Instances",
         action: (context, payload, done) => {
             let datasetURI = payload.params.did;
