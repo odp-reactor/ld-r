@@ -8,8 +8,17 @@
 @prefix owl:        <http://www.w3.org/2002/07/owl#> . 
 
 
-odp-tpl:TimeIndexedSituationInstance[ List<ottr:IRI> ?things, ottr:IRI ?thingType, ottr:IRI ?situation, ottr:IRI ?situationType, ? ottr:IRI ?timeInterval, ? ottr:IRI ?startDate, ? ottr:IRI ?endDate, ? ottr:IRI ?date, ! owl:ObjectProperty ?hasTimeIndexedSetting=odp-tis:hasTimeIndexedSetting,  ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+odp-tpl:TimeIndexedSituationInstance[ List<ottr:IRI> ?things, ottr:IRI ?thingType, ottr:IRI ?situation,
+                                      ottr:IRI ?situationType, ? ottr:IRI ?timeInterval, ? ottr:IRI ?startDate,
+                                    ? ottr:IRI ?endDate, ? ottr:IRI ?date,
+                                    ! owl:ObjectProperty ?hasTimeIndexedSetting=odp-tis:hasTimeIndexedSetting,
+                                    ? owl:ObjectProperty ?atTime=odp-tis:atTime,
+                                    ? owl:DatatypeProperty ?hasIntervalDate=odp-ti:hasIntervalDate,
+                                    ? owl:DatatypeProperty ?hasIntervalEndDate=odp-ti:hasIntervalEndDate,
+                                    ? owl:DatatypeProperty ?hasIntervalStartDate=odp-ti:hasIntervalStartDate ,
+                                      ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+   
     odp-tpl:SituationInstance(?things, ?thingType, ?situation, ?situationType, ?hasTimeIndexedSetting, ?instanceIRI, ?instanceType),
-    odp-tpl:TimeIntervalInstance(?timeInterval, ?startDate, ?endDate, ?date, ?instanceIRI, none),
-    ottr:Triple(?situation, odp-tis:atTime, ?timeInterval)
+    odp-tpl:TimeIntervalInstance(?timeInterval, ?startDate, ?endDate, ?date, ?hasIntervalDate, ?hasIntervalEndDate, ?hasIntervalStartDate, ?instanceIRI, none),
+    ottr:Triple(?situation, ?atTime, ?timeInterval)
 } .

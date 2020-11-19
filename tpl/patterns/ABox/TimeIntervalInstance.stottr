@@ -3,15 +3,18 @@
 @prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
 @prefix odp-ti:     <http://www.ontologydesignpatterns.org/cp/owl/timeinterval.owl#> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
 
-
-# SuperClass
-
-odp-tpl:TimeIntervalInstance[ ottr:IRI ?timeInterval, ? ottr:IRI ?startDate , ? ottr:IRI ?endDate , ? ottr:IRI ?date, ? ottr:IRI ?instanceIRI, ? ottr:IRI ?instanceType ] :: {
+odp-tpl:TimeIntervalInstance[  ottr:IRI ?timeInterval, ? ottr:IRI ?startDate , ? ottr:IRI ?endDate , 
+                             ? ottr:IRI ?date, ? owl:DatatypeProperty ?hasIntervalDate=odp-ti:hasIntervalDate, 
+                             ? owl:DatatypeProperty ?hasIntervalEndDate=odp-ti:hasIntervalEndDate, 
+                             ? owl:DatatypeProperty ?hasIntervalStartDate=odp-ti:hasIntervalStartDate ,
+                             ? ottr:IRI ?instanceIRI, ? ottr:IRI ?instanceType,  
+                              ] :: {
     odp-tpl:PatternInstance(?instanceIRI, ?instanceType, (?timeInterval, ?startDate, ?endDate, ?date), none),
-    ottr:Triple(?timeInterval, odp-ti:hasIntervalDate, ?date),
-    ottr:Triple(?timeInterval, odp-ti:hasIntervalEndDate, ?endDate),
-    ottr:Triple(?timeInterval, odp-ti:hasIntervalStartDate, ?startDate)    
+    ottr:Triple(?timeInterval, ?hasIntervalDate , ?date),
+    ottr:Triple(?timeInterval, ?hasIntervalEndDate , ?endDate),
+    ottr:Triple(?timeInterval, ?hasIntervalStartDate , ?startDate)    
 } .
 
 

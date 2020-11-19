@@ -1,0 +1,36 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix odp-sit:    <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
+@prefix odp-tis:    <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+@prefix cis:        <http://dati.beniculturali.it/cis/> .
+@prefix clvapit:    <https://w3id.org/italia/onto/CLV/> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+
+# this file represents an instance of time indexed typed location 
+# with Class and Properties external to the pattern needed for 
+# visualization purpose. Example: address and geometry to project on map
+
+odp-tpl:TimeIndexedTypedLocationInstanceExtended[ ottr:IRI ?culturalProperty, ottr:IRI ?culturalPropertyType, 
+                                                  ottr:IRI ?tITL, ottr:IRI ?tITLType, ? ottr:IRI ?timeInterval, 
+                                                ? ottr:IRI ?startDate, ? ottr:IRI ?endDate, ? ottr:IRI ?date, 
+                                                  ottr:IRI ?locationType, 
+                                                ! owl:ObjectProperty ?hasTimeIndexedTypedLocation=a-loc:hasTimeIndexedTypedLocation , 
+                                                  ottr:IRI ?instanceIRI, ottr:IRI ?instanceType, 
+                                                ?  ottr:IRI ?site,
+                                                ?  ottr:IRI ?geometry #extraProps
+                                                ?  ottr:IRI ?lat,
+                                                ?  ottr:IRI ?long,
+                                                ?  ottr:IRI ?siteAddress,
+                                                ?  ottr:IRI ?addressLabel,
+                                                ] :: {
+        odp-tpl:TimeIndexedTypedLocationInstance(?culturalProperty, ?culturalPropertyType, ?tITL, ?tITLType, ?timeInterval, ?startDate, ?endDate, none, ?locationType, ?hasTimeIndexedTypedLocation, none, none, none, ?instanceType),
+        ottr:Triple(?tITL, a-loc:atSite , ?site),
+        ottr:Triple(?site, cis:siteAddress , ?siteAddress),
+        ottr:Triple(?site, clvapit:hasGeometry ,?geometry),
+        ottr:Triple(?geometry, clvapit:lat ,?lat),
+        ottr:Triple(?geometry, clvapit:long ,?long),
+        ottr:Triple(?siteAddress, rdfs:label , ?addressLabel)
+}

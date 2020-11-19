@@ -35,6 +35,7 @@ class CollectionView extends React.Component {
         };
         let collection = this.props.data.instanceData.collection;
 
+        // import Collection component from ld-ui-react package
         const Collection = require('ld-ui-react').Collection;
 
         if (collection) {

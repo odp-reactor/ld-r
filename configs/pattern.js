@@ -6,7 +6,7 @@ import { foaf, rdfs } from "./uris/prefixes";
 export default {
     patternConfig: {
         "https://w3id.org/arco/ontology/denotative-description/measurement-collection": {
-            patternIViewer: "Collection",
+            patternIViewer: "CollectionView",
             query: {
                 select: `SELECT DISTINCT ?entity ?entityLabel ?depiction WHERE`,
                 body: `?MeasurementCollection <${measurementURIs.hasMember}> ?entity .
@@ -23,7 +23,7 @@ export default {
             stateKey: "collection"
         },
         "https://w3id.org/arco/ontology/location/time-indexed-typed-location": {
-            patternIViewer: "TimeIndexedTypedLocation",
+            patternIViewer: "TimeIndexedTypedLocationiew",
             query: {
                 select: `SELECT DISTINCT
                             ?cProp ?depiction ?tITLLabel ?locationType 
@@ -36,7 +36,7 @@ export default {
                        ?TimeIndexedTypedLocation <${tITLURIs.hasLocationType}>  ?locationType .
                 
                        OPTIONAL { ?TimeIndexedTypedLocation <${tITLURIs.atSite}> ?site .
-                                  ?site <${tITLURIs.atSite}>     ?siteAddress .
+                                  ?site <${tITLURIs.siteAddress}>     ?siteAddress .
                                  }
                        OPTIONAL  { ?TimeIndexedTypedLocation <${tITLURIs.atTime}> ?timeInterval } . 
                        OPTIONAL  { ?timeInterval <${tITLURIs.startTime}> ?startTime2B } .

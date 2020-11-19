@@ -102,7 +102,7 @@ export default class Pattern extends React.Component {
                 this.props.spec.propertyURI
             );
         switch (patternView) {
-            case 'TimeIndexedTypedLocation':
+            case 'TimeIndexedTypedLocationView':
                 return (
                     <TimeIndexedTypedLocationView
                         pattern={patternURI}
@@ -110,7 +110,7 @@ export default class Pattern extends React.Component {
                         instanceResources={instanceResources}
                     />
                 );
-            case 'Collection':
+            case 'CollectionView':
                 return (
                     <CollectionView
                         pattern={patternURI}
