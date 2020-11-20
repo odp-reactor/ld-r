@@ -13,6 +13,8 @@
 @prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
 @prefix tiapit:     <https://w3id.org/italia/onto/TI/> .
 @prefix arco:        <https://w3id.org/arco/ontology/arco/> .
+@prefix cis:        <http://dati.beniculturali.it/cis/> .
+@prefix clvapit:    <https://w3id.org/italia/onto/CLV/> .
 
 [] a ottr:InstanceMap ;
   ottr:source 
@@ -24,52 +26,76 @@
                             ?cPropType
                             ?tITL
                             ?tITLType
-                            ?timeInterval
+                            ?timeInterval 
                             ?startDate
                             ?endDate
-                            ?date
                             ?locationType
                             ?hasTimeIndexedTypedLocation
                             (URI(CONCAT ("https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern", STRAFTER(STR(?tITL), "https://w3id.org/arco/resource/TimeIndexedTypedLocation"))) as ?instanceIRI)  # we hack instance URI as <new_ns + other_resource_UUID> | note: UUID() doesn't work in virtuoso
                             ?instanceType
+                            # data external to pattern schema
+                            ?depiction
+                            ?site
+                            #?geometry
+                            #?lat
+                            #?long
+                            ?siteAddress
+                            ?addressLabel          
              WHERE
                    {
                           ?cProp a-loc:hasTimeIndexedTypedLocation ?tITL .
-                          ?cProp a arco:CulturalProperty .
+                          ?cProp a ?cPropType .
+                          ?cProp foaf:depiction ?depiction .
                           ?tITL  a  a-loc:TimeIndexedTypedLocation .
-                          OPTIONAL {
-                           ?tITL tiapit:atTime ?timeInterval .           # DATA MISSING IN KG
-                           ?timeInterval a tiapit:TimeInterval .         # DATA MISSING IN KG
-                           ?timeInterval tiapit:hasStartDate ?startDate . # DATA MISSING IN KG
-                           ?timeInterval tiapit:hasEndDate ?endDate    .  # DATA MISSING IN KG
-                           ?timeInterval tiapit:hasDate ?date .
-                          }
+                          ?tITL tiapit:atTime ?timeInterval .           
+                          ?timeInterval arco:startTime ?startDate .
+                          ?timeInterval arco:startTime ?endDate    . 
+
                           ?tITL a-loc:hasLocationType ?locationType .
+                           
+                          ?tITL a-loc:atSite ?site .
+                          ?site a cis:Site .
+
+                                ?site cis:siteAddress ?siteAddress .
+                                ?siteAddress a clvapit:Address .
+
+                                ?siteAddress rdfs:label ?addressLabel .
+
+                          #OPTIONAL {
+                          #      ?site clvapit:hasGeometry ?geometry .
+                          #      ?geometry clvapit:lat ?lat .
+                          #      ?geometry clvapit:long ?long .
+                          #}
+                          
 
                        OPTIONAL {?cPropTypeUnboundable a rdf:HackToAssignType . }
                        OPTIONAL {?tITLTypeUnboundable a rdf:HackToAssignType . }
                        OPTIONAL {?hasTimeIndexedTypedLocationUnboundable a rdf:HackToAssignProperty . }
                        OPTIONAL {?patternInstanceUnboundable a rdf:HackToAssignType . }
 
-                       BIND ( IF (BOUND  (?cPropTypeUnboundable), arco:CulturalProperty, arco:CulturalProperty ) as ?cPropType) .
                        BIND ( IF (BOUND  (?tITLTypeUnboundable), a-loc:TimeIndexedTypedLocation, a-loc:TimeIndexedTypedLocation ) as ?tITLType) .
                        BIND ( IF (BOUND  (?hasTimeIndexedTypedLocationUnboundable), a-loc:hasTimeIndexedTypedLocation, a-loc:hasTimeIndexedTypedLocation ) as ?hasTimeIndexedTypedLocation) .
                        BIND ( IF (BOUND  (?patternInstanceUnboundable), a-loc:time-indexed-typed-location, a-loc:time-indexed-typed-location )  as ?instanceType  ) .
                    }
-             LIMIT 32
-""";
+          """;
   ottr:template odp-tpl:TimeIndexedTypedLocationInstanceExtended ;
   ottr:argumentMaps (
     [ ottr:type ottr:IRI ]   ## ?cProp
     [ ottr:type ottr:IRI ]   ## ?cPropType   
     [ ottr:type ottr:IRI ]   ## ?tITL
     [ ottr:type ottr:IRI ]   ## ?tITLType
-    [ ottr:type ottr:IRI ]   ## ?timeInterval <= null
-    [ ottr:type ottr:IRI ]   ## ?startDate    <= null
-    [ ottr:type ottr:IRI ]   ## ?endDate      <= null
-    [ ottr:type ottr:IRI ]   ## ?date         <= null
+    [ ottr:type ottr:IRI ]   ## ?timeInterval 
+    [ ottr:type rdfs:Literal ]   ## ?startDate    
+    [ ottr:type rdfs:Literal ]   ## ?endDate      
     [ ottr:type ottr:IRI ]   ## ?locationType 
     [ ottr:type owl:ObjectProperty ] ## ?hasTimeIndexedTypedLocation
     [ ottr:type ottr:IRI ]   ## ?instanceIRI
     [ ottr:type ottr:IRI ]   ## ?instanceType
+    [ ottr:type ottr:IRI ]   ## ?depiction
+    [ ottr:type ottr:IRI ]   ## ?site
+#    [ ottr:type ottr:IRI ]   ## ?geometry
+#    [ ottr:type ottr:IRI ]   ## ?lat
+#    [ ottr:type ottr:IRI ]   ## ?long
+    [ ottr:type ottr:IRI ]   ## ?siteAddress
+    [ ottr:type rdfs:Literal ]   ## ?addressLabel
   ) .

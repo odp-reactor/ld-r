@@ -23,16 +23,16 @@ export default {
             stateKey: "collection"
         },
         "https://w3id.org/arco/ontology/location/time-indexed-typed-location": {
-            patternIViewer: "TimeIndexedTypedLocationiew",
+            patternIViewer: "TimeIndexedTypedLocationView",
             query: {
                 select: `SELECT DISTINCT
-                            ?cProp ?depiction ?tITLLabel ?locationType 
+                            ?culturalProperty ?depiction ?tITLLabel ?locationType 
                             ?lat ?long  ?addressLabel  
                             ?startTime  ?endTime 
                           WHERE
                         `,
                 body: `
-                       ?cProp <${tITLURIs.hasTimeIndexedTypedLocation}> ?TimeIndexedTypedLocation .
+                       ?culturalProperty <${tITLURIs.hasTimeIndexedTypedLocation}> ?TimeIndexedTypedLocation .
                        ?TimeIndexedTypedLocation <${tITLURIs.hasLocationType}>  ?locationType .
                 
                        OPTIONAL { ?TimeIndexedTypedLocation <${tITLURIs.atSite}> ?site .
@@ -51,7 +51,7 @@ export default {
                                
                        OPTIONAL  { ?TimeIndexedTypedLocation <${rdfs}label> ?tITLLabel2B .
                                                                          FILTER langMatches(lang(?tITLLabel2B), "it") }.
-                       OPTIONAL  { ?cProp <${foaf}depiction> ?depiction2B . }.
+                       OPTIONAL  { ?culturalProperty <${foaf}depiction> ?depiction2B . }.
                 
                        BIND ( IF (BOUND (?depiction2B), ?depiction2B, ''    )  as ?depiction    ) . 
                        BIND ( IF (BOUND (?tITLLabel2B), ?tITLLabel2B, ''    )  as ?tITLLabel    ) . 

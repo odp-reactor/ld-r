@@ -59,6 +59,8 @@ export default class PatternNetworkView extends React.Component {
             // we dependency inject the function to get instances by pattern URI
             // node is a Graphin node
 
+            console.log('Mount again ?');
+
             const getInstances = node => {
                 this.context.executeAction(navigateAction, {
                     url: `/datasets/${encodeURIComponent(

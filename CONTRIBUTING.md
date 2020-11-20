@@ -40,9 +40,13 @@ ex:collection_instace opla:isPatternInstanceOf ex:collection_pattern .
 
 When `Pattern` is rendered it will call `patternReactor()`. This function will check in the pattern configuration file and if it find a visualization for the loaded pattern (`ex:collection_pattern`) it will rendered it's instance (`ex:collection_instance`) with the view specified in the configuration file (`CollectionView`).
 
-In our case we will add an entry for `CollectionView` in the `patternReactor()` function. Add a configuration file for the pattern `ex:collection`. And then create a `CollectionView` component that will be rendered whenever a resource `ex:collection_instance` is loaded.
+In our case we will (following three steps above):
 
-1. To add a new entry to `Pattern` component you will do:
+1. add an entry for `CollectionView` in the `patternReactor()` function.
+2. Add a configuration file for the pattern `ex:collection`.
+3. And then create a `CollectionView` component that will be rendered whenever a resource `ex:collection_instance` is loaded.
+
+To add a new entry to `Pattern` component you will do:
 
 ```js
 // at the top of the file

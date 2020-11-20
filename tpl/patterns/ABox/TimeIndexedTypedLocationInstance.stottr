@@ -5,24 +5,27 @@
 @prefix odp-sit:    <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
 @prefix odp-tis:    <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
 @prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
-@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
 @prefix cis:        <http://dati.beniculturali.it/cis/> .
 @prefix clvapit:    <https://w3id.org/italia/onto/CLV/> .
 @prefix tiapit:     <https://w3id.org/italia/onto/TI/> .
 @prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix arco:       <https://w3id.org/arco/ontology/arco/> .
-
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
 
 odp-tpl:TimeIndexedTypedLocationInstance[ ottr:IRI ?culturalProperty, ottr:IRI ?culturalPropertyType, 
                                           ottr:IRI ?tITL, ottr:IRI ?tITLType, ? ottr:IRI ?timeInterval, 
-                                        ? ottr:IRI ?startDate, ? ottr:IRI ?endDate, ? ottr:IRI ?date, 
+                                        ? rdfs:Literal ?startDate, ? rdfs:Literal ?endDate, ? rdfs:Literal ?date, 
                                           ottr:IRI ?locationType, 
                                         ! owl:ObjectProperty ?hasTimeIndexedTypedLocation=a-loc:hasTimeIndexedTypedLocation ,
-                                        ? owl:ObjectProperty ?atTime=tiapit:atTime,
-                                        ? owl:DatatypeProperty ?endTime=arco:endTime,
-                                        ? owl:DatatypeProperty ?startTime=arco:startTime ,
+                                        ! owl:ObjectProperty ?atTime=tiapit:atTime,
+                                        ! owl:DatatypeProperty ?endTime=arco:endTime,
+                                        ! owl:DatatypeProperty ?startTime=arco:startTime ,
                                           ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
     ottr:Triple(?tITL, a-loc:hasLocationType, ?locationType),
-    odp-tpl:TimeIndexedSituationInstance((?culturalProperty), ?culturalPropertyType, ?tITL, ?tITLType, ?timeInterval, ?startDate, ?endDate, none, ?hasTimeIndexedTypedLocation, ?atTime, none, ?endTime, ?startTime, ?instanceIRI, ?instanceType)
+    odp-tpl:TimeIndexedSituationInstance((?culturalProperty), ?culturalPropertyType, ?tITL, 
+                                          ?tITLType, ?timeInterval, ?startDate, ?endDate, 
+                                          none, ?hasTimeIndexedTypedLocation, ?atTime, 
+                                          none, ?endTime, ?startTime, ?instanceIRI, 
+                                          ?instanceType)
 }  .
 

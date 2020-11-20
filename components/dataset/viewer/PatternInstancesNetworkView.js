@@ -16,6 +16,8 @@ export default class PatternInstancesNetworkView extends React.Component {
     }
 
     render() {
+        console.log('Back from ');
+        console.log(this.props);
         const getInstance = node => {
             this.context.executeAction(navigateAction, {
                 url: `/dataset/${encodeURIComponent(

@@ -1,0 +1,9 @@
+@prefix odp-tpl:  <http://www.ontologydesignpatterns.org/tpl#>  .
+@prefix ex:       <http://example.org/> .
+
+odp-tpl:TimeIndexedTypedLocationInstanceExtended( ex:cProp , ex:cPropType , ex:tITL , ex:TimeIntervalType , 
+                                                  ex:timeInterval ,    "1000" , "1050" , 
+                                                  ex:locationType , ex:hasTimeIndexedTLocation , 
+                                                  ex:instanceIRI , ex:InstanceType , ex:site , 
+                                                  ex:siteAddr , "some label"
+                                                ) .

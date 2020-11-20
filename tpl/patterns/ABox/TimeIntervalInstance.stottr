@@ -4,12 +4,14 @@
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
 @prefix odp-ti:     <http://www.ontologydesignpatterns.org/cp/owl/timeinterval.owl#> .
 @prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
 
-odp-tpl:TimeIntervalInstance[  ottr:IRI ?timeInterval, ? ottr:IRI ?startDate , ? ottr:IRI ?endDate , 
-                             ? ottr:IRI ?date, ? owl:DatatypeProperty ?hasIntervalDate=odp-ti:hasIntervalDate, 
-                             ? owl:DatatypeProperty ?hasIntervalEndDate=odp-ti:hasIntervalEndDate, 
-                             ? owl:DatatypeProperty ?hasIntervalStartDate=odp-ti:hasIntervalStartDate ,
-                             ? ottr:IRI ?instanceIRI, ? ottr:IRI ?instanceType,  
+
+odp-tpl:TimeIntervalInstance[  ottr:IRI ?timeInterval, ? rdfs:Literal ?startDate , ? rdfs:Literal ?endDate , 
+                             ? rdfs:Literal ?date, ! owl:DatatypeProperty ?hasIntervalDate=odp-ti:hasIntervalDate , 
+                             ! owl:DatatypeProperty ?hasIntervalEndDate=odp-ti:hasIntervalEndDate, 
+                             ! owl:DatatypeProperty ?hasIntervalStartDate=odp-ti:hasIntervalStartDate ,
+                             ? ottr:IRI ?instanceIRI, ? ottr:IRI ?instanceType 
                               ] :: {
     odp-tpl:PatternInstance(?instanceIRI, ?instanceType, (?timeInterval, ?startDate, ?endDate, ?date), none),
     ottr:Triple(?timeInterval, ?hasIntervalDate , ?date),
