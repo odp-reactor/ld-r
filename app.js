@@ -17,6 +17,7 @@ import QueryImportStore from './stores/QueryImportStore';
 import ImportStore from './stores/ImportStore';
 import PatternStore from './stores/PatternStore';
 import PatternInstanceStore from './stores/PatternInstanceStore';
+import AddressStore from './stores/AddressStore';
 
 let app = new Fluxible({
     component: Application,
@@ -35,7 +36,8 @@ let app = new Fluxible({
         QueryImportStore,
         ImportStore,
         PatternStore,
-        PatternInstanceStore
+        PatternInstanceStore,
+        AddressStore
     ]
 });
 

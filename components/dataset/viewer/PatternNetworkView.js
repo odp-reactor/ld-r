@@ -10,9 +10,10 @@ import loadPatternSpecializations from '../../../actions/loadPatternSpecializati
 import loadPatternCompositions from '../../../actions/loadPatternCompositions';
 import loadPatternCompositionCount from '../../../actions/loadPatternCompositionCount';
 import loadPatternSpecializationCount from '../../../actions/loadPatternSpecializationCount';
+import cleanInstances from '../../../actions/cleanInstances';
 import PatternStore from '../../../stores/PatternStore';
-import ApplicationStore from '../../../stores/ApplicationStore';
 import { navigateAction } from 'fluxible-router';
+import CustomLoader from '../../CustomLoader';
 
 export default class PatternNetworkView extends React.Component {
     constructor(props) {
@@ -24,12 +25,21 @@ export default class PatternNetworkView extends React.Component {
     }
 
     fetchData() {
+        // If there are instances of a single pattern loaded in the PatternStore we clean them
+        // We expect a user click on a pattern and navigate new pattern instances
+        // Navigation Scenario, Navigation Action:
+        //      pattern screen, click on a pattern a visit its instances
+        //      instances screen, filter and click on a instance visiting that instance
+        //      instance screen, explore information of that single instance
+        //      instance screen, go back button to instances screen
+        //      instances screen, we found the previously loaded instances without query again
+        //      instances screen, go back button
+        //      pattern screen, clean the previously visited instances, ready to visit new ones
+        this.context.executeAction(cleanInstances, {});
+
         if (!this.props.PatternStore.list) {
             this.context.executeAction(loadPatterns, {
                 dataset: this.props.datasetURI //missing
-                // resourceURI: this.props.resource,
-                // propertyPath: this.props.propertyPath,
-                // propertyURI: this.props.spec.propertyURI
             });
         }
         if (!this.props.PatternStore.compositions) {
@@ -58,9 +68,6 @@ export default class PatternNetworkView extends React.Component {
         if (this.props.PatternStore.list) {
             // we dependency inject the function to get instances by pattern URI
             // node is a Graphin node
-
-            console.log('Mount again ?');
-
             const getInstances = node => {
                 this.context.executeAction(navigateAction, {
                     url: `/datasets/${encodeURIComponent(
@@ -77,13 +84,21 @@ export default class PatternNetworkView extends React.Component {
                     getInstances={getInstances}
                 ></PatternNetwork>
             );
-        } else return null;
-        // TODO: need to find a way to pospone the loader
-        // return (
-        //         <div style={datasetContainerStyle}>
-        //             <CustomLoader></CustomLoader>
-        //         </div>
-        //     );
+        } else {
+            const datasetContainerStyle = {
+                height: '90vh',
+                width: '90vw',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: 'auto'
+            };
+            return (
+                <div style={datasetContainerStyle}>
+                    <CustomLoader></CustomLoader>
+                </div>
+            );
+        }
     }
 }
 
@@ -93,11 +108,10 @@ PatternNetworkView.contextTypes = {
 };
 PatternNetworkView = connectToStores(
     PatternNetworkView,
-    [PatternStore, ApplicationStore],
+    [PatternStore],
     function(context, props) {
         return {
-            PatternStore: context.getStore(PatternStore).getState(),
-            ApplicationStore: context.getStore(ApplicationStore).getState()
+            PatternStore: context.getStore(PatternStore).getState()
         };
     }
 );

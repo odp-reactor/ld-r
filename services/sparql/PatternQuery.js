@@ -98,7 +98,13 @@ export default class PatternQuery extends SPARQLQuery {
     }
 
     /**
-     * @description Creates a query retrieving a all the occurrences for a pattern
+     * @description Creates a query retrieving:
+     *              - all the occurrences for a pattern
+     *              - nodes of the pattern
+     *              - type of every node
+     *              - pattern the instance is of
+     *              - OPTIONAL : if pattern hasComponent TimeInterval, startDate and endDate of the interval
+     *
      * @author Christian Colonna
      * @date 09-11-2020
      * @param {string} graphName the graph to query against
@@ -107,31 +113,14 @@ export default class PatternQuery extends SPARQLQuery {
      */
     getInstancesByPattern(graphName, id) {
         let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT ?instance (COUNT(?node) as ?count) WHERE {
+        this.query = `SELECT DISTINCT ?instance ?node ?type ?pattern WHERE {
             ${gStart}
-                ?node opla:belongsToPatternInstance ?instance .
-                ?instance opla:isPatternInstanceOf <${id}> .
-            ${gEnd}
-        }`;
-        return this.query;
-    }
+            ?instance opla:isPatternInstanceOf <${id}> .
+            ?node opla:belongsToPatternInstance ?instance ;
+                  rdf:type ?type .
 
-    /**
-     * @description Return resources of a pattern. Nodes of pattern subgraph.
-     * @author Christian Colonna
-     * @date 15-11-2020
-     * @param {string} graphName graph to query against
-     * @param {string} instanceURI uri of the instance
-     * @returns {string} query
-     * @memberof PatternQuery
-     */
-    getInstanceResources(graphName, instanceURI) {
-        let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT ?node ?type ?pattern WHERE {
-            ${gStart}
-                <${instanceURI}> opla:isPatternInstanceOf ?pattern .
-                ?node opla:belongsToPatternInstance <${instanceURI}> ;
-                      rdf:type ?type .
+            OPTIONAL {?pattern2B a rdf:HackToAssignType . }
+            BIND ( IF (BOUND  (?pattern2B), <${id}>, <${id}> ) as ?pattern) .
             ${gEnd}
         }`;
         return this.query;

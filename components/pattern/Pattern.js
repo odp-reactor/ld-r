@@ -5,9 +5,8 @@ import { connectToStores } from 'fluxible-addons-react';
 /* Flux
 _________*/
 
-import loadPatternInstanceResources from '../../actions/loadPatternInstanceResources';
-
 import PatternInstanceStore from '../../stores/PatternInstanceStore';
+import PatternStore from '../../stores/PatternStore';
 
 /* Visual Patterns
 ______________________________*/
@@ -23,24 +22,8 @@ export default class Pattern extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        // load nodes belonging to given pattern instance
-        if (
-            this.props.spec.propertyURI ===
-                'http://ontologydesignpatterns.org/opla/isPatternInstanceOf' &&
-            !this.props.PatternInstanceStore.instanceResources
-        ) {
-            this.context.executeAction(loadPatternInstanceResources, {
-                dataset: this.props.datasetURI,
-                patternInstance: this.props.resource
-            });
-        }
-        // you need an alternative when props is another one. ex.
-        // resource hasTimeIndexedTypedLocation
-        // use this.props.resource
-    }
-
     render() {
+        console.log(this.props);
         const patternComponent = this.patternReactor();
         return (
             // <div>
@@ -82,10 +65,10 @@ export default class Pattern extends React.Component {
     patternReactor() {
         let patternView = '';
         let patternURI;
-        let instanceResources = this.props.PatternInstanceStore
-            .instanceResources
-            ? this.props.PatternInstanceStore.instanceResources
-            : null;
+        const instanceResources = this.getInstanceResources(
+            this.props.resource,
+            this.props.PatternStore.instances
+        );
         // click on pattern instance node -> pattern visualization
         if (
             this.props.spec.propertyURI ===
@@ -124,17 +107,38 @@ export default class Pattern extends React.Component {
                 ) : null;
         }
     }
+
+    /**
+     * @description Retrieve all the instance resources for a given instancce in a list of instances
+     *              We clean data received from fluxible service after SPARQL query
+     * @author Christian Colonna
+     * @date 23-11-2020
+     * @memberof Pattern
+     */
+    getInstanceResources(instanceURI, patternInstances) {
+        const instanceResources = [];
+        patternInstances.forEach(instance => {
+            if (instance.instance === instanceURI) {
+                instanceResources.push(instance);
+            }
+        });
+        return instanceResources;
+    }
 }
 
 Pattern.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
-Pattern = connectToStores(Pattern, [PatternInstanceStore], function(
-    context,
-    props
-) {
-    return {
-        PatternInstanceStore: context.getStore(PatternInstanceStore).getState()
-    };
-});
+Pattern = connectToStores(
+    Pattern,
+    [PatternInstanceStore, PatternStore],
+    function(context, props) {
+        return {
+            PatternInstanceStore: context
+                .getStore(PatternInstanceStore)
+                .getState(),
+            PatternStore: context.getStore(PatternStore)
+        };
+    }
+);

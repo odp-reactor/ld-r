@@ -1,5 +1,4 @@
 import loadDatasets from "../actions/loadDatasets";
-import loadPatternInstances from "../actions/loadPatternInstances";
 import loadDataset from "../actions/loadDataset";
 import loadResource from "../actions/loadResource";
 import loadUsersList from "../actions/loadUsersList";
@@ -233,21 +232,6 @@ export default {
         method: "get",
         // add checks on fetch data (catch them only if the PatternStore is empty)
         handler: require("../components/dataset/viewer/PatternInstancesNetworkView"),
-        label: "Pattern Instances",
-        action: (context, payload, done) => {
-            let datasetURI = payload.params.did;
-            let patternURI = payload.params.pid;
-            if (!datasetURI) {
-                datasetURI = 0;
-            }
-            if (!patternURI) {
-                patternURI = 0;
-            }
-            context.executeAction(
-                loadPatternInstances,
-                { dataset: datasetURI, pattern: patternURI },
-                done
-            );
-        }
+        label: "Pattern Instances"
     }
 };

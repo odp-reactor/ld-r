@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import fetchInstanceData from './fetchInstanceData';
+import geocodeAddress from '../../../actions/geocodeAddress';
 import PatternInstanceStore from '../../../stores/PatternInstanceStore';
+import AddressStore from '../../../stores/AddressStore';
 
 import CustomLoader from '../../CustomLoader';
-
-//import { Geocoder, Address } from "@christian-nja/geocoding";
 
 /**
  * @description This component is a model for the corresponding view provided by the ld-ui-react package.
@@ -25,66 +25,10 @@ import CustomLoader from '../../CustomLoader';
 class TimeIndexedTypedLocationView extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            lat: undefined,
-            long: undefined
-        };
     }
 
     componentDidMount() {
         fetchInstanceData(this.props, this.context);
-    }
-
-    componentDidUpdate() {
-        // check if lat long are presents or try to geocode them
-        if (this.props.data.instanceData.tITLocations) {
-            // this if we already geocode them
-            if (!this.state.lat || !this.state.long) {
-                // this in the instance data
-                const lat =
-                    this.props.data.instanceData.tITLocations[0].lat !== ''
-                        ? this.props.data.instanceData.tITLocations[0].lat
-                        : null;
-                const long =
-                    this.props.data.instanceData.tITLocations[0].long !== ''
-                        ? this.props.data.instanceData.tITLocations[0].long
-                        : null;
-
-                if (!lat || !long) {
-                    console.log('HERE');
-
-                    // address label may be something like "FI, firenze"
-                    const addressLabel = this.props.data.instanceData
-                        .tITLocations[0].addressLabel;
-                    console.log('addr label');
-                    console.log(this.props);
-                    console.log(addressLabel);
-
-                    if (addressLabel) {
-                        console.log(addressLabel);
-                        const Geocoder = require('@christian-nja/geocoding')
-                            .Geocoder;
-                        const Address = require('@christian-nja/geocoding')
-                            .Address;
-                        const geocoder = new Geocoder();
-                        const address = new Address({ q: addressLabel });
-                        geocoder
-                            .resolveCoordinates([address])
-                            .then(results => {
-                                console.log('Resolved coordinates ...');
-                                console.log(results);
-                                this.setState({
-                                    lat: results[0].latitude,
-                                    long: results[0].longitude
-                                });
-                            })
-                            .catch(error => {
-                                console.log(`promise ${error}`);
-                            });
-                    }
-                }
-            }
-        }
     }
 
     render() {
@@ -94,7 +38,7 @@ class TimeIndexedTypedLocationView extends React.Component {
            TimeIndexedTypedLocation pattern imports leaflet
             _______________________________________________________________________
         */
-        console.log(this.state);
+        console.log(this.props);
         // if (process.env.BROWSER) {
         //     if (this.props.data.instanceData.tITLocations) {
         //         let TimeIndexedTypedLocation = require('ld-ui-react/lib/client-side')
@@ -121,10 +65,11 @@ TimeIndexedTypedLocationView.contextTypes = {
 };
 TimeIndexedTypedLocationView = connectToStores(
     TimeIndexedTypedLocationView,
-    [PatternInstanceStore],
+    [PatternInstanceStore, AddressStore],
     function(context, props) {
         return {
-            data: context.getStore(PatternInstanceStore).getInstanceData()
+            data: context.getStore(PatternInstanceStore).getInstanceData(),
+            coordinates: context.getStore(AddressStore).getCoordinates()
         };
     }
 );

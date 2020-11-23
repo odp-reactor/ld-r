@@ -58,7 +58,7 @@ let webpackConfig = {
         setImmediate: false,
         console: true,
         fs: 'empty',
-        net: 'empty',
+        //net: 'empty',
         tls: 'empty'
     },
     plugins: [
