@@ -1,0 +1,13 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+odp-tpl:TimeIndexedTypedLocationInstance( <cProp1>, <tITL1>, <currentLocation>, <timeInterval1>,
+                                          "1-1-1999", "1-2-1999", none, none , none , none, <tITLoc-instance1>,
+                                          none, none , none , none ,none ,none , none 
+                                          ) .
+
+odp-tpl:TimeIndexedTypedLocationInstance( <cProp2>, <tITL2>, <currentLocation2>, <timeInterval2>,
+                                          "1-1-1999", "1-2-1999", none, none , none , none, <tITLoc-instance2>,
+                                          none, none , none , none ,none , <time-interval-instance2> , none 
+                                          ) .

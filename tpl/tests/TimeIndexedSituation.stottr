@@ -1,3 +1,0 @@
-@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
-
-odp-tpl:TimeIndexedSituation(none, none, none, none, none, none, none, none, none) .

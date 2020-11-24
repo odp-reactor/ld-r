@@ -23,35 +23,31 @@
   ottr:query """
              SELECT DISTINCT 
                             ?cProp               
-                            ?cPropType
                             ?tITL
-                            ?tITLType
                             ?timeInterval 
                             ?startDate
                             ?endDate
                             ?locationType
-                            ?hasTimeIndexedTypedLocation
                             (URI(CONCAT ("https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern", STRAFTER(STR(?tITL), "https://w3id.org/arco/resource/TimeIndexedTypedLocation"))) as ?instanceIRI)  # we hack instance URI as <new_ns + other_resource_UUID> | note: UUID() doesn't work in virtuoso
-                            ?instanceType
+    #                        ?instanceType
+                            (URI(CONCAT ("https://w3id.org/arco/resource/TimeIntervalPattern", STRAFTER(STR(?timeInterval), "https://w3id.org/arco/resource/TimeInterval"))) as ?timeIntervalInstanceIRI)  # we hack instance URI as <new_ns + other_resource_UUID> | note: UUID() doesn't work in virtuoso
                             # data external to pattern schema
                             ?depiction
                             ?site
-                            #?geometry
-                            #?lat
-                            #?long
+                            ?geometry
+                            ?lat
+                            ?long
                             ?siteAddress
-                            ?addressLabel          
+                            ?addressLabel       
              WHERE
                    {
                           ?cProp a-loc:hasTimeIndexedTypedLocation ?tITL .
-                          ?cProp a ?cPropType .
                           ?cProp foaf:depiction ?depiction .
                           ?tITL  a  a-loc:TimeIndexedTypedLocation .
+                          ?tITL a-loc:hasLocationType ?locationType .
                           ?tITL tiapit:atTime ?timeInterval .           
                           ?timeInterval arco:startTime ?startDate .
-                          ?timeInterval arco:startTime ?endDate    . 
-
-                          ?tITL a-loc:hasLocationType ?locationType .
+                          ?timeInterval arco:startTime ?endDate    .                           
                            
                           ?tITL a-loc:atSite ?site .
                           ?site a cis:Site .
@@ -61,41 +57,31 @@
 
                                 ?siteAddress rdfs:label ?addressLabel .
 
-                          #OPTIONAL {
-                          #      ?site clvapit:hasGeometry ?geometry .
-                          #      ?geometry clvapit:lat ?lat .
-                          #      ?geometry clvapit:long ?long .
-                          #}
-                          
-
-                       OPTIONAL {?cPropTypeUnboundable a rdf:HackToAssignType . }
-                       OPTIONAL {?tITLTypeUnboundable a rdf:HackToAssignType . }
-                       OPTIONAL {?hasTimeIndexedTypedLocationUnboundable a rdf:HackToAssignProperty . }
-                       OPTIONAL {?patternInstanceUnboundable a rdf:HackToAssignType . }
-
-                       BIND ( IF (BOUND  (?tITLTypeUnboundable), a-loc:TimeIndexedTypedLocation, a-loc:TimeIndexedTypedLocation ) as ?tITLType) .
-                       BIND ( IF (BOUND  (?hasTimeIndexedTypedLocationUnboundable), a-loc:hasTimeIndexedTypedLocation, a-loc:hasTimeIndexedTypedLocation ) as ?hasTimeIndexedTypedLocation) .
-                       BIND ( IF (BOUND  (?patternInstanceUnboundable), a-loc:time-indexed-typed-location, a-loc:time-indexed-typed-location )  as ?instanceType  ) .
+                          OPTIONAL {
+                                ?site clvapit:hasGeometry ?geometry .
+                                ?geometry clvapit:lat ?lat .
+                                ?geometry clvapit:long ?long .
+                          }
+#                       OPTIONAL {?patternInstanceUnboundable a rdf:HackToAssignType . }                       
+#                       BIND ( IF (BOUND  (?patternInstanceUnboundable), a-loc:time-indexed-typed-location, a-loc:time-indexed-typed-location )  as ?instanceType  ) .
                    }
+                   LIMIT 180
           """;
-  ottr:template odp-tpl:TimeIndexedTypedLocationInstanceExtended ;
+  ottr:template odp-tpl:ExtendedTimeIndexedTypedLocationInstance ;
   ottr:argumentMaps (
     [ ottr:type ottr:IRI ]   ## ?cProp
-    [ ottr:type ottr:IRI ]   ## ?cPropType   
     [ ottr:type ottr:IRI ]   ## ?tITL
-    [ ottr:type ottr:IRI ]   ## ?tITLType
-    [ ottr:type ottr:IRI ]   ## ?timeInterval 
+    [ ottr:type ottr:IRI ]   ## ?timeInterval
     [ ottr:type rdfs:Literal ]   ## ?startDate    
     [ ottr:type rdfs:Literal ]   ## ?endDate      
     [ ottr:type ottr:IRI ]   ## ?locationType 
-    [ ottr:type owl:ObjectProperty ] ## ?hasTimeIndexedTypedLocation
     [ ottr:type ottr:IRI ]   ## ?instanceIRI
-    [ ottr:type ottr:IRI ]   ## ?instanceType
+    [ ottr:type ottr:IRI ]   ## ?timeIntervalIRI
     [ ottr:type ottr:IRI ]   ## ?depiction
     [ ottr:type ottr:IRI ]   ## ?site
-#    [ ottr:type ottr:IRI ]   ## ?geometry
-#    [ ottr:type ottr:IRI ]   ## ?lat
-#    [ ottr:type ottr:IRI ]   ## ?long
+    [ ottr:type ottr:IRI ]   ## ?geometry
+    [ ottr:type ottr:IRI ]   ## ?lat
+    [ ottr:type ottr:IRI ]   ## ?long
     [ ottr:type ottr:IRI ]   ## ?siteAddress
     [ ottr:type rdfs:Literal ]   ## ?addressLabel
   ) .

@@ -1,5 +1,0 @@
-@prefix odp-tpl:  <http://www.ontologydesignpatterns.org/tpl#>  .
-
-odp-tpl:TimeIndexedTypedLocation((<culturalProperty1>), <situation1>, <timeInterval1>, <1gen2010>, <today>, none, <CurrentPhysicalLocation>, <timeIndexedSitInstance>, <time-indexed-typed-location>) .
-
-

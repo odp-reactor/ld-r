@@ -1,13 +1,13 @@
 @prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
-@prefix odp-col:  	<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#> .
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
-@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
 @prefix owl:        <http://www.w3.org/2002/07/owl#> . 
 
-odp-tpl:CollectionInstance[ ottr:IRI ?collection, ottr:IRI ?collectionType, List<ottr:IRI> ?entities, ottr:IRI ?entityType, ! owl:ObjectProperty ?hasMember=odp-col:hasMember, ottr:IRI ?instance, ottr:IRI ?instanceType  ] :: {
-    odp-tpl:PatternInstance(?instance, ?instanceType, ?entities, ?collection),
-    o-rdf:Type(?collection, ?collectionType),
-    odp-tpl:ListType(?entities, ?entityType),
+odp-tpl:CollectionInstance[ ottr:IRI ?collection, 
+                            List<ottr:IRI> ?entities,
+                          ! owl:ObjectProperty ?hasMember=odp-pat:hasMember,
+                          ?  ottr:IRI ?instance, ! ottr:IRI ?instanceType=odp-pat:collection ] :: {
     cross
-      |  ottr:Triple(?collection, ?hasMember, ++?entities)
+      |  ottr:Triple(?collection, ?hasMember, ++?entities),
+    odp-tpl:PatternInstance(?instance, ?instanceType, ?entities, ( ?collection ) )
 } .

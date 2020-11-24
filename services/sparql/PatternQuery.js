@@ -119,6 +119,9 @@ export default class PatternQuery extends SPARQLQuery {
             ?node opla:belongsToPatternInstance ?instance ;
                   rdf:type ?type .
 
+            #OPTIONAL {?startTime2B }
+            #OPTIONAL {?endTime2B }
+
             OPTIONAL {?pattern2B a rdf:HackToAssignType . }
             BIND ( IF (BOUND  (?pattern2B), <${id}>, <${id}> ) as ?pattern) .
             ${gEnd}

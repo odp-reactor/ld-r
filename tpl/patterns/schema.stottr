@@ -42,4 +42,3 @@ odp-tpl:Situation(none, none, none, none) .
 odp-tpl:TimeIndexedSituation(none, none, none, tiapit:TimeInterval, none, none, none, none, none) .
 
 odp-tpl:TimeIndexedTypedLocation(none, none, none, tiapit:TimeInterval, none, none, none) .
-

@@ -2,8 +2,6 @@
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
 @prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
 
-
-
 odp-tpl:ListBelongsToPatternInstance[ List<ottr:IRI> ?patternNodes, ottr:IRI ?instance ] :: {
     cross
       |  ottr:Triple(++?patternNodes, opla:belongsToPatternInstance, ?instance)

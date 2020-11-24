@@ -2,30 +2,35 @@
 
 @prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
-@prefix odp-sit:    <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
-@prefix odp-tis:    <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
 @prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
-@prefix cis:        <http://dati.beniculturali.it/cis/> .
-@prefix clvapit:    <https://w3id.org/italia/onto/CLV/> .
 @prefix tiapit:     <https://w3id.org/italia/onto/TI/> .
 @prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix arco:       <https://w3id.org/arco/ontology/arco/> .
 @prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
 
-odp-tpl:TimeIndexedTypedLocationInstance[ ottr:IRI ?culturalProperty, ottr:IRI ?culturalPropertyType, 
-                                          ottr:IRI ?tITL, ottr:IRI ?tITLType, ? ottr:IRI ?timeInterval, 
-                                        ? rdfs:Literal ?startDate, ? rdfs:Literal ?endDate, ? rdfs:Literal ?date, 
-                                          ottr:IRI ?locationType, 
+
+odp-tpl:TimeIndexedTypedLocationInstance[ ottr:IRI ?culturalProperty, 
+                                          ottr:IRI ?tITL, ottr:IRI ?locationType, 
+                                        ? ottr:IRI ?timeInterval,
+                                        ? rdfs:Literal ?startDate, ? rdfs:Literal ?endDate,
                                         ! owl:ObjectProperty ?hasTimeIndexedTypedLocation=a-loc:hasTimeIndexedTypedLocation ,
                                         ! owl:ObjectProperty ?atTime=tiapit:atTime,
                                         ! owl:DatatypeProperty ?endTime=arco:endTime,
-                                        ! owl:DatatypeProperty ?startTime=arco:startTime ,
-                                          ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+                                        ! owl:DatatypeProperty ?startTime=arco:startTime,
+                                        ?  ottr:IRI ?instanceIRI, ! ottr:IRI ?instanceType=a-loc:time-indexed-typed-location,
+                                        ? ottr:IRI ?timeIndexedSituationInstanceIRI, 
+                                        ! ottr:IRI ?timeIndexedSituationInstanceType=odp-pat:time-indexed-situation,
+                                        ? ottr:IRI ?situationInstanceIRI, ! ottr:IRI  ?situationInstanceType=odp-pat:situation,
+                                        ? ottr:IRI ?timeIntervalInstanceIRI, 
+                                        ! ottr:IRI  ?timeIntervalInstanceType=odp-pat:time-interval ] :: {
+    odp-tpl:PatternInstance(?instanceIRI, ?instanceType, (?culturalProperty, ?tITL, ?locationType, ?timeInterval ), none),
     ottr:Triple(?tITL, a-loc:hasLocationType, ?locationType),
-    odp-tpl:TimeIndexedSituationInstance((?culturalProperty), ?culturalPropertyType, ?tITL, 
-                                          ?tITLType, ?timeInterval, ?startDate, ?endDate, 
+    odp-tpl:TimeIndexedSituationInstance((?culturalProperty), ?tITL, 
+                                          ?timeInterval, ?startDate, ?endDate, 
                                           none, ?hasTimeIndexedTypedLocation, ?atTime, 
-                                          none, ?endTime, ?startTime, ?instanceIRI, 
-                                          ?instanceType)
+                                          none, ?endTime, ?startTime, ?timeIndexedSituationInstanceIRI, 
+                                          ?timeIndexedSituationInstanceType, ?situationInstanceIRI, 
+                                          ?situationInstanceType, ?timeIntervalInstanceIRI, ?timeIntervalInstanceType )
 }  .
 

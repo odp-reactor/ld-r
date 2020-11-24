@@ -1,15 +1,16 @@
 @prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
 @prefix opla:       <http://ontologydesignpatterns.org/opla/> .
-@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
-@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
 
-odp-tpl:PatternInstance[ ottr:IRI ?instance, ottr:IRI ?pattern, List<ottr:IRI> ?patternNodes, ? ottr:IRI ?patternNode ] :: {
+# @description
+#
+# @param [otherPatternNodes] this is a workaraound on the problem of list merging, if patternNodes is a list 
+#                            coming from source and i have another list of nodes i cannot merge the two, potentially
+#                            you might add new otherNodes has complex use cases emerge 
+
+odp-tpl:PatternInstance[ ? ottr:IRI ?instance, ! ottr:IRI ?pattern, 
+                         ? List<ottr:IRI> ?patternNodes, ? List<ottr:IRI> ?otherPatternNodes ] :: {
     ottr:Triple(?instance, opla:isPatternInstanceOf, ?pattern),
     odp-tpl:ListBelongsToPatternInstance(?patternNodes, ?instance),
-    odp-tpl:BelongsToPatternInstance(?patternNode, ?instance)
+    odp-tpl:ListBelongsToPatternInstance(?otherPatternNodes, ?instance)
 } .
-
-# Every pattern template should implement this template.
-# If the pattern template is a sub pattern of another pattern
-# should pass down the ?instanceIRI and ?patternIRI
-# to the direct pattern template

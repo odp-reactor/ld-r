@@ -4,19 +4,16 @@
 @prefix odp-pat:    <http://www.ontologydesignpatterns.org/cp/owl/> .
 @prefix owl:        <http://www.w3.org/2002/07/owl#> .
 @prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
-@prefix odp-tis:    <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
-@prefix odp-sit:    <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
-@prefix odp-ti:     <http://www.ontologydesignpatterns.org/cp/owl/timeinterval.owl#> .
 
-odp-tpl:TimeIndexedSituation[ owl:Class ?timeIndexedSituation=odp-tis:TimeIndexedSituation, 
-                              owl:Class ?situation=odp-sit:Situation,
+odp-tpl:TimeIndexedSituation[ owl:Class ?timeIndexedSituation=odp-pat:TimeIndexedSituation, 
+                              owl:Class ?situation=odp-pat:Situation,
                               owl:Class ?thing=owl:Thing,
-                              owl:Class ?timeInterval=odp-ti:TimeInterval,
-                              owl:ObjectProperty ?hasTimeIndexedSetting=odp-tis:hasTimeIndexedSetting,
-                              owl:ObjectProperty ?isTimeIndexFor=odp-tis:isTimeIndexFor,
-                              owl:ObjectProperty ?atTime=odp-tis:atTime,
-                              owl:ObjectProperty ?isSettingFor=odp-sit:isSettingFor,
-                              owl:ObjectProperty ?hasSetting=odp-sit:hasSetting
+                              owl:Class ?timeInterval=odp-pat:TimeInterval,
+                              owl:ObjectProperty ?hasTimeIndexedSetting=odp-pat:hasTimeIndexedSetting,
+                              owl:ObjectProperty ?isTimeIndexFor=odp-pat:isTimeIndexFor,
+                              owl:ObjectProperty ?atTime=odp-pat:atTime,
+                              owl:ObjectProperty ?isSettingFor=odp-pat:isSettingFor,
+                              owl:ObjectProperty ?hasSetting=odp-pat:hasSetting
                               ] :: {
     odp-tpl:InverseOf(?isTimeIndexFor, ?hasTimeIndexedSetting),
     odp-tpl:Pattern(odp-pat:time-indexed-situation),

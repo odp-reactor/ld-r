@@ -1,0 +1,6 @@
+@prefix odp-tpl:  <http://www.ontologydesignpatterns.org/tpl#>   .
+
+odp-tpl:PatternInstance( <instance1>, <time-interval>, (<time1>, <time2>), none ) .
+
+# if instance is none no template 
+odp-tpl:PatternInstance( none, <time-interval>, (<time1>, <time2>) , none ).

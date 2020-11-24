@@ -3,13 +3,12 @@
 @prefix owl:        <http://www.w3.org/2002/07/owl#> . 
 @prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
 @prefix o-owl-ax:   <http://tpl.ottr.xyz/owl/axiom/0.1/> .
-@prefix odp-ti:     <http://www.ontologydesignpatterns.org/cp/owl/timeinterval.owl#> .
 
 
-odp-tpl:TimeInterval[   owl:Class ?timeInterval=odp-ti:TimeInterval, 
-                        owl:DatatypeProperty ?hasIntervalDate=odp-ti:hasIntervalDate, 
-                        owl:DatatypeProperty ?hasIntervalEndDate=odp-ti:hasIntervalEndDate, 
-                        owl:DatatypeProperty ?hasIntervalStartDate=odp-ti:hasIntervalStartDate  ] :: {
+odp-tpl:TimeInterval[   owl:Class ?timeInterval=odp-pat:TimeInterval, 
+                        owl:DatatypeProperty ?hasIntervalDate=odp-pat:hasIntervalDate, 
+                        owl:DatatypeProperty ?hasIntervalEndDate=odp-pat:hasIntervalEndDate, 
+                        owl:DatatypeProperty ?hasIntervalStartDate=odp-pat:hasIntervalStartDate  ] :: {
 
     odp-tpl:Pattern(odp-pat:time-interval),
     o-rdfs:Domain(?hasIntervalDate, ?timeInterval),

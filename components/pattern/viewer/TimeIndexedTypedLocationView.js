@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import fetchInstanceData from './fetchInstanceData';
-import geocodeAddress from '../../../actions/geocodeAddress';
 import PatternInstanceStore from '../../../stores/PatternInstanceStore';
-import AddressStore from '../../../stores/AddressStore';
 
 import CustomLoader from '../../CustomLoader';
 
@@ -38,7 +36,6 @@ class TimeIndexedTypedLocationView extends React.Component {
            TimeIndexedTypedLocation pattern imports leaflet
             _______________________________________________________________________
         */
-        console.log(this.props);
         // if (process.env.BROWSER) {
         //     if (this.props.data.instanceData.tITLocations) {
         //         let TimeIndexedTypedLocation = require('ld-ui-react/lib/client-side')
@@ -65,11 +62,10 @@ TimeIndexedTypedLocationView.contextTypes = {
 };
 TimeIndexedTypedLocationView = connectToStores(
     TimeIndexedTypedLocationView,
-    [PatternInstanceStore, AddressStore],
+    [PatternInstanceStore],
     function(context, props) {
         return {
-            data: context.getStore(PatternInstanceStore).getInstanceData(),
-            coordinates: context.getStore(AddressStore).getCoordinates()
+            data: context.getStore(PatternInstanceStore).getInstanceData()
         };
     }
 );

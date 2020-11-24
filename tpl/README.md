@@ -125,3 +125,95 @@ You will produce data with command:
 
 ...
 ```
+
+# TODO
+
+il template di un pattern è così definito:
+
+#### usa questo template per il pattern
+
+template( namedIndividual,
+proprietà 1 ... n ,
+classe 1 ... m , # dominio e range delle proprietà
+literal 1 a k ,
+altre annotazioni sulle proprietà e classi: restrizioni, dominio, range ecc.
+)
+
+-   il template dirà che l'individuo pattern è istanza di un Pattern
+
+Se il pattern specializza o ha come componente un altro pattern usa queste relazioni nel template :
+
+-   specializzazione : specializationOfPattern
+    listSubPropertyOf (tutte le proprietà che sono sottopropreità di quelle del pattern specializzato)
+    listSubClassOf (vedi sopra)
+
+-   composizione : componentOfPattern
+
+#### usa questo template allinterno del template del pattern se il pattern specializza un altro pattern
+
+template specializzaione( pattern1, pattern specializzato, ((properietà pattern 1), (proprietà pattern specializzato)), ((classi pattern 1 ), (classi pattern specializzato)))
+
+#### usa questo template all'interno del template del pattern se il pattern ha come component un altro pattern
+
+template composizione ( pattern1, pattern componente)
+
+#
+
+every instance reuse PatternInstance template
+Super Instance need a IRI for every instantiation i mean:
+
+-   we arbitrary decide not to involve types in template at the moment.
+    In the sense that InstanceTemplate is not responsible for define type of resource it receives.
+    This may be inferred by Pattern schema instantiating the relative template for patternInstance
+
+-   you need to pass just props
+
+###
+
+# PATTERN SCHEMA
+
+###
+
+# for every pattern creates an individual (with its namespace)
+
+# the individual is of type opla:Pattern
+
+# the individual may be related opla:specializationOfPattern with other individual
+
+###
+
+# PATTERN DATA
+
+###
+
+# for every instance retrieved by the query
+
+# create an instance
+
+# assign resource to the instance
+
+#### TODO
+
+# study the null mechanism to avoid double instantiation when composition!
+
+# check if you can create a list on the fly example: :MyTemplate([?var1, ?var2], x)
+
+# none keywords works in list as is
+
+# in templates you need to assign ? flag to the param you want nullable, else
+
+# all the instance won't be print
+
+# you can assign default values
+
+@prefix odp-tpl: <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix odp-col: <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#> .
+@prefix ottr: <http://ns.ottr.xyz/0.4/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+odp-tpl:CollectionInstance[ ottr:IRI ?collection,
+List<ottr:IRI> ?entities,
+! owl:ObjectProperty ?hasMember=odp-col:hasMember,
+? ottr:IRI ?instance, ! ottr:IRI ?instanceType=odp-col:collection ] :: {
+odp-tpl:PatternInstance(?instance, ?instanceType, ?entities, (?collection) )
+} .

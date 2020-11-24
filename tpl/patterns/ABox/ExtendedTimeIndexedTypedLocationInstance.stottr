@@ -1,0 +1,52 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+@prefix cis:        <http://dati.beniculturali.it/cis/> .
+@prefix foaf:	    <http://xmlns.com/foaf/0.1/> . 
+@prefix clvapit:    <https://w3id.org/italia/onto/CLV/> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
+
+# this file represents an instance of time indexed typed location 
+# with Class and Properties external to the pattern needed for 
+# visualization purpose. Example: address and geometry to project on map
+# combined with its bottr map its just a script to extract arco data
+
+odp-tpl:ExtendedTimeIndexedTypedLocationInstance[ ottr:IRI ?culturalProperty,
+                                                  ottr:IRI ?tITL, 
+                                                ?  ottr:IRI ?timeInterval, 
+                                                ? rdfs:Literal ?startDate, ? rdfs:Literal ?endDate, 
+                                                  ottr:IRI ?locationType, 
+                                                  ottr:IRI ?instanceIRI,
+                                                  ottr:IRI ?timeIntervalInstanceIRI,
+                                                ? ottr:IRI ?depiction ,  
+                                                ?  ottr:IRI ?site,
+                                                ? ottr:IRI ?geometry, ? rdfs:Literal ?lat, ? rdfs:Literal ?long, 
+                                                ?  ottr:IRI ?siteAddress,
+                                                ?  rdfs:Literal ?addressLabel
+                                                ] :: {
+        odp-tpl:TimeIndexedTypedLocationInstance(?culturalProperty, 
+        ?tITL,  ?locationType, ?timeInterval, ?startDate, 
+        ?endDate, none, 
+        none , none, none, ?instanceIRI, none, none, none, none, none, ?timeIntervalInstanceIRI, none),
+
+        ottr:Triple(?culturalProperty, foaf:depiction , ?depiction),
+        ottr:Triple(?tITL, a-loc:atSite , ?site),
+        ottr:Triple(?site, cis:siteAddress , ?siteAddress),
+        ottr:Triple(?siteAddress, rdfs:label , ?addressLabel),
+        ottr:Triple(?site, clvapit:hasGeometry , ?geometry),
+        ottr:Triple(?geometry, clvapit:lat , ?lat ),
+        ottr:Triple(?geometry, clvapit:long , ?long),
+
+        # defining types 
+        o-rdf:Type(?culturalProperty, arco:CulturalProperty),      
+        o-rdf:Type(?tITL, a-loc:TimeIndexedTypedLocation),
+        o-rdf:Type(?timeInterval, tiapit:TimeInterval),
+        o-rdf:Type(?site, cis:Site),
+        o-rdf:Type(?siteAddress, cis:SiteAddress),
+        o-rdf:Type(?geometry, clvapit:Geometry)
+} .
+

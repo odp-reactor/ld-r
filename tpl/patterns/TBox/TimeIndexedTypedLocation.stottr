@@ -4,19 +4,16 @@
 @prefix odp-pat:    <http://www.ontologydesignpatterns.org/cp/owl/> .
 @prefix owl:        <http://www.w3.org/2002/07/owl#> .
 @prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
-@prefix odp-tis:    <http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#> .
-@prefix odp-sit:    <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
-@prefix odp-ti:     <http://www.ontologydesignpatterns.org/cp/owl/timeinterval.owl#> .
 @prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
 
 odp-tpl:TimeIndexedTypedLocation[ 
                                   owl:Class ?timeIndexedTypedLocation=a-loc:TimeIndexedTypedLocation,
-                                  owl:Class ?timeIndexedSituation=odp-tis:TimeIndexedSituation,
+                                  owl:Class ?timeIndexedSituation=odp-pat:TimeIndexedSituation,
                                   owl:Class ?culturalProperty=a-loc:CulturalProperty,
-                                  owl:Class ?timeInterval=odp-ti:TimeInterval,
+                                  owl:Class ?timeInterval=odp-pat:TimeInterval,
                                   owl:ObjectProperty ?hasTimeIndexedTypedLocation=a-loc:hasTimeIndexedTypedLocation,
                                   owl:ObjectProperty ?isTimeIndexedTypedLocationOf=a-loc:isTimeIndexedTypedLocationOf,
-                                  owl:ObjectProperty ?atTime=odp-tis:atTime
+                                  owl:ObjectProperty ?atTime=odp-pat:atTime
                               ] :: {
     odp-tpl:InverseOf(?hasTimeIndexedTypedLocation, ?isTimeIndexedTypedLocationOf),
     odp-tpl:Pattern(a-loc:time-indexed-typed-location),
