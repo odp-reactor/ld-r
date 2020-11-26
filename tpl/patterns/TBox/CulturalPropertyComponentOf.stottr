@@ -1,0 +1,18 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix odp-pat:    <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix ax:         <http://tpl.ottr.xyz/owl/axiom/0.1/> .
+@prefix arco:        <https://w3id.org/arco/ontology/arco/> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+
+odp-tpl:CulturalPropertyComponentOf[ owl:Class ?culturalPropertyComponent=arco:CulturalPropertyComponent, 
+                               owl:Class ?complexCulturalProperty=arco:ComplexCulturalProperty, 
+                               ottr:IRI ?isCulturalPropertyComponentOf=arco:isCulturalPropertyComponentOf, 
+                               ottr:IRI ?hasCulturalPropertyComponent=arco:hasCulturalPropertyComponent ] :: {
+    odp-tpl:Pattern(odp-pat:cultural-property-component-of),
+    odp-tpl:SpecializationOfPattern(odp-pat:cultural-property-component-of, odp-pat:part-of),
+    odp-tpl:PartOf(?culturalPropertyComponent, ?complexCulturalProperty, ?isCulturalPropertyComponentOf, ?hasCulturalPropertyComponent),
+    ax:SubPropertyOf(?isCulturalPropertyComponentOf, odp-pat:isPartOf),
+    ax:SubPropertyOf(?hasCulturalPropertyComponent, odp-pat:hasPart)
+} .

@@ -113,17 +113,22 @@ export default class PatternQuery extends SPARQLQuery {
      */
     getInstancesByPattern(graphName, id) {
         let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT ?instance ?node ?type ?pattern WHERE {
+        this.query = `SELECT DISTINCT ?instance ?node ?type ?pattern ?startTime ?endTime WHERE {
             ${gStart}
             ?instance opla:isPatternInstanceOf <${id}> .
             ?node opla:belongsToPatternInstance ?instance ;
                   rdf:type ?type .
 
-            #OPTIONAL {?startTime2B }
-            #OPTIONAL {?endTime2B }
-
+            OPTIONAL {  ?node <https://w3id.org/arco/ontology/arco/startTime> ?startTime2B ;
+                              <https://w3id.org/arco/ontology/arco/endTime> ?endTime2B .
+                       }
+            
             OPTIONAL {?pattern2B a rdf:HackToAssignType . }
             BIND ( IF (BOUND  (?pattern2B), <${id}>, <${id}> ) as ?pattern) .
+
+            BIND ( IF ( BOUND (?startTime2B), ?startTime2B, "" ) as ?startTime ) .
+            BIND ( IF ( BOUND (?endTime2B), ?endTime2B, "" ) as ?endTime ) .
+
             ${gEnd}
         }`;
         return this.query;

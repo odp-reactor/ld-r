@@ -1,0 +1,13 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+
+odp-tpl:PartOfInstance[ ottr:IRI ?whole, 
+                            List<ottr:IRI> ?parts,
+                          ! owl:TransitiveProperty ?isPartOf=odp-pat:isPartOf,
+                          ?  ottr:IRI ?instance, ! ottr:IRI ?instanceType=odp-pat:part-of ] :: {
+    cross
+      |  ottr:Triple(++?parts, ?isPartOf, ?whole),
+    odp-tpl:PatternInstance(?instance, ?instanceType, ?parts, ( ?whole ) )
+} .

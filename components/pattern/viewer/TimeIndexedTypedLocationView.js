@@ -12,7 +12,7 @@ import CustomLoader from '../../CustomLoader';
  * It loads data to pass to the visualization.
  * It can takes care to check browser environment.
  * It defines a visualization logic: if no minimum required data are present shift to more generic views
- *     (Example: no coordinates? Try to geocode them. No result show simpler visualization)
+ *     (Example: no coordinates?  show simpler visualization)
  * It defines interactive function for the application (onClickHandlers, fetchData ... )
  * @component
  * @param {Object} props React props
@@ -36,25 +36,28 @@ class TimeIndexedTypedLocationView extends React.Component {
            TimeIndexedTypedLocation pattern imports leaflet
             _______________________________________________________________________
         */
-        // if (process.env.BROWSER) {
-        //     if (this.props.data.instanceData.tITLocations) {
-        //         let TimeIndexedTypedLocation = require('ld-ui-react/lib/client-side')
-        //             .TimeIndexedTypedLocation;
-        //         return (
-        //             <TimeIndexedTypedLocation
-        //                 timeIndexedTypedLocations={this.props.titLocations}
-        //             ></TimeIndexedTypedLocation>
-        //         );
-        //     } else {
-        return (
-            <div style={{ textAlign: 'center' }}>
-                <CustomLoader></CustomLoader>
-            </div>
-        );
+        if (process.env.BROWSER) {
+            if (this.props.data.instanceData.tITLocations) {
+                let TimeIndexedTypedLocation = require('ld-ui-react/lib/client-side')
+                    .TimeIndexedTypedLocation;
+                console.log(this.props.data.instanceData.tITLocations);
+                return (
+                    <TimeIndexedTypedLocation
+                        timeIndexedTypedLocations={
+                            this.props.data.instanceData.tITLocations
+                        }
+                    ></TimeIndexedTypedLocation>
+                );
+            } else {
+                return (
+                    <div style={{ textAlign: 'center' }}>
+                        <CustomLoader></CustomLoader>
+                    </div>
+                );
+            }
+        }
     }
 }
-//     }
-// }
 
 TimeIndexedTypedLocationView.contextTypes = {
     executeAction: PropTypes.func.isRequired,

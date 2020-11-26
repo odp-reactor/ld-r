@@ -1,0 +1,19 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix odp-pat:    <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+
+
+                    
+odp-tpl:PartOf[     owl:Class ?part=owl:Thing,
+                    owl:Class ?whole=owl:Thing, 
+                    ottr:IRI ?isPartOf=odp-pat:isPartOf, 
+                    ottr:IRI ?hasPart=odp-pat:hasPart
+                     ] :: {
+    odp-tpl:Pattern(odp-pat:part-of),
+    o-rdfs:DomainRange(?whole, ?hasPart, ?part),
+    o-rdfs:DomainRange(?part, ?isPartOf, ?whole),
+    odp-tpl:InverseOf(?hasPart, ?isPartOf)
+} .
+
+

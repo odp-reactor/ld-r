@@ -13,15 +13,11 @@
 <https://w3id.org/arco/resource/MeasurementCollection/0500074270-8-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500074270-8-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500074270-8-1-width> , <https://w3id.org/arco/resource/Measurement/0500074270-8-1-height> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500074270-8-1-height> , <https://w3id.org/arco/resource/Measurement/0500074270-8-1-width> .
 
 <https://w3id.org/arco/resource/Measurement/1200725199-1-diameter>
         a                              a-dd:Measurement ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1200725199-1> .
-
-<https://w3id.org/arco/resource/Measurement/0100027701-1-width>
-        a                              a-dd:Measurement ;
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0100027701-1> .
 
 <https://w3id.org/arco/resource/Measurement/0500248288-1-width>
         a                              a-dd:Measurement ;
@@ -57,7 +53,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/1200725199-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1200725199-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1200725199-1-diameter> , <https://w3id.org/arco/resource/Measurement/1200725199-1-height> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1200725199-1-height> , <https://w3id.org/arco/resource/Measurement/1200725199-1-diameter> .
 
 <https://w3id.org/arco/resource/Measurement/0302046704-1-height>
         a                              a-dd:Measurement ;
@@ -101,7 +97,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/1200012613-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1200012613-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1200012613-1-height> , <https://w3id.org/arco/resource/Measurement/1200012613-1-length> , <https://w3id.org/arco/resource/Measurement/1200012613-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1200012613-1-width> , <https://w3id.org/arco/resource/Measurement/1200012613-1-length> , <https://w3id.org/arco/resource/Measurement/1200012613-1-height> .
 
 <https://w3id.org/arco/resource/Measurement/1200550282-1-width>
         a                              a-dd:Measurement ;
@@ -179,7 +175,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/0100208621-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0100208621-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0100208621-1-depth> , <https://w3id.org/arco/resource/Measurement/0100208621-1-width> , <https://w3id.org/arco/resource/Measurement/0100208621-1-height> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0100208621-1-width> , <https://w3id.org/arco/resource/Measurement/0100208621-1-depth> , <https://w3id.org/arco/resource/Measurement/0100208621-1-height> .
 
 <https://w3id.org/arco/resource/MeasurementCollectionPattern/1000000690-1>
         opla:isPatternInstanceOf  a-dd:measurement-collection .
@@ -282,6 +278,10 @@
 <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900072791-1>
         opla:isPatternInstanceOf  a-dd:measurement-collection .
 
+<https://w3id.org/arco/resource/Measurement/0900155940-1-height>
+        a                              a-dd:Measurement ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900155940-1> .
+
 <https://w3id.org/arco/resource/MeasurementCollection/1201030938-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1201030938-1> ;
@@ -293,14 +293,10 @@
 <https://w3id.org/arco/resource/MeasurementCollectionPattern/1200219014-0-1>
         opla:isPatternInstanceOf  a-dd:measurement-collection .
 
-<https://w3id.org/arco/resource/Measurement/0100027701-1-height>
-        a                              a-dd:Measurement ;
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0100027701-1> .
-
 <https://w3id.org/arco/resource/MeasurementCollection/1300111536-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1300111536-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1300111536-1-thickness> , <https://w3id.org/arco/resource/Measurement/1300111536-1-width> , <https://w3id.org/arco/resource/Measurement/1300111536-1-height> , <https://w3id.org/arco/resource/Measurement/1300111536-1-diameter> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1300111536-1-thickness> , <https://w3id.org/arco/resource/Measurement/1300111536-1-diameter> , <https://w3id.org/arco/resource/Measurement/1300111536-1-height> , <https://w3id.org/arco/resource/Measurement/1300111536-1-width> .
 
 <https://w3id.org/arco/resource/Measurement/1200219014-0-1-depth>
         a                              a-dd:Measurement ;
@@ -309,7 +305,7 @@
 <https://w3id.org/arco/resource/Lombardia/MeasurementCollection/L0060-00099_R03-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Lombardia/Measurement/L0060-00099_R03-1-height> , <https://w3id.org/arco/resource/Lombardia/Measurement/L0060-00099_R03-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Lombardia/Measurement/L0060-00099_R03-1-width> , <https://w3id.org/arco/resource/Lombardia/Measurement/L0060-00099_R03-1-height> .
 
 <https://w3id.org/arco/resource/Measurement/0700009818-1-width>
         a                              a-dd:Measurement ;
@@ -318,12 +314,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/0100019624-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0100019624-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0100019624-1-depth> , <https://w3id.org/arco/resource/Measurement/0100019624-1-width> , <https://w3id.org/arco/resource/Measurement/0100019624-1-height> .
-
-<https://w3id.org/arco/resource/MeasurementCollection/0100027701-1>
-        a                              a-dd:MeasurementCollection ;
-        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0100027701-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0100027701-1-height> , <https://w3id.org/arco/resource/Measurement/0100027701-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0100019624-1-width> , <https://w3id.org/arco/resource/Measurement/0100019624-1-depth> , <https://w3id.org/arco/resource/Measurement/0100019624-1-height> .
 
 <https://w3id.org/arco/resource/Measurement/0500074270-8-1-width>
         a                              a-dd:Measurement ;
@@ -332,7 +323,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/0900671030-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900671030-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0900671030-1-height> , <https://w3id.org/arco/resource/Measurement/0900671030-1-depth> , <https://w3id.org/arco/resource/Measurement/0900671030-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0900671030-1-depth> , <https://w3id.org/arco/resource/Measurement/0900671030-1-width> , <https://w3id.org/arco/resource/Measurement/0900671030-1-height> .
 
 <https://w3id.org/arco/resource/MeasurementCollectionPattern/0100208621-1>
         opla:isPatternInstanceOf  a-dd:measurement-collection .
@@ -340,12 +331,12 @@
 <https://w3id.org/arco/resource/MeasurementCollection/1500235879-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500235879-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1500235879-1-width> , <https://w3id.org/arco/resource/Measurement/1500235879-1-length> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1500235879-1-length> , <https://w3id.org/arco/resource/Measurement/1500235879-1-width> .
 
 <https://w3id.org/arco/resource/Lombardia/MeasurementCollection/0300047894-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Lombardia/Measurement/0300047894-1-height> , <https://w3id.org/arco/resource/Lombardia/Measurement/0300047894-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Lombardia/Measurement/0300047894-1-width> , <https://w3id.org/arco/resource/Lombardia/Measurement/0300047894-1-height> .
 
 <https://w3id.org/arco/resource/Measurement/0100208621-1-depth>
         a                              a-dd:Measurement ;
@@ -379,7 +370,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/1200550282-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1200550282-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1200550282-1-width> , <https://w3id.org/arco/resource/Measurement/1200550282-1-length> , <https://w3id.org/arco/resource/Measurement/1200550282-1-thickness> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1200550282-1-thickness> , <https://w3id.org/arco/resource/Measurement/1200550282-1-width> , <https://w3id.org/arco/resource/Measurement/1200550282-1-length> .
 
 <https://w3id.org/arco/resource/Measurement/1600309863-1-weight>
         a                              a-dd:Measurement ;
@@ -388,7 +379,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/1100152494-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100152494-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1100152494-1-height> , <https://w3id.org/arco/resource/Measurement/1100152494-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1100152494-1-width> , <https://w3id.org/arco/resource/Measurement/1100152494-1-height> .
 
 <https://w3id.org/arco/resource/MeasurementCollectionPattern/2000220203-1>
         opla:isPatternInstanceOf  a-dd:measurement-collection .
@@ -428,6 +419,11 @@
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1600309863-1> ;
         a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1600309863-1-width> , <https://w3id.org/arco/resource/Measurement/1600309863-1-length> , <https://w3id.org/arco/resource/Measurement/1600309863-1-depth> , <https://w3id.org/arco/resource/Measurement/1600309863-1-front-total-length> , <https://w3id.org/arco/resource/Measurement/1600309863-1-height> , <https://w3id.org/arco/resource/Measurement/1600309863-1-weight> , <https://w3id.org/arco/resource/Measurement/1600309863-1-thickness> , <https://w3id.org/arco/resource/Measurement/1600309863-1-diameter> .
 
+<https://w3id.org/arco/resource/MeasurementCollection/0900155940-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900155940-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0900155940-1-width> , <https://w3id.org/arco/resource/Measurement/0900155940-1-height> .
+
 <https://w3id.org/arco/resource/Measurement/1600211656-1-height>
         a                              a-dd:Measurement ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1600211656-1> .
@@ -458,7 +454,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/0700009818-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0700009818-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0700009818-1-width> , <https://w3id.org/arco/resource/Measurement/0700009818-1-height> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0700009818-1-height> , <https://w3id.org/arco/resource/Measurement/0700009818-1-width> .
 
 <https://w3id.org/arco/resource/MeasurementCollectionPattern/1300111536-1>
         opla:isPatternInstanceOf  a-dd:measurement-collection .
@@ -474,9 +470,6 @@
         opla:isPatternInstanceOf  a-dd:measurement-collection .
 
 <https://w3id.org/arco/resource/MeasurementCollectionPattern/0100019624-1>
-        opla:isPatternInstanceOf  a-dd:measurement-collection .
-
-<https://w3id.org/arco/resource/MeasurementCollectionPattern/0100027701-1>
         opla:isPatternInstanceOf  a-dd:measurement-collection .
 
 <https://w3id.org/arco/resource/MeasurementCollection/0900072791-1>
@@ -551,7 +544,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/0300180952-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300180952-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300180952-1-height> , <https://w3id.org/arco/resource/Measurement/0300180952-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300180952-1-width> , <https://w3id.org/arco/resource/Measurement/0300180952-1-height> .
 
 <https://w3id.org/arco/resource/Lombardia/Measurement/0300047894-1-height>
         a                              a-dd:Measurement ;
@@ -576,7 +569,10 @@
 <https://w3id.org/arco/resource/MeasurementCollection/0500666339-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500666339-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500666339-1-height> , <https://w3id.org/arco/resource/Measurement/0500666339-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500666339-1-width> , <https://w3id.org/arco/resource/Measurement/0500666339-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0900155940-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
 
 <https://w3id.org/arco/resource/Measurement/1200725199-1-height>
         a                              a-dd:Measurement ;
@@ -585,17 +581,17 @@
 <https://w3id.org/arco/resource/MeasurementCollection/0100220329-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0100220329-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0100220329-1-height> , <https://w3id.org/arco/resource/Measurement/0100220329-1-depth> , <https://w3id.org/arco/resource/Measurement/0100220329-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0100220329-1-depth> , <https://w3id.org/arco/resource/Measurement/0100220329-1-width> , <https://w3id.org/arco/resource/Measurement/0100220329-1-height> .
 
 <https://w3id.org/arco/resource/MeasurementCollection/1200585045-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1200585045-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1200585045-1-diameter> , <https://w3id.org/arco/resource/Measurement/1200585045-1-height> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1200585045-1-height> , <https://w3id.org/arco/resource/Measurement/1200585045-1-diameter> .
 
 <https://w3id.org/arco/resource/MeasurementCollection/1300132019-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1300132019-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1300132019-1-thickness> , <https://w3id.org/arco/resource/Measurement/1300132019-1-length> , <https://w3id.org/arco/resource/Measurement/1300132019-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1300132019-1-length> , <https://w3id.org/arco/resource/Measurement/1300132019-1-width> , <https://w3id.org/arco/resource/Measurement/1300132019-1-thickness> .
 
 <https://w3id.org/arco/resource/Lombardia/Measurement/L0060-00099_R03-1-width>
         a                              a-dd:Measurement ;
@@ -669,6 +665,10 @@
         a                              a-dd:Measurement ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500666339-1> .
 
+<https://w3id.org/arco/resource/Measurement/0900155940-1-width>
+        a                              a-dd:Measurement ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900155940-1> .
+
 <https://w3id.org/arco/resource/Measurement/0900072791-1-width>
         a                              a-dd:Measurement ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900072791-1> .
@@ -691,7 +691,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/0500280426-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500280426-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500280426-1-height> , <https://w3id.org/arco/resource/Measurement/0500280426-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500280426-1-width> , <https://w3id.org/arco/resource/Measurement/0500280426-1-height> .
 
 <https://w3id.org/arco/resource/MeasurementCollectionPattern/0900342087-1>
         opla:isPatternInstanceOf  a-dd:measurement-collection .
@@ -706,7 +706,7 @@
 <https://w3id.org/arco/resource/Lombardia/MeasurementCollection/0301970542-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Lombardia/Measurement/0301970542-1-height> , <https://w3id.org/arco/resource/Lombardia/Measurement/0301970542-1-width> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Lombardia/Measurement/0301970542-1-width> , <https://w3id.org/arco/resource/Lombardia/Measurement/0301970542-1-height> .
 
 <https://w3id.org/arco/resource/MeasurementCollection/0900801334-1>
         a                              a-dd:MeasurementCollection ;
@@ -757,7 +757,7 @@
 <https://w3id.org/arco/resource/MeasurementCollection/1600211656-1>
         a                              a-dd:MeasurementCollection ;
         opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1600211656-1> ;
-        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1600211656-1-width> , <https://w3id.org/arco/resource/Measurement/1600211656-1-height> .
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1600211656-1-height> , <https://w3id.org/arco/resource/Measurement/1600211656-1-width> .
 
 <https://w3id.org/arco/resource/MeasurementCollection/1300123651-1>
         a                              a-dd:MeasurementCollection ;

@@ -1,5 +1,6 @@
 import { measurementURIs } from "./uris/collection";
 import { tITLURIs } from "./uris/timeIndexedTypedLocation";
+import { cPropComponentOfURIs } from "./uris/cPropComponentOf";
 
 import { foaf, rdfs } from "./uris/prefixes";
 
@@ -65,6 +66,41 @@ export default {
             },
             arguments: ["TimeIndexedTypedLocation"],
             stateKey: "tITLocations"
+        },
+        "http://www.ontologydesignpatterns.org/cp/owl/cultural-property-component-of": {
+            patternIViewer: "PartOfView",
+            query: {
+                select: `SELECT DISTINCT ?cPropComponent ?depiction WHERE`,
+                body: ` ?cPropComponent <${cPropComponentOfURIs.isPartOf}> ?ComplexCulturalProperty .
+                        
+                        OPTIONAL { ?ComplexCulturalProperty <${foaf}depiction> ?depiction2B . }.
+                        BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
+                        `,
+                aggregates: undefined
+            },
+            arguments: ["ComplexCulturalProperty"],
+            stateKey: "cPropComponentOf"
         }
     }
 };
+
+// SELECT DISTINCT ?complexCProp
+// ?cPropComponents
+// (URI(CONCAT ("https://w3id.org/arco/resource/CPropComponentOfPattern", STRAFTER(STR(?complexCProp), "https://w3id.org/arco/resource/HistoricOrArtisticProperty"))) as ?instanceIRI)  # we hack instance URI as <new_ns + other_resource_UUID> | note: UUID() doesn't work in virtuoso
+// ?depiction
+//
+// WHERE {
+// ?complexCProp foaf:depiction ?depiction .
+// ?complexCProp rdfs:label ?complexCPropLabel .
+// {
+//
+// SELECT ?complexCProp
+// (GROUP_CONCAT(DISTINCT ?cPropComponent; SEPARATOR=";") AS ?cPropComponents)
+// WHERE
+// {
+//  ?cPropComponent <https://w3id.org/arco/ontology/arco/isCulturalPropertyComponentOf> ?complexCProp .
+// }
+// GROUP BY ?complexCProp
+//
+// }
+// }  LIMIT 70

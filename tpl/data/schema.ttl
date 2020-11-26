@@ -1,4 +1,5 @@
 @prefix a-dd:  <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix arco:  <https://w3id.org/arco/ontology/arco/> .
 @prefix opla:  <http://ontologydesignpatterns.org/opla/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,10 +14,25 @@ odp-pat:atTime  rdfs:domain  a-loc:TimeIndexedTypedLocation , odp-pat:TimeIndexe
         rdfs:range          <https://w3id.org/italia/onto/TI/TimeInterval> ;
         rdfs:subPropertyOf  odp-pat:isSettingFor .
 
+odp-pat:hasPart  owl:inverseOf  odp-pat:isPartOf .
+
+odp-pat:part-of  a  opla:Pattern .
+
 a-dd:hasMeasurement  rdfs:domain  a-dd:MeasurementCollection ;
         rdfs:range   a-dd:Measurement .
 
 odp-pat:collection  a  opla:Pattern .
+
+arco:hasCulturalPropertyComponent
+        rdfs:subPropertyOf  odp-pat:hasPart ;
+        owl:inverseOf       arco:isCulturalPropertyComponentOf .
+
+arco:isCulturalPropertyComponentOf
+        rdfs:subPropertyOf  odp-pat:isPartOf .
+
+arco:CulturalPropertyComponent
+        rdfs:domain  arco:isCulturalPropertyComponentOf ;
+        rdfs:range   arco:ComplexCulturalProperty .
 
 odp-pat:hasMember  rdfs:domain  odp-pat:Collection ;
         rdfs:range   owl:Thing .
@@ -34,6 +50,9 @@ odp-pat:hasTimeIndexedSetting
         rdfs:range          odp-pat:TimeIndexedSituation ;
         rdfs:subPropertyOf  odp-pat:hasSetting .
 
+owl:Thing  rdfs:domain  odp-pat:isPartOf , odp-pat:hasPart ;
+        rdfs:range   owl:Thing .
+
 a-dd:measurement-collection
         a                             opla:Pattern ;
         opla:specializationOfPattern  odp-pat:collection .
@@ -44,17 +63,25 @@ odp-pat:isSettingFor  owl:inverseOf  odp-pat:hasSetting .
         a                   owl:DatatypeProperty ;
         rdfs:subPropertyOf  <https://w3id.org/italia/onto/TI/hasIntervalDate> .
 
+arco:ComplexCulturalProperty
+        rdfs:domain  arco:hasCulturalPropertyComponent ;
+        rdfs:range   arco:CulturalPropertyComponent .
+
+odp-pat:hasSetting  rdfs:domain  owl:Thing ;
+        rdfs:range   odp-pat:Situation .
+
 a-loc:hasTimeIndexedTypedLocation
         rdfs:domain         a-loc:CulturalProperty ;
         rdfs:range          a-loc:TimeIndexedTypedLocation ;
         rdfs:subPropertyOf  odp-pat:hasSetting ;
         owl:inverseOf       a-loc:isTimeIndexedTypedLocationOf .
 
-odp-pat:hasSetting  rdfs:domain  owl:Thing ;
-        rdfs:range   odp-pat:Situation .
-
 odp-pat:isTimeIndexFor
         owl:inverseOf  odp-pat:hasTimeIndexedSetting .
+
+odp-pat:cultural-property-component-of
+        a                             opla:Pattern ;
+        opla:specializationOfPattern  odp-pat:part-of .
 
 odp-pat:time-indexed-situation
         a                             opla:Pattern ;

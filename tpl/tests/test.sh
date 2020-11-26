@@ -10,6 +10,6 @@ for FILE in "$DIR"*.stottr
         cat $FILE
         echo "\n"
         echo "[*] Expansion:\n"
-        java -jar $LUTRA -m expand -f -I stottr -l ../patterns/ABox/ -L stottr -O wottr $FILE  --stdout
+        java -jar $LUTRA -m expand -f -I stottr -l ../patterns/ABox/ -L stottr -O wottr $FILE  --stdout $1
         echo $SEP
     done

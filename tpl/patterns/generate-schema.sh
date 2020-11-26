@@ -7,6 +7,6 @@ echo "[!] Cleaning schema ... "
 rm ../data/schema.ttl
 
 echo "[*] Generating schema ... "
-java -jar $LUTRA -m expand -I stottr -f -l ./TBox/ -L stottr -O wottr -o ../data/schema ./schema.stottr
+java -jar $LUTRA -m expand -I stottr -f -l ./TBox/ -L stottr -O wottr -o ../data/schema ./schema.stottr $1
 
 echo "Done."

@@ -2,6 +2,6 @@
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
 @prefix owl:        <http://www.w3.org/2002/07/owl#> . 
 
-odp-tpl:InverseOf[ottr:IRI ?inverseProperty, ottr:IRI ?property ] :: {
+odp-tpl:InverseOf[ ottr:IRI ?inverseProperty, ottr:IRI ?property ] :: {
     ottr:Triple(?inverseProperty, owl:inverseOf, ?property)    
 } .

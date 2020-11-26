@@ -58,3 +58,4 @@
     [ ottr:type ottr:IRI ]                          ## ?collectionInstIRI 
     [ ottr:type ottr:IRI ]                          ## ?collInstType
   ) .
+

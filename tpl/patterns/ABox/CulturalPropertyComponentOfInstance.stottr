@@ -1,0 +1,14 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+
+odp-tpl:CulturalPropertyComponentOfInstance[ ottr:IRI ?complexCulturalProperty, 
+                            List<ottr:IRI> ?culturalPropertyComponents,
+                          ! owl:TransitiveProperty ?isCulturalPropComponentOf=odp-pat:isCulturalPropertyComponentOf,
+                          ?  ottr:IRI ?instance, ! ottr:IRI ?instanceType=odp-pat:cultural-property-component-of,
+                          ? ottr:IRI ?partOfInstance, ! ottr:IRI ?partOfInstanceType=odp-pat:part-of
+ ] :: {
+    odp-tpl:PatternInstance(?instance, ?instanceType, ?culturalPropertyComponents, ( ?complexCulturalProperty ) ),
+    odp-tpl:PartOfInstance(?complexCulturalProperty, ?culturalPropertyComponents, ?isCulturalPropComponentOf, ?partOfInstance, ?partOfInstanceType)
+} .
