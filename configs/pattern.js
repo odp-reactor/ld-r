@@ -68,13 +68,15 @@ export default {
             stateKey: "tITLocations"
         },
         "http://www.ontologydesignpatterns.org/cp/owl/cultural-property-component-of": {
-            patternIViewer: "PartOfView",
+            patternIViewer: "PartWholeView",
             query: {
-                select: `SELECT DISTINCT ?cPropComponent ?depiction WHERE`,
+                select: `SELECT DISTINCT ?complexCProp ?cPropComponent ?depiction WHERE`,
                 body: ` ?cPropComponent <${cPropComponentOfURIs.isPartOf}> ?ComplexCulturalProperty .
                         
+                        OPTIONAL { ?complexCProp2B a rdf:HackToBound . } .
                         OPTIONAL { ?ComplexCulturalProperty <${foaf}depiction> ?depiction2B . }.
                         BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
+                        BIND ( IF (BOUND ( ?complexCProp2B), ?ComplexCulturalProperty, ?ComplexCulturalProperty ) as ?complexCProp )
                         `,
                 aggregates: undefined
             },

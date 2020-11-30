@@ -13,6 +13,7 @@ ______________________________*/
 
 import TimeIndexedTypedLocationView from './viewer/TimeIndexedTypedLocationView';
 import CollectionView from './viewer/CollectionView';
+import PartWholeView from './viewer/PartWholeView';
 
 import PatternUtil from '../../services/utils/PatternUtil';
 const patternUtil = new PatternUtil();
@@ -100,6 +101,14 @@ export default class Pattern extends React.Component {
                         dataset={this.props.datasetURI}
                         instanceResources={instanceResources}
                     />
+                );
+            case 'PartWholeView':
+                return (
+                    <PartWholeView
+                        pattern={patternURI}
+                        dataset={this.props.datasetURI}
+                        instanceResources={instanceResources}
+                    ></PartWholeView>
                 );
             default:
                 return instanceResources ? (
