@@ -59,11 +59,15 @@ export default class PatternInstancesNetworkView extends React.Component {
         const PatternInstancesNetwork = require('ld-ui-react')
             .PatternInstancesNetwork;
 
+        // node color
+        const color = this.props.currentNavigate.route.params.c;
+
         if (this.props.PatternStore.instances) {
             return (
                 <PatternInstancesNetwork
                     patterns={this.props.PatternStore}
                     getInstance={getInstance}
+                    color={color}
                 ></PatternInstancesNetwork>
             );
         } else {

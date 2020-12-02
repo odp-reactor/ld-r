@@ -72,7 +72,11 @@ export default class PatternNetworkView extends React.Component {
                 this.context.executeAction(navigateAction, {
                     url: `/datasets/${encodeURIComponent(
                         this.props.datasetURI
-                    )}/patterns/${encodeURIComponent(node.id)}`
+                    )}/patterns/${encodeURIComponent(
+                        node.id
+                    )}/color/${encodeURIComponent(
+                        node.model.style.primaryColor
+                    )}`
                 });
             };
 

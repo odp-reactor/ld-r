@@ -228,7 +228,7 @@ export default {
         }
     },
     pattern: {
-        path: "/datasets/:did/patterns/:pid",
+        path: "/datasets/:did/patterns/:pid/color/:c",
         method: "get",
         // add checks on fetch data (catch them only if the PatternStore is empty)
         handler: require("../components/dataset/viewer/PatternInstancesNetworkView"),

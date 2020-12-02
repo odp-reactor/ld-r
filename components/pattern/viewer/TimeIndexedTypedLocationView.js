@@ -23,10 +23,19 @@ import CustomLoader from '../../CustomLoader';
 class TimeIndexedTypedLocationView extends React.Component {
     constructor(props) {
         super(props);
+        this.getResource = this.getResource.bind(this);
     }
 
     componentDidMount() {
         fetchInstanceData(this.props, this.context);
+    }
+
+    getResource() {
+        this.context.executeAction(navigateAction, {
+            url: `/dataset/${encodeURIComponent(this.props.dataset)}/resource/${
+                this.props.data.instanceData.tITLocations[0].culturalProperty
+            }`
+        });
     }
 
     render() {
@@ -46,6 +55,7 @@ class TimeIndexedTypedLocationView extends React.Component {
                         timeIndexedTypedLocations={
                             this.props.data.instanceData.tITLocations
                         }
+                        onCulturalPropertyClick={this.getResource}
                     ></TimeIndexedTypedLocation>
                 );
             } else {
