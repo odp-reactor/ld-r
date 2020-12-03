@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import fetchInstanceData from './fetchInstanceData';
 import PatternInstanceStore from '../../../stores/PatternInstanceStore';
+import { navigateAction } from 'fluxible-router';
 
 import CustomLoader from '../../CustomLoader';
 
@@ -23,19 +24,10 @@ import CustomLoader from '../../CustomLoader';
 class TimeIndexedTypedLocationView extends React.Component {
     constructor(props) {
         super(props);
-        this.getResource = this.getResource.bind(this);
     }
 
     componentDidMount() {
         fetchInstanceData(this.props, this.context);
-    }
-
-    getResource() {
-        this.context.executeAction(navigateAction, {
-            url: `/dataset/${encodeURIComponent(this.props.dataset)}/resource/${
-                this.props.data.instanceData.tITLocations[0].culturalProperty
-            }`
-        });
     }
 
     render() {
@@ -46,16 +38,29 @@ class TimeIndexedTypedLocationView extends React.Component {
             _______________________________________________________________________
         */
         if (process.env.BROWSER) {
+            console.log('time indexed typed location props');
+            console.log(this.props);
             if (this.props.data.instanceData.tITLocations) {
                 let TimeIndexedTypedLocation = require('ld-ui-react/lib/client-side')
                     .TimeIndexedTypedLocation;
                 console.log(this.props.data.instanceData.tITLocations);
+
+                const getResource = () => {
+                    this.context.executeAction(navigateAction, {
+                        url: `/dataset/${encodeURIComponent(
+                            this.props.dataset
+                        )}/resource/${encodeURIComponent(
+                            this.props.data.instanceData.tITLocations[0]
+                                .culturalProperty
+                        )}`
+                    });
+                };
                 return (
                     <TimeIndexedTypedLocation
                         timeIndexedTypedLocations={
                             this.props.data.instanceData.tITLocations
                         }
-                        onCulturalPropertyClick={this.getResource}
+                        onCulturalPropertyClick={getResource}
                     ></TimeIndexedTypedLocation>
                 );
             } else {

@@ -16,6 +16,8 @@ import TimeIndexedTypedLocationView from './viewer/TimeIndexedTypedLocationView'
 import CollectionView from './viewer/CollectionView';
 import PartWholeView from './viewer/PartWholeView';
 
+import PropertyHeader from '../property/PropertyHeader';
+
 import PatternUtil from '../../services/utils/PatternUtil';
 const patternUtil = new PatternUtil();
 
@@ -36,8 +38,6 @@ export default class Pattern extends React.Component {
         if (!this.props.PatternStore.instances) {
             const datasetURI = this.props.datasetURI;
             const patternURI = this.props.spec.instances[0].value;
-            console.log('Pattern URI dataset Store');
-            console.log(datasetURI, patternURI);
 
             if (datasetURI && patternURI) {
                 context.executeAction(loadPatternInstances, {
@@ -49,39 +49,42 @@ export default class Pattern extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         const patternComponent = this.patternReactor();
         return (
-            // <div>
-            //     {this.props.hidePropertyName ||
-            //     (this.props.config && this.props.config.hidePropertyName) ? (
-            //         ""
-            //     ) : (
-            //         <div className="property-title">
-            //             <div className="ui horizontal list">
-            //                 <div className="item">
-            //                     <PropertyHeader
-            //                         spec={this.props.spec}
-            //                         config={this.props.config}
-            //                         size="3"
-            //                         datasetURI={this.props.datasetURI}
-            //                         resourceURI={this.props.resource}
-            //                         propertyURI={this.props.property}
-            //                     />
-            //                 </div>
-            //             </div>
-            //             <div className="ui dividing header"></div>
-            //         </div>
-            //     )}
-            //     <div className="ui list">
-            //         <div className="item">
-            //             <div className="ui form grid">
-            //                 <div className="twelve wide column field">
+        // {this.props.hidePropertyName ||
+        // (this.props.config && this.props.config.hidePropertyName) ||
+        // this.props.spec.propertyURI ===
+        //     "http://ontologydesignpatterns.org/opla/isPatternInstanceOf" ? (
+        //     ""
+        // ) : (
+        //     <div className="property-title">
+        //         <div className="ui horizontal list">
+        //             <div className="item">
+        //                 <PropertyHeader
+        //                     spec={this.props.spec}
+        //                     config={this.props.config}
+        //                     size="3"
+        //                     datasetURI={this.props.datasetURI}
+        //                     resourceURI={this.props.resource}
+        //                     propertyURI={this.props.property}
+        //                 />
+        //             </div>
+        //         </div>
+        //         <div className="ui dividing header"></div>
+        //     </div>
+        // )}
+            /* <div className="ui list">
+                    <div className="item">
+                        <div className="ui form grid">
+                            <div
+                                className="twelve wide column field"
+                                style={{ margin: "auto" }}
+                            > */
             <div>{patternComponent}</div>
-            //                 </div>
-            //             </div>
-            //         </div>
-            //     </div>
+            /* </div>
+                        </div>
+                    </div>
+                </div> */
         );
     }
 
@@ -106,12 +109,16 @@ export default class Pattern extends React.Component {
                 patternView = patternUtil.getView(patternURI);
             } else {
                 // no instances we need to trigger loadInstances
-                console.log('We are here from a refresh on instance screen');
+                console.log(
+                    'We are here from a refresh on instance screen. This is done in componentDidMount'
+                );
             }
         } else
             patternView = patternUtil.getViewByProperty(
                 this.props.spec.propertyURI
             );
+        console.log('Instance resources:');
+        console.log(instanceResources);
         switch (patternView) {
             case 'TimeIndexedTypedLocationView':
                 return (

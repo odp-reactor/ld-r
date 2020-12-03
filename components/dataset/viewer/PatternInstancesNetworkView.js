@@ -35,8 +35,10 @@ export default class PatternInstancesNetworkView extends React.Component {
 
         // we get these URIs from url params in currentNavigate
         // we receive this in props from navigateHandler
-        const datasetURI = this.props.currentNavigate.route.params.did;
-        const patternURI = this.props.currentNavigate.route.params.pid;
+        const datasetURI = this.props.RouteStore._currentNavigate.route.params
+            .did;
+        const patternURI = this.props.RouteStore._currentNavigate.route.params
+            .pid;
         if (!this.props.PatternStore.instances) {
             if (datasetURI && patternURI) {
                 context.executeAction(loadPatternInstances, {
@@ -48,19 +50,23 @@ export default class PatternInstancesNetworkView extends React.Component {
     }
 
     render() {
-        const getInstance = node => {
-            this.context.executeAction(navigateAction, {
-                url: `/dataset/${encodeURIComponent(
-                    this.props.currentNavigate.route.params.did
-                )}/resource/${encodeURIComponent(node.id)}`
-            });
-        };
+        let getInstance;
+        let color;
+        if (this.props.RouteStore._currentNavigate) {
+            // node color
+            color = this.props.RouteStore._currentNavigate.route.params.c;
+
+            getInstance = node => {
+                this.context.executeAction(navigateAction, {
+                    url: `/dataset/${encodeURIComponent(
+                        this.props.RouteStore._currentNavigate.route.params.did
+                    )}/resource/${encodeURIComponent(node.id)}`
+                });
+            };
+        }
 
         const PatternInstancesNetwork = require('ld-ui-react')
             .PatternInstancesNetwork;
-
-        // node color
-        const color = this.props.currentNavigate.route.params.c;
 
         if (this.props.PatternStore.instances) {
             return (
@@ -97,11 +103,12 @@ PatternInstancesNetworkView = connectToStores(
     [PatternStore],
     function(context, props) {
         return {
-            PatternStore: context.getStore(PatternStore).getState()
+            PatternStore: context.getStore(PatternStore).getState(),
+            RouteStore: context.getStore('RouteStore')
         };
     }
 );
 
-PatternInstancesNetworkView = handleHistory(PatternInstancesNetworkView, {
-    enableScroll: false // example to show how to specify options for handleHistory
-});
+// PatternInstancesNetworkView = handleHistory(PatternInstancesNetworkView, {
+//     enableScroll: false // example to show how to specify options for handleHistory
+// });

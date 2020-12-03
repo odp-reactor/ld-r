@@ -111,16 +111,16 @@ class PatternUtil {
      * @memberof PatternUtil
      */
     getPatternURI(propertyURI) {
-        if (!config[propertyURI]) {
+        if (!config.property[propertyURI]) {
             throw Error(
                 `[!] no config found for ${propertyURI} in ${reactorConfigPath}`
             );
         }
-        if (!config[propertyURI][patternURIKey]) {
+        if (!config.property[propertyURI][patternURIKey]) {
             throw Error(
                 `[!] no pattern uri found for ${propertyURI} in ${reactorConfigPath}. Specify a uri pointing to a uri in the pattern config file at ${configPath}`
             );
-        } else return config[propertyURI][patternURIKey];
+        } else return config.property[propertyURI][patternURIKey];
     }
 
     /**
