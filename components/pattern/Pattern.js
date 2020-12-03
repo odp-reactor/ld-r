@@ -7,6 +7,7 @@ _________*/
 
 import PatternInstanceStore from '../../stores/PatternInstanceStore';
 import PatternStore from '../../stores/PatternStore';
+import loadPatternInstances from '../../actions/loadPatternInstances';
 
 /* Visual Patterns
 ______________________________*/
@@ -21,6 +22,30 @@ const patternUtil = new PatternUtil();
 export default class Pattern extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        // loadInstances is called by PatternInstancesNetworkView
+        // if no instances
+        // we are here from a refresh on instance screen
+        // then
+        // call from this component loadPatternInstances
+        // TODO: i think if an instance is displayed there will be always data
+        //       in case not then if the pattern instance has no data for some reason doesn't
+        //       display it in PatternInstancesNetwork view
+        if (!this.props.PatternStore.instances) {
+            const datasetURI = this.props.datasetURI;
+            const patternURI = this.props.spec.instances[0].value;
+            console.log('Pattern URI dataset Store');
+            console.log(datasetURI, patternURI);
+
+            if (datasetURI && patternURI) {
+                context.executeAction(loadPatternInstances, {
+                    dataset: datasetURI,
+                    pattern: patternURI
+                });
+            }
+        }
     }
 
     render() {
@@ -75,11 +100,13 @@ export default class Pattern extends React.Component {
             this.props.spec.propertyURI ===
             'http://ontologydesignpatterns.org/opla/isPatternInstanceOf'
         ) {
-            patternURI = instanceResources
-                ? instanceResources[0].pattern
-                : null;
-            if (patternURI) {
+            if (instanceResources.length > 0) {
+                // there are instances we can proceed
+                patternURI = instanceResources[0].pattern;
                 patternView = patternUtil.getView(patternURI);
+            } else {
+                // no instances we need to trigger loadInstances
+                console.log('We are here from a refresh on instance screen');
             }
         } else
             patternView = patternUtil.getViewByProperty(
@@ -112,7 +139,8 @@ export default class Pattern extends React.Component {
                 );
             default:
                 return instanceResources ? (
-                    <div style={{ color: 'red' }}>No visual pattern found</div>
+                    // TODO: this appear after a refresh on instance page
+                    <div style={{ color: 'red' }}></div>
                 ) : null;
         }
     }
@@ -126,11 +154,13 @@ export default class Pattern extends React.Component {
      */
     getInstanceResources(instanceURI, patternInstances) {
         const instanceResources = [];
-        patternInstances.forEach(instance => {
-            if (instance.instance === instanceURI) {
-                instanceResources.push(instance);
-            }
-        });
+        if (patternInstances) {
+            patternInstances.forEach(instance => {
+                if (instance.instance === instanceURI) {
+                    instanceResources.push(instance);
+                }
+            });
+        }
         return instanceResources;
     }
 }
