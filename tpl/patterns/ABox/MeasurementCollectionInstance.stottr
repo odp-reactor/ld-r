@@ -25,3 +25,4 @@ odp-tpl:MeasurementCollectionInstance[ ottr:IRI ?collection,
     o-rdf:Type(?collection, a-dd:MeasurementCollection),    
     odp-tpl:ListType(?measurements, a-dd:Measurement)
 } .
+

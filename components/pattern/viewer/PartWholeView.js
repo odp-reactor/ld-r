@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import PatternInstanceStore from '../../../stores/PatternInstanceStore';
+import { navigateAction } from 'fluxible-router';
 
 import fetchInstanceData from './fetchInstanceData';
 
@@ -40,9 +41,20 @@ class PartWholeView extends React.Component {
                 return { uri: part.cPropComponent };
             });
             parts = [...new Set(parts)]; //clean duplicate values
+            const getResource = resourceURI => {
+                this.context.executeAction(navigateAction, {
+                    url: `/dataset/${encodeURIComponent(
+                        this.props.dataset
+                    )}/resource/${encodeURIComponent(resourceURI)}`
+                });
+            };
             return (
                 <div style={{ textAlign: 'center' }}>
-                    <PartWhole parts={parts} whole={whole}></PartWhole>
+                    <PartWhole
+                        parts={parts}
+                        whole={whole}
+                        onResourceClick={getResource}
+                    ></PartWhole>
                 </div>
             );
         } else {

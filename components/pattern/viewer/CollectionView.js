@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import PatternInstanceStore from '../../../stores/PatternInstanceStore';
 
+import { navigateAction } from 'fluxible-router';
+
 import fetchInstanceData from './fetchInstanceData';
 
 import CustomLoader from '../../CustomLoader';
@@ -37,13 +39,56 @@ class CollectionView extends React.Component {
 
         // import Collection component from ld-ui-react package
         const Collection = require('ld-ui-react').Collection;
+        const Depiction = require('ld-ui-react').Depiction;
 
         if (collection) {
             return (
-                <Collection
-                    entities={collection}
-                    class={customClasses}
-                ></Collection>
+                <div>
+                    <div className="property-title">
+                        <div className="ui horizontal list">
+                            <div className="item">
+                                <h3
+                                    style={{
+                                        color: 'rgb(98, 91, 95)',
+                                        cursor: 'pointer'
+                                    }}
+                                    onClick={() => {
+                                        this.context.executeAction(
+                                            navigateAction,
+                                            {
+                                                url: `/dataset/${encodeURIComponent(
+                                                    this.props.dataset
+                                                )}/resource/${encodeURIComponent(
+                                                    collection[0].cProp
+                                                )}`
+                                            }
+                                        );
+                                    }}
+                                >
+                                    {collection[0].cPropLabel}
+                                </h3>
+                            </div>
+                        </div>
+                        <div className="ui dividing header"></div>
+                    </div>
+                    <div style={{ textAlign: 'center', margin: 20 }}>
+                        <Depiction
+                            uri={collection[0].cProp}
+                            style={{ maxHeight: 500 }}
+                        />
+                    </div>
+                    <Collection
+                        members={collection.map(member => {
+                            return {
+                                uri: member.meas,
+                                label: `${member.measLabel} : ${member.value}`,
+                                depiction:
+                                    'https://image.flaticon.com/icons/png/512/5/5095.png'
+                            };
+                        })}
+                        classes={customClasses}
+                    ></Collection>
+                </div>
             );
         } else {
             return (

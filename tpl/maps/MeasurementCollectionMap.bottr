@@ -18,27 +18,40 @@
   ottr:query """
             SELECT ?collection 
                    ?members
-                   ?hasMeasurement
                       # we hack instance URI as UUID() doesn't work in virtuoso => it's new ns + other resource UUID
                    (URI(CONCAT ("https://w3id.org/arco/resource/MeasurementCollectionPattern", STRAFTER(STR(?collection), "https://w3id.org/arco/resource/MeasurementCollection"))) as ?instanceIRI)
-                   ?instanceType     
-                   ?collectionInstanceIRI #none
-                   ?collInstanceType #none
+                   ?cProp
+                   ?cPropLabel
+                   ?cPropType
+                   ?measLabels
+                   ?values
             WHERE
             {
-                   OPTIONAL {?collectionInstanceIRI a rdf:HackToNone . }
-                   OPTIONAL {?collInstanceType a rdf:HackToNone . }
-                   OPTIONAL {?instanceType a rdf:HackToNone . }
-                   OPTIONAL {?hasMeasurement a rdf:HackToNone . }
+
+                   ?cProp a-dd:hasMeasurementCollection ?collection .
+                   ?cProp rdfs:label ?cPropLabel . FILTER langMatches(lang(?cPropLabel), "it") .
+                   ?cProp rdf:type ?cPropType .
                   {
-                   SELECT ?collection 
+                   SELECT ?collection
                           (GROUP_CONCAT(DISTINCT ?member; SEPARATOR=";") AS ?members)
-                          #(COUNT(DISTINCT ?member) AS ?memberCount)      
+                          (GROUP_CONCAT(DISTINCT ?value; SEPARATOR=";") AS ?values )
+                          (GROUP_CONCAT(DISTINCT ?measLabel; SEPARATOR=";") AS ?measLabels )
+                          #(COUNT(DISTINCT ?member) AS ?memberCount)
                          WHERE
                           {
 	                                ?collection a-dd:hasMeasurement ?member.
-                                  ?collection a a-dd:MeasurementCollection . 
+                                  ?collection a a-dd:MeasurementCollection .
                                   ?member a a-dd:Measurement .
+
+
+
+                                   ?member a-dd:hasMeasurementType ?measurementType .
+                                  ?measurementType rdf:type a-dd:MeasurementType .
+                                  ?measurementType rdfs:label ?measLabel .
+                                   FILTER langMatches(lang(?measLabel), "it") .
+
+                                  ?member a-dd:hasValue ?v .
+                                       ?v <https://w3id.org/italia/onto/MU/value> ?value . 
                           }
                          GROUP BY ?collection 
                          #HAVING (count(distinct ?member) > 1)
@@ -46,16 +59,22 @@
             }     
             LIMIT 45 
 """;
-  ottr:template odp-tpl:MeasurementCollectionInstance ;
+
+  ottr:template odp-tpl:ExtendedMeasurementCollectionInstance ;
   ottr:argumentMaps (
     [ ottr:type ottr:IRI ]                          ## ?collection
     [ ottr:type (rdf:List ottr:IRI); 
       ottr:translationSettings [ ottr:listSep ";"]  ## ?collectionMembers
     ]
-    [ ottr:type owl:ObjectProperty ]                ## ?hasMeasurement  
     [ ottr:type ottr:IRI ]                          ## ?instanceIRI
-    [ ottr:type ottr:IRI ]                          ## ?instanceType
-    [ ottr:type ottr:IRI ]                          ## ?collectionInstIRI 
-    [ ottr:type ottr:IRI ]                          ## ?collInstType
-  ) .
+    [ ottr:type ottr:IRI ]                          ## ?cProp
+    [ ottr:type rdfs:Literal ]                          ## ?cPropLabel
+    [ ottr:type ottr:IRI ]                          ## ?cPropType
+    [ ottr:type (rdf:List rdfs:Literal); 
+      ottr:translationSettings [ ottr:listSep ";"]  ## ?measLabels
+    ]
+    [ ottr:type (rdf:List rdfs:Literal); 
+      ottr:translationSettings [ ottr:listSep ";"]  ## ?values
+    ]
 
+  ) .

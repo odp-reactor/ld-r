@@ -1,0 +1,34 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix a-dd:       <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix a-dd:       <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
+@prefix rdfs:	    <http://www.w3.org/2000/01/rdf-schema#> . 
+
+odp-tpl:ExtendedMeasurementCollectionInstance[ ottr:IRI ?collection, 
+                                       List<ottr:IRI> ?measurements, 
+                                     ? ottr:IRI ?instanceIRI,
+                                     ottr:IRI ?cProp,
+                                     rdfs:Literal ?cPropLabel,
+                                     ottr:IRI ?cPropType,
+                                     List<rdfs:Literal> ?measLabels,
+                                     List<rdfs:Literal> ?values
+                                        ] :: {
+    odp-tpl:MeasurementCollectionInstance(?collection, ?measurements, none, ?instanceIRI, none, none, none),
+    ottr:Triple(?cProp, rdfs:label, ?cPropLabel),
+    ottr:Triple(?cProp, a-dd:hasMeasurementCollection, ?collection),
+    zipMin
+      | ottr:Triple(++?measurements, rdfs:label, ++?measLabels),
+    zipMin
+      | ottr:Triple(++?measurements, a-dd:hasValue, ++?values),
+    o-rdf:Type(?cProp, ?cPropType)
+} .
+

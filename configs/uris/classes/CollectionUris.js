@@ -9,5 +9,6 @@ export default class CollectionUris {
         this.hasCollection = uris.hasCollection;
         this.hasMember = uris.hasMember;
         this.hasMemberType = uris.hasMemberType;
+        this.hasValue = uris.hasValue;
     }
 }

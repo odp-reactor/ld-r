@@ -1,0 +1,34 @@
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+        PREFIX ldr: <https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        PREFIX dcterms: <http://purl.org/dc/terms/>
+        PREFIX void: <http://rdfs.org/ns/void#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+        PREFIX DBpedia: <http://dbpedia.org/ontology/>
+        PREFIX Schema: <http://schema.org/>
+        
+            PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+            
+            SELECT DISTINCT ?cProp ?cPropLabel ?entity ?entityLabel ?depiction ?value WHERE {
+
+                    ?cProp a-dd:hasMeasurementCollection <https://w3id.org/arco/resource/MeasurementCollection/1200550282-1> .
+                     ?cProp rdfs:label ?cPropLabel . FILTER langMatches(lang(?cPropLabel), "it") .
+
+                    <https://w3id.org/arco/resource/MeasurementCollection/1200550282-1> <https://w3id.org/arco/ontology/denotative-description/hasMeasurement> ?entity .
+                       OPTIONAL { <https://w3id.org/arco/resource/MeasurementCollection/1200550282-1> <http://www.w3.org/2000/01/rdf-schema#label> ?collectionLabel .}.
+                       OPTIONAL { ?entity <https://w3id.org/arco/ontology/denotative-description/hasMeasurementType> ?measurementType .
+                                  ?measurementType rdfs:label ?entityLabel2B .
+                                   FILTER langMatches(lang(?entityLabel2B), "it")
+                                  }.
+                       OPTIONAL { ?entity <https://w3id.org/arco/ontology/denotative-description/hasValue> ?v .
+                                  ?v <https://w3id.org/italia/onto/MU/value> ?value2B }
+                       
+                       OPTIONAL { ?entity <http://xmlns.com/foaf/0.1/depiction> ?depiction2B .}.
+
+                       BIND ( IF (BOUND ( ?entityLabel2B ), ?entityLabel2B, "" )  as ?entityLabel )
+                       BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
+                       BIND ( IF (BOUND ( ?value2B ),   ?value2B,   "" )  as ?value   )
+            } 

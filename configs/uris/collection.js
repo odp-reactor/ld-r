@@ -19,7 +19,8 @@ const musicalInstrumentURIs = new CollectionUris({
 const measurementURIs = new CollectionUris({
     hasCollection: `${a_dd}hasMeasurementCollection`,
     hasMember: `${a_dd}hasMeasurement`,
-    hasMemberType: `${a_dd}/hasMeasurementType`
+    hasMemberType: `${a_dd}hasMeasurementType`,
+    hasValue: `${a_dd}hasValue`
 });
 
 export { musicalInstrumentURIs, measurementURIs };

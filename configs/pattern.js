@@ -9,13 +9,15 @@ export default {
         "https://w3id.org/arco/ontology/denotative-description/measurement-collection": {
             patternIViewer: "CollectionView",
             query: {
-                select: `SELECT DISTINCT ?entity ?entityLabel ?depiction WHERE`,
-                body: `?MeasurementCollection <${measurementURIs.hasMember}> ?entity .
-                       OPTIONAL { ?MeasurementCollection <${rdfs}label> ?collectionLabel .}.
-                       OPTIONAL { ?entity <${rdfs}label> ?entityLabel2B .}.
-                       OPTIONAL { ?entity <${foaf}depiction> ?depiction2B .}.
+                select: `SELECT DISTINCT ?meas ?measLabel ?value ?depiction ?cProp ?cPropLabel WHERE`,
+                body: `?MeasurementCollection <${measurementURIs.hasMember}> ?meas .
+                       OPTIONAL { ?meas <${rdfs}label> ?measLabel2B .}.
+                       OPTIONAL { ?meas <${foaf}depiction> ?depiction2B .}.
+                       ?meas <${measurementURIs.hasValue}> ?value .
+                       ?cProp <${measurementURIs.hasCollection}> ?MeasurementCollection .
+                       ?cProp <${rdfs}label> ?cPropLabel .
 
-                       BIND ( IF (BOUND ( ?entityLabel2B ), ?entityLabel2B, "" )  as ?entityLabel )
+                       BIND ( IF (BOUND ( ?measLabel2B ), ?measLabel2B, "" )  as ?measLabel )
                        BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
                        `,
                 aggregates: undefined
