@@ -14,9 +14,10 @@ export default {
                 allowResourceDelete: 1,
                 allowResourceClone: 1,
                 allowPropertyNew: 1,
+                // datasetReactor: ["Dataset"],
+                // datasetViewer: ["BasicResourceList"]
                 datasetReactor: ["PatternNetwork"],
-                datasetViewer: ["PatternNetwork"],
-                query: []
+                datasetViewer: ["PatternNetwork"]
             },
             //authentication graph
             "http://virtuoso.local/users": {

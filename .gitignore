@@ -8,7 +8,7 @@ Notes.md
 #configs/facets.js
 #configs/reactor.js
 #configs/general.js
-plugins/email/config.js
+#plugins/email/config.js
 *.lock
 react-codemod
 .DS_Store
