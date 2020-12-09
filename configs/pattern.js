@@ -9,15 +9,20 @@ export default {
         "https://w3id.org/arco/ontology/denotative-description/measurement-collection": {
             patternIViewer: "CollectionView",
             query: {
-                select: `SELECT DISTINCT ?meas ?measLabel ?value ?depiction ?cProp ?cPropLabel WHERE`,
+                select: `SELECT DISTINCT ?meas ?value ?unit ?cProp ?cPropLabel WHERE`,
                 body: `?MeasurementCollection <${measurementURIs.hasMember}> ?meas .
-                       OPTIONAL { ?meas <${rdfs}label> ?measLabel2B .}.
                        OPTIONAL { ?meas <${foaf}depiction> ?depiction2B .}.
-                       ?meas <${measurementURIs.hasValue}> ?value .
+                       
+                       { SELECT ?value ?unit {
+                         ?meas <https://w3id.org/arco/ontology/denotative-description/hasValue> ?val .
+                         ?val <https://w3id.org/italia/onto/MU/value> ?value .
+                         ?val <https://w3id.org/italia/onto/MU/hasMeasurementUnit> ?u .
+                         ?u <${rdfs}label> ?unit .
+                       } LIMIT 1 }
                        ?cProp <${measurementURIs.hasCollection}> ?MeasurementCollection .
                        ?cProp <${rdfs}label> ?cPropLabel .
+                       FILTER langMatches(lang(?cPropLabel), "it")
 
-                       BIND ( IF (BOUND ( ?measLabel2B ), ?measLabel2B, "" )  as ?measLabel )
                        BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
                        `,
                 aggregates: undefined
@@ -39,48 +44,72 @@ export default {
                        ?culturalProperty <${tITLURIs.hasTimeIndexedTypedLocation}> ?TimeIndexedTypedLocation .                       
                        ?TimeIndexedTypedLocation <${tITLURIs.hasLocationType}>  ?locationType .
                        OPTIONAL { ?TimeIndexedTypedLocation <${tITLURIs.atSite}> ?site .
-                                  ?site <${tITLURIs.siteAddress}>     ?siteAddress .}
-                       OPTIONAL  { ?TimeIndexedTypedLocation <${tITLURIs.atTime}> ?timeInterval } . 
-                       OPTIONAL  { ?timeInterval <${tITLURIs.startTime}> ?startTime2B } .
-                       OPTIONAL  { ?timeInterval <${tITLURIs.endTime}>   ?endTime2B   } .
-                       OPTIONAL  { ?site <${tITLURIs.hasGeometry}> ?geometry .
+                                  ?site <${tITLURIs.siteAddress}>     ?siteAddress .
+                                  ?siteAddress <${rdfs}label>   ?addressLabel2B . }
+                       OPTIONAL  { ?TimeIndexedTypedLocation <${tITLURIs.atTime}> ?timeInterval . 
+                                   ?timeInterval <${tITLURIs.startTime}> ?startTime2B  .
+                                   ?timeInterval <${tITLURIs.endTime}>   ?endTime2B   } .
+                       OPTIONAL  { ?TimeIndexedTypedLocation <${tITLURIs.atSite}> ?site .
+                                   ?site <${tITLURIs.hasGeometry}> ?geometry .
                                    ?geometry <${tITLURIs.lat}>     ?lat2B .
                                    ?geometry <${tITLURIs.long}>    ?long2B .   }
-                       OPTIONAL { ?culturalProperty <${rdfs}label> ?cPropLabel2B . } .
-                       # catch information to try geocoding lat/long if they are missing       
-                       OPTIONAL { ?siteAddress <${rdfs}label>   ?addressLabel2B . }                  
-                       OPTIONAL  { ?TimeIndexedTypedLocation <${rdfs}label> ?tITLLabel2B . FILTER langMatches(lang(?tITLLabel2B), "it") }.
+                       OPTIONAL { ?culturalProperty <${rdfs}label> ?cPropLabel2B .
+                       FILTER langMatches(lang(?cPropLabel2B), "it")
+                    } .OPTIONAL  { ?TimeIndexedTypedLocation <${rdfs}label> ?tITLLabel2B . FILTER langMatches(lang(?tITLLabel2B), "it") }.
                        OPTIONAL  { ?culturalProperty <${foaf}depiction> ?depiction2B . }.
-                       BIND ( IF (BOUND (?depiction2B), ?depiction2B, ''    )  as ?depiction    ) . 
-                       BIND ( IF (BOUND (?tITLLabel2B), ?tITLLabel2B, ''    )  as ?tITLLabel    ) . 
-                       BIND ( IF (BOUND (?cPropLabel2B), ?cPropLabel2B, ''  )  as ?cPropLabel   ) .
-                       BIND ( IF (BOUND (?lat2B),  ?lat2B,  ''              )  as ?lat          ) . 
-                       BIND ( IF (BOUND (?long2B), ?long2B, ''              )  as ?long         ) . 
+                       BIND ( IF (BOUND (?depiction2B), ?depiction2B, '')  as ?depiction) . 
+                       BIND ( IF (BOUND (?tITLLabel2B), ?tITLLabel2B, '')  as ?tITLLabel) . 
+                       BIND ( IF (BOUND (?cPropLabel2B), ?cPropLabel2B, '')  as ?cPropLabel) .
+                       BIND ( IF (BOUND (?lat2B),  ?lat2B,  '')  as ?lat) . 
+                       BIND ( IF (BOUND (?long2B), ?long2B, '')  as ?long) . 
                        BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .  
-                       BIND ( IF (BOUND (?startTime2B),?startTime2B,      '')  as ?startTime    ) .         
-                       BIND ( IF (BOUND (?endTime2B),  ?endTime2B,        '')  as ?endTime      ) .         
+                       BIND ( IF (BOUND (?startTime2B),?startTime2B,'')  as ?startTime) .         
+                       BIND ( IF (BOUND (?endTime2B),  ?endTime2B,'')  as ?endTime) .         
                 `,
                 aggregates: "LIMIT 1" // else multiple rows for the same instance are returned because of multiple labels
             },
             arguments: ["TimeIndexedTypedLocation"],
             stateKey: "tITLocations"
         },
-        "http://www.ontologydesignpatterns.org/cp/owl/cultural-property-component-of": {
+        "https://w3id.org/arco/ontology/location/cultural-property-component-of": {
             patternIViewer: "PartWholeView",
             query: {
                 select: `SELECT DISTINCT ?complexCProp ?cPropComponent ?depiction WHERE`,
-                body: ` ?cPropComponent <${cPropComponentOfURIs.isPartOf}> ?ComplexCulturalProperty .
+                body: ` ?cPropComponent <${cPropComponentOfURIs.isPartOf}> ?HistoricOrArtisticProperty  .
                         
-                        OPTIONAL { ?complexCProp2B a rdf:HackToBound . } .
-                        OPTIONAL { ?ComplexCulturalProperty <${foaf}depiction> ?depiction2B . }.
+                        OPTIONAL { ?complexCProp2B a rdf:HackToBound . } 
+            
+                    { SELECT ?depiction WHERE {
+    
+                        OPTIONAL { ?HistoricOrArtisticProperty  <${foaf}depiction> ?depiction2B . }.
                         BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
-                        BIND ( IF (BOUND ( ?complexCProp2B), ?ComplexCulturalProperty, ?ComplexCulturalProperty ) as ?complexCProp )
+                       } LIMIT 1
+                    }
+                        BIND ( IF (BOUND ( ?complexCProp2B), ?HistoricOrArtisticProperty , ?HistoricOrArtisticProperty  ) as ?complexCProp )
                         `,
                 aggregates: undefined
             },
-            arguments: ["ComplexCulturalProperty"],
+            //            https://w3id.org/arco/ontology/arco/MovableCulturalProperty
+            arguments: ["HistoricOrArtisticProperty"],
             stateKey: "cPropComponentOf"
         },
+        // "https://w3id.org/arco/ontology/location/cultural-property-component-of": {
+        //     patternIViewer: "PartWholeView",
+        //     query: {
+        //         select: `SELECT DISTINCT ?complexCProp ?cPropComponent ?depiction WHERE`,
+        //         body: ` ?cPropComponent <${cPropComponentOfURIs.isPartOf}> ?ComplexCulturalProperty .
+
+        //                 OPTIONAL { ?complexCProp2B a rdf:HackToBound . } .
+        //                 OPTIONAL { ?ComplexCulturalProperty <${foaf}depiction> ?depiction2B . }.
+        //                 BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
+        //                 BIND ( IF (BOUND ( ?complexCProp2B), ?ComplexCulturalProperty, ?ComplexCulturalProperty ) as ?complexCProp )
+        //                 `,
+        //         aggregates: undefined
+        //     },
+        //     https://w3id.org/arco/ontology/arco/MovableCulturalProperty
+        //     arguments: ["ComplexCulturalProperty"],
+        //     stateKey: "cPropComponentOf"
+        // },
         "collection->https://w3id.org/arco/ontology/location/time-indexed-typed-location": {
             patternIViewer: "TimeIndexedTypedLocationView",
             query: {

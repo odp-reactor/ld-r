@@ -16,8 +16,6 @@ import TimeIndexedTypedLocationView from './viewer/TimeIndexedTypedLocationView'
 import CollectionView from './viewer/CollectionView';
 import PartWholeView from './viewer/PartWholeView';
 
-import PropertyHeader from '../property/PropertyHeader';
-
 import PatternUtil from '../../services/utils/PatternUtil';
 const patternUtil = new PatternUtil();
 

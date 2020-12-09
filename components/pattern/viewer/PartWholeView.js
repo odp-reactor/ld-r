@@ -48,6 +48,7 @@ class PartWholeView extends React.Component {
                     )}/resource/${encodeURIComponent(resourceURI)}`
                 });
             };
+            console.log('parts', parts);
             return (
                 <div style={{ textAlign: 'center' }}>
                     <PartWhole

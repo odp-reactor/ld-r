@@ -99,6 +99,9 @@ export default {
             "http://ontologydesignpatterns.org/opla/belongsToPatternInstance": {
                 isHidden: 1
             },
+            "http://ontologydesignpatterns.org/opla/hasPatternInstanceMember": {
+                isHidden: 1
+            },
             "http://xmlns.com/foaf/0.1/depiction": {
                 objectIViewer: ["BasicImageView"]
             },

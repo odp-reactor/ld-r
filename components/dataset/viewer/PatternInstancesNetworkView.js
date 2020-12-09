@@ -57,11 +57,17 @@ export default class PatternInstancesNetworkView extends React.Component {
             color = this.props.RouteStore._currentNavigate.route.params.c;
 
             getInstance = node => {
-                this.context.executeAction(navigateAction, {
-                    url: `/dataset/${encodeURIComponent(
-                        this.props.RouteStore._currentNavigate.route.params.did
-                    )}/resource/${encodeURIComponent(node.id)}`
-                });
+                // temporary disable time interval to avoid app crash as there is no visualization set for this pattern!
+                if (
+                    node.model.data.pattern !==
+                    'http://www.ontologydesignpatterns.org/cp/owl/time-interval'
+                )
+                    this.context.executeAction(navigateAction, {
+                        url: `/dataset/${encodeURIComponent(
+                            this.props.RouteStore._currentNavigate.route.params
+                                .did
+                        )}/resource/${encodeURIComponent(node.id)}`
+                    });
             };
         }
 

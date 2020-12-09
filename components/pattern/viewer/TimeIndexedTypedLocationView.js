@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import fetchInstanceData from './fetchInstanceData';
 import PatternInstanceStore from '../../../stores/PatternInstanceStore';
+import ResourceStore from '../../../stores/ResourceStore';
 import { navigateAction } from 'fluxible-router';
 
 import CustomLoader from '../../CustomLoader';
+
+import PropertyHeader from '../../property/PropertyHeader';
 
 /**
  * @description This component is a model for the corresponding view provided by the ld-ui-react package.
@@ -43,7 +46,6 @@ class TimeIndexedTypedLocationView extends React.Component {
             if (this.props.data.instanceData.tITLocations) {
                 let TimeIndexedTypedLocation = require('ld-ui-react/lib/client-side')
                     .TimeIndexedTypedLocation;
-                console.log(this.props.data.instanceData.tITLocations);
 
                 const getResource = () => {
                     this.context.executeAction(navigateAction, {
@@ -56,12 +58,34 @@ class TimeIndexedTypedLocationView extends React.Component {
                     });
                 };
                 return (
-                    <TimeIndexedTypedLocation
-                        timeIndexedTypedLocations={
-                            this.props.data.instanceData.tITLocations
-                        }
-                        onCulturalPropertyClick={getResource}
-                    ></TimeIndexedTypedLocation>
+                    <div>
+                        {/* {this.props.ResourceStore.resourceType[0] ===
+                        "https://w3id.org/arco/ontology/location/time-indexed-typed-location" ? (
+                            <div className="property-title">
+                                <div className="ui horizontal list">
+                                    <div className="item">
+                                        <PropertyHeader
+                                            spec={"hasTimeIndexedTypedLocation"}
+                                            config={this.props.config}
+                                            size="3"
+                                            datasetURI={this.props.datasetURI}
+                                            resourceURI={this.props.resource}
+                                            propertyURI={
+                                                "hasTimeIndexedTypedLocation"
+                                            }
+                                        />
+                                    </div>
+                                </div>
+                                <div className="ui dividing header"></div>
+                            </div>
+                        ) : null} */}
+                        <TimeIndexedTypedLocation
+                            timeIndexedTypedLocations={
+                                this.props.data.instanceData.tITLocations
+                            }
+                            onCulturalPropertyClick={getResource}
+                        ></TimeIndexedTypedLocation>
+                    </div>
                 );
             } else {
                 return (
@@ -80,10 +104,11 @@ TimeIndexedTypedLocationView.contextTypes = {
 };
 TimeIndexedTypedLocationView = connectToStores(
     TimeIndexedTypedLocationView,
-    [PatternInstanceStore],
+    [PatternInstanceStore, ResourceStore],
     function(context, props) {
         return {
-            data: context.getStore(PatternInstanceStore).getInstanceData()
+            data: context.getStore(PatternInstanceStore).getInstanceData(),
+            ResourceStore: context.getStore(ResourceStore)
         };
     }
 );

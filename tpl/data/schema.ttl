@@ -50,7 +50,7 @@ odp-pat:hasTimeIndexedSetting
         rdfs:range          odp-pat:TimeIndexedSituation ;
         rdfs:subPropertyOf  odp-pat:hasSetting .
 
-owl:Thing  rdfs:domain  odp-pat:isPartOf , odp-pat:hasPart ;
+owl:Thing  rdfs:domain  odp-pat:hasPart , odp-pat:isPartOf ;
         rdfs:range   owl:Thing .
 
 a-dd:measurement-collection
@@ -58,6 +58,10 @@ a-dd:measurement-collection
         opla:specializationOfPattern  odp-pat:collection .
 
 odp-pat:isSettingFor  owl:inverseOf  odp-pat:hasSetting .
+
+a-loc:cultural-property-component-of
+        a                             opla:Pattern ;
+        opla:specializationOfPattern  odp-pat:part-of .
 
 <https://w3id.org/italia/onto/TI/hasIntervalEndDate>
         a                   owl:DatatypeProperty ;
@@ -78,10 +82,6 @@ a-loc:hasTimeIndexedTypedLocation
 
 odp-pat:isTimeIndexFor
         owl:inverseOf  odp-pat:hasTimeIndexedSetting .
-
-odp-pat:cultural-property-component-of
-        a                             opla:Pattern ;
-        opla:specializationOfPattern  odp-pat:part-of .
 
 odp-pat:time-indexed-situation
         a                             opla:Pattern ;

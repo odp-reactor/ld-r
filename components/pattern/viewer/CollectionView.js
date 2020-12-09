@@ -81,7 +81,9 @@ class CollectionView extends React.Component {
                         members={collection.map(member => {
                             return {
                                 uri: member.meas,
-                                label: `${member.measLabel} : ${member.value}`,
+                                label: `${member.meas.split('-').pop()} : ${
+                                    member.value
+                                } ${member.unit}`,
                                 depiction:
                                     'https://image.flaticon.com/icons/png/512/5/5095.png'
                             };

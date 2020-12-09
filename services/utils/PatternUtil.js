@@ -176,6 +176,8 @@ class PatternUtil {
         patternToReturn[patternKey] = dataToReturn;
         patternToReturn['key'] = patternKey;
         // when Store receive data do: data = res[res.key]
+        console.log('[*] Pattern Data:');
+        console.log(patternToReturn);
         callback(null, patternToReturn);
     }
 }

@@ -20,7 +20,8 @@ export default class PatternQuery extends SPARQLQuery {
         let { gStart, gEnd } = this.prepareGraphName(graphName);
         this.query = `SELECT DISTINCT ?pattern (COUNT(DISTINCT ?instance) as ?occurences) WHERE {
             ${gStart}
-               ?instance opla:isPatternInstanceOf ?pattern .
+               ?instance rdf:type ?pattern .
+               ?pattern rdf:type opla:Pattern .
             ${gEnd}
         }`;
         return this.query; // TODO: ?pattern rdf:type opla:Pattern (if reasoning available)
@@ -36,13 +37,13 @@ export default class PatternQuery extends SPARQLQuery {
         this.query = `SELECT DISTINCT ?subPattern ?pattern WHERE {
             ${gStart}
                 ?subPattern opla:specializationOfPattern ?pattern .
-                ?subPattern rdf:type opla:Pattern .
-                ?pattern rdf:type opla:Pattern .
-            ${gEnd}
-        }
-        `;
+                ${gEnd}
+            }
+            `;
         return this.query;
     }
+    // ?subPattern rdf:type opla:Pattern .
+    // ?pattern rdf:type opla:Pattern .
 
     /**
      * Function creates query to retrieve tuples of pattern and composing patterns
@@ -54,12 +55,12 @@ export default class PatternQuery extends SPARQLQuery {
         this.query = `SELECT DISTINCT ?componentPattern ?pattern WHERE {
             ${gStart}
                 ?componentPattern opla:componentOfPattern ?pattern .
-                ?componentPattern rdf:type opla:Pattern .
-                ?pattern rdf:type opla:Pattern .
-            ${gEnd}
-        }`;
+                ${gEnd}
+            }`;
         return this.query;
     }
+    // ?componentPattern rdf:type opla:Pattern .
+    // ?pattern rdf:type opla:Pattern .
 
     /**
      * @description returns all the patterns specialized and number of time they've been specialized
@@ -113,9 +114,12 @@ export default class PatternQuery extends SPARQLQuery {
      */
     getInstancesByPattern(graphName, id) {
         let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT ?instance ?node ?type ?pattern ?locationType ?startTime ?endTime WHERE {
+        this.query = `SELECT DISTINCT ?instance ?node ?type ?pattern ?locationType ?startTime ?endTime ?siteAddress ?lat ?long 
+?value
+        WHERE {
             ${gStart}
-            ?instance opla:isPatternInstanceOf <${id}> .
+            ?instance rdf:type <${id}> .
+            
             ?node opla:belongsToPatternInstance ?instance ;
                   rdf:type ?type .
 
@@ -124,7 +128,19 @@ export default class PatternQuery extends SPARQLQuery {
                        }
 
             OPTIONAL {  ?node <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType2B .
-                     }
+                      }
+            OPTIONAL { ?node 
+                        <https://w3id.org/arco/ontology/denotative-description/hasValue> ?val2B .
+                        ?val2B <https://w3id.org/italia/onto/MU/value> ?value2B . }
+
+            OPTIONAL { ?node <https://w3id.org/arco/ontology/location/atSite> ?site .
+                        ?site <http://dati.beniculturali.it/cis/siteAddress> ?siteAddr .
+                        ?siteAddr <http://www.w3.org/2000/01/rdf-schema#label> ?siteAddress2B . }
+            
+            OPTIONAL { ?node <https://w3id.org/arco/ontology/location/atSite> ?site .
+                              ?site <https://w3id.org/italia/onto/CLV/hasGeometry> ?geometry .
+                              ?geometry <https://w3id.org/italia/onto/CLV/lat>     ?lat2B .
+                              ?geometry <https://w3id.org/italia/onto/CLV/long>    ?long2B .   }
                        
             OPTIONAL {?pattern2B a rdf:HackToAssignType . }
             BIND ( IF (BOUND  (?pattern2B), <${id}>, <${id}> ) as ?pattern) .
@@ -132,7 +148,11 @@ export default class PatternQuery extends SPARQLQuery {
             BIND ( IF ( BOUND (?startTime2B), ?startTime2B, "" ) as ?startTime ) .
             BIND ( IF ( BOUND (?endTime2B), ?endTime2B, "" ) as ?endTime ) .
             BIND ( IF ( BOUND (?locationType2B), ?locationType2B, "" ) as ?locationType ) .
-
+            BIND ( IF ( BOUND (?siteAddress2B), ?siteAddress2B, "" ) as ?siteAddress ) .
+            BIND ( IF (BOUND (?lat2B),  ?lat2B,  '')  as ?lat) . 
+            BIND ( IF (BOUND (?long2B), ?long2B, '')  as ?long) . 
+            BIND ( IF (BOUND (?val2B),  ?val2B,  '')   as ?val) . 
+            BIND ( IF (BOUND (?value2B), ?value2B, '')  as ?value) . 
             ${gEnd}
         }`;
         return this.query;

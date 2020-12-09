@@ -1,9 +1,9 @@
 import PartOfUris from "./classes/PartOfUris";
-import { odp_pat } from "./prefixes";
+import { arco } from "./prefixes";
 
 const cPropComponentOfURIs = new PartOfUris({
-    isPartOf: `${odp_pat}isCulturalPropertyComponentOf`,
-    hasPart: `${odp_pat}hasCulturalPropertyComponent`
+    isPartOf: `${arco}isCulturalPropertyComponentOf`,
+    hasPart: `${arco}hasCulturalPropertyComponent`
 });
 
 export { cPropComponentOfURIs };

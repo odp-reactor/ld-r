@@ -8,7 +8,7 @@ const tITLURIs = new TimeIndexedTypedLocationUris({
     atTime: `${tiapit}atTime`,
     atSite: `${a_loc}atSite`,
     hasGeometry: `${clvapit}hasGeometry`,
-    siteAddress: `${cis}siteAddres`,
+    siteAddress: `${cis}siteAddress`,
     hasCity: `${clvapit}hasCity`,
     lat: `${clvapit}lat`,
     long: `${clvapit}long`,

@@ -5,13 +5,14 @@
 @prefix ax:         <http://tpl.ottr.xyz/owl/axiom/0.1/> .
 @prefix arco:        <https://w3id.org/arco/ontology/arco/> .
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
 
 odp-tpl:CulturalPropertyComponentOf[ owl:Class ?culturalPropertyComponent=arco:CulturalPropertyComponent, 
                                owl:Class ?complexCulturalProperty=arco:ComplexCulturalProperty, 
                                ottr:IRI ?isCulturalPropertyComponentOf=arco:isCulturalPropertyComponentOf, 
                                ottr:IRI ?hasCulturalPropertyComponent=arco:hasCulturalPropertyComponent ] :: {
-    odp-tpl:Pattern(odp-pat:cultural-property-component-of),
-    odp-tpl:SpecializationOfPattern(odp-pat:cultural-property-component-of, odp-pat:part-of),
+    odp-tpl:Pattern(a-loc:cultural-property-component-of),
+    odp-tpl:SpecializationOfPattern(a-loc:cultural-property-component-of, odp-pat:part-of),
     odp-tpl:PartOf(?culturalPropertyComponent, ?complexCulturalProperty, ?isCulturalPropertyComponentOf, ?hasCulturalPropertyComponent),
     ax:SubPropertyOf(?isCulturalPropertyComponentOf, odp-pat:isPartOf),
     ax:SubPropertyOf(?hasCulturalPropertyComponent, odp-pat:hasPart)
