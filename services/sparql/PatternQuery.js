@@ -18,10 +18,27 @@ export default class PatternQuery extends SPARQLQuery {
      */
     getPatternList(graphName) {
         let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT ?pattern (COUNT(DISTINCT ?instance) as ?occurences) WHERE {
+        this.query = `SELECT DISTINCT  ?pattern 
+                       (COUNT(DISTINCT ?instance) as ?occurences)  
+                      (GROUP_CONCAT(DISTINCT ?superPattern; SEPARATOR=";") as ?superPatterns)
+                      (GROUP_CONCAT(DISTINCT ?component; SEPARATOR=";") as ?components) WHERE {
             ${gStart}
-               ?instance rdf:type ?pattern .
-               ?pattern rdf:type opla:Pattern .
+           { SELECT ?pattern ?instance  WHERE     {   
+                           ?instance opla:isPatternInstanceOf ?pattern .
+                           ?pattern a opla:Pattern .        
+                  } GROUP BY ?pattern }
+                  UNION { 
+                      SELECT ?pattern ?superPattern ?component WHERE {
+                                      ?pattern a opla:Pattern .
+            
+                           OPTIONAL {?pattern opla:specializationOfPattern ?superPattern2B }.
+                           OPTIONAL {?component2B opla:componentOfPattern ?pattern }.
+            
+                           BIND ( IF (BOUND (?superPattern2B), ?superPattern2B, '')  as ?superPattern) .
+                           BIND ( IF (BOUND (?component2B), ?component2B, '')  as ?component) .            
+            
+                       } 
+                  }
             ${gEnd}
         }`;
         return this.query; // TODO: ?pattern rdf:type opla:Pattern (if reasoning available)
@@ -113,49 +130,80 @@ export default class PatternQuery extends SPARQLQuery {
      * @memberof PatternQuery
      */
     getInstancesByPattern(graphName, id) {
+        let [
+            instanceDependentVariables,
+            body
+        ] = this.getInstanceInstanceDependentData(id);
         let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT ?instance ?node ?type ?pattern ?locationType ?startTime ?endTime ?siteAddress ?lat ?long 
-?value
-        WHERE {
+        this.query = `SELECT DISTINCT ?instance ?description ?type ?nodes ?types ${instanceDependentVariables} WHERE {
             ${gStart}
-            ?instance rdf:type <${id}> .
-            
-            ?node opla:belongsToPatternInstance ?instance ;
-                  rdf:type ?type .
-
-            OPTIONAL {  ?node <https://w3id.org/arco/ontology/arco/startTime> ?startTime2B ;
-                              <https://w3id.org/arco/ontology/arco/endTime> ?endTime2B .
-                       }
-
-            OPTIONAL {  ?node <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType2B .
-                      }
-            OPTIONAL { ?node 
-                        <https://w3id.org/arco/ontology/denotative-description/hasValue> ?val2B .
-                        ?val2B <https://w3id.org/italia/onto/MU/value> ?value2B . }
-
-            OPTIONAL { ?node <https://w3id.org/arco/ontology/location/atSite> ?site .
-                        ?site <http://dati.beniculturali.it/cis/siteAddress> ?siteAddr .
-                        ?siteAddr <http://www.w3.org/2000/01/rdf-schema#label> ?siteAddress2B . }
-            
-            OPTIONAL { ?node <https://w3id.org/arco/ontology/location/atSite> ?site .
-                              ?site <https://w3id.org/italia/onto/CLV/hasGeometry> ?geometry .
-                              ?geometry <https://w3id.org/italia/onto/CLV/lat>     ?lat2B .
-                              ?geometry <https://w3id.org/italia/onto/CLV/long>    ?long2B .   }
-                       
-            OPTIONAL {?pattern2B a rdf:HackToAssignType . }
-            BIND ( IF (BOUND  (?pattern2B), <${id}>, <${id}> ) as ?pattern) .
-
-            BIND ( IF ( BOUND (?startTime2B), ?startTime2B, "" ) as ?startTime ) .
-            BIND ( IF ( BOUND (?endTime2B), ?endTime2B, "" ) as ?endTime ) .
-            BIND ( IF ( BOUND (?locationType2B), ?locationType2B, "" ) as ?locationType ) .
-            BIND ( IF ( BOUND (?siteAddress2B), ?siteAddress2B, "" ) as ?siteAddress ) .
-            BIND ( IF (BOUND (?lat2B),  ?lat2B,  '')  as ?lat) . 
-            BIND ( IF (BOUND (?long2B), ?long2B, '')  as ?long) . 
-            BIND ( IF (BOUND (?val2B),  ?val2B,  '')   as ?val) . 
-            BIND ( IF (BOUND (?value2B), ?value2B, '')  as ?value) . 
+            ?instance opla:isPatternInstanceOf ${id} .
+            ?instance opla:isPatternInstanceOf ?type .
+            OPTIONAL { ?instance opla:specialLabel ?description2B . }
+            # get instance nodes and types
+            { SELECT DISTINCT (GROUP_CONCAT(DISTINCT ?node; SEPARATOR=";") AS ?nodes) (GROUP_CONCAT(DISTINCT ?type; SEPARATOR=";") AS ?types) WHERE {
+                    ?instance opla:isPatternInstanceOf <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+                    ?instance opla:hasPatternInstanceMember ?node .
+                    ?node rdf:type ?type .
+               }
+            }
+            ${body}                
+            BIND ( IF (BOUND (?description2B), ?description2B, '')  as ?description) .
             ${gEnd}
         }`;
         return this.query;
+    }
+
+    getInstanceInstanceDependentData(id) {
+        switch (id) {
+            case 'https://w3id.org/arco/ontology/location/time-indexed-typed-location':
+                return [
+                    '?locationType ?startTime ?endTime ?lat ?long',
+                    `           { SELECT ?locationType {
+                    OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .
+                               ?instance opla:isPatternInstanceOf <${id}> .
+                     ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+                     ?titl <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType2B .
+                    }
+                      BIND ( IF ( BOUND (?locationType2B), ?locationType2B, "" ) as ?locationType ) .
+                     } LIMIT 1
+                  }
+                  { SELECT ?startTime ?endTime {
+                    OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .
+                        ?instance opla:isPatternInstanceOf <${id}> .
+                        ?titl <https://w3id.org/arco/ontology/arco/startTime> ?startTime2B ;
+                           <https://w3id.org/arco/ontology/arco/endTime> ?endTime2B .
+                    }  
+                         BIND ( IF ( BOUND (?startTime2B), ?startTime2B, "" ) as ?startTime ) .
+                         BIND ( IF ( BOUND (?endTime2B), ?endTime2B, "" ) as ?endTime ) .
+                     } LIMIT 1
+                  }
+                  { SELECT ?lat ?long {
+                       OPTIONAL { 
+                        ?instance opla:isPatternInstanceOf <${id}> .   
+                        ?instance opla:hasPatternInstanceMember ?titl .
+                        ?titl <https://w3id.org/arco/ontology/location/atSite> ?site .
+                    ?site <https://w3id.org/italia/onto/CLV/hasGeometry> ?geometry .
+                    ?geometry <https://w3id.org/italia/onto/CLV/lat>     ?lat2B .
+                    ?geometry <https://w3id.org/italia/onto/CLV/long>    ?long2B .   }
+                    BIND ( IF (BOUND (?lat2B),  ?lat2B,  '')  as ?lat) . 
+                    BIND ( IF (BOUND (?long2B), ?long2B, '')  as ?long) . 
+                   } LIMIT 1`
+                ];
+            case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
+                return [
+                    '?val, ?value',
+                    `{ SELECT ?val ?value OPTIONAL { 
+                          ?instance opla:hasPatternInstanceMember ?node .
+                          ?node <https://w3id.org/arco/ontology/denotative-description/hasValue> ?val2B .
+                          ?val2B <https://w3id.org/italia/onto/MU/value> ?value2B . } 
+                          BIND ( IF (BOUND (?val2B),  ?val2B,  '')   as ?val) . 
+                          BIND ( IF (BOUND (?value2B), ?value2B, '')  as ?value) . 
+                        } LIMIT 1`
+                ];
+            default:
+                return ['', ''];
+        }
     }
 
     /**

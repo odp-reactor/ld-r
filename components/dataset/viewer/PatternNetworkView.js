@@ -42,26 +42,6 @@ export default class PatternNetworkView extends React.Component {
                 dataset: this.props.datasetURI //missing
             });
         }
-        if (!this.props.PatternStore.compositions) {
-            this.context.executeAction(loadPatternCompositions, {
-                dataset: this.props.datasetURI //missing
-            });
-        }
-        if (!this.props.PatternStore.specializations) {
-            this.context.executeAction(loadPatternSpecializations, {
-                dataset: this.props.datasetURI //missing
-            });
-        }
-        if (!this.props.PatternStore.specializationCount) {
-            this.context.executeAction(loadPatternSpecializationCount, {
-                dataset: this.props.datasetURI //missing
-            });
-        }
-        if (!this.props.PatternStore.compositionCount) {
-            this.context.executeAction(loadPatternCompositionCount, {
-                dataset: this.props.datasetURI //missing
-            });
-        }
     }
 
     render() {
@@ -80,13 +60,43 @@ export default class PatternNetworkView extends React.Component {
                 });
             };
 
-            const PatternNetwork = require('ld-ui-react').PatternNetwork;
+            console.log('pattern store');
+            console.log(this.props.PatternStore);
+
+            const KG = require('ld-ui-react').KG;
+            const TimeIntervalFilter = require('ld-ui-react')
+                .TimeIntervalFilter;
+
+            const nodes = [
+                {
+                    id: 'node_1'
+                },
+                {
+                    id: 'node_2',
+                    startTime: '1950',
+                    endTime: '1980'
+                },
+                {
+                    id: 'node_3'
+                },
+                {
+                    id: 'node_4',
+                    startTime: '1900',
+                    endTime: '2000'
+                }
+            ];
 
             return (
-                <PatternNetwork
+                <KG
+                    nodes={nodes}
                     patterns={this.props.PatternStore}
                     getInstances={getInstances}
-                ></PatternNetwork>
+                >
+                    <TimeIntervalFilter
+                        nodes={nodes}
+                        title={'Filter by Time Interval'}
+                    ></TimeIntervalFilter>
+                </KG>
             );
         } else {
             const datasetContainerStyle = {
