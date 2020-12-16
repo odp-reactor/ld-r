@@ -92,7 +92,9 @@ export default class Pattern extends React.Component {
     patternReactor() {
         let patternView = '';
         let patternURI;
-        const instanceResources = this.getInstanceResources(
+        console.log('pattern reactor');
+        console.log(this.props);
+        const [instanceResources, pURI] = this.getInstanceResources(
             this.props.resource,
             this.props.PatternStore.instances
         );
@@ -103,7 +105,7 @@ export default class Pattern extends React.Component {
         ) {
             if (instanceResources.length > 0) {
                 // there are instances we can proceed
-                patternURI = instanceResources[0].pattern;
+                patternURI = pURI;
                 patternView = patternUtil.getView(patternURI);
             } else {
                 // no instances we need to trigger loadInstances
@@ -115,8 +117,6 @@ export default class Pattern extends React.Component {
             patternView = patternUtil.getViewByProperty(
                 this.props.spec.propertyURI
             );
-        console.log('Instance resources:');
-        console.log(instanceResources);
         switch (patternView) {
             case 'TimeIndexedTypedLocationView':
                 return (
@@ -158,15 +158,23 @@ export default class Pattern extends React.Component {
      * @memberof Pattern
      */
     getInstanceResources(instanceURI, patternInstances) {
-        const instanceResources = [];
         if (patternInstances) {
-            patternInstances.forEach(instance => {
-                if (instance.instance === instanceURI) {
-                    instanceResources.push(instance);
+            const instanceResources = [];
+            const instance = patternInstances.find(inst => {
+                return inst.instance === instanceURI;
+            });
+            const nodesAndTypes = instance.nodes.split(';');
+            nodesAndTypes.forEach(nT => {
+                const [n, t] = nT.split(' ');
+                if (t != '') {
+                    instanceResources.push({
+                        id: n,
+                        type: t
+                    });
                 }
             });
-        }
-        return instanceResources;
+            return [instanceResources, instance.type];
+        } else return [[], null];
     }
 }
 

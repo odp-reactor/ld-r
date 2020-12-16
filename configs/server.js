@@ -12,7 +12,7 @@ export default {
         "http://arco.istc.cnr.it/ldr/configurations": {
             host: "arco.istc.cnr.it",
             port: 80,
-            path: "/ldr/sparql",
+            path: "/visualPatterns/sparql",
             endpointType: "virtuoso"
         },
         "http://dpedia.org/sparql": {

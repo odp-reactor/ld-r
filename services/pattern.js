@@ -878,7 +878,9 @@ export default {
                 }
             );
         } else if (resource === 'pattern.instance') {
-            patternURI = params.instanceResources[0].pattern;
+            console.log('get instance');
+            console.log(params);
+            patternURI = params.pattern;
             datasetURI =
                 params.dataset && params.dataset !== '0'
                     ? decodeURIComponent(params.dataset)
@@ -969,6 +971,9 @@ export default {
                                     }
                                 }
                             }
+
+                            console.log('Instance Data');
+                            console.log(instanceResources);
 
                             let query =
                                 queryObject.getPrefixes() +

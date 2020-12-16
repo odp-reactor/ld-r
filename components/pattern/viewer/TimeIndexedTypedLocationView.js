@@ -8,8 +8,6 @@ import { navigateAction } from 'fluxible-router';
 
 import CustomLoader from '../../CustomLoader';
 
-import PropertyHeader from '../../property/PropertyHeader';
-
 /**
  * @description This component is a model for the corresponding view provided by the ld-ui-react package.
  *
@@ -46,6 +44,9 @@ class TimeIndexedTypedLocationView extends React.Component {
             if (this.props.data.instanceData.tITLocations) {
                 let TimeIndexedTypedLocation = require('ld-ui-react/lib/client-side')
                     .TimeIndexedTypedLocation;
+                let ImageGrid = require('ld-ui-react').ImageGrid;
+                const PropertyValueList = require('ld-ui-react')
+                    .PropertyValueList;
 
                 const getResource = () => {
                     this.context.executeAction(navigateAction, {
@@ -57,34 +58,47 @@ class TimeIndexedTypedLocationView extends React.Component {
                         )}`
                     });
                 };
+
+                const culturalPropertyURI = this.props.data.instanceData
+                    .tITLocations[0].culturalProperty;
+
+                let titl = this.props.data.instanceData.tITLocations[0];
+
+                let propertyList = {};
+                propertyList['Cultural property:'] = titl.cPropLabel;
+                propertyList['Address:'] = titl.addressLabel;
+                propertyList['Location Type:'] = titl.locationType;
+                propertyList['Longitude:'] = titl.long;
+                propertyList['Latitude:'] = titl.lat;
+                propertyList['Start Time:'] = titl.startTime;
+                propertyList['End Time:'] = titl.endTime;
+
+                const childStyle = {
+                    flex: '1 0 45%'
+                };
+
                 return (
-                    <div>
-                        {/* {this.props.ResourceStore.resourceType[0] ===
-                        "https://w3id.org/arco/ontology/location/time-indexed-typed-location" ? (
-                            <div className="property-title">
-                                <div className="ui horizontal list">
-                                    <div className="item">
-                                        <PropertyHeader
-                                            spec={"hasTimeIndexedTypedLocation"}
-                                            config={this.props.config}
-                                            size="3"
-                                            datasetURI={this.props.datasetURI}
-                                            resourceURI={this.props.resource}
-                                            propertyURI={
-                                                "hasTimeIndexedTypedLocation"
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                                <div className="ui dividing header"></div>
-                            </div>
-                        ) : null} */}
-                        <TimeIndexedTypedLocation
-                            timeIndexedTypedLocations={
-                                this.props.data.instanceData.tITLocations
-                            }
-                            onCulturalPropertyClick={getResource}
-                        ></TimeIndexedTypedLocation>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-evenly',
+                            flexWrap: 'wrap'
+                        }}
+                    >
+                        <div style={childStyle}>
+                            <TimeIndexedTypedLocation
+                                timeIndexedTypedLocations={
+                                    this.props.data.instanceData.tITLocations
+                                }
+                                onCulturalPropertyClick={getResource}
+                            />
+                        </div>
+                        <div style={childStyle}>
+                            <ImageGrid resourceURI={culturalPropertyURI} />
+                        </div>
+                        <div style={Object.assign({ margin: 50 }, childStyle)}>
+                            <PropertyValueList properties={propertyList} />
+                        </div>
                     </div>
                 );
             } else {
@@ -94,7 +108,7 @@ class TimeIndexedTypedLocationView extends React.Component {
                     </div>
                 );
             }
-        }
+        } else return null;
     }
 }
 

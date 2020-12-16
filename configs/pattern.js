@@ -74,18 +74,10 @@ export default {
         "https://w3id.org/arco/ontology/location/cultural-property-component-of": {
             patternIViewer: "PartWholeView",
             query: {
-                select: `SELECT DISTINCT ?complexCProp ?cPropComponent ?depiction WHERE`,
+                select: `SELECT DISTINCT ?complexCProp ?cPropComponent WHERE`,
                 body: ` ?cPropComponent <${cPropComponentOfURIs.isPartOf}> ?HistoricOrArtisticProperty  .
-                        
-                        OPTIONAL { ?complexCProp2B a rdf:HackToBound . } 
-            
-                    { SELECT ?depiction WHERE {
-    
-                        OPTIONAL { ?HistoricOrArtisticProperty  <${foaf}depiction> ?depiction2B . }.
-                        BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
-                       } LIMIT 1
-                    }
-                        BIND ( IF (BOUND ( ?complexCProp2B), ?HistoricOrArtisticProperty , ?HistoricOrArtisticProperty  ) as ?complexCProp )
+                        ?cPropComponent foaf:depiction ?depiction . #get only resources with depiction
+                        BIND ( ?HistoricOrArtisticProperty as ?complexCProp)
                         `,
                 aggregates: undefined
             },

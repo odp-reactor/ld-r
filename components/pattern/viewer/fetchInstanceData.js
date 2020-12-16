@@ -9,6 +9,8 @@ import loadPatternInstance from '../../../actions/loadPatternInstance';
  * @param {Object} context React component fluxible context
  */
 export default function fetchInstanceData(props, context) {
+    console.log('fetchData');
+    console.log(props);
     if (props.instanceResources) {
         context.executeAction(loadPatternInstance, {
             // resources are used as entry to bind a generic query to the specific instance they belongs to

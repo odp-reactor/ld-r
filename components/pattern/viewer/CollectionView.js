@@ -49,7 +49,7 @@ class CollectionView extends React.Component {
                             <div className="item">
                                 <h3
                                     style={{
-                                        color: 'rgb(98, 91, 95)',
+                                        color: '#4183c4',
                                         cursor: 'pointer'
                                     }}
                                     onClick={() => {
@@ -71,25 +71,31 @@ class CollectionView extends React.Component {
                         </div>
                         <div className="ui dividing header"></div>
                     </div>
-                    <div style={{ textAlign: 'center', margin: 20 }}>
-                        <Depiction
-                            uri={collection[0].cProp}
-                            style={{ maxHeight: 500 }}
-                        />
+                    <div style={{ display: 'flex', padding: 30 }}>
+                        <div style={{ margin: 'auto' }}>
+                            <Depiction
+                                uri={collection[0].cProp}
+                                style={{ maxHeight: 500 }}
+                            />
+                        </div>
+                        <div style={{ margin: 'auto' }}>
+                            <Collection
+                                members={collection.map(member => {
+                                    return {
+                                        uri: member.meas,
+                                        label: `${member.meas
+                                            .split('-')
+                                            .pop()} : ${member.value} ${
+                                            member.unit
+                                        }`,
+                                        depiction:
+                                            'https://image.flaticon.com/icons/png/512/5/5095.png'
+                                    };
+                                })}
+                                classes={customClasses}
+                            ></Collection>
+                        </div>
                     </div>
-                    <Collection
-                        members={collection.map(member => {
-                            return {
-                                uri: member.meas,
-                                label: `${member.meas.split('-').pop()} : ${
-                                    member.value
-                                } ${member.unit}`,
-                                depiction:
-                                    'https://image.flaticon.com/icons/png/512/5/5095.png'
-                            };
-                        })}
-                        classes={customClasses}
-                    ></Collection>
                 </div>
             );
         } else {
