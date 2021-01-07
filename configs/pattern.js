@@ -13,12 +13,12 @@ export default {
                 body: `?MeasurementCollection <${measurementURIs.hasMember}> ?meas .
                        OPTIONAL { ?meas <${foaf}depiction> ?depiction2B .}.
                        
-                       { SELECT ?value ?unit {
+                       { SELECT ?meas ?value ?unit {
                          ?meas <https://w3id.org/arco/ontology/denotative-description/hasValue> ?val .
                          ?val <https://w3id.org/italia/onto/MU/value> ?value .
                          ?val <https://w3id.org/italia/onto/MU/hasMeasurementUnit> ?u .
                          ?u <${rdfs}label> ?unit .
-                       } LIMIT 1 }
+                       } }
                        ?cProp <${measurementURIs.hasCollection}> ?MeasurementCollection .
                        ?cProp <${rdfs}label> ?cPropLabel .
                        FILTER langMatches(lang(?cPropLabel), "it")

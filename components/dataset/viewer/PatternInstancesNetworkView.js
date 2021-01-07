@@ -8,6 +8,7 @@ _________*/
 
 import PatternStore from '../../../stores/PatternStore';
 import loadPatternInstances from '../../../actions/loadPatternInstances';
+import loadPatterns from '../../../actions/loadPatterns';
 import cleanInstance from '../../../actions/cleanInstance';
 
 import CustomLoader from '../../CustomLoader';
@@ -47,15 +48,77 @@ export default class PatternInstancesNetworkView extends React.Component {
                 });
             }
         }
+        // fetch schema again and compute color map
+        if (this.props.RouteStore._currentNavigate) {
+            if (!this.props.RouteStore._currentNavigate.colorMap) {
+                this.context.executeAction(loadPatterns, {
+                    dataset: datasetURI //missing
+                });
+            }
+        }
     }
 
     render() {
         let getInstance;
         let getInstanceTableClick;
         let color;
+        let colorMap;
+        let patternId;
+        const Graph = require('ld-ui-react').Graph;
         if (this.props.RouteStore._currentNavigate) {
             // node color
             color = this.props.RouteStore._currentNavigate.route.params.c;
+            patternId = this.props.RouteStore._currentNavigate.route.params.pid;
+            colorMap = this.props.RouteStore._currentNavigate.colorMap;
+
+            // if no color map we are here from a reload or a go back button
+            // we compute color map again
+            if (!colorMap && this.props.PatternStore.list) {
+                const schemaGraph = new Graph();
+                const patterns = this.props.PatternStore.list;
+                for (let i = 0; i < patterns.length; i++) {
+                    const pNode = patterns[i];
+                    // add nodes to graph
+                    schemaGraph.addNode({
+                        id: pNode.pattern,
+                        occurences: pNode.occurences,
+                        data: pNode,
+                        label: pNode.label,
+                        description: pNode.description
+                    });
+                    // add component triples
+                    if (pNode.components !== '') {
+                        let components = pNode.components.split(';');
+                        for (let j = 0; j < components.length; j++) {
+                            schemaGraph.addEdge({
+                                s: { id: pNode.pattern },
+                                p: 'has component',
+                                o: { id: components[j] }
+                            });
+                        }
+                    }
+                    // add specializations triples
+                    if (pNode.superPatterns !== '') {
+                        let supers = pNode.superPatterns.split(';');
+                        for (let j = 0; j < supers.length; j++) {
+                            schemaGraph.addEdge({
+                                s: { id: pNode.pattern },
+                                p: 'specialize',
+                                o: { id: supers[j] }
+                            });
+                        }
+                    }
+                }
+                const nodeColorSizeFilter = (node, id) => {
+                    // set colors according to a gradient
+                    node.style.primaryColor = schemaGraph.nodeGradient()[id];
+                };
+                schemaGraph.breadthFirstSearch(nodeColorSizeFilter);
+                colorMap = {};
+                schemaGraph.nodes.forEach(n => {
+                    colorMap[n.id] = n.style.primaryColor;
+                });
+            }
 
             getInstance = node => {
                 // temporary disable time interval to avoid app crash as there is no visualization set for this pattern!
@@ -71,8 +134,6 @@ export default class PatternInstancesNetworkView extends React.Component {
                     });
             };
             getInstanceTableClick = node => {
-                console.log('instance table click');
-                console.log(node);
                 this.context.executeAction(navigateAction, {
                     url: `/dataset/${encodeURIComponent(
                         this.props.RouteStore._currentNavigate.route.params.did
@@ -81,143 +142,174 @@ export default class PatternInstancesNetworkView extends React.Component {
             };
         }
 
-        if (this.props.PatternStore.instances) {
+        if (this.props.PatternStore.instances && colorMap) {
             const KG = require('ld-ui-react').KG;
-            const Graph = require('ld-ui-react').Graph;
             const TimeIntervalFilter = require('ld-ui-react')
                 .TimeIntervalFilter;
             const SliderFilter = require('ld-ui-react').SliderFilter;
             const GeoFilter = require('ld-ui-react').GeoFilter;
             const scaleData = require('ld-ui-react').scaleData;
             const graph = new Graph();
+            const list = [];
+            const nodes = [];
 
             const instances = this.props.PatternStore.instances;
 
-            const timeNodes = [];
-            const measureCountNodes = [];
-            const partNodes = [];
-            const measureTypes = {};
+            // counters are used to conditionally render filters
+            // e.g.
+            // if in the knowledge subgraph there are no nodes with startTime and endTime
+            // the filter is not rendered
+            let timeNodesCount = 0;
+            let measureNodesCount = 0;
+            let partNodesCount = 0;
+            let geoNodesCount = 0;
+            const measureTypes = new Set(); // memorize the measure type key to prepare filters
             for (let i = 0; i < instances.length; i++) {
                 const instanceNode = instances[i];
                 //******************* PREPARING DATA TO FILTERS and FOR GRAPH */
                 // check well data
 
+                let nodeForFilters = { id: instanceNode.instance };
+
+                // prepare startTime and endTime for time filter
                 if (instanceNode.startTime && instanceNode.endTime) {
+                    let startTime, endTime;
                     let s = instanceNode.startTime.match(/\d+/g);
                     let e = instanceNode.endTime.match(/\d+/g);
-                    timeNodes.push({
-                        id: instanceNode.instance,
-                        startTime: s ? s[0] : '', // clean time iwth regex ex. 1876 ante , post 1678
-                        endTime: e ? e[0] : ''
-                    });
+                    startTime = s ? s[0] : null; // clean time iwth regex ex. 1876 ante , post 1678
+                    endTime = e ? e[0] : null;
+                    nodeForFilters['startTime'] = startTime;
+                    nodeForFilters['endTime'] = endTime;
+                    timeNodesCount++;
+                }
+                if (instanceNode.lat && instanceNode.long) {
+                    nodeForFilters['lat'] = instanceNode.lat;
+                    nodeForFilters['long'] = instanceNode.long;
+                    geoNodesCount++;
                 }
                 if (instanceNode.measures) {
                     let measures = instanceNode.measures.split(';');
-                    measureCountNodes.push({
-                        id: instanceNode.instance,
-                        count: measures.length
-                    });
                     measures.forEach(measure => {
                         const [rawm, v, u] = measure.split(' ');
                         let m = rawm.split('-').pop();
-                        if (!measureTypes[m]) measureTypes[m] = [];
                         if (Number.parseInt(v)) {
-                            measureTypes[m].push({
-                                id: instanceNode.instance,
-                                value: v
-                            });
+                            measureTypes.add(m);
                             instanceNode[m] = v;
+                            nodeForFilters[m] = v;
                         }
                     });
+                    nodeForFilters['measureCount'] = measures
+                        ? measures.length
+                        : null;
+                    measureNodesCount++;
                 }
                 if (instanceNode.parts) {
-                    let parts = instanceNode.parts.split(';');
-                    partNodes.push({
-                        id: instanceNode.instance,
-                        count: parts.length
-                    });
+                    nodeForFilters['parts'] = instanceNode.parts.split(';')
+                        ? instanceNode.parts.split(';').length
+                        : null;
+                    partNodesCount++;
                 }
+                // parts filter
+                // nodes for filters
+                nodes.push(nodeForFilters);
 
                 graph.addNode({
                     id: instanceNode.instance,
                     data: instanceNode,
-                    label: instanceNode.label,
+                    label: `${instanceNode.label.substring(0, 35)}...`,
                     description: instanceNode.description,
                     style: {
-                        primaryColor: color
+                        primaryColor: colorMap
+                            ? colorMap[instanceNode.type]
+                            : color
                     }
                 });
             }
 
-            let formatter;
-            // assign a formatter for the table to every node
-            switch (instances[0].type) {
-                case 'https://w3id.org/arco/ontology/location/time-indexed-typed-location':
-                    formatter = node => {
-                        return {
-                            label: node.label,
-                            locationType: node.data.data.locationType
-                                .split('/')
-                                .pop(),
-                            startTime: node.data.data.startTime,
-                            endTime: node.data.data.endTime,
-                            address: node.data.data.addressLabel,
-                            lat: node.data.data.lat,
-                            long: node.data.data.long
-                        };
-                    };
-                    break;
-                case 'https://w3id.org/arco/ontology/location/cultural-property-component-of':
-                    formatter = node => {
-                        return {
-                            label: node.label,
-                            parts: node.data.data.parts.split(';').length
-                        };
-                    };
-                    break;
+            graph.nodes.forEach(node => {
+                let listNode = {};
+                switch (instances[0].type) {
+                    case 'https://w3id.org/arco/ontology/location/time-indexed-typed-location':
+                        listNode['id'] = node.id;
+                        listNode['Label'] = node.data.data.label;
+                        listNode['Location Type'] = node.data.data.locationType
+                            ? node.data.data.locationType.split('/').pop()
+                            : null;
+                        listNode['Start Time'] = node.data.data.startTime;
+                        listNode['End Time'] = node.data.data.endTime;
+                        listNode['Address'] = node.data.data.addressLabel;
+                        listNode['Latitude'] = node.data.data.lat;
+                        listNode['Longitude'] = node.data.data.long;
+                        list.push(listNode);
+                        break;
+                    case 'https://w3id.org/arco/ontology/location/cultural-property-component-of':
+                        listNode['id'] = node.id;
+                        listNode['Label'] = node.data.data.label;
+                        listNode['Parts'] = node.data.data.parts
+                            ? node.data.data.parts.split(';').length
+                            : null;
+                        list.push(listNode);
+                        break;
+                    case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
+                        listNode['id'] = node.id;
+                        listNode['Label'] = node.data.data.label;
+                        listNode['Height'] = node.data.data.height;
+                        listNode['Width'] = node.data.data.width;
+                        listNode['Length'] = node.data.data.length;
+                        listNode['Depth'] = node.data.data.depth;
+                        listNode['Diameter'] = node.data.data.diameter;
+                        listNode['Thickness'] = node.data.data.thickness;
+                        list.push(listNode);
+                        break;
+                }
+            });
 
-                case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
-                    formatter = node => {
-                        return {
-                            label: node.label,
-                            height: node.data.data.height,
-                            width: node.data.data.width,
-                            length: node.data.data.length,
-                            depth: node.data.data.depth,
-                            diameter: node.data.data.diameter,
-                            thickness: node.data.data.thickness
-                        };
-                    };
-                    break;
-            }
+            const patternStateKey = `${patternId}State`;
+            const defaultConfig =
+                JSON.parse(
+                    window.sessionStorage.getItem(patternStateKey),
+                    reviver
+                ) || null;
 
             // render filters only if there are nodes they can filter
             return (
                 <KG
-                    tableFormatter={formatter}
-                    graph={graph}
+                    defaultConfig={defaultConfig}
+                    data={{ graph: graph, list: list, nodes: nodes }}
+                    list={list}
+                    onContextChange={context => {
+                        window.sessionStorage.setItem(
+                            patternStateKey,
+                            JSON.stringify(context, replacer)
+                        );
+                    }}
                     textOnNodeHover={model => {
                         switch (model.data.data.type) {
                             case 'https://w3id.org/arco/ontology/location/time-indexed-typed-location':
-                                return `Location Type : ${model.data.data.locationType}<br/> Start Time : ${model.data.data.startTime}
+                                return `Label : <b>${model.data.data.label}</b> <br/> Location Type : ${model.data.data.locationType}<br/> Start Time : ${model.data.data.startTime}
                             <br/> End Time: ${model.data.data.endTime} <br/> Location: ${model.data.data.addressLabel}`; //<br/>
                             case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
                                 let measureString = '';
-                                model.data.data.measures
-                                    .split(';')
-                                    .forEach(m => {
-                                        let [type, v, u] = m.split(' ');
-                                        let t = type.split('-').pop();
-                                        measureString =
-                                            measureString +
-                                            `${t} : ${v} ${u.toLowerCase()}<br/>`;
-                                    });
-                                return `Label : ${model.data.data.label} <br/> ${measureString}`;
+                                if (model.data.data.measures) {
+                                    model.data.data.measures
+                                        .split(';')
+                                        .forEach(m => {
+                                            let [type, v, u] = m.split(' ');
+                                            let t = type.split('-').pop();
+                                            measureString =
+                                                measureString +
+                                                `${t} : ${v} ${u.toLowerCase()}<br/>`;
+                                        });
+                                }
+                                return `Label : <b>${model.data.data.label}</b> <br/> ${measureString}`;
                             case 'https://w3id.org/arco/ontology/location/cultural-property-component-of':
-                                return `Label : ${
+                                return `Label : <b>${
                                     model.data.data.label
-                                } <br/> Parts : ${
-                                    model.data.data.parts.split(';').length
+                                }</b> <br/> Parts : ${
+                                    model.data.data.parts
+                                        ? model.data.data.parts.split(';')
+                                            .length
+                                        : ''
                                 }`;
                         }
                     }}
@@ -225,39 +317,36 @@ export default class PatternInstancesNetworkView extends React.Component {
                     onItemClick={getInstanceTableClick}
                     itemTooltip="Click to explore the resource"
                 >
-                    {measureCountNodes.length !== 0 ? (
+                    {measureNodesCount > 0 ? (
                         <SliderFilter
-                            nodes={measureCountNodes}
                             title={'Filter by number of measurements'}
-                            valueKey="count"
+                            valueKey="measureCount"
                         />
                     ) : null}
-                    {partNodes.length !== 0 ? (
+                    {partNodesCount > 0 ? (
                         <SliderFilter
-                            nodes={partNodes}
                             title={'Filter by number of parts'}
-                            valueKey="count"
+                            valueKey="parts"
                         />
                     ) : null}
-                    {timeNodes.length !== 0 ? (
-                        <TimeIntervalFilter
-                            nodes={timeNodes}
-                            title={'Filter by Time Interval'}
-                        />
+                    {timeNodesCount > 0 ? (
+                        <TimeIntervalFilter title={'Filter by Time Interval'} />
                     ) : null}
-                    {Object.keys(measureTypes).length !== 0
-                        ? Object.keys(measureTypes).map(k => {
+                    {Array.from(measureTypes).length !== 0
+                        ? Array.from(measureTypes).map(measure => {
                             return (
                                 <SliderFilter
-                                    nodes={measureTypes[k]}
-                                    title={`Filter by ${k}`}
-                                    valueKey="value"
-                                    options={{ key: k }}
+                                    title={`Filter by ${measure}`}
+                                    valueKey={measure}
+                                    id={measure}
+                                    options={{}}
                                 />
                             );
                         })
                         : null}
-                    <GeoFilter title={'Filter by Geographic Location'} />
+                    {geoNodesCount > 0 ? (
+                        <GeoFilter title={'Filter by Geographic Location'} />
+                    ) : null}
                 </KG>
             );
         } else {
@@ -276,6 +365,27 @@ export default class PatternInstancesNetworkView extends React.Component {
             );
         }
     }
+}
+
+function replacer(key, value) {
+    const originalObject = this[key];
+    if (originalObject instanceof Map) {
+        return {
+            dataType: 'Map',
+            value: Array.from(originalObject.entries()) // or with spread: value: [...originalObject]
+        };
+    } else {
+        return value;
+    }
+}
+
+function reviver(key, value) {
+    if (typeof value === 'object' && value !== null) {
+        if (value.dataType === 'Map') {
+            return new Map(value.value);
+        }
+    }
+    return value;
 }
 
 PatternInstancesNetworkView.contextTypes = {

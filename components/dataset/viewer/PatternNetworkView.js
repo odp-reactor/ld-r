@@ -6,10 +6,7 @@ import { connectToStores } from 'fluxible-addons-react';
 _________*/
 
 import loadPatterns from '../../../actions/loadPatterns';
-import loadPatternSpecializations from '../../../actions/loadPatternSpecializations';
-import loadPatternCompositions from '../../../actions/loadPatternCompositions';
-import loadPatternCompositionCount from '../../../actions/loadPatternCompositionCount';
-import loadPatternSpecializationCount from '../../../actions/loadPatternSpecializationCount';
+import saveColorMap from '../../../actions/saveColorMap';
 import cleanInstances from '../../../actions/cleanInstances';
 import PatternStore from '../../../stores/PatternStore';
 import { navigateAction } from 'fluxible-router';
@@ -48,31 +45,6 @@ export default class PatternNetworkView extends React.Component {
         if (this.props.PatternStore.list) {
             // we dependency inject the function to get instances by pattern URI
             // node is a Graphin node
-            const getInstances = node => {
-                console.log(node);
-                if (node.model.data.data.occurences !== '0') {
-                    this.context.executeAction(navigateAction, {
-                        url: `/datasets/${encodeURIComponent(
-                            this.props.datasetURI
-                        )}/patterns/${encodeURIComponent(
-                            node.id
-                        )}/color/${encodeURIComponent(
-                            node.model.style.primaryColor
-                        )}`
-                    });
-                }
-            };
-            const getInstancesTableClick = node => {
-                if (node.data.occurences !== '0') {
-                    this.context.executeAction(navigateAction, {
-                        url: `/datasets/${encodeURIComponent(
-                            this.props.datasetURI
-                        )}/patterns/${encodeURIComponent(
-                            node.id
-                        )}/color/${encodeURIComponent(node.style.primaryColor)}`
-                    });
-                }
-            };
 
             const KG = require('ld-ui-react').KG;
             const PropertyFilter = require('ld-ui-react').PropertyFilter;
@@ -80,17 +52,19 @@ export default class PatternNetworkView extends React.Component {
             const Graph = require('ld-ui-react').Graph;
             const scaleData = require('ld-ui-react').scaleData;
             const graph = new Graph();
+            const list = [];
+            const nodes = [];
 
             const patterns = this.props.PatternStore.list;
-            let properties = [];
-            let occurencesNodes = [];
             for (let i = 0; i < patterns.length; i++) {
                 const pNode = patterns[i];
                 // add nodes to graph
                 graph.addNode({
                     id: pNode.pattern,
                     occurences: pNode.occurences,
-                    data: pNode
+                    data: pNode,
+                    label: pNode.label,
+                    description: pNode.description
                 });
                 // add component triples
                 if (pNode.components !== '') {
@@ -114,18 +88,6 @@ export default class PatternNetworkView extends React.Component {
                         });
                     }
                 }
-                // prepare property filter [ enable disable pattern from viz ]
-                properties.push({
-                    title: pNode.pattern.split('/').pop(),
-                    value: Number.parseInt(pNode.occurences),
-                    color: 'yellow',
-                    id: pNode.pattern
-                });
-                // prepare occurrences filter
-                occurencesNodes.push({
-                    id: pNode.pattern,
-                    occurences: pNode.occurences
-                });
             }
 
             // this filter is passed to a bfs algorithm to apply colors and size scaling to every node
@@ -149,37 +111,107 @@ export default class PatternNetworkView extends React.Component {
             };
             graph.breadthFirstSearch(nodeColorSizeFilter);
 
+            let colorMap = {};
+
+            graph.nodes.forEach(n => {
+                colorMap[n.id] = n.style.primaryColor;
+            });
+
+            this.context.executeAction(saveColorMap, colorMap);
+
+            const getInstances = node => {
+                console.log(node);
+                if (node.model.data.data.occurences !== '0') {
+                    this.context.executeAction(navigateAction, {
+                        url: `/datasets/${encodeURIComponent(
+                            this.props.datasetURI
+                        )}/patterns/${encodeURIComponent(
+                            node.id
+                        )}/color/${encodeURIComponent(
+                            node.model.style.primaryColor
+                        )}`,
+                        colorMap: colorMap
+                    });
+                }
+            };
+            const getInstancesTableClick = node => {
+                if (node.data.occurences !== '0') {
+                    this.context.executeAction(navigateAction, {
+                        url: `/datasets/${encodeURIComponent(
+                            this.props.datasetURI
+                        )}/patterns/${encodeURIComponent(
+                            node.id
+                        )}/color/${encodeURIComponent(
+                            node.style.primaryColor
+                        )}`,
+                        colorMap: colorMap
+                    });
+                }
+            };
+
             // TODO :
             // set colors for KnowledgeGraph here
             // set node size here
             // link filters
 
-            const formatter = node => {
-                return {
-                    id: node.id
-                };
-            };
+            graph.nodes.forEach(node => {
+                let listNode = {};
+                listNode['id'] = node.id;
+                listNode['label'] = node.data.data.label;
+                listNode['Description'] = node.data.data.description;
+                listNode['Occurences'] = node.data.data.occurences;
+                list.push(listNode);
+
+                // nodes for filters, on every node all the information for every filter used
+                console.log(node);
+                nodes.push({
+                    // id ! required
+                    id: node.data.data.pattern,
+                    // property fitler
+                    title: node.data.data.pattern.split('/').pop(),
+                    value: Number.parseInt(node.data.data.occurences),
+                    color: node.style.primaryColor,
+                    // occurrency filter
+                    occurences: node.data.data.occurences
+                });
+            });
+
+            console.log('State to hidrate');
+            console.log(
+                JSON.parse(
+                    window.sessionStorage.getItem('patternState'),
+                    reviver
+                )
+            );
+
+            const defaultConfig =
+                JSON.parse(
+                    window.sessionStorage.getItem('patternState'),
+                    reviver
+                ) || null;
 
             return (
                 <KG
-                    tableFormatter={formatter}
-                    graph={graph}
+                    defaultConfig={defaultConfig}
+                    onContextChange={context => {
+                        window.sessionStorage.setItem(
+                            'patternState',
+                            JSON.stringify(context, replacer)
+                        );
+                    }}
+                    data={{ graph: graph, list: list, nodes: nodes }}
                     onNodeDoubleClick={getInstances}
                     textOnNodeHover={model => {
-                        return `occurrences:<br/> ${model.data.occurences}`;
+                        return `Name: ${model.data.data.label} </br> Description: ${model.data.data.description}<br/> Occurrences:<br/> ${model.data.occurences}`;
                     }}
                     onItemClick={getInstancesTableClick}
                     itemTooltip="Click to explore instances of this pattern"
                 >
                     <SliderFilter
-                        nodes={occurencesNodes}
                         valueKey="occurences"
                         title="Filter by Occurences"
                     />
-                    <PropertyFilter
-                        properties={properties}
-                        title={'Filter by Pattern'}
-                    />
+                    <PropertyFilter title={'Filter by Pattern'} />
                 </KG>
             );
         } else {
@@ -198,6 +230,27 @@ export default class PatternNetworkView extends React.Component {
             );
         }
     }
+}
+
+function replacer(key, value) {
+    const originalObject = this[key];
+    if (originalObject instanceof Map) {
+        return {
+            dataType: 'Map',
+            value: Array.from(originalObject.entries()) // or with spread: value: [...originalObject]
+        };
+    } else {
+        return value;
+    }
+}
+
+function reviver(key, value) {
+    if (typeof value === 'object' && value !== null) {
+        if (value.dataType === 'Map') {
+            return new Map(value.value);
+        }
+    }
+    return value;
 }
 
 PatternNetworkView.contextTypes = {

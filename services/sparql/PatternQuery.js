@@ -16,20 +16,25 @@ export default class PatternQuery extends SPARQLQuery {
      */
     getPatternList(graphName) {
         let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT  ?pattern 
+        this.query = `SELECT DISTINCT  ?pattern ?label ?description
                        (COUNT(DISTINCT ?instance) as ?occurences)  
                       (GROUP_CONCAT(DISTINCT ?superPattern; SEPARATOR=";") as ?superPatterns)
                       (GROUP_CONCAT(DISTINCT ?component; SEPARATOR=";") as ?components) WHERE {
             ${gStart}
-           { SELECT ?pattern ?instance  WHERE     {   
+           { SELECT ?pattern ?instance ?label ?description WHERE     {   
                            ?instance opla:isPatternInstanceOf ?pattern1 .
                            ?pattern1 opla:specializationOfPattern* ?pattern .
-                           ?pattern a opla:Pattern .        
+                           ?pattern a opla:Pattern .     
+                           ?pattern rdfs:label ?label .        
+                           ?pattern rdfs:comment ?description .        
                   } GROUP BY ?pattern }
                   UNION { 
-                      SELECT ?pattern ?superPattern ?component WHERE {
+                      SELECT ?pattern ?label ?description ?superPattern ?component WHERE {
                                       ?pattern a opla:Pattern .
             
+                                      ?pattern rdfs:label ?label .        
+                                      ?pattern rdfs:comment ?description .             
+           
                            OPTIONAL {?pattern opla:specializationOfPattern ?superPattern2B }.
                            OPTIONAL {?component2B opla:componentOfPattern ?pattern }.
             
@@ -134,13 +139,14 @@ export default class PatternQuery extends SPARQLQuery {
             body
         ] = this.getInstanceInstanceDependentData(id);
         let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT ?instance ?label ?type ?nodes ${instanceDependentVariables} 
-            WHERE {${gStart}?instance opla:isPatternInstanceOf ?pattern1 . 
-           ?pattern1 opla:specializationOfPattern* <${id}> .
-           ?instance rdf:type ?type .
+        this.query = `SELECT DISTINCT ?instance ?label ?type ?patternLabel ?patternDescription ?nodes ${instanceDependentVariables} 
+            WHERE {${gStart}?instance opla:isPatternInstanceOf ?type . 
+           ?type opla:specializationOfPattern* <${id}> .
+           ?type rdfs:label ?patternLabel .
+           ?type rdfs:comment ?patternDescription .
             OPTIONAL { ?instance <http://www.w3.org/2000/01/rdf-schema#label> ?label2B . } BIND ( IF (BOUND (?label2B), ?label2B, '')  as ?label) . OPTIONAL{ SELECT DISTINCT ?instance (GROUP_CONCAT(DISTINCT ?nodeType; SEPARATOR=";") AS ?nodes) WHERE { 
  ?instance opla:hasPatternInstanceMember ?node .  OPTIONAL { ?node rdf:type ?typet . } BIND (CONCAT(?node, " ",?typet) AS ?nodeType)} GROUP BY ?instance } ${body} ${gEnd}
-        } LIMIT 100`;
+        }`;
         return this.query;
     }
 
@@ -153,7 +159,9 @@ export default class PatternQuery extends SPARQLQuery {
                 OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .
                  ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
                  ?titl <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType2B .
-                } BIND ( IF ( BOUND (?locationType2B), ?locationType2B, "" ) as ?locationType ) .
+                 ?locationType2B rdfs:label ?locationLabel .
+                 #FILTER langMatches(lang(?locationLabel), "it")
+                 } BIND ( IF ( BOUND (?locationLabel), ?locationLabel, "" ) as ?locationType ) .
                  } GROUP BY ?instance }
         OPTIONAL{
                   SELECT ?instance (SAMPLE(?addressLabel) as ?addressLabel) WHERE {

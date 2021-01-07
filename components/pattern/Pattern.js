@@ -16,6 +16,8 @@ import TimeIndexedTypedLocationView from './viewer/TimeIndexedTypedLocationView'
 import CollectionView from './viewer/CollectionView';
 import PartWholeView from './viewer/PartWholeView';
 
+import regeneratorRuntime from 'regenerator-runtime';
+
 import PatternUtil from '../../services/utils/PatternUtil';
 const patternUtil = new PatternUtil();
 
