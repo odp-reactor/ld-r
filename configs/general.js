@@ -1,8 +1,8 @@
 export default {
     //full page title
-    appFullTitle: ["ArCo Linked Data Reactor"],
+    appFullTitle: ["ODP Reactor"],
     //short page title
-    appShortTitle: ["ArCo LD-R"],
+    appShortTitle: ["ODP Reactor"],
 
     //Default Dataset under observation, if not set , will consider all existing graph names
     defaultDatasetURI: [""],

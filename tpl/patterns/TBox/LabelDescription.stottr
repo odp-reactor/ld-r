@@ -1,0 +1,10 @@
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+odp-tpl:LabelDescription[
+    ottr:IRI ?patternName, rdfs:Literal ?label, rdfs:Literal ?description
+] :: {
+    ottr:Triple(?patternName, rdfs:label, ?label),
+    ottr:Triple(?patternName, rdfs:comment, ?description)
+} .

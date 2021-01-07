@@ -4,6 +4,7 @@ class PatternStore extends BaseStore {
     constructor(dispatcher) {
         super(dispatcher);
         this.cleanData();
+        this.cleanColors();
         this.cleanSpecializations();
         this.cleanCompositions();
         this.cleanCompositionCount();
@@ -58,6 +59,14 @@ class PatternStore extends BaseStore {
         this.instances = null;
         this.emitChange();
     }
+    saveColorMap(payload) {
+        console.log('colors', payload);
+        this.colors = payload;
+    }
+    cleanColors() {
+        this.colors = null;
+        this.emitChange();
+    }
     getState() {
         return {
             list: this.list,
@@ -65,7 +74,8 @@ class PatternStore extends BaseStore {
             compositions: this.compositions,
             specializationCount: this.specializationCount,
             compositionCount: this.compositionCount,
-            instances: this.instances
+            instances: this.instances,
+            colors: this.colors
         };
     }
     dehydrate() {
@@ -78,6 +88,7 @@ class PatternStore extends BaseStore {
         this.specializationCount = state.specializationCount;
         this.compositionCount = state.compositionCount;
         this.instances = state.instances;
+        this.colors = state.colors;
     }
 }
 
@@ -94,7 +105,8 @@ PatternStore.handlers = {
     LOAD_PATTERN_COMPOSITION_COUNT_SUCCESS: 'updateCompositionCount',
     CLEAN_PATTERN_COMPOSITION_COUNT_SUCCESS: 'cleanCompositionCount',
     LOAD_PATTERN_INSTANCES_SUCCESS: 'updateInstances',
-    CLEAN_PATTERN_INSTANCES_SUCCESS: 'cleanInstances'
+    CLEAN_PATTERN_INSTANCES_SUCCESS: 'cleanInstances',
+    SAVE_COLOR_MAP: 'saveColorMap'
 };
 
 export default PatternStore;

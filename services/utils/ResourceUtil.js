@@ -345,8 +345,8 @@ class ResourceUtil {
             }
             dataToReturn[i] = objectToReturn;
         }
-        console.log('Data to return');
-        console.log(dataToReturn);
+        // console.log('Data to return');
+        // console.log(dataToReturn);
         // check patternName in the query result
         callback(null, {
             patternData: dataToReturn

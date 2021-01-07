@@ -29,7 +29,8 @@
 @prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
 @prefix ax:         <http://tpl.ottr.xyz/owl/axiom/0.1/> . 
 @prefix rstr:       <http://tpl.ottr.xyz/owl/restriction/0.1/> .
-
+@prefix a-dd:       <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
 
 odp-tpl:Collection(none, none, none) . 
 
@@ -46,3 +47,21 @@ odp-tpl:TimeIndexedTypedLocation(none, none, none, tiapit:TimeInterval, none, no
 odp-tpl:PartOf(none,none,none,none) .
 
 odp-tpl:CulturalPropertyComponentOf(none, none, none, none ) .
+
+odp-tpl:LabelDescription(odp-pat:collection, "Collection", "This pattern is a basic one: it catches the idea of a collection and its members.") .
+
+odp-tpl:LabelDescription(a-dd:measurement-collection, "Measurement Collection", "This pattern represents a collection of measurement of an object") .
+
+odp-tpl:LabelDescription(odp-pat:time-interval, "Time Interval", "This pattern represents an interval of time") .
+
+odp-tpl:LabelDescription(odp-pat:situation, "Situation", "To represent contexts or situations, and the things that are contextualized.") .
+
+odp-tpl:LabelDescription(odp-pat:time-indexed-situation, "Time Indexed Situation", "To represent time indexed situations. This pattern adds a time specification (the Time interval pattern) to the Situation pattern, in order to provide a handy solution to many cases. ") .
+
+odp-tpl:LabelDescription(a-loc:time-indexed-typed-location, "Time Indexed Typed Location", "To represent time indexed typed locations. This pattern represents locations of a defined type and a time specification") .
+
+odp-tpl:LabelDescription(odp-pat:part-of, "Part Of", "This Content OP allows designers to represent entities and their parts i.e., part-whole relations, with transitivity.") .
+
+odp-tpl:LabelDescription(a-loc:cultural-property-component-of, "Cultural Property Component Of", "This Content OP allows designers to represent cultural properties and their components or parts.") .
+
+
