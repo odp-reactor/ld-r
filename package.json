@@ -64,6 +64,7 @@
     "hogan-express": "^0.5.2",
     "jqcloud2": "^2.0.3",
     "jquery": "^3.4.1",
+    "js-quantities": "^1.7.6",
     "json2csv": "^4.2.1",
     "json3": "^3.3.2",
     "ld-ui-react": "file:../ld-ui-react",
@@ -103,6 +104,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
+    "@types/js-quantities": "^1.6.2",
     "babel-cli": "^7.0.0-beta.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",

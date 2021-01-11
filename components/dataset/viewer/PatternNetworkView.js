@@ -135,15 +135,13 @@ export default class PatternNetworkView extends React.Component {
                 }
             };
             const getInstancesTableClick = node => {
-                if (node.data.occurences !== '0') {
+                if (node['Number of Instances'] !== '0') {
                     this.context.executeAction(navigateAction, {
                         url: `/datasets/${encodeURIComponent(
                             this.props.datasetURI
                         )}/patterns/${encodeURIComponent(
                             node.id
-                        )}/color/${encodeURIComponent(
-                            node.style.primaryColor
-                        )}`,
+                        )}/color/removeThis}`,
                         colorMap: colorMap
                     });
                 }
@@ -157,9 +155,10 @@ export default class PatternNetworkView extends React.Component {
             graph.nodes.forEach(node => {
                 let listNode = {};
                 listNode['id'] = node.id;
-                listNode['label'] = node.data.data.label;
+                listNode['Id'] = node.id;
+                listNode['Pattern Name'] = node.data.data.label;
                 listNode['Description'] = node.data.data.description;
-                listNode['Occurences'] = node.data.data.occurences;
+                listNode['Number of Instances'] = node.data.data.occurences;
                 list.push(listNode);
 
                 // nodes for filters, on every node all the information for every filter used
@@ -175,14 +174,6 @@ export default class PatternNetworkView extends React.Component {
                     occurences: node.data.data.occurences
                 });
             });
-
-            console.log('State to hidrate');
-            console.log(
-                JSON.parse(
-                    window.sessionStorage.getItem('patternState'),
-                    reviver
-                )
-            );
 
             const defaultConfig =
                 JSON.parse(
@@ -202,7 +193,7 @@ export default class PatternNetworkView extends React.Component {
                     data={{ graph: graph, list: list, nodes: nodes }}
                     onNodeDoubleClick={getInstances}
                     textOnNodeHover={model => {
-                        return `Name: ${model.data.data.label} </br> Description: ${model.data.data.description}<br/> Occurrences:<br/> ${model.data.occurences}`;
+                        return `Pattern Name: ${model.data.data.label} </br> Description: ${model.data.data.description}<br/> Occurrences:<br/> ${model.data.occurences}`;
                     }}
                     onItemClick={getInstancesTableClick}
                     itemTooltip="Click to explore instances of this pattern"

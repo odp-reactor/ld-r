@@ -12,6 +12,7 @@ import loadPatterns from '../../../actions/loadPatterns';
 import cleanInstance from '../../../actions/cleanInstance';
 
 import CustomLoader from '../../CustomLoader';
+import Qty from 'js-quantities';
 
 // import laodInstances action
 // catch dataset id from route not from dataset store
@@ -190,11 +191,24 @@ export default class PatternInstancesNetworkView extends React.Component {
                 if (instanceNode.measures) {
                     let measures = instanceNode.measures.split(';');
                     measures.forEach(measure => {
-                        const [rawm, v, u] = measure.split(' ');
+                        let [rawm, v, u] = measure.split(' ');
                         let m = rawm.split('-').pop();
+
+                        const lengthUnits = ['cm', 'm', 'mm']
+                        const defaultMeasurementUnit = 'mm'
+                        console.log(m,u,v)
+                        if (lengthUnits.includes(u) && v != 'MNR') {
+                            v = v.replace(',', '.')
+                            // do conversion
+                            v = Qty(`${v} ${u}`).format(defaultMeasurementUnit).split(' ')[0]
+                            u = defaultMeasurementUnit
+                            console.log(v)
+                        }
+
                         if (Number.parseInt(v)) {
                             measureTypes.add(m);
                             instanceNode[m] = v;
+                            instanceNode['measurementUnit'] = u;
                             nodeForFilters[m] = v;
                         }
                     });
@@ -253,12 +267,12 @@ export default class PatternInstancesNetworkView extends React.Component {
                     case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
                         listNode['id'] = node.id;
                         listNode['Label'] = node.data.data.label;
-                        listNode['Height'] = node.data.data.height;
-                        listNode['Width'] = node.data.data.width;
-                        listNode['Length'] = node.data.data.length;
-                        listNode['Depth'] = node.data.data.depth;
-                        listNode['Diameter'] = node.data.data.diameter;
-                        listNode['Thickness'] = node.data.data.thickness;
+                        listNode['Height'] = node.data.data.height ? withUnit(node.data.data.height, node.data.data.measurementUnit) : '';
+                        listNode['Width'] = node.data.data.width ? withUnit(node.data.data.width, node.data.data.measurementUnit): '';
+                        listNode['Length'] = node.data.data.length? withUnit(node.data.data.length, node.data.data.measurementUnit): '';
+                        listNode['Depth'] = node.data.data.depth ? withUnit(node.data.data.depth, node.data.data.measurementUnit): '';
+                        listNode['Diameter'] = node.data.data.diameter ? withUnit(node.data.data.diameter, node.data.data.measurementUnit): '';
+                        listNode['Thickness'] = node.data.data.thickness? withUnit(node.data.data.thickness, node.data.data.measurementUnit): '';
                         list.push(listNode);
                         break;
                 }
@@ -274,6 +288,13 @@ export default class PatternInstancesNetworkView extends React.Component {
             // render filters only if there are nodes they can filter
             return (
                 <KG
+                    defaultLayoutOptions={{
+                        menu: true,
+                        help: true,
+                        tableLayout: true,
+                        graphLayout: false,
+                        currentLayout: 'list'
+                    }}
                     defaultConfig={defaultConfig}
                     data={{ graph: graph, list: list, nodes: nodes }}
                     list={list}
@@ -339,7 +360,6 @@ export default class PatternInstancesNetworkView extends React.Component {
                                     title={`Filter by ${measure}`}
                                     valueKey={measure}
                                     id={measure}
-                                    options={{}}
                                 />
                             );
                         })
@@ -406,3 +426,7 @@ PatternInstancesNetworkView = connectToStores(
 // PatternInstancesNetworkView = handleHistory(PatternInstancesNetworkView, {
 //     enableScroll: false // example to show how to specify options for handleHistory
 // });
+
+function withUnit(value, unit) {
+    return `${value} ${unit}`
+}
