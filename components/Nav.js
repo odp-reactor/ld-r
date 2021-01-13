@@ -98,58 +98,80 @@ class Nav extends React.Component {
             navbarColor = 'grey';
         }
         return (
-            <div className="ui fluid container" ref="defaultNavbar">
-                <nav
-                    className={'ui menu inverted navbar grid ' + navbarColor}
-                    style={{
-                        backgroundColor: 'rgba(0,0,0,.87)'
-                    }}
-                >
-                    <NavLink routeName="home" className="brand item" href="/">
-                        {this.props.loading ? (
-                            <img
-                                src="/assets/img/loader.gif"
-                                alt="loading..."
-                                style={{ height: 30, width: 30 }}
-                            />
-                        ) : (
-                            <img
-                                style={{ height: 22, width: 22 }}
-                                className="ui mini image"
-                                src="/assets/img/ld-reactor.gif"
-                                alt="ld-reactor"
-                            />
-                        )}
-                    </NavLink>
-                    <NavLink routeName="about" className="item">
-                        About {appShortTitle}{' '}
-                    </NavLink>
-                    <NavLink
-                        routeName="datasets"
-                        className="item"
-                        href="/datasets"
+            <div>                
+                
+                <div id="nav-open" className="hidden-nav-open" onMouseOver={()=>{ 
+                    document.getElementById('navbar').classList.remove('hidden-navbar');
+                    document.getElementById('nav-open').classList.add('hidden-nav-open')
+                }
+                }><img style={{ height: 30,
+                        margin: 'auto',
+                        display: 'block',
+                        position: 'absolute',
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        marginTop:10,
+                        left: 0,
+                        right: 0,
+                        textAlign: 'center',
+                        zIndex: 2}
+                    }
+                    src="https://cdn2.iconfinder.com/data/icons/arrows-3-1/512/xxx039-512.png"></img></div>
+
+                <div                                   id="navbar"  
+                    className="ui fluid container" ref="defaultNavbar">
+                    <nav
+                        className={'ui menu inverted grid' + navbarColor}
+                        style={{
+                            backgroundColor: 'rgba(0,0,0,.87)'
+                        }}
                     >
-                        {' '}
+                        <NavLink routeName="home" className="brand item" href="/">
+                            {this.props.loading ? (
+                                <img
+                                    src="/assets/img/loader.gif"
+                                    alt="loading..."
+                                    style={{ height: 30, width: 30 }}
+                                />
+                            ) : (
+                                <img
+                                    style={{ height: 22, width: 22 }}
+                                    className="ui mini image"
+                                    src="/assets/img/ld-reactor.gif"
+                                    alt="ld-reactor"
+                                />
+                            )}
+                        </NavLink>
+                        <NavLink routeName="about" className="item">
+                        About {appShortTitle}{' '}
+                        </NavLink>
+                        <NavLink
+                            routeName="datasets"
+                            className="item"
+                            href="/datasets"
+                        >
+                            {' '}
                         Datasets
-                    </NavLink>
-                    <div className="right menu">
-                        <div className="item link" onClick={this.showHelpModal}>
-                            <i className="small help circle icon"></i>
-                        </div>
-                        {enableDynamicReactorConfiguration ||
+                        </NavLink>
+                        <div className="right menu">
+                            <div className="item link" onClick={this.showHelpModal}>
+                                <i className="small help circle icon"></i>
+                            </div>
+                            {enableDynamicReactorConfiguration ||
                         enableDynamicServerConfiguration ||
                         enableDynamicfacetsConfiguration
-                            ? configMenu
-                            : ''}
-                        <a
-                            href="http://github.com/ali1k/ld-r"
-                            className="ui item link"
-                        >
-                            <i className="github circle icon"></i> Github
-                        </a>
-                        {userMenu}
-                    </div>
-                </nav>
+                                ? configMenu
+                                : ''}
+                            <a
+                                href="https://github.com/Christian-Nja/odp-reactor"
+                                className="ui item link"
+                            >
+                                <i className="github circle icon"></i> Github
+                            </a>
+                            {userMenu}
+                        </div>
+                    </nav>
+                </div>
             </div>
         );
     }

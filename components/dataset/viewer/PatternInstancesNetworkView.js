@@ -65,7 +65,7 @@ export default class PatternInstancesNetworkView extends React.Component {
         let color;
         let colorMap;
         let patternId;
-        const Graph = require('ld-ui-react').Graph;
+        const Graph = require('odp-reactor').Graph;
         if (this.props.RouteStore._currentNavigate) {
             // node color
             color = this.props.RouteStore._currentNavigate.route.params.c;
@@ -144,12 +144,12 @@ export default class PatternInstancesNetworkView extends React.Component {
         }
 
         if (this.props.PatternStore.instances && colorMap) {
-            const KG = require('ld-ui-react').KG;
-            const TimeIntervalFilter = require('ld-ui-react')
+            const KG = require('odp-reactor').KG;
+            const TimeIntervalFilter = require('odp-reactor')
                 .TimeIntervalFilter;
-            const SliderFilter = require('ld-ui-react').SliderFilter;
-            const GeoFilter = require('ld-ui-react').GeoFilter;
-            const scaleData = require('ld-ui-react').scaleData;
+            const SliderFilter = require('odp-reactor').SliderFilter;
+            const GeoFilter = require('odp-reactor').GeoFilter;
+            const scaleData = require('odp-reactor').scaleData;
             const graph = new Graph();
             const list = [];
             const nodes = [];
@@ -337,6 +337,7 @@ export default class PatternInstancesNetworkView extends React.Component {
                     onNodeDoubleClick={getInstance}
                     onItemClick={getInstanceTableClick}
                     itemTooltip="Click to explore the resource"
+                    listTitle={'Instances'}
                 >
                     {measureNodesCount > 0 ? (
                         <SliderFilter

@@ -9,7 +9,7 @@ import fetchInstanceData from './fetchInstanceData';
 import CustomLoader from '../../CustomLoader';
 
 /**
- * @description This component is a model for the corresponding view provided by the ld-ui-react package.
+ * @description This component is a model for the corresponding view provided by the odp-reactor package.
  *
  * It loads data to pass to the visualization.
  * It can takes care to check browser environment.
@@ -33,7 +33,7 @@ class PartWholeView extends React.Component {
     render() {
         let data = this.props.data.instanceData.cPropComponentOf;
 
-        const PartWhole = require('ld-ui-react').PartWhole;
+        const PartWhole = require('odp-reactor').PartWhole;
 
         if (data) {
             const whole = { uri: data[0].complexCProp };

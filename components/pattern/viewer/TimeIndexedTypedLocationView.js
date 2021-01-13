@@ -9,7 +9,7 @@ import { navigateAction } from 'fluxible-router';
 import CustomLoader from '../../CustomLoader';
 
 /**
- * @description This component is a model for the corresponding view provided by the ld-ui-react package.
+ * @description This component is a model for the corresponding view provided by the odp-reactor package.
  *
  * It loads data to pass to the visualization.
  * It can takes care to check browser environment.
@@ -42,10 +42,10 @@ class TimeIndexedTypedLocationView extends React.Component {
             console.log('time indexed typed location props');
             console.log(this.props);
             if (this.props.data.instanceData.tITLocations) {
-                let TimeIndexedTypedLocation = require('ld-ui-react/lib/client-side')
+                let TimeIndexedTypedLocation = require('odp-reactor/lib/client-side')
                     .TimeIndexedTypedLocation;
-                let ImageGrid = require('ld-ui-react').ImageGrid;
-                const PropertyValueList = require('ld-ui-react')
+                let ImageGrid = require('odp-reactor').ImageGrid;
+                const PropertyValueList = require('odp-reactor')
                     .PropertyValueList;
 
                 const getResource = () => {

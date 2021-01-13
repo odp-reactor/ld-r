@@ -10,7 +10,7 @@ import fetchInstanceData from './fetchInstanceData';
 import CustomLoader from '../../CustomLoader';
 
 /**
- * @description This component is a model for the corresponding view provided by the ld-ui-react package.
+ * @description This component is a model for the corresponding view provided by the odp-reactor package.
  *
  * It loads data to pass to the visualization.
  * It can takes care to check browser environment.
@@ -37,9 +37,9 @@ class CollectionView extends React.Component {
         };
         let collection = this.props.data.instanceData.collection;
 
-        // import Collection component from ld-ui-react package
-        const Collection = require('ld-ui-react').Collection;
-        const Depiction = require('ld-ui-react').Depiction;
+        // import Collection component from odp-reactor package
+        const Collection = require('odp-reactor').Collection;
+        const Depiction = require('odp-reactor').Depiction;
 
         if (collection) {
             return (

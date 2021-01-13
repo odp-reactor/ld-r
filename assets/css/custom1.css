@@ -2,31 +2,36 @@
     display: none;
 }
 
-.inline-div{
-	display: inline-block;
+.inline-div {
+    display: inline-block;
 }
 
-.padding15{
-	padding: 15px;
+.padding15 {
+    padding: 15px;
 }
 
-.bold{
-	font-weight: bold;
+.bold {
+    font-weight: bold;
 }
-.ldr-padding{
+.ldr-padding {
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
 }
-.ldr-padding-more{
+.ldr-padding-more {
     padding-top: 20px;
     padding-bottom: 10px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:none!important;animation-fill-mode:none!important}
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: none !important;
+    animation-fill-mode: none !important;
+}
 
 .ui.small.image {
     object-fit: contain;
@@ -37,5 +42,21 @@
     height: 100%;
     width: 100%;
     margin: 0 auto;
-  }
+}
 
+#navbar.hidden-navbar {
+    display: none;
+}
+
+#navbar {
+    margin: 0;
+    z-index: 2;
+}
+
+.hidden-nav-open {
+    visibility: hidden;
+}
+
+.absolute-navbar {
+    position: absolute;
+}
