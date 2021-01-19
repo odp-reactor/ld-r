@@ -150,6 +150,7 @@ export default class PatternInstancesNetworkView extends React.Component {
             const SliderFilter = require('odp-reactor').SliderFilter;
             const GeoFilter = require('odp-reactor').GeoFilter;
             const scaleData = require('odp-reactor').scaleData;
+            const PropertyFilter = require('odp-reactor').PropertyFilter;
             const graph = new Graph();
             const list = [];
             const nodes = [];
@@ -194,15 +195,17 @@ export default class PatternInstancesNetworkView extends React.Component {
                         let [rawm, v, u] = measure.split(' ');
                         let m = rawm.split('-').pop();
 
-                        const lengthUnits = ['cm', 'm', 'mm']
-                        const defaultMeasurementUnit = 'mm'
-                        console.log(m,u,v)
+                        const lengthUnits = ['cm', 'm', 'mm'];
+                        const defaultMeasurementUnit = 'mm';
+                        console.log(m, u, v);
                         if (lengthUnits.includes(u) && v != 'MNR') {
-                            v = v.replace(',', '.')
+                            v = v.replace(',', '.');
                             // do conversion
-                            v = Qty(`${v} ${u}`).format(defaultMeasurementUnit).split(' ')[0]
-                            u = defaultMeasurementUnit
-                            console.log(v)
+                            v = Qty(`${v} ${u}`)
+                                .format(defaultMeasurementUnit)
+                                .split(' ')[0];
+                            u = defaultMeasurementUnit;
+                            console.log(v);
                         }
 
                         if (Number.parseInt(v)) {
@@ -267,12 +270,42 @@ export default class PatternInstancesNetworkView extends React.Component {
                     case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
                         listNode['id'] = node.id;
                         listNode['Label'] = node.data.data.label;
-                        listNode['Height'] = node.data.data.height ? withUnit(node.data.data.height, node.data.data.measurementUnit) : '';
-                        listNode['Width'] = node.data.data.width ? withUnit(node.data.data.width, node.data.data.measurementUnit): '';
-                        listNode['Length'] = node.data.data.length? withUnit(node.data.data.length, node.data.data.measurementUnit): '';
-                        listNode['Depth'] = node.data.data.depth ? withUnit(node.data.data.depth, node.data.data.measurementUnit): '';
-                        listNode['Diameter'] = node.data.data.diameter ? withUnit(node.data.data.diameter, node.data.data.measurementUnit): '';
-                        listNode['Thickness'] = node.data.data.thickness? withUnit(node.data.data.thickness, node.data.data.measurementUnit): '';
+                        listNode['Height'] = node.data.data.height
+                            ? withUnit(
+                                node.data.data.height,
+                                node.data.data.measurementUnit
+                            )
+                            : '';
+                        listNode['Width'] = node.data.data.width
+                            ? withUnit(
+                                node.data.data.width,
+                                node.data.data.measurementUnit
+                            )
+                            : '';
+                        listNode['Length'] = node.data.data.length
+                            ? withUnit(
+                                node.data.data.length,
+                                node.data.data.measurementUnit
+                            )
+                            : '';
+                        listNode['Depth'] = node.data.data.depth
+                            ? withUnit(
+                                node.data.data.depth,
+                                node.data.data.measurementUnit
+                            )
+                            : '';
+                        listNode['Diameter'] = node.data.data.diameter
+                            ? withUnit(
+                                node.data.data.diameter,
+                                node.data.data.measurementUnit
+                            )
+                            : '';
+                        listNode['Thickness'] = node.data.data.thickness
+                            ? withUnit(
+                                node.data.data.thickness,
+                                node.data.data.measurementUnit
+                            )
+                            : '';
                         list.push(listNode);
                         break;
                 }
@@ -429,5 +462,5 @@ PatternInstancesNetworkView = connectToStores(
 // });
 
 function withUnit(value, unit) {
-    return `${value} ${unit}`
+    return `${value} ${unit}`;
 }

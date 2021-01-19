@@ -23,27 +23,27 @@ export default class PatternNetworkView extends React.Component {
     }
 
     componentDidUpdate() {
-        const nav = document.getElementById('navbar')
-        console.log('Nav element')
-        console.log(nav)
-        nav.classList.add('hidden-navbar')
-        nav.classList.add('absolute-navbar')
-        const navIcon = document.getElementById('nav-open')
-        navIcon.classList.remove('hidden-nav-open')
-        navIcon.addEventListener('mouseover', ()=>{
-            nav.classList.remove('hidden-navbar')
-        })
-        nav.addEventListener('mouseleave', ()=>{
-            nav.classList.add('hidden-navbar')
-            navIcon.classList.remove('hidden-nav-open')
-        })
+        const nav = document.getElementById('navbar');
+        console.log('Nav element');
+        console.log(nav);
+        nav.classList.add('hidden-navbar');
+        nav.classList.add('absolute-navbar');
+        const navIcon = document.getElementById('nav-open');
+        navIcon.classList.remove('hidden-nav-open');
+        navIcon.addEventListener('mouseover', () => {
+            nav.classList.remove('hidden-navbar');
+        });
+        nav.addEventListener('mouseleave', () => {
+            nav.classList.add('hidden-navbar');
+            navIcon.classList.remove('hidden-nav-open');
+        });
     }
 
     componentWillUnmount() {
-        const nav = document.getElementById('navbar')
-        nav.classList.remove('hidden-navbar')
-        nav.classList.remove('absolute-navbar')
-        const navIcon = document.getElementById('nav-open')
+        const nav = document.getElementById('navbar');
+        nav.classList.remove('hidden-navbar');
+        nav.classList.remove('absolute-navbar');
+        const navIcon = document.getElementById('nav-open');
     }
 
     fetchData() {
@@ -72,7 +72,7 @@ export default class PatternNetworkView extends React.Component {
             // node is a Graphin node
 
             const KG = require('odp-reactor').KG;
-            const PropertyFilter = require('odp-reactor').PropertyFilter;
+            const PatternFilter = require('odp-reactor').PatternFilter;
             const SliderFilter = require('odp-reactor').SliderFilter;
             const Graph = require('odp-reactor').Graph;
             const scaleData = require('odp-reactor').scaleData;
@@ -228,7 +228,7 @@ export default class PatternNetworkView extends React.Component {
                         valueKey="occurences"
                         title="Filter by Occurences"
                     />
-                    <PropertyFilter title={'Filter by Pattern'} />
+                    <PatternFilter title={'Filter by Pattern'} />
                 </KG>
             );
         } else {
