@@ -23,84 +23,94 @@ class About extends React.Component {
                                         </a>
                                     </h2>
                                     <div style={{ fontSize: 20, margin: 20 }}>
-                                        ODP Reactor is a web-based software to
-                                        visualize knowledge graphs modelled with
-                                        Ontology Design Patterns. It's been
-                                        developed by STLab at Bologna
-                                        University. STLab research aims at
-                                        identifying cognitively sound formal
-                                        representations of knowledge as well as
-                                        at developing efficient ways to process
-                                        it for its automatic understanding.
-                                        STLab team is composed of researchers
-                                        with diverse backgrounds in order to
-                                        achieve its goals with an
-                                        interdisciplinary approach. ODP Reactor
-                                        extends LD-R develloped at VU.
+                                        <ul>
+                                            <li className="about-li">
+                                                ODP Reactor is a web-based
+                                                software to visualize knowledge
+                                                graphs modelled with Ontology
+                                                Design Patterns.
+                                            </li>
+                                            <li className="about-li">
+                                                KnowledgeGraph should be
+                                                annotated with OPLa ontology in
+                                                order to make the tool able to
+                                                analyze and visualize data.
+                                            </li>
+                                            <li className="about-li">
+                                                ODP Reactor is developed by
+                                                STLab. STLab research aims at
+                                                identifying cognitively sound
+                                                formal representations of
+                                                knowledge as well as at
+                                                developing efficient ways to
+                                                process it for its automatic
+                                                understanding.
+                                            </li>
+                                            <li className="about-li">
+                                                ODP Reactor extends
+                                                <a href="http://ld-r.org">
+                                                    {' '}
+                                                    Ld-r{' '}
+                                                </a>
+                                                developped at VU.
+                                            </li>
+                                        </ul>
                                     </div>
                                     <br />
-                                    <div>
-                                        <div
-                                            className="blue ui card item"
-                                            style={{
-                                                width: '100%',
-                                                maxWidth: ''
-                                            }}
-                                        >
-                                            <div
-                                                className="content"
-                                                style={{
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'flex-end',
-                                                    fontSize: 10
-                                                }}
-                                            >
-                                                <div>
-                                                    Documentation is available
-                                                    at{' '}
-                                                    <a href="http://ld-r.org">
-                                                        http://ld-r.org
-                                                    </a>
-                                                    . <br />
-                                                    LD-Reactor is developed by:
-                                                </div>
-                                                <div
-                                                    className="header"
-                                                    style={{
-                                                        width: '10%',
-                                                        float: 'right'
-                                                    }}
-                                                >
-                                                    <a
-                                                        href="http://vu.nl"
-                                                        target="_blank"
-                                                    >
-                                                        <img
-                                                            className="ui centered medium image"
-                                                            src="/assets/img/VU_logo.png"
-                                                        />
-                                                    </a>
-                                                </div>
-                                                <div className="meta">
-                                                    <a
-                                                        href="http://www.networkinstitute.org/"
-                                                        target="_blank"
-                                                    >
-                                                        Department of Computer
-                                                        Science & <br /> The
-                                                        Network Institute
-                                                    </a>
-                                                </div>
-                                                <div className="description">
-                                                    VU University Amsterdam{' '}
-                                                    <br />
-                                                    de Boelelaan 1081a
-                                                    <br /> 1081HV Amsterdam
-                                                    <br /> The Netherlands{' '}
-                                                    <br />
-                                                </div>
-                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="ui row">
+                            <div className="ui fluid grid container">
+                                <div className="two column row">
+                                    <div className="column">
+                                        <div className="ldr-padding">
+                                            <img
+                                                style={{ width: '100%' }}
+                                                src="/assets/img/tool-image/screenshot_patterns.png"
+                                            ></img>
+                                            <p className="about-img-desc">
+                                                Explore by knoweldge patterns to
+                                                better grasp what knowledge is
+                                                in large dataset
+                                            </p>
+                                        </div>
+                                        <div className="ldr-padding">
+                                            <img
+                                                style={{ width: '100%' }}
+                                                src="/assets/img/tool-image/time_indexed_typed_location_detailed.png"
+                                            ></img>
+                                            <p className="about-img-desc">
+                                                Map every pattern with a
+                                                standard visualization. You can
+                                                integrate new visualization best
+                                                to represent different data
+                                                structures
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="column">
+                                        <div className="ldr-padding">
+                                            <img
+                                                style={{ width: '100%' }}
+                                                src="/assets/img/tool-image/list_layout.png"
+                                            ></img>
+                                            <p className="about-img-desc">
+                                                Switch and choose between
+                                                several representation to best
+                                                visualize and retrieve data.
+                                                Like Graph or Table
+                                            </p>
+                                        </div>
+                                        <div className="ldr-padding">
+                                            <img
+                                                style={{ width: '100%' }}
+                                                src="/assets/img/tool-image/geog_filter.png"
+                                            ></img>
+                                            <p className="about-img-desc">
+                                                Advanced filtering components
+                                                based on data semantics
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

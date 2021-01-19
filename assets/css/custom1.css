@@ -14,10 +14,7 @@
     font-weight: bold;
 }
 .ldr-padding {
-    padding-top: 10px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 40px;
 }
 .ldr-padding-more {
     padding-top: 20px;
@@ -59,4 +56,15 @@
 
 .absolute-navbar {
     position: absolute;
+}
+
+p.about-img-desc {
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.about-li {
+    padding: 20px 0;
 }

@@ -54,14 +54,22 @@ class DefaultHTMLLayout extends React.Component {
                         rel="stylesheet"
                         type="text/css"
                     />
+                    {/* <script
+                        type="text/javascript"
+                        src="/assets/js/matomoAnalytics.js"
+                    ></script> */}
                 </head>
                 <body>
                     <div
                         id="app"
-                        dangerouslySetInnerHTML={{ __html: this.props.markup }}
+                        dangerouslySetInnerHTML={{
+                            __html: this.props.markup
+                        }}
                     ></div>
                     <script
-                        dangerouslySetInnerHTML={{ __html: this.props.state }}
+                        dangerouslySetInnerHTML={{
+                            __html: this.props.state
+                        }}
                     ></script>
                     {/* Following are added only to support IE browser */}
                     <script src="/es5-shim/es5-shim.min.js"></script>

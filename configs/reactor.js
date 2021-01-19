@@ -14,11 +14,26 @@ export default {
                 allowResourceDelete: 1,
                 allowResourceClone: 1,
                 allowPropertyNew: 1,
-                // datasetReactor: ["Dataset"],
-                // datasetViewer: ["BasicResourceList"]
+                //datasetReactor: ["Dataset"],
+                //datasetViewer: ["BasicResourceList"]
                 datasetReactor: ["PatternNetwork"],
                 datasetViewer: ["PatternNetwork"]
             },
+            // "http://arco.istc.cnr.it/ldr/configurations": {
+            //     resourceFocusType: [],
+            //     //only allow to view data -> disable edit
+            //     readOnly: 0,
+            //     //used for pagination in resource list
+            //     maxNumberOfResourcesOnPage: 20,
+            //     allowResourceNew: 1,
+            //     allowResourceDelete: 1,
+            //     allowResourceClone: 1,
+            //     allowPropertyNew: 1,
+            //     datasetReactor: ["Dataset"],
+            //     datasetViewer: ["BasicResourceList"]
+            //     //datasetReactor: ["PatternNetwork"],
+            //     //datasetViewer: ["PatternNetwork"]
+            // },
             //authentication graph
             "http://virtuoso.local/users": {
                 readOnly: 1,
