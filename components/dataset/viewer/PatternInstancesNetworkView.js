@@ -165,6 +165,7 @@ export default class PatternInstancesNetworkView extends React.Component {
             let measureNodesCount = 0;
             let partNodesCount = 0;
             let geoNodesCount = 0;
+            let locTypeNodesCount = 0;
             const measureTypes = new Set(); // memorize the measure type key to prepare filters
             for (let i = 0; i < instances.length; i++) {
                 const instanceNode = instances[i];
@@ -183,6 +184,10 @@ export default class PatternInstancesNetworkView extends React.Component {
                     nodeForFilters['startTime'] = startTime;
                     nodeForFilters['endTime'] = endTime;
                     timeNodesCount++;
+                }
+                if (instanceNode.locationType) {
+                    nodeForFilters['locationType'] = instanceNode.locationType;
+                    locTypeNodesCount++;
                 }
                 if (instanceNode.lat && instanceNode.long) {
                     nodeForFilters['lat'] = instanceNode.lat;
@@ -311,6 +316,9 @@ export default class PatternInstancesNetworkView extends React.Component {
                 }
             });
 
+            console.log('locTypeNodeCounts');
+            console.log(locTypeNodesCount);
+
             const patternStateKey = `${patternId}State`;
             const defaultConfig =
                 JSON.parse(
@@ -382,6 +390,12 @@ export default class PatternInstancesNetworkView extends React.Component {
                         <SliderFilter
                             title={'Filter by number of parts'}
                             valueKey="parts"
+                        />
+                    ) : null}
+                    {locTypeNodesCount > 0 ? (
+                        <PropertyFilter
+                            title={'Filter by Location Type'}
+                            property="locationType"
                         />
                     ) : null}
                     {timeNodesCount > 0 ? (
