@@ -59,6 +59,30 @@ export default class PatternInstancesNetworkView extends React.Component {
         }
     }
 
+    componentDidUpdate() {
+        const nav = document.getElementById('navbar');
+        console.log('Nav element');
+        console.log(nav);
+        nav.classList.add('hidden-navbar');
+        nav.classList.add('absolute-navbar');
+        const navIcon = document.getElementById('nav-open');
+        navIcon.classList.remove('hidden-nav-open');
+        navIcon.addEventListener('mouseover', () => {
+            nav.classList.remove('hidden-navbar');
+        });
+        nav.addEventListener('mouseleave', () => {
+            nav.classList.add('hidden-navbar');
+            navIcon.classList.remove('hidden-nav-open');
+        });
+    }
+
+    componentWillUnmount() {
+        const nav = document.getElementById('navbar');
+        nav.classList.remove('hidden-navbar');
+        nav.classList.remove('absolute-navbar');
+        const navIcon = document.getElementById('nav-open');
+    }
+
     render() {
         let getInstance;
         let getInstanceTableClick;
@@ -112,12 +136,14 @@ export default class PatternInstancesNetworkView extends React.Component {
                 }
                 const nodeColorSizeFilter = (node, id) => {
                     // set colors according to a gradient
-                    node.style.primaryColor = schemaGraph.nodeGradient()[id];
+                    node.style.containerFill = schemaGraph.nodeGradient()[id];
+                    node.style.containerStroke = '#000';
                 };
                 schemaGraph.breadthFirstSearch(nodeColorSizeFilter);
+                console.log('MAP SCHEMA NODES');
                 colorMap = {};
                 schemaGraph.nodes.forEach(n => {
-                    colorMap[n.id] = n.style.primaryColor;
+                    colorMap[n.id] = n.style.containerFill;
                 });
             }
 
@@ -235,15 +261,33 @@ export default class PatternInstancesNetworkView extends React.Component {
                 // nodes for filters
                 nodes.push(nodeForFilters);
 
+                console.log('Color map');
+                console.log(colorMap);
+
                 graph.addNode({
                     id: instanceNode.instance,
                     data: instanceNode,
                     label: `${instanceNode.label.substring(0, 35)}...`,
                     description: instanceNode.description,
                     style: {
-                        primaryColor: colorMap
+                        /** container 容齐 */
+                        containerWidth: 40,
+                        containerStroke: '#0693E3',
+                        containerFill: colorMap
                             ? colorMap[instanceNode.type]
-                            : color
+                            : color,
+                        /** icon 图标 */
+                        iconSize: 10,
+                        iconFill: '#0693E3',
+                        /** badge 徽标 */
+                        badgeFill: 'red',
+                        badgeFontColor: '#fff',
+                        badgeSize: 10,
+                        /** text 文本 */
+                        fontColor: '#3b3b3b',
+                        fontSize: 20,
+                        /** state */
+                        dark: '#eee'
                     }
                 });
             }
@@ -348,8 +392,8 @@ export default class PatternInstancesNetworkView extends React.Component {
                     textOnNodeHover={model => {
                         switch (model.data.data.type) {
                             case 'https://w3id.org/arco/ontology/location/time-indexed-typed-location':
-                                return `Label : <b>${model.data.data.label}</b> <br/> Location Type : ${model.data.data.locationType}<br/> Start Time : ${model.data.data.startTime}
-                            <br/> End Time: ${model.data.data.endTime} <br/> Location: ${model.data.data.addressLabel}`; //<br/>
+                                return `<span class="g6-tooltip-title">Label</span>:<span class="g6-tooltip-text">${model.data.data.label}</span><br/><span class="g6-tooltip-title">Location Type</span>:<span class="g6-tooltip-text">${model.data.data.locationType}</span><br/><span class="g6-tooltip-title">Start Time</span>:<span class="g6-tooltip-text">${model.data.data.startTime}</span>
+                            <br/><span class="g6-tooltip-title">End Time</span>:<span class="g6-tooltip-text">${model.data.data.endTime}</span><br/><span class="g6-tooltip-title">Location</span>:<span class="g6-tooltip-text">${model.data.data.addressLabel}</span>`; //<br/>
                             case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
                                 let measureString = '';
                                 if (model.data.data.measures) {
@@ -360,19 +404,19 @@ export default class PatternInstancesNetworkView extends React.Component {
                                             let t = type.split('-').pop();
                                             measureString =
                                                 measureString +
-                                                `${t} : ${v} ${u.toLowerCase()}<br/>`;
+                                                `<span class="g6-tooltip-title">${t}</span>:<span class="g6-tooltip-text">${v} ${u.toLowerCase()}</span><br/>`;
                                         });
                                 }
-                                return `Label : <b>${model.data.data.label}</b> <br/> ${measureString}`;
+                                return `<span class="g6-tooltip-title">Label</span>:<span class="g6-tooltip-text">${model.data.data.label}</span><br/>${measureString}`;
                             case 'https://w3id.org/arco/ontology/location/cultural-property-component-of':
-                                return `Label : <b>${
+                                return `<span class="g6-tooltip-title">Label</span>:<span class="g6-tooltip-text">${
                                     model.data.data.label
-                                }</b> <br/> Parts : ${
+                                }</span><br/><span class="g6-tooltip-title">Parts</span>:<span class="g6-tooltip-text">${
                                     model.data.data.parts
                                         ? model.data.data.parts.split(';')
                                             .length
                                         : ''
-                                }`;
+                                }</span>`;
                         }
                     }}
                     onNodeDoubleClick={getInstance}

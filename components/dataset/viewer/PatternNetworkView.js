@@ -89,7 +89,25 @@ export default class PatternNetworkView extends React.Component {
                     occurences: pNode.occurences,
                     data: pNode,
                     label: pNode.label,
-                    description: pNode.description
+                    description: pNode.description,
+                    style: {
+                        /** container 容齐 */
+                        containerWidth: 40,
+                        containerStroke: '#0693E3',
+                        containerFill: '#fff',
+                        /** icon 图标 */
+                        iconSize: 10,
+                        iconFill: '#0693E3',
+                        /** badge 徽标 */
+                        badgeFill: 'red',
+                        badgeFontColor: '#fff',
+                        badgeSize: 10,
+                        /** text 文本 */
+                        fontColor: '#3b3b3b',
+                        fontSize: 20,
+                        /** state */
+                        dark: '#eee'
+                    }
                 });
                 // add component triples
                 if (pNode.components !== '') {
@@ -119,7 +137,8 @@ export default class PatternNetworkView extends React.Component {
             // we use bfs to assign similar color to semantically close nodes
             const nodeColorSizeFilter = (node, id) => {
                 // set colors according to a gradient
-                node.style.primaryColor = graph.nodeGradient()[id];
+                node.style.containerFill = graph.nodeGradient()[id];
+                node.style.containerStroke = '#000';
                 // set size as a proportion of occurrences
                 // we add this as we can filter on this with slider filter
                 if (node.data.occurences !== 0) {
@@ -130,8 +149,8 @@ export default class PatternNetworkView extends React.Component {
                 }
                 // compute dynamically max and min degree
                 // with 0 occurrences -> -Infinity
-                node.style.nodeSize = Math.round(
-                    scaleData(node.data.occurences, 0, 600, 12, 70)
+                node.style.containerWidth = Math.round(
+                    scaleData(node.data.occurences, 0, 350, 40, 150)
                 );
             };
             graph.breadthFirstSearch(nodeColorSizeFilter);
@@ -139,7 +158,7 @@ export default class PatternNetworkView extends React.Component {
             let colorMap = {};
 
             graph.nodes.forEach(n => {
-                colorMap[n.id] = n.style.primaryColor;
+                colorMap[n.id] = n.style.containerFill;
             });
 
             this.context.executeAction(saveColorMap, colorMap);
@@ -153,7 +172,7 @@ export default class PatternNetworkView extends React.Component {
                         )}/patterns/${encodeURIComponent(
                             node.id
                         )}/color/${encodeURIComponent(
-                            node.model.style.primaryColor
+                            node.model.style.containerFill
                         )}`,
                         colorMap: colorMap
                     });
@@ -194,7 +213,7 @@ export default class PatternNetworkView extends React.Component {
                     // property fitler
                     title: node.data.data.pattern.split('/').pop(),
                     value: Number.parseInt(node.data.data.occurences),
-                    color: node.style.primaryColor,
+                    color: node.style.containerFill,
                     // occurrency filter
                     occurences: node.data.data.occurences
                 });
@@ -218,7 +237,7 @@ export default class PatternNetworkView extends React.Component {
                     data={{ graph: graph, list: list, nodes: nodes }}
                     onNodeDoubleClick={getInstances}
                     textOnNodeHover={model => {
-                        return `Pattern Name: ${model.data.data.label} </br> Description: ${model.data.data.description}<br/> Occurrences:<br/> ${model.data.occurences}`;
+                        return `<span class="g6-tooltip-title">Pattern Name</span>:<span class="g6-tooltip-text">${model.data.data.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.data.description}</span><br/> <span class="g6-tooltip-title">Occurrences</span>:<span class="g6-tooltip-text">${model.data.occurences}</span><br/>`;
                     }}
                     onItemClick={getInstancesTableClick}
                     itemTooltip="Click to explore instances of this pattern"
