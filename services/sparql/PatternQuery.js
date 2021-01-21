@@ -144,7 +144,8 @@ export default class PatternQuery extends SPARQLQuery {
            ?type opla:specializationOfPattern* <${id}> .
            ?type rdfs:label ?patternLabel .
            ?type rdfs:comment ?patternDescription .
-            OPTIONAL { ?instance <http://www.w3.org/2000/01/rdf-schema#label> ?label2B . } BIND ( IF (BOUND (?label2B), ?label2B, '')  as ?label) . OPTIONAL{ SELECT DISTINCT ?instance (GROUP_CONCAT(DISTINCT ?nodeType; SEPARATOR=";") AS ?nodes) WHERE { 
+            OPTIONAL { SELECT DISTINCT  ?instance (SAMPLE(?label) as ?label)  WHERE {
+                ?instance <http://www.w3.org/2000/01/rdf-schema#label> ?label2B . BIND ( IF (BOUND (?label2B), ?label2B, '')  as ?label) . } } . OPTIONAL{ SELECT DISTINCT ?instance (GROUP_CONCAT(DISTINCT ?nodeType; SEPARATOR=";") AS ?nodes) WHERE { 
  ?instance opla:hasPatternInstanceMember ?node .  OPTIONAL { ?node rdf:type ?typet . } BIND (CONCAT(?node, " ",?typet) AS ?nodeType)} GROUP BY ?instance } ${body} ${gEnd}
         }`;
         return this.query;

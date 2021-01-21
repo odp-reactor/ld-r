@@ -259,7 +259,10 @@ export default class PatternInstancesNetworkView extends React.Component {
                 }
                 // parts filter
                 // nodes for filters
+                console.log('[*] Debugging nodes for filters count');
+                console.log('Instances number:', instances.length);
                 nodes.push(nodeForFilters);
+                console.log(nodeForFilters);
 
                 console.log('Color map');
                 console.log(colorMap);
@@ -452,6 +455,7 @@ export default class PatternInstancesNetworkView extends React.Component {
                                     title={`Filter by ${measure}`}
                                     valueKey={measure}
                                     id={measure}
+                                    measurementUnit="mm"
                                 />
                             );
                         })

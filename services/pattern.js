@@ -831,6 +831,7 @@ export default {
                                     graphName,
                                     patternURI
                                 );
+                            console.log('[*] Get instances query');
                             console.log(query);
 
                             rp.get({
