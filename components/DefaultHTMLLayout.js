@@ -4,6 +4,10 @@ import ApplicationStore from '../stores/ApplicationStore';
 import ga from '../plugins/googleAnalytics/ga';
 import { googleAnalyticsID } from '../configs/general';
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class DefaultHTMLLayout extends React.Component {
     render() {
         return (
@@ -20,19 +24,19 @@ class DefaultHTMLLayout extends React.Component {
                         content="width=device-width, user-scalable=no"
                     />
                     <link
-                        href="/semantic-ui/semantic.min.css"
+                        href={`${PUBLIC_URL}/semantic-ui/semantic.min.css`}
                         rel="stylesheet"
                         type="text/css"
                     />
                     <link
-                        href="/animate.css/animate.min.css"
+                        href={`${PUBLIC_URL}/animate.css/animate.min.css`}
                         rel="stylesheet"
                         type="text/css"
                     />
                     {/* Vendors css bundle */
                         this.props.addAssets ? (
                             <link
-                                href="/public/css/vendor.bundle.css"
+                                href={`${PUBLIC_URL}/public/css/vendor.bundle.css`}
                                 rel="stylesheet"
                                 type="text/css"
                             />
@@ -40,17 +44,17 @@ class DefaultHTMLLayout extends React.Component {
                             <style></style>
                         )}
                     <link
-                        href="/leaflet/dist/leaflet.css"
+                        href={`${PUBLIC_URL}/leaflet/dist/leaflet.css`}
                         rel="stylesheet"
                         type="text/css"
                     />
                     <link
-                        href="/jqcloud2/dist/jqcloud.min.css"
+                        href={`${PUBLIC_URL}/jqcloud2/dist/jqcloud.min.css`}
                         rel="stylesheet"
                         type="text/css"
                     />
                     <link
-                        href="/assets/css/custom1.css"
+                        href={`${PUBLIC_URL}/assets/css/custom1.css`}
                         rel="stylesheet"
                         type="text/css"
                     />
@@ -89,13 +93,15 @@ class DefaultHTMLLayout extends React.Component {
                     <script src="/yasgui-yasqe/dist/yasqe.min.js"></script>
                     {/* All external vendors bundle*/
                         this.props.addAssets ? (
-                            <script src={'/public/js/vendor.bundle.js'}></script>
+                            <script
+                                src={`${PUBLIC_URL}/public/js/vendor.bundle.js`}
+                            ></script>
                         ) : (
                             ''
                         )}
                     {/* Main app bundle */}
                     <script
-                        src={'/public/js/' + this.props.clientFile}
+                        src={`${PUBLIC_URL}/public/js/` + this.props.clientFile}
                     ></script>
                     {googleAnalyticsID && (
                         <script
