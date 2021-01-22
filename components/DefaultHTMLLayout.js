@@ -76,32 +76,60 @@ class DefaultHTMLLayout extends React.Component {
                         }}
                     ></script>
                     {/* Following are added only to support IE browser */}
-                    <script src="/es5-shim/es5-shim.min.js"></script>
-                    <script src="/es5-shim/es5-sham.min.js"></script>
-                    <script src="/json3/lib/json3.min.js"></script>
-                    <script src="/es6-shim/es6-shim.min.js"></script>
-                    <script src="/es6-shim/es6-sham.min.js"></script>
+                    <script
+                        src={`${PUBLIC_URL}/es5-shim/es5-shim.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/es5-shim/es5-sham.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/json3/lib/json3.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}es6-shim/es6-shim.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}es6-shim/es6-sham.min.js`}
+                    ></script>
                     {/* Above are added only to support IE browser */}
-                    <script src="/jquery/dist/jquery.min.js"></script>
-                    <script src="/jqcloud2/dist/jqcloud.min.js"></script>
-                    <script src="/semantic-ui/components/transition.min.js"></script>
-                    <script src="/semantic-ui/components/dropdown.min.js"></script>
-                    <script src="/semantic-ui/components/checkbox.min.js"></script>
-                    <script src="/semantic-ui/components/dimmer.min.js"></script>
-                    <script src="/semantic-ui/components/modal.min.js"></script>
-                    <script src="/codemirror/lib/codemirror.js"></script>
-                    <script src="/yasgui-yasqe/dist/yasqe.min.js"></script>
+                    <script
+                        src={`${PUBLIC_URL}/jquery/dist/jquery.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/jqcloud2/dist/jqcloud.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/semantic-ui/components/transition.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/semantic-ui/components/dropdown.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/semantic-ui/components/checkbox.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/semantic-ui/components/dimmer.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/semantic-ui/components/modal.min.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/codemirror/lib/codemirror.js`}
+                    ></script>
+                    <script
+                        src={`${PUBLIC_URL}/yasgui-yasqe/dist/yasqe.min.js`}
+                    ></script>
                     {/* All external vendors bundle*/
                         this.props.addAssets ? (
                             <script
-                                src={`${PUBLIC_URL}/public/js/vendor.bundle.js`}
+                                src={`${PUBLIC_URL}/js/vendor.bundle.js`}
                             ></script>
                         ) : (
                             ''
                         )}
                     {/* Main app bundle */}
                     <script
-                        src={`${PUBLIC_URL}/public/js/` + this.props.clientFile}
+                        src={`${PUBLIC_URL}/` + this.props.clientFile}
                     ></script>
                     {googleAnalyticsID && (
                         <script
