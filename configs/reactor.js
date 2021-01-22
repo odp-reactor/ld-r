@@ -105,12 +105,12 @@ export default {
             "http://ontologydesignpatterns.org/opla/isPatternInstanceOf": {
                 propertyReactor: ["Pattern"]
             },
-            "https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation": {
-                propertyReactor: ["Pattern"],
-                pattern: [
-                    "collection->https://w3id.org/arco/ontology/location/time-indexed-typed-location"
-                ]
-            },
+            // "https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation": {
+            //     propertyReactor: ["Pattern"],
+            //     pattern: [
+            //         "collection->https://w3id.org/arco/ontology/location/time-indexed-typed-location"
+            //     ]
+            // },
             "http://ontologydesignpatterns.org/opla/belongsToPatternInstance": {
                 isHidden: 1
             },

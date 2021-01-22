@@ -48,6 +48,7 @@ class ResourceReactor extends React.Component {
         this.setState({ newObjetValue: v.trim() });
     }
     render() {
+        console.log('RESOURCE REACTOR');
         let datasetURI = this.props.ResourceStore.datasetURI;
         let properties = this.props.ResourceStore.properties;
         let resourceURI = this.props.ResourceStore.resourceURI;

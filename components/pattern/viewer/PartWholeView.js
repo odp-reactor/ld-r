@@ -35,6 +35,8 @@ class PartWholeView extends React.Component {
 
         const PartWhole = require('odp-reactor').PartWhole;
 
+        const PropertyValueList = require('odp-reactor').PropertyValueList;
+
         if (data) {
             const whole = { uri: data[0].complexCProp };
             let parts = data.map(part => {
@@ -48,14 +50,34 @@ class PartWholeView extends React.Component {
                     )}/resource/${encodeURIComponent(resourceURI)}`
                 });
             };
-            console.log('parts', parts);
+
+            let propertyList = {};
+            let c = 1;
+            data.map(part => {
+                propertyList[`Component ${c}:`] = {
+                    uri: part.cPropComponent,
+                    onClick: () => {
+                        getResource(part.cPropComponent);
+                    }
+                };
+                c++;
+            });
+
             return (
-                <div style={{ textAlign: 'center' }}>
-                    <PartWhole
-                        parts={parts}
-                        whole={whole}
-                        onResourceClick={getResource}
-                    ></PartWhole>
+                <div>
+                    <div style={{ textAlign: 'center' }}>
+                        <PartWhole
+                            parts={parts}
+                            whole={whole}
+                            onResourceClick={getResource}
+                        ></PartWhole>
+                    </div>
+                    <div style={{ marginTop: 50, marginBottom: 50 }}>
+                        <PropertyValueList
+                            properties={propertyList}
+                            label={true}
+                        />
+                    </div>
                 </div>
             );
         } else {

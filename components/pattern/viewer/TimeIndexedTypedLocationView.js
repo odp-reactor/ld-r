@@ -48,30 +48,40 @@ class TimeIndexedTypedLocationView extends React.Component {
                 const PropertyValueList = require('odp-reactor')
                     .PropertyValueList;
 
-                const getResource = () => {
+                const getResource = resourceURI => {
                     this.context.executeAction(navigateAction, {
                         url: `/dataset/${encodeURIComponent(
                             this.props.dataset
-                        )}/resource/${encodeURIComponent(
-                            this.props.data.instanceData.tITLocations[0]
-                                .culturalProperty
-                        )}`
+                        )}/resource/${encodeURIComponent(resourceURI)}`
                     });
                 };
 
                 const culturalPropertyURI = this.props.data.instanceData
                     .tITLocations[0].culturalProperty;
 
+                const locationTypeURI = this.props.data.instanceData
+                    .tITLocations[0].locationType;
+
                 let titl = this.props.data.instanceData.tITLocations[0];
 
                 let propertyList = {};
-                propertyList['Cultural property:'] = titl.cPropLabel;
-                propertyList['Address:'] = titl.addressLabel;
-                propertyList['Location Type:'] = titl.locationType;
-                propertyList['Longitude:'] = titl.long;
-                propertyList['Latitude:'] = titl.lat;
-                propertyList['Start Time:'] = titl.startTime;
-                propertyList['End Time:'] = titl.endTime;
+                propertyList['Cultural property:'] = {
+                    label: titl.cPropLabel,
+                    onClick: () => {
+                        getResource(culturalPropertyURI);
+                    }
+                };
+                propertyList['Address:'] = { label: titl.addressLabel };
+                propertyList['Location Type:'] = {
+                    label: titl.locationTypeLabel,
+                    onClick: () => {
+                        getResource(locationTypeURI);
+                    }
+                };
+                propertyList['Longitude:'] = { label: titl.long };
+                propertyList['Latitude:'] = { label: titl.lat };
+                propertyList['Start Time:'] = { label: titl.startTime };
+                propertyList['End Time:'] = { label: titl.endTime };
 
                 const childStyle = {
                     flex: '1 0 45%'
@@ -90,7 +100,7 @@ class TimeIndexedTypedLocationView extends React.Component {
                                 timeIndexedTypedLocations={
                                     this.props.data.instanceData.tITLocations
                                 }
-                                onCulturalPropertyClick={getResource}
+                                onObjectClick={getResource}
                             />
                         </div>
                         <div style={childStyle}>

@@ -40,8 +40,21 @@ class CollectionView extends React.Component {
         // import Collection component from odp-reactor package
         const Collection = require('odp-reactor').Collection;
         const Depiction = require('odp-reactor').Depiction;
+        const PropertyValueList = require('odp-reactor').PropertyValueList;
 
         if (collection) {
+            let propertyList = {};
+            propertyList['Cultural Property:'] = {
+                uri: collection[0].cProp,
+                onClick: () => {
+                    this.context.executeAction(navigateAction, {
+                        url: `/dataset/${encodeURIComponent(
+                            this.props.dataset
+                        )}/resource/${encodeURIComponent(collection[0].cProp)}`
+                    });
+                }
+            };
+
             return (
                 <div>
                     <div className="property-title">
@@ -95,6 +108,12 @@ class CollectionView extends React.Component {
                                 classes={customClasses}
                             ></Collection>
                         </div>
+                    </div>
+                    <div style={{ marginTop: 50, marginBottom: 50 }}>
+                        <PropertyValueList
+                            properties={propertyList}
+                            label={true}
+                        />
                     </div>
                 </div>
             );

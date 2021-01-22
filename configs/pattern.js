@@ -35,14 +35,16 @@ export default {
             query: {
                 select: `SELECT DISTINCT
                             ?culturalProperty ?depiction ?tITLLabel ?locationType 
+                            ?locationTypeLabel
                             ?lat ?long  ?addressLabel  
                             ?startTime  ?endTime 
                             ?cPropLabel
                           WHERE
                         `,
                 body: `
-                       ?culturalProperty <${tITLURIs.hasTimeIndexedTypedLocation}> ?TimeIndexedTypedLocation .                       
+                       ?culturalProperty <${tITLURIs.hasTimeIndexedTypedLocation}> ?TimeIndexedTypedLocation .
                        ?TimeIndexedTypedLocation <${tITLURIs.hasLocationType}>  ?locationType .
+                       ?locationType <${rdfs}label> ?locationTypeLabel .
                        OPTIONAL { ?TimeIndexedTypedLocation <${tITLURIs.atSite}> ?site .
                                   ?site <${tITLURIs.siteAddress}>     ?siteAddress .
                                   ?siteAddress <${rdfs}label>   ?addressLabel2B . }
