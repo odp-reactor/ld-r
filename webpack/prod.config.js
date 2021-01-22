@@ -19,8 +19,8 @@ let webpackConfig = {
     },
     output: {
         path: path.resolve('./build/js'),
-        publicPath: PROCESS.env.PUBLIC_PATH
-            ? `/${PROCESS.env.PUBLIC_PATH}/public/js/`
+        publicPath: process.env.PUBLIC_URL
+            ? `/${process.env.PUBLIC_URL}/public/js/`
             : '/public/js/',
         filename: '[name].js'
     },
