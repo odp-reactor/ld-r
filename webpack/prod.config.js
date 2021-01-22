@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
 const Visualizer = require('webpack-visualizer-plugin');
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '/public/js';
+const PUBLIC_URL = `${process.env.PUBLIC_URL}/public/js` || '/public/js';
 
 let webpackConfig = {
     mode: 'production',
