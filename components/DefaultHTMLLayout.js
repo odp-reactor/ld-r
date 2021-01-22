@@ -86,10 +86,10 @@ class DefaultHTMLLayout extends React.Component {
                         src={`${PUBLIC_URL}/json3/lib/json3.min.js`}
                     ></script>
                     <script
-                        src={`${PUBLIC_URL}es6-shim/es6-shim.min.js`}
+                        src={`${PUBLIC_URL}/es6-shim/es6-shim.min.js`}
                     ></script>
                     <script
-                        src={`${PUBLIC_URL}es6-shim/es6-sham.min.js`}
+                        src={`${PUBLIC_URL}/es6-shim/es6-sham.min.js`}
                     ></script>
                     {/* Above are added only to support IE browser */}
                     <script
@@ -122,14 +122,14 @@ class DefaultHTMLLayout extends React.Component {
                     {/* All external vendors bundle*/
                         this.props.addAssets ? (
                             <script
-                                src={`${PUBLIC_URL}/js/vendor.bundle.js`}
+                                src={`${PUBLIC_URL}/public/js/vendor.bundle.js`}
                             ></script>
                         ) : (
                             ''
                         )}
                     {/* Main app bundle */}
                     <script
-                        src={`${PUBLIC_URL}/` + this.props.clientFile}
+                        src={`${PUBLIC_URL}/public/js/` + this.props.clientFile}
                     ></script>
                     {googleAnalyticsID && (
                         <script
