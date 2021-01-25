@@ -153,7 +153,17 @@ class Datasets extends React.Component {
                             <div className="content">
                                 {' '}
                                 <i className="ui blue icon cubes"></i>{' '}
-                                <a
+                                <NavLink
+                                    href={
+                                        `${PUBLIC_URL}/dataset/1/` +
+                                        encodeURIComponent(defaultDatasetURI[0])
+                                    }
+                                    title="go to resource list"
+                                    routeName="dataset"
+                                >
+                                    {defaultDatasetURI[0]}
+                                </NavLink>
+                                {/* <a
                                     href={
                                         `${PUBLIC_URL}/dataset/1/` +
                                         encodeURIComponent(defaultDatasetURI[0])
@@ -161,7 +171,7 @@ class Datasets extends React.Component {
                                     title="go to resource list"
                                 >
                                     {defaultDatasetURI[0]}
-                                </a>
+                                </a> */}
                                 <i
                                     className="ui green flag icon"
                                     title="default dataset"
