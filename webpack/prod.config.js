@@ -5,7 +5,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
 const Visualizer = require('webpack-visualizer-plugin');
 
-const PUBLIC_URL = `${process.env.PUBLIC_URL}/public/js` || '/public/js';
+const PUBLIC_DIR = '/public/js';
+const PUBLIC_URL = process.env.PUBLIC_URL
+    ? `${process.env.PUBLIC_URL}/public/js`
+    : PUBLIC_DIR;
 
 let webpackConfig = {
     mode: 'production',
@@ -21,7 +24,7 @@ let webpackConfig = {
     },
     output: {
         path: path.resolve('./build/js'),
-        publicPath: PUBLIC_URL,
+        publicPath: PUBLIC_DIR,
         filename: '[name].js'
     },
     optimization: {

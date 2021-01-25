@@ -121,15 +121,13 @@ class DefaultHTMLLayout extends React.Component {
                     ></script>
                     {/* All external vendors bundle*/
                         this.props.addAssets ? (
-                            <script
-                                src={`${PUBLIC_URL}/public/js/vendor.bundle.js`}
-                            ></script>
+                            <script src={'/public/js/vendor.bundle.js'}></script>
                         ) : (
                             ''
                         )}
                     {/* Main app bundle */}
                     <script
-                        src={`${PUBLIC_URL}/public/js/` + this.props.clientFile}
+                        src={'/public/js/' + this.props.clientFile}
                     ></script>
                     {googleAnalyticsID && (
                         <script
