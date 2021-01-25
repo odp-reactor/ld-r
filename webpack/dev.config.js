@@ -5,6 +5,13 @@ const host = process.env.HOST ? process.env.HOST : 'localhost';
 const mainPort = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const devPort = process.env.PORT ? parseInt(process.env.PORT) + 1 : 3001;
 
+const publicPath = process.env.PUBLIC_URL
+    ? `${process.env.PUBLIC_URL}/public/js`
+    : '/public/js';
+
+console.log('PUBLIC_URL', process.env.PUBLIC_URL);
+console.log('public path', publicPath);
+
 let webpackConfig = {
     mode: 'development',
     resolve: {
@@ -22,7 +29,7 @@ let webpackConfig = {
     },
     output: {
         path: path.resolve('./build/js'),
-        publicPath: '/public/js/',
+        publicPath: publicPath,
         filename: '[name].js'
     },
     module: {
@@ -67,7 +74,8 @@ let webpackConfig = {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('dev'),
-                BROWSER: JSON.stringify('true')
+                BROWSER: JSON.stringify('true'),
+                PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL)
             }
         })
     ],

@@ -4,30 +4,53 @@ import URIUtil from '../../../utils/URIUtil';
 /**
 Default component to display object values
 */
+
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class BasicIndividualView extends React.Component {
     render() {
         let val, outputDIV;
-        let cstyle={direction: 'ltr'};
+        let cstyle = { direction: 'ltr' };
         val = this.props.spec.value;
-        if(this.props.spec.valueType === 'uri'){
-            if(this.props.config){
-                if(this.props.config.truncateURI || this.props.truncateURI){
+        if (this.props.spec.valueType === 'uri') {
+            if (this.props.config) {
+                if (this.props.config.truncateURI || this.props.truncateURI) {
                     val = '<' + URIUtil.truncateMiddle(val, 50, '') + '>';
-                }else if (this.props.config.shortenURI || this.props.shortenURI) {
+                } else if (
+                    this.props.config.shortenURI ||
+                    this.props.shortenURI
+                ) {
                     val = '<' + URIUtil.getURILabel(val) + '>';
                 }
             }
-            outputDIV = <a href={this.props.spec.value} target="_blank" itemProp={this.props.property}> {val} </a>;
-        }else{
-            if(this.props.config){
-                if(this.props.config.decodeURIComponent || this.props.decodeURIComponent){
+            outputDIV = (
+                <a
+                    href={this.props.spec.value}
+                    target="_blank"
+                    itemProp={this.props.property}
+                >
+                    {' '}
+                    {val}{' '}
+                </a>
+            );
+        } else {
+            if (this.props.config) {
+                if (
+                    this.props.config.decodeURIComponent ||
+                    this.props.decodeURIComponent
+                ) {
                     val = decodeURIComponent(val);
-                }else if (this.props.config.encodeURIComponent || this.props.encodeURIComponent) {
+                } else if (
+                    this.props.config.encodeURIComponent ||
+                    this.props.encodeURIComponent
+                ) {
                     val = encodeURIComponent(val);
                 }
                 //allow view RightToLeft languages
                 if (this.props.config.rtl || this.props.rtl) {
-                    cstyle.direction= 'rtl';
+                    cstyle.direction = 'rtl';
                 }
             }
             outputDIV = <span itemProp={this.props.property}> {val} </span>;

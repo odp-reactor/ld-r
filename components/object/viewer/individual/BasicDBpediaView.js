@@ -3,27 +3,32 @@ import PropTypes from 'prop-types';
 /**
 display DBpedia resources
 */
+
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class BasicDBpediaView extends React.Component {
     getTitlefromURI(uri) {
-        if(uri){
+        if (uri) {
             var tmp = uri.split('/');
             return tmp[tmp.length - 1];
         }
     }
-    getWikipediaURI(uri){
+    getWikipediaURI(uri) {
         return 'http://en.wikipedia.org/wiki/' + this.getTitlefromURI(uri);
     }
-    isDBpediaURI(uri){
-        if(uri.search('dbpedia.org') !== -1){
+    isDBpediaURI(uri) {
+        if (uri.search('dbpedia.org') !== -1) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    isHTTPURI(uri){
-        if(uri.search('http://') !== -1){
+    isHTTPURI(uri) {
+        if (uri.search('http://') !== -1) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -31,16 +36,25 @@ class BasicDBpediaView extends React.Component {
         let label, link, outputDIV;
         label = this.props.spec.value;
         outputDIV = <span itemProp={this.props.property}> {label} </span>;
-        if(this.props.spec.valueType === 'uri'){
+        if (this.props.spec.valueType === 'uri') {
             link = this.props.spec.value;
-            if(this.isDBpediaURI(this.props.spec.value)){
+            if (this.isDBpediaURI(this.props.spec.value)) {
                 label = '<' + this.getTitlefromURI(this.props.spec.value) + '>';
-                if(this.props.config.asWikipedia || this.props.asWikipedia){
+                if (this.props.config.asWikipedia || this.props.asWikipedia) {
                     link = this.getWikipediaURI(this.props.spec.value);
                 }
             }
-            if(this.isHTTPURI(this.props.spec.value)){
-                outputDIV = <a href={link} target="_blank" itemProp={this.props.property}> {label} </a>;
+            if (this.isHTTPURI(this.props.spec.value)) {
+                outputDIV = (
+                    <a
+                        href={link}
+                        target="_blank"
+                        itemProp={this.props.property}
+                    >
+                        {' '}
+                        {label}{' '}
+                    </a>
+                );
             }
         }
         return (

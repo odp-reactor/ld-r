@@ -6,6 +6,10 @@ import URIUtil from '../utils/URIUtil';
 
 import { scrollToTop } from '../utils/scrollToTop';
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class UserResource extends React.Component {
     constructor(props) {
         super(props);

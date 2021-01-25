@@ -7,6 +7,10 @@ import cloneResource from '../../actions/cloneResource';
 import deleteResource from '../../actions/deleteResource';
 import { scrollToTop } from '../utils/scrollToTop';
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class Resource extends React.Component {
     constructor(props) {
         super(props);
@@ -38,13 +42,18 @@ class Resource extends React.Component {
         //check erros first
         if (this.props.error) {
             return (
-                <div className="ui fluid container ldr-padding-more" ref="resource" > <div className="ui grid">
-                    <div className="ui column">
-                        <div className="ui warning message">
-                            <h2>{this.props.error}</h2>
+                <div
+                    className="ui fluid container ldr-padding-more"
+                    ref="resource"
+                >
+                    {' '}
+                    <div className="ui grid">
+                        <div className="ui column">
+                            <div className="ui warning message">
+                                <h2>{this.props.error}</h2>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             );
         }

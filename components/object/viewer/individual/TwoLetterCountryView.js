@@ -1,24 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {list} from '../../../../data/ISO3166_1_alpha2';
+import { list } from '../../../../data/ISO3166_1_alpha2';
 /**
 Display the country codes based on ISO3166_1_alpha2.
 */
+
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class TwoLetterCountryView extends React.Component {
     getCountry(code) {
-        if(list[code]){
+        if (list[code]) {
             return list[code];
-        }else{
+        } else {
             return code;
         }
     }
-    prepareCountry(code){
+    prepareCountry(code) {
         return this.getCountry(code);
     }
     render() {
         let outputDIV, country;
         country = this.prepareCountry(this.props.spec.value);
-        outputDIV = <a href={'http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#'+this.props.spec.value} target="_blank" itemProp={this.props.property}> {country} </a>
+        outputDIV = (
+            <a
+                href={
+                    'http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#' +
+                    this.props.spec.value
+                }
+                target="_blank"
+                itemProp={this.props.property}
+            >
+                {' '}
+                {country}{' '}
+            </a>
+        );
         return (
             <div className="ui" ref="twoLetterCountryView">
                 {outputDIV}

@@ -19,6 +19,10 @@ import {
 import DatasetsStore from '../stores/DatasetsStore';
 import URIUtil from './utils/URIUtil';
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class Datasets extends React.Component {
     constructor(props) {
         super(props);
@@ -86,8 +90,11 @@ class Datasets extends React.Component {
                 <div className="ui warning message">
                     <div className="header">
                         {' '}
-                        Please <a href="/register">Register</a> or{' '}
-                        <a href="/login">Login</a> to see the datasets.
+                        Please <a href={`${PUBLIC_URL}/register`}>
+                            Register
+                        </a>{' '}
+                        or <a href={`${PUBLIC_URL}/login`}>Login</a> to see the
+                        datasets.
                     </div>
                 </div>
             );
@@ -110,7 +117,7 @@ class Datasets extends React.Component {
                     <div className="item">
                         <a
                             className="medium ui basic icon labeled button"
-                            href="/annotateDataset"
+                            href={`${PUBLIC_URL}/annotateDataset`}
                         >
                             <i className="cubes large blue icon "></i>{' '}
                             <i className="hashtag black icon"></i>Annotate a
@@ -124,7 +131,7 @@ class Datasets extends React.Component {
                     <div className="item">
                         <NavLink
                             className="medium ui basic icon labeled button"
-                            href="/wysiwyq"
+                            href={`${PUBLIC_URL}/wysiwyq`}
                         >
                             <i className="large blue level down icon"></i>Import
                             a Query
@@ -148,7 +155,7 @@ class Datasets extends React.Component {
                                 <i className="ui blue icon cubes"></i>{' '}
                                 <a
                                     href={
-                                        '/dataset/1/' +
+                                        `${PUBLIC_URL}/dataset/1/` +
                                         encodeURIComponent(defaultDatasetURI[0])
                                     }
                                     title="go to resource list"
@@ -170,7 +177,7 @@ class Datasets extends React.Component {
                             <div className="content">
                                 {' '}
                                 Your config is empty!
-                                <a href={'/dataset/'}>
+                                <a href={`${PUBLIC_URL}/dataset/`}>
                                     {' '}
                                     <span className="ui big blue label">
                                         See all resources in all local datasets
@@ -247,7 +254,10 @@ class Datasets extends React.Component {
                 outputDSS = dss.map(function(ds, index) {
                     dsLink = (
                         <a
-                            href={'/dataset/1/' + encodeURIComponent(ds.d)}
+                            href={
+                                `${PUBLIC_URL}/dataset/1/` +
+                                encodeURIComponent(ds.d)
+                            }
                             title="go to resource list"
                         >
                             {ds.features && ds.features.datasetLabel
@@ -262,7 +272,10 @@ class Datasets extends React.Component {
                     ) {
                         dsLink = (
                             <a
-                                href={'/browse/' + encodeURIComponent(ds.d)}
+                                href={
+                                    `${PUBLIC_URL}/browse/` +
+                                    encodeURIComponent(ds.d)
+                                }
                                 title="browse data"
                             >
                                 {ds.features && ds.features.datasetLabel

@@ -42,6 +42,8 @@ export default {
     // At least one of the CRUD methods is Required
     read: (req, resource, params, config, callback) => {
         if (resource === 'dataset.resourcesByType') {
+            console.log('[*] Dataset request');
+            console.log(req);
             datasetURI = params.id ? decodeURIComponent(params.id) : 0;
             //control access on authentication
             if (enableAuthentication) {

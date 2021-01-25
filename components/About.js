@@ -1,5 +1,9 @@
 import React from 'react';
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class About extends React.Component {
     render() {
         return (
@@ -67,7 +71,7 @@ class About extends React.Component {
                                         <div className="ldr-padding">
                                             <img
                                                 style={{ width: '100%' }}
-                                                src="/assets/img/tool-image/screenshot_patterns.png"
+                                                src={`${PUBLIC_URL}/assets/img/tool-image/screenshot_patterns.png`}
                                             ></img>
                                             <p className="about-img-desc">
                                                 Explore by knoweldge patterns to
@@ -78,7 +82,7 @@ class About extends React.Component {
                                         <div className="ldr-padding">
                                             <img
                                                 style={{ width: '100%' }}
-                                                src="/assets/img/tool-image/time_indexed_typed_location_detailed.png"
+                                                src={`${PUBLIC_URL}/assets/img/tool-image/time_indexed_typed_location_detailed.png`}
                                             ></img>
                                             <p className="about-img-desc">
                                                 Map every pattern with a
@@ -93,7 +97,7 @@ class About extends React.Component {
                                         <div className="ldr-padding">
                                             <img
                                                 style={{ width: '100%' }}
-                                                src="/assets/img/tool-image/list_layout.png"
+                                                src={`${PUBLIC_URL}/assets/img/tool-image/list_layout.png`}
                                             ></img>
                                             <p className="about-img-desc">
                                                 Switch and choose between
@@ -105,7 +109,7 @@ class About extends React.Component {
                                         <div className="ldr-padding">
                                             <img
                                                 style={{ width: '100%' }}
-                                                src="/assets/img/tool-image/geog_filter.png"
+                                                src={`${PUBLIC_URL}/assets/img/tool-image/geog_filter.png`}
                                             ></img>
                                             <p className="about-img-desc">
                                                 Advanced filtering components

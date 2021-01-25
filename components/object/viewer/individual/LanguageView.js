@@ -1,38 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {list} from '../../../../data/languages';
+import { list } from '../../../../data/languages';
 /**
 display language values provided by iso639-1
 */
+
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class LanguageView extends React.Component {
     getCodefromURI(uri) {
-        if(uri){
+        if (uri) {
             let tmp = uri.split('/');
-            return tmp[tmp.length-1];
+            return tmp[tmp.length - 1];
         }
         return uri;
     }
     getLanguage(code) {
         let o;
         list.forEach(function(l) {
-            if(l.code === code){
+            if (l.code === code) {
                 //o = l.name +'-'+ l.nativeName;
-                o = l.name ;
+                o = l.name;
                 return o;
             }
         });
         return o;
     }
-    prepareLanguage(uri){
+    prepareLanguage(uri) {
         return this.getLanguage(this.getCodefromURI(uri));
     }
     render() {
         let outputDIV, lang;
-        if(this.props.spec.valueType === 'uri'){
+        if (this.props.spec.valueType === 'uri') {
             lang = this.prepareLanguage(this.props.spec.value);
-            outputDIV = <a href={this.props.spec.value} target="_blank" itemProp={this.props.property}> {lang} </a>;
-        }else{
-            outputDIV = <span itemProp={this.props.property}> {this.props.spec.value} </span>;
+            outputDIV = (
+                <a
+                    href={this.props.spec.value}
+                    target="_blank"
+                    itemProp={this.props.property}
+                >
+                    {' '}
+                    {lang}{' '}
+                </a>
+            );
+        } else {
+            outputDIV = (
+                <span itemProp={this.props.property}>
+                    {' '}
+                    {this.props.spec.value}{' '}
+                </span>
+            );
         }
         return (
             <div className="ui" ref="languageView">

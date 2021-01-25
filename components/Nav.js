@@ -12,6 +12,10 @@ import {
     configDatasetURI
 } from '../configs/general';
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+console.log('Does webpack inject this ?');
+console.log(PUBLIC_URL);
+
 class Nav extends React.Component {
     componentDidMount() {
         let currentComp = this.refs.defaultNavbar;
@@ -98,38 +102,56 @@ class Nav extends React.Component {
             navbarColor = 'grey';
         }
         return (
-            <div>                
-                
-                <div id="nav-open" className="hidden-nav-open" onMouseOver={()=>{ 
-                    document.getElementById('navbar').classList.remove('hidden-navbar');
-                    document.getElementById('nav-open').classList.add('hidden-nav-open')
-                }
-                }><img style={{ height: 30,
-                        margin: 'auto',
-                        display: 'block',
-                        position: 'absolute',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                        marginTop:10,
-                        left: 0,
-                        right: 0,
-                        textAlign: 'center',
-                        zIndex: 2}
-                    }
-                    src="https://cdn2.iconfinder.com/data/icons/arrows-3-1/512/xxx039-512.png"></img></div>
+            <div>
+                <div
+                    id="nav-open"
+                    className="hidden-nav-open"
+                    onMouseOver={() => {
+                        document
+                            .getElementById('navbar')
+                            .classList.remove('hidden-navbar');
+                        document
+                            .getElementById('nav-open')
+                            .classList.add('hidden-nav-open');
+                    }}
+                >
+                    <img
+                        style={{
+                            height: 30,
+                            margin: 'auto',
+                            display: 'block',
+                            position: 'absolute',
+                            marginLeft: 'auto',
+                            marginRight: 'auto',
+                            marginTop: 10,
+                            left: 0,
+                            right: 0,
+                            textAlign: 'center',
+                            zIndex: 2
+                        }}
+                        src="https://cdn2.iconfinder.com/data/icons/arrows-3-1/512/xxx039-512.png"
+                    ></img>
+                </div>
 
-                <div                                   id="navbar"  
-                    className="ui fluid container" ref="defaultNavbar">
+                <div
+                    id="navbar"
+                    className="ui fluid container"
+                    ref="defaultNavbar"
+                >
                     <nav
                         className={'ui menu inverted grid' + navbarColor}
                         style={{
                             backgroundColor: 'rgba(0,0,0,.87)'
                         }}
                     >
-                        <NavLink routeName="home" className="brand item" href="/">
+                        <NavLink
+                            routeName="home"
+                            className="brand item"
+                            href="/"
+                        >
                             {this.props.loading ? (
                                 <img
-                                    src="/assets/img/loader.gif"
+                                    src={`${PUBLIC_URL}/assets/img/loader.gif`}
                                     alt="loading..."
                                     style={{ height: 30, width: 30 }}
                                 />
@@ -137,29 +159,32 @@ class Nav extends React.Component {
                                 <img
                                     style={{ height: 22, width: 22 }}
                                     className="ui mini image"
-                                    src="/assets/img/ld-reactor.gif"
+                                    src={`${PUBLIC_URL}/assets/img/ld-reactor.gif`}
                                     alt="ld-reactor"
                                 />
                             )}
                         </NavLink>
                         <NavLink routeName="about" className="item">
-                        About {appShortTitle}{' '}
+                            About {appShortTitle}{' '}
                         </NavLink>
                         <NavLink
                             routeName="datasets"
                             className="item"
-                            href="/datasets"
+                            href={`${PUBLIC_URL}/datasets`}
                         >
                             {' '}
-                        Datasets
+                            Datasets
                         </NavLink>
                         <div className="right menu">
-                            <div className="item link" onClick={this.showHelpModal}>
+                            <div
+                                className="item link"
+                                onClick={this.showHelpModal}
+                            >
                                 <i className="small help circle icon"></i>
                             </div>
                             {enableDynamicReactorConfiguration ||
-                        enableDynamicServerConfiguration ||
-                        enableDynamicfacetsConfiguration
+                            enableDynamicServerConfiguration ||
+                            enableDynamicfacetsConfiguration
                                 ? configMenu
                                 : ''}
                             <a

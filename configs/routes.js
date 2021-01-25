@@ -12,6 +12,11 @@ import {
     baseResourceDomain
 } from "../configs/general";
 
+// const PUBLIC_URL = process.env.PUBLIC_URL || "";
+const PUBLIC_URL = "";
+console.log("Inside routes ?");
+console.log(PUBLIC_URL);
+
 export default {
     home: {
         path: "/",
@@ -131,7 +136,7 @@ export default {
     },
     datasets: {
         //if no id is provided -> will start by defaultDatasetURI in reactor.config
-        path: "/datasets",
+        path: `${PUBLIC_URL}/datasets`,
         method: "get",
         handler: require("../components/Datasets"),
         label: "Datasets",

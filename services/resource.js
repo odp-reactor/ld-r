@@ -69,6 +69,8 @@ export default {
     // At least one of the CRUD methods is Required
     read: (req, resource, params, config, callback) => {
         if (resource === 'resource.properties') {
+            console.log('[*] Resource.properties reuqest');
+            console.log(req);
             category = params.category;
             //SPARQL QUERY
             datasetURI =
