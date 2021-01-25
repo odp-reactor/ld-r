@@ -140,7 +140,7 @@ export default class PatternQuery extends SPARQLQuery {
         ] = this.getInstanceInstanceDependentData(id);
         let { gStart, gEnd } = this.prepareGraphName(graphName);
         this.query = `SELECT DISTINCT ?instance ?label ?type ?patternLabel ?patternDescription ?nodes ${instanceDependentVariables} 
-            WHERE {${gStart}?instance opla:isPatternInstanceOf ?type . 
+            WHERE {${gStart}?instance opla:isPatternInstanceOf ?type .
            ?type opla:specializationOfPattern* <${id}> .
            ?type rdfs:label ?patternLabel .
            ?type rdfs:comment ?patternDescription .
@@ -154,6 +154,8 @@ export default class PatternQuery extends SPARQLQuery {
     getInstanceInstanceDependentData(id) {
         switch (id) {
             case 'https://w3id.org/arco/ontology/location/time-indexed-typed-location':
+            case 'http://www.ontologydesignpatterns.org/cp/owl/time-indexed-situation':
+            case 'http://www.ontologydesignpatterns.org/cp/owl/situation': {
                 return [
                     '?locationType ?startTime ?endTime ?lat ?long ?addressLabel',
                     `    OPTIONAL{ SELECT ?instance (SAMPLE(?locationType) as ?locationType) {
@@ -198,7 +200,9 @@ OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .
                } GROUP BY ?instance
             }`
                 ];
+            }
             case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
+            case 'http://www.ontologydesignpatterns.org/cp/owl/collection': {
                 return [
                     '?measures',
                     ` OPTIONAL { SELECT ?instance (GROUP_CONCAT(DISTINCT ?measure; SEPARATOR=";") AS ?measures) {  
@@ -218,7 +222,9 @@ OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .
                       } 
               }`
                 ];
+            }
             case 'https://w3id.org/arco/ontology/location/cultural-property-component-of':
+            case 'http://www.ontologydesignpatterns.org/cp/owl/part-of': {
                 return [
                     '?parts',
                     `OPTIONAL { SELECT ?instance (GROUP_CONCAT(DISTINCT ?node; SEPARATOR=";") AS ?parts) { OPTIONAL { 
@@ -228,6 +234,7 @@ OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .
                   } 
           }`
                 ];
+            }
             default:
                 return ['', ''];
         }

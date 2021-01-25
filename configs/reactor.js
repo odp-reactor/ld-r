@@ -7,34 +7,19 @@ export default {
             generic: {
                 resourceFocusType: [],
                 //only allow to view data -> disable edit
-                readOnly: 0,
+                readOnly: 1,
                 //used for pagination in resource list
                 maxNumberOfResourcesOnPage: 20,
                 allowResourceNew: 1,
-                allowResourceDelete: 1,
-                allowResourceClone: 1,
+                allowResourceDelete: 0,
+                allowResourceClone: 0,
                 allowPropertyNew: 1,
+                allowPropertyDelete: 0,
                 //datasetReactor: ["Dataset"],
                 //datasetViewer: ["BasicResourceList"]
                 datasetReactor: ["PatternNetwork"],
                 datasetViewer: ["PatternNetwork"]
             },
-            // "http://arco.istc.cnr.it/ldr/configurations": {
-            //     resourceFocusType: [],
-            //     //only allow to view data -> disable edit
-            //     readOnly: 0,
-            //     //used for pagination in resource list
-            //     maxNumberOfResourcesOnPage: 20,
-            //     allowResourceNew: 1,
-            //     allowResourceDelete: 1,
-            //     allowResourceClone: 1,
-            //     allowPropertyNew: 1,
-            //     datasetReactor: ["Dataset"],
-            //     datasetViewer: ["BasicResourceList"]
-            //     //datasetReactor: ["PatternNetwork"],
-            //     //datasetViewer: ["PatternNetwork"]
-            // },
-            //authentication graph
             "http://virtuoso.local/users": {
                 readOnly: 1,
                 resourceFocusType: [
@@ -52,6 +37,7 @@ export default {
                 allowResourceNew: 1,
                 allowPropertyNew: 1,
                 allowNewValue: 1,
+                allowResourceDelete: 1,
                 resourceFocusType: [
                     "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#ReactorConfig",
                     "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#ServerConfig",
@@ -132,7 +118,7 @@ export default {
                 allowPropertyDelete: 1
             },
             "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
-                allowPropertyDelete: 1,
+                allowPropertyDelete: 0,
                 allowNewValue: 1,
                 objectIViewer: ["PrefixBasedView"],
                 objectIEditor: ["PrefixBasedInput"]
