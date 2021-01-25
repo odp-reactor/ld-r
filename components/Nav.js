@@ -164,17 +164,10 @@ class Nav extends React.Component {
                                 />
                             )}
                         </NavLink>
-                        <NavLink routeName="about" className="item">
-                            About {appShortTitle}{' '}
-                        </NavLink>
-                        <NavLink
-                            routeName="datasets"
-                            className="item"
-                            href={`${PUBLIC_URL}/datasets`}
-                        >
-                            {' '}
+                        <a className="item">About {appShortTitle} </a>
+                        <a className="item" href={`${PUBLIC_URL}/datasets`}>
                             Datasets
-                        </NavLink>
+                        </a>
                         <div className="right menu">
                             <div
                                 className="item link"
