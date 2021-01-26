@@ -170,9 +170,11 @@ export default class PatternNetworkView extends React.Component {
                 if (node.model.data.data.occurences !== '0') {
                     console.log('GET INSTANCE');
                     console.log(PUBLIC_URL);
-                    console.log(this.props.datasetURI);
-                    console.log(node.id);
-                    console.log(node.model.style.containerFill);
+                    console.log(encodeURIComponent(this.props.datasetURI));
+                    console.log(encodeURIComponent(node.id));
+                    console.log(
+                        encodeURIComponent(node.model.style.containerFill)
+                    );
                     this.context.executeAction(navigateAction, {
                         url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
                             this.props.datasetURI

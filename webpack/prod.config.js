@@ -7,7 +7,9 @@ const Visualizer = require('webpack-visualizer-plugin');
 
 require('dotenv').config();
 
-const PUBLIC_DIR = '/public/js';
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
+
+const PUBLIC_DIR = `${PUBLIC_URL}/public/js`;
 
 let webpackConfig = {
     mode: 'production',

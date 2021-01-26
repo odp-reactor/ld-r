@@ -38,7 +38,7 @@ console.log(`PUBLIC_URL: ${process.env.PUBLIC_URL}`);
 console.log(`HOST: ${process.env.HOST}`);
 console.log(`PORT: ${process.env.NODE_ENV}`);
 
-const publicURL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 const env = process.env.NODE_ENV;
 const htmlComponent = React.createFactory(HtmlComponent);
@@ -80,7 +80,7 @@ handleExport(server);
 //handling docs
 handleDocumentation(server);
 server.set('state namespace', 'App');
-server.use(favicon(path.join(__dirname, '/favicon.ico')));
+server.use(favicon(path.join(__dirname, `${PUBLIC_URL}/favicon.ico`)));
 //--------used for views external to fluxible
 server.set('views', path.join(__dirname, '/external_views'));
 server.set('view engine', 'html');
@@ -88,53 +88,59 @@ server.set('view options', { layout: false });
 //server.enable('view cache');
 server.engine('html', hogan);
 //------------------
-server.use('/public', express.static(path.join(__dirname, '/build')));
+server.use(
+    `${PUBLIC_URL}/public`,
+    express.static(path.join(__dirname, '/build'))
+);
 //server.use('/bower_components', express.static(path.join(__dirname, '/bower_components')));
 //add frontend npm modules here
 server.use(
-    '/json3',
+    `${PUBLIC_URL}/json3`,
     express.static(path.join(__dirname, '/node_modules/json3'))
 );
 server.use(
-    '/es5-shim',
+    `${PUBLIC_URL}/es5-shim`,
     express.static(path.join(__dirname, '/node_modules/es5-shim'))
 );
 server.use(
-    '/es6-shim',
+    `${PUBLIC_URL}/es6-shim`,
     express.static(path.join(__dirname, '/node_modules/es6-shim'))
 );
 server.use(
-    '/semantic-ui',
+    `${PUBLIC_URL}/semantic-ui`,
     express.static(path.join(__dirname, '/node_modules/semantic-ui-css'))
 );
 server.use(
-    '/jquery',
+    `${PUBLIC_URL}/jquery`,
     express.static(path.join(__dirname, '/node_modules/jquery'))
 );
 server.use(
-    '/animate.css',
+    `${PUBLIC_URL}/animate.css`,
     express.static(path.join(__dirname, '/node_modules/animate.css'))
 );
 server.use(
-    '/leaflet',
+    `${PUBLIC_URL}/leaflet`,
     express.static(path.join(__dirname, '/node_modules/leaflet'))
 );
 server.use(
-    '/yasgui-yasqe',
+    `${PUBLIC_URL}/yasgui-yasqe`,
     express.static(path.join(__dirname, '/node_modules/yasgui-yasqe'))
 );
 server.use(
-    '/codemirror',
+    `${PUBLIC_URL}/codemirror`,
     express.static(path.join(__dirname, '/node_modules/codemirror'))
 );
 server.use(
-    '/jqcloud2',
+    `${PUBLIC_URL}/jqcloud2`,
     express.static(path.join(__dirname, '/node_modules/jqcloud2'))
 );
 
-server.use('/assets', express.static(path.join(__dirname, '/assets')));
 server.use(
-    '/uploaded',
+    `${PUBLIC_URL}/assets`,
+    express.static(path.join(__dirname, '/assets'))
+);
+server.use(
+    `${PUBLIC_URL}/uploaded`,
     express.static(path.join(__dirname, uploadFolder[0].replace('.', '')))
 );
 // Get access to the fetchr plugin instance
@@ -150,7 +156,7 @@ fetchrPlugin.registerService(require('./services/import'));
 fetchrPlugin.registerService(require('./services/custom'));
 // Set up the fetchr middleware
 
-server.use('/api', fetchrPlugin.getMiddleware());
+server.use(`${PUBLIC_URL}/api`, fetchrPlugin.getMiddleware());
 server.use(compression());
 server.use(bodyParser.json());
 
@@ -167,7 +173,7 @@ server.use((req, res, next) => {
         if (!req.isAuthenticated() && publicRoutes.indexOf(req.url) === -1) {
             //store referrer in session
             req.session.redirectTo = req.url;
-            return res.redirect('/login');
+            return res.redirect(`${PUBLIC_URL}/login`);
         }
     }
     const context = app.createContext({
@@ -224,7 +230,7 @@ server.listen(port);
 if (env === 'production') {
     console.log(
         '[production environment] Check your application on http://%s/%s:%s',
-        publicURL,
+        PUBLIC_URL,
         host,
         port
     );

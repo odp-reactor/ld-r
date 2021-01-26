@@ -7,7 +7,9 @@ const host = process.env.HOST ? process.env.HOST : 'localhost';
 const mainPort = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const devPort = process.env.PORT ? parseInt(process.env.PORT) + 1 : 3001;
 
-const PUBLIC_DIR = '/public/js';
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
+
+const PUBLIC_DIR = `${PUBLIC_URL}/public/js`;
 
 let webpackConfig = {
     mode: 'development',
