@@ -1,9 +1,7 @@
 import React from 'react';
 import Timer from './Timer';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class WaitAMoment extends React.Component {
     render() {

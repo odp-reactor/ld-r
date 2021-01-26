@@ -17,7 +17,7 @@ import Qty from 'js-quantities';
 // import laodInstances action
 // catch dataset id from route not from dataset store
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 export default class PatternInstancesNetworkView extends React.Component {
     constructor(props) {
@@ -86,6 +86,7 @@ export default class PatternInstancesNetworkView extends React.Component {
     }
 
     render() {
+        console.log('PatternInstancesNetworkView');
         let getInstance;
         let getInstanceTableClick;
         let color;

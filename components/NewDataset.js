@@ -14,9 +14,7 @@ import url from 'url';
 import createEmptyDataset from '../actions/createEmptyDataset';
 import createFromExistingDataset from '../actions/createFromExistingDataset';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class NewDataset extends React.Component {
     constructor(props) {

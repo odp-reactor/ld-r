@@ -7,9 +7,7 @@ import cloneResource from '../../actions/cloneResource';
 import deleteResource from '../../actions/deleteResource';
 import { scrollToTop } from '../utils/scrollToTop';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class Resource extends React.Component {
     constructor(props) {

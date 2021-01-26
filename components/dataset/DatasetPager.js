@@ -6,9 +6,7 @@ import searchInDataset from '../../actions/searchInDataset';
 import saveFacetsEnvState from '../../actions/saveFacetsEnvState';
 import { Dropdown, Icon } from 'semantic-ui-react';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class DatasetPager extends React.Component {
     constructor(props) {

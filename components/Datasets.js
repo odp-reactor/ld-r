@@ -19,9 +19,7 @@ import {
 import DatasetsStore from '../stores/DatasetsStore';
 import URIUtil from './utils/URIUtil';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class Datasets extends React.Component {
     constructor(props) {

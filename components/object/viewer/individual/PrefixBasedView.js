@@ -5,9 +5,7 @@ import { list } from '../../../../data/prefixes';
 Display compact URIs using common prefixes
 */
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class PrefixBasedView extends React.Component {
     getPrefix(uri) {

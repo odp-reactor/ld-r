@@ -5,9 +5,7 @@ import { list } from '../../../../data/languages';
 display language values provided by iso639-1
 */
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class LanguageView extends React.Component {
     getCodefromURI(uri) {

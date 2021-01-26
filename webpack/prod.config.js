@@ -8,9 +8,6 @@ const Visualizer = require('webpack-visualizer-plugin');
 require('dotenv').config();
 
 const PUBLIC_DIR = '/public/js';
-const PUBLIC_URL = process.env.PUBLIC_URL
-    ? `${process.env.PUBLIC_URL}/public/js`
-    : PUBLIC_DIR;
 
 let webpackConfig = {
     mode: 'production',
@@ -96,7 +93,7 @@ let webpackConfig = {
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
                 BROWSER: JSON.stringify('true'),
-                PUBLIC_URL: JSON.stringify(PUBLIC_URL)
+                PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL)
             }
         }),
         // Write out stats file to build directory.

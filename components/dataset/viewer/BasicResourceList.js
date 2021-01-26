@@ -7,9 +7,7 @@ import BasicAggregateMapView from '../../object/viewer/aggregate/BasicAggregateM
 import classNames from 'classnames/bind';
 import ObjectIViewer from '../../object/ObjectIViewer';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class BasicResourceList extends React.Component {
     componentDidMount() {}

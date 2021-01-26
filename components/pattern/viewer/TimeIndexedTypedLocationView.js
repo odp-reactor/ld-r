@@ -8,7 +8,7 @@ import { navigateAction } from 'fluxible-router';
 
 import CustomLoader from '../../CustomLoader';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 /**
  * @description This component is a model for the corresponding view provided by the odp-reactor package.

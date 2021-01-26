@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { Popup, Dropdown, Menu } from 'semantic-ui-react';
 import createNewReactorConfig from '../../actions/createNewReactorConfig';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class PropertyHeader extends React.Component {
     constructor(props) {

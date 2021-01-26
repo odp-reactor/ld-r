@@ -6,9 +6,7 @@ import URIUtil from '../../../utils/URIUtil';
 display object with link to its correspondig resource page on LD-R
 */
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class BasicLinkedIndividualView extends React.Component {
     render() {

@@ -4,9 +4,7 @@ import ApplicationStore from '../stores/ApplicationStore';
 import ga from '../plugins/googleAnalytics/ga';
 import { googleAnalyticsID } from '../configs/general';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class DefaultHTMLLayout extends React.Component {
     render() {

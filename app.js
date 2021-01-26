@@ -18,7 +18,7 @@ import ImportStore from './stores/ImportStore';
 import PatternStore from './stores/PatternStore';
 import PatternInstanceStore from './stores/PatternInstanceStore';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 console.log('Fetchr plugin api');
 console.log(PUBLIC_URL);
 

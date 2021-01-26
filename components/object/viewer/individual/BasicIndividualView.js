@@ -5,9 +5,7 @@ import URIUtil from '../../../utils/URIUtil';
 Default component to display object values
 */
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class BasicIndividualView extends React.Component {
     render() {

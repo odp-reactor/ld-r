@@ -4,9 +4,7 @@ import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 /*----config
     accepted mime-types

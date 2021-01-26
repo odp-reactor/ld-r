@@ -1,3 +1,4 @@
+require('dotenv').config();
 /**
  * This leverages Express to create and run the http server.
  * A Fluxible context is created and executes the navigateAction
@@ -32,6 +33,12 @@ import serverConfig from './configs/server';
 import app from './app';
 import HtmlComponent from './components/DefaultHTMLLayout';
 import { createElementWithContext } from 'fluxible-addons-react';
+
+console.log(`PUBLIC_URL: ${process.env.PUBLIC_URL}`);
+console.log(`HOST: ${process.env.HOST}`);
+console.log(`PORT: ${process.env.NODE_ENV}`);
+
+const publicURL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 const env = process.env.NODE_ENV;
 const htmlComponent = React.createFactory(HtmlComponent);
@@ -216,7 +223,8 @@ server.use((req, res, next) => {
 server.listen(port);
 if (env === 'production') {
     console.log(
-        '[production environment] Check your application on http://%s:%s',
+        '[production environment] Check your application on http://%s/%s:%s',
+        publicURL,
         host,
         port
     );

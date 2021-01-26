@@ -11,9 +11,7 @@ import { Button, Divider, Form } from 'semantic-ui-react';
 import { connectToStores } from 'fluxible-addons-react';
 import ImportStore from '../../stores/ImportStore';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class CSVImport extends React.Component {
     constructor() {

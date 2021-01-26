@@ -12,7 +12,7 @@ import {
     configDatasetURI
 } from '../configs/general';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class Nav extends React.Component {
     componentDidMount() {

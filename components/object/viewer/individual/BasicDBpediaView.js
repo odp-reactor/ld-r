@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 display DBpedia resources
 */
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class BasicDBpediaView extends React.Component {
     getTitlefromURI(uri) {

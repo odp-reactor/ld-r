@@ -3,9 +3,7 @@ import { render } from 'react-dom';
 import chroma from 'chroma-js';
 import SimplifyJS from 'simplify-js';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class LeafletMapView extends React.Component {
     constructor(...args) {

@@ -5,9 +5,7 @@ import URIUtil from '../../../utils/URIUtil';
 display values from an option/value list
 */
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class BasicOptionView extends React.Component {
     prepareOption(value) {

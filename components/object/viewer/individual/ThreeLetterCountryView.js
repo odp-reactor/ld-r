@@ -5,9 +5,7 @@ import { list } from '../../../../data/ISO3166_1_alpha3';
 Display the country codes based on ISO3166_1_alpha3.
 */
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class ThreeLetterCountryView extends React.Component {
     getCountry(code) {

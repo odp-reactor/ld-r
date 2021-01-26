@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 display image for image URIs
 */
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class BasicImageView extends React.Component {
     render() {

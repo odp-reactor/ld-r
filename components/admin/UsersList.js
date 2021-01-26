@@ -7,9 +7,7 @@ import { connectToStores } from 'fluxible-addons-react';
 import { Form } from 'semantic-ui-react';
 import { NavLink } from 'fluxible-router';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class UsersList extends React.Component {
     constructor(props) {

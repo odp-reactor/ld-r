@@ -5,9 +5,7 @@ import { NavLink } from 'fluxible-router';
 import URIUtil from '../utils/URIUtil';
 import { Popup } from 'semantic-ui-react';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class DatasetHeader extends React.Component {
     constructor(props) {

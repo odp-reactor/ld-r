@@ -11,9 +11,7 @@ import getEnvState from '../../actions/getEnvState';
 import DatasetFB from './DatasetFB';
 import WaitAMoment from '../WaitAMoment';
 
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class FacetedBrowser extends React.Component {
     constructor(props) {
