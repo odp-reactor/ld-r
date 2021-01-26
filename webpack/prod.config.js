@@ -5,6 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
 const Visualizer = require('webpack-visualizer-plugin');
 
+require('dotenv').config();
+
 const PUBLIC_DIR = '/public/js';
 const PUBLIC_URL = process.env.PUBLIC_URL
     ? `${process.env.PUBLIC_URL}/public/js`

@@ -13,8 +13,6 @@ import {
 } from '../configs/general';
 
 const PUBLIC_URL = process.env.PUBLIC_URL || '';
-console.log('Does webpack inject this ?');
-console.log(PUBLIC_URL);
 
 class Nav extends React.Component {
     componentDidMount() {

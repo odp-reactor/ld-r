@@ -17,6 +17,8 @@ import Qty from 'js-quantities';
 // import laodInstances action
 // catch dataset id from route not from dataset store
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+
 export default class PatternInstancesNetworkView extends React.Component {
     constructor(props) {
         super(props);
@@ -154,7 +156,7 @@ export default class PatternInstancesNetworkView extends React.Component {
                     'http://www.ontologydesignpatterns.org/cp/owl/time-interval'
                 )
                     this.context.executeAction(navigateAction, {
-                        url: `/dataset/${encodeURIComponent(
+                        url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
                             this.props.RouteStore._currentNavigate.route.params
                                 .did
                         )}/resource/${encodeURIComponent(node.id)}`
@@ -162,7 +164,7 @@ export default class PatternInstancesNetworkView extends React.Component {
             };
             getInstanceTableClick = node => {
                 this.context.executeAction(navigateAction, {
-                    url: `/dataset/${encodeURIComponent(
+                    url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
                         this.props.RouteStore._currentNavigate.route.params.did
                     )}/resource/${encodeURIComponent(node.id)}`
                 });

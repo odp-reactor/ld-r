@@ -12,6 +12,8 @@ import PatternStore from '../../../stores/PatternStore';
 import { navigateAction } from 'fluxible-router';
 import CustomLoader from '../../CustomLoader';
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+
 export default class PatternNetworkView extends React.Component {
     constructor(props) {
         super(props);
@@ -167,7 +169,7 @@ export default class PatternNetworkView extends React.Component {
                 console.log(node);
                 if (node.model.data.data.occurences !== '0') {
                     this.context.executeAction(navigateAction, {
-                        url: `/datasets/${encodeURIComponent(
+                        url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
                             this.props.datasetURI
                         )}/patterns/${encodeURIComponent(
                             node.id
@@ -181,7 +183,7 @@ export default class PatternNetworkView extends React.Component {
             const getInstancesTableClick = node => {
                 if (node['Number of Instances'] !== '0') {
                     this.context.executeAction(navigateAction, {
-                        url: `/datasets/${encodeURIComponent(
+                        url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
                             this.props.datasetURI
                         )}/patterns/${encodeURIComponent(
                             node.id

@@ -9,6 +9,8 @@ import fetchInstanceData from './fetchInstanceData';
 
 import CustomLoader from '../../CustomLoader';
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '';
+
 /**
  * @description This component is a model for the corresponding view provided by the odp-reactor package.
  *
@@ -48,7 +50,7 @@ class CollectionView extends React.Component {
                 uri: collection[0].cProp,
                 onClick: () => {
                     this.context.executeAction(navigateAction, {
-                        url: `/dataset/${encodeURIComponent(
+                        url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
                             this.props.dataset
                         )}/resource/${encodeURIComponent(collection[0].cProp)}`
                     });
@@ -69,7 +71,7 @@ class CollectionView extends React.Component {
                                         this.context.executeAction(
                                             navigateAction,
                                             {
-                                                url: `/dataset/${encodeURIComponent(
+                                                url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
                                                     this.props.dataset
                                                 )}/resource/${encodeURIComponent(
                                                     collection[0].cProp
