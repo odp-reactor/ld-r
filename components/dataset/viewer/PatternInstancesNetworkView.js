@@ -523,6 +523,7 @@ PatternInstancesNetworkView = connectToStores(
 //     enableScroll: false // example to show how to specify options for handleHistory
 // });
 
-function withUnit(value, unit) {
-    return `${value} ${unit}`;
+function withUnit(value, unit, defaultMeasurementUnit = 'm') {
+    const v = Qty(`${value} ${unit}`).format(defaultMeasurementUnit);
+    return v;
 }
