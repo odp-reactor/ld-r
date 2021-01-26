@@ -12,9 +12,11 @@ import {
     baseResourceDomain
 } from "../configs/general";
 
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : "";
+
 export default {
     home: {
-        path: "/",
+        path: `${PUBLIC_URL}/`,
         method: "get",
         handler: require("../components/Home"),
         label: appShortTitle,
@@ -26,7 +28,7 @@ export default {
         }
     },
     about: {
-        path: "/about",
+        path: `${PUBLIC_URL}/about`,
         method: "get",
         handler: require("../components/About"),
         label: "About",
@@ -38,7 +40,7 @@ export default {
         }
     },
     importCSV: {
-        path: "/importCSV",
+        path: `${PUBLIC_URL}/importCSV`,
         method: "get",
         handler: require("../components/import/CSVImport"),
         label: "CSVImport",
@@ -50,7 +52,7 @@ export default {
         }
     },
     newDataset: {
-        path: "/newDataset",
+        path: `${PUBLIC_URL}/newDataset`,
         method: "get",
         handler: require("../components/NewDataset"),
         label: "NewDataset",
@@ -62,7 +64,7 @@ export default {
         }
     },
     annotateDataset: {
-        path: "/annotateDataset",
+        path: `${PUBLIC_URL}/annotateDataset`,
         method: "get",
         handler: require("../components/DatasetAnnotation"),
         label: "DatasetAnnotation",
@@ -75,7 +77,7 @@ export default {
         }
     },
     wysiwyq: {
-        path: "/wysiwyq",
+        path: `${PUBLIC_URL}/wysiwyq`,
         method: "get",
         handler: require("../components/WYSIWYQ"),
         label: "ImportQuery",
@@ -88,7 +90,7 @@ export default {
         }
     },
     facets: {
-        path: "/browse/:id?/:stateURI?",
+        path: `${PUBLIC_URL}/browse/:id?/:stateURI?`,
         method: "get",
         handler: require("../components/dataset/FacetedBrowser"),
         label: "Faceted Browser",
@@ -131,7 +133,7 @@ export default {
     },
     datasets: {
         //if no id is provided -> will start by defaultDatasetURI in reactor.config
-        path: `/datasets`,
+        path: `${PUBLIC_URL}/datasets`,
         method: "get",
         handler: require("../components/Datasets"),
         label: "Datasets",
@@ -141,7 +143,7 @@ export default {
     },
     dataset: {
         //if no id is provided -> will start by defaultDatasetURI in reactor.config
-        path: "/dataset/:page?/:id?",
+        path: `${PUBLIC_URL}/dataset/:page?/:id?`,
         method: "get",
         handler: require("../components/reactors/DatasetReactor"),
         label: "Dataset",
@@ -167,7 +169,7 @@ export default {
         }
     },
     resource: {
-        path: "/dataset/:did/:resource/:rid/:pcategory?/:propertyPath?",
+        path: `${PUBLIC_URL}/dataset/:did/:resource/:rid/:pcategory?/:propertyPath?`,
         method: "get",
         handler: require("../components/reactors/ResourceReactor"),
         label: "Resource",
@@ -198,7 +200,7 @@ export default {
         }
     },
     user: {
-        path: "/user/:id",
+        path: `${PUBLIC_URL}/user/:id`,
         method: "get",
         handler: require("../components/reactors/ResourceReactor"),
         label: "User",
@@ -219,7 +221,7 @@ export default {
         }
     },
     users: {
-        path: "/users",
+        path: `${PUBLIC_URL}/users`,
         method: "get",
         handler: require("../components/admin/UsersList"),
         label: "Users List",
@@ -228,7 +230,7 @@ export default {
         }
     },
     pattern: {
-        path: "/datasets/:did/patterns/:pid/color/:c",
+        path: `${PUBLIC_URL}/datasets/:did/patterns/:pid/color/:c`,
         method: "get",
         // add checks on fetch data (catch them only if the PatternStore is empty)
         handler: require("../components/dataset/viewer/PatternInstancesNetworkView"),

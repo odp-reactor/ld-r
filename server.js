@@ -156,7 +156,7 @@ fetchrPlugin.registerService(require('./services/import'));
 fetchrPlugin.registerService(require('./services/custom'));
 // Set up the fetchr middleware
 
-server.use(`${PUBLIC_URL}/api`, fetchrPlugin.getMiddleware());
+server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());
 server.use(compression());
 server.use(bodyParser.json());
 
