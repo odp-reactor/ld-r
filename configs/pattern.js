@@ -78,7 +78,9 @@ export default {
             query: {
                 select: `SELECT DISTINCT ?complexCProp ?cPropComponent WHERE`,
                 body: ` ?cPropComponent <${cPropComponentOfURIs.isPartOf}> ?HistoricOrArtisticProperty  .
-                        ?cPropComponent foaf:depiction ?depiction . #get only resources with depiction
+                        #OPTIONAL {
+                        #    ?cPropComponent foaf:depiction ?depiction .
+                        #}
                         BIND ( ?HistoricOrArtisticProperty as ?complexCProp)
                         `,
                 aggregates: undefined
