@@ -80,7 +80,7 @@ handleExport(server);
 //handling docs
 handleDocumentation(server);
 server.set('state namespace', 'App');
-server.use(favicon(path.join(__dirname, `${PUBLIC_URL}/favicon.ico`)));
+server.use(favicon(path.join(__dirname, '/favicon.ico')));
 //--------used for views external to fluxible
 server.set('views', path.join(__dirname, '/external_views'));
 server.set('view engine', 'html');
