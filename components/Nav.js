@@ -164,7 +164,9 @@ class Nav extends React.Component {
                                 />
                             )}
                         </NavLink>
-                        <a className="item">About {appShortTitle} </a>
+                        <a className="item" href={`${PUBLIC_URL}/about`}>
+                            About {appShortTitle}{' '}
+                        </a>
                         <a className="item" href={`${PUBLIC_URL}/datasets`}>
                             Datasets
                         </a>
