@@ -1,5 +1,4 @@
 /*global document, window */
-
 import ReactDOM from 'react-dom';
 import debug from 'debug';
 import { createElementWithContext } from 'fluxible-addons-react';
@@ -25,9 +24,7 @@ app.rehydrate(dehydratedState, (err, context) => {
     const mountNode = document.getElementById('app');
 
     debugClient('React Rendering');
-    ReactDOM.hydrate(
-        createElementWithContext(context),
-        mountNode,
-        () => debugClient('React Rendered')
+    ReactDOM.hydrate(createElementWithContext(context), mountNode, () =>
+        debugClient('React Rendered')
     );
 });
