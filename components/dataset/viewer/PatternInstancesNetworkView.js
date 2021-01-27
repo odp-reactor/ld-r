@@ -93,6 +93,7 @@ export default class PatternInstancesNetworkView extends React.Component {
         let colorMap;
         let patternId;
         const Graph = require('odp-reactor').Graph;
+        const Measurement = require('odp-reactor').Measurement;
         if (this.props.RouteStore._currentNavigate) {
             // node color
             color = this.props.RouteStore._currentNavigate.route.params.c;
@@ -231,15 +232,22 @@ export default class PatternInstancesNetworkView extends React.Component {
 
                         const lengthUnits = ['cm', 'm', 'mm'];
                         const defaultMeasurementUnit = 'mm';
-                        console.log(m, u, v);
+
                         if (lengthUnits.includes(u) && v != 'MNR') {
                             v = v.replace(',', '.');
                             // do conversion
-                            v = Qty(`${v} ${u}`)
-                                .format(defaultMeasurementUnit)
-                                .split(' ')[0];
-                            u = defaultMeasurementUnit;
-                            console.log(v);
+
+                            const measurement = Measurement.create({
+                                unit: u,
+                                value: v * 1
+                            });
+                            const newMeasurement = measurement.convert(
+                                defaultMeasurementUnit
+                            );
+                            if (newMeasurement) {
+                                v = newMeasurement.getValue();
+                                u = newMeasurement.getUnit();
+                            }
                         }
 
                         if (Number.parseInt(v)) {

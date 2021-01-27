@@ -6,6 +6,7 @@ let shell = require('shelljs');
 const host = process.env.HOST ? process.env.HOST : 'localhost';
 const mainPort = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const devPort = process.env.PORT ? parseInt(process.env.PORT) + 1 : 3001;
+const publicURL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 const options = {
     //contentBase: `http://${host}:${port}`,
@@ -28,8 +29,9 @@ new WebpackDevServer(compiler, options).listen(mainPort, host, () => {
     shell.env.PORT = shell.env.PORT || mainPort;
     shell.exec('"./node_modules/.bin/nodemon" start.js -e js,jsx', () => {});
     console.log(
-        'Webpack development server listening on http://%s:%s',
+        'Webpack development server listening on http://%s:%s%s',
         host,
-        mainPort
+        mainPort,
+        publicURL
     );
 });

@@ -102,7 +102,9 @@ class TimeIndexedTypedLocationView extends React.Component {
                                 timeIndexedTypedLocations={
                                     this.props.data.instanceData.tITLocations
                                 }
-                                onObjectClick={getResource}
+                                onObjectClick={() => {
+                                    getResource(culturalPropertyURI);
+                                }}
                             />
                         </div>
                         <div style={childStyle}>

@@ -137,6 +137,7 @@
     "react-hot-loader": "^4.12.18",
     "shelljs": "^0.8.3",
     "sloc": "^0.2.1",
+    "strip-loader": "^0.1.2",
     "style-loader": "^1.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",

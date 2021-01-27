@@ -14,6 +14,8 @@ import CustomLoader from '../../CustomLoader';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
+// import { PartWhole } from "odp-reactor/es/index";
+
 export default class PatternNetworkView extends React.Component {
     constructor(props) {
         super(props);

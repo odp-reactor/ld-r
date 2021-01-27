@@ -31,7 +31,10 @@ class Nav extends React.Component {
         let userMenu;
         let configMenu = (
             <a
-                href={'/browse/' + encodeURIComponent(configDatasetURI)}
+                href={
+                    `${PUBLIC_URL}/browse/` +
+                    encodeURIComponent(configDatasetURI)
+                }
                 className="ui item link"
                 title="Configuration Manager"
             >
@@ -48,7 +51,7 @@ class Nav extends React.Component {
                                 className="item"
                                 routeName="resource"
                                 href={
-                                    '/dataset/' +
+                                    `${PUBLIC_URL}/dataset/` +
                                     encodeURIComponent(user.datasetURI) +
                                     '/resource/' +
                                     encodeURIComponent(user.id)
@@ -60,14 +63,14 @@ class Nav extends React.Component {
                                 <NavLink
                                     className="item"
                                     routeName="users"
-                                    href="/users"
+                                    href={`${PUBLIC_URL}/users`}
                                 >
                                     Users List
                                 </NavLink>
                             ) : (
                                 ''
                             )}
-                            <a href="/logout" className="item">
+                            <a href={`${PUBLIC_URL}/logout`} className="item">
                                 Logout
                             </a>
                         </div>
@@ -79,13 +82,13 @@ class Nav extends React.Component {
                         {' '}
                         <a
                             className="ui mini circular teal button"
-                            href="/login"
+                            href={`${PUBLIC_URL}/login`}
                         >
                             Sign-in
                         </a>{' '}
                         &nbsp;{' '}
                         <a
-                            href="/register"
+                            href={`${PUBLIC_URL}/register`}
                             className="ui mini circular yellow button"
                         >
                             Register
@@ -145,7 +148,7 @@ class Nav extends React.Component {
                         <NavLink
                             routeName="home"
                             className="brand item"
-                            href="/"
+                            href={`${PUBLIC_URL}/`}
                         >
                             {this.props.loading ? (
                                 <img
