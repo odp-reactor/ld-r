@@ -68,3 +68,8 @@ p.about-img-desc {
 .about-li {
     padding: 20px 0;
 }
+
+.g6-tooltip-dblclick {
+    font-style: italic;
+    font-size: 13;
+}

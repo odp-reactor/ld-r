@@ -84,6 +84,40 @@ export default class PatternNetworkView extends React.Component {
             const list = [];
             const nodes = [];
 
+            let dataInfoMap = {};
+
+            dataInfoMap[
+                'http://www.ontologydesignpatterns.org/cp/owl/collection'
+            ] =
+                'Explore the instances to see information about collections of items in this dataset';
+            dataInfoMap[
+                'http://www.ontologydesignpatterns.org/cp/owl/part-of'
+            ] =
+                'Explore instances of this pattern in the dataset to get information about things and the parts they’re composed of.';
+            dataInfoMap[
+                'http://www.ontologydesignpatterns.org/cp/owl/situation'
+            ] =
+                'Explore the instances to get information about situations data and the things (participants, people, objects) involved in that situation.';
+            dataInfoMap[
+                'http://www.ontologydesignpatterns.org/cp/owl/time-indexed-situation'
+            ] =
+                'Explore the instances of this pattern to get information about a situation, things involved and the time interval in which situation happened.';
+            dataInfoMap[
+                'http://www.ontologydesignpatterns.org/cp/owl/time-interval'
+            ] = 'There are no independent time interval in the dataset.';
+            dataInfoMap[
+                'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
+            ] =
+                'Explore the instances of the pattern to view data relative to measurements collected about a cultural property.';
+            dataInfoMap[
+                'https://w3id.org/arco/ontology/location/cultural-property-component-of'
+            ] =
+                'Explore the instances of this pattern to get information about a complex cultural property and components it\'s made by.';
+            dataInfoMap[
+                'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
+            ] =
+                'Explore instances of this pattern to get information about the location of a cultural property and the time period since it is in that location or where it was in the past.';
+
             const patterns = this.props.PatternStore.list;
             for (let i = 0; i < patterns.length; i++) {
                 const pNode = patterns[i];
@@ -94,6 +128,7 @@ export default class PatternNetworkView extends React.Component {
                     data: pNode,
                     label: pNode.label,
                     description: pNode.description,
+                    dataInfo: dataInfoMap[pNode.pattern],
                     style: {
                         /** container 容齐 */
                         containerWidth: 40,
@@ -248,7 +283,7 @@ export default class PatternNetworkView extends React.Component {
                     data={{ graph: graph, list: list, nodes: nodes }}
                     onNodeDoubleClick={getInstances}
                     textOnNodeHover={model => {
-                        return `<span class="g6-tooltip-title">Pattern Name</span>:<span class="g6-tooltip-text">${model.data.data.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.data.description}</span><br/> <span class="g6-tooltip-title">Occurrences</span>:<span class="g6-tooltip-text">${model.data.occurences}</span><br/>`;
+                        return `<span class="g6-tooltip-title">Pattern Name</span>:<span class="g6-tooltip-text">${model.data.data.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.data.description}</span><br/><span class="g6-tooltip-title">Occurrences</span>:<span class="g6-tooltip-text">${model.data.occurences}</span><br/><span class="g6-tooltip-title">Data</span>:<span class="g6-tooltip-text">${model.data.dataInfo}</span><br/><span class="g6-tooltip-dblclick">Double click to view instances...</span>`;
                     }}
                     onItemClick={getInstancesTableClick}
                     itemTooltip="Click to explore instances of this pattern"

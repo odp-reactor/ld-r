@@ -17,14 +17,14 @@ odp-pat:atTime  rdfs:domain  a-loc:TimeIndexedTypedLocation , odp-pat:TimeIndexe
 odp-pat:hasPart  owl:inverseOf  odp-pat:isPartOf .
 
 odp-pat:part-of  a    opla:Pattern ;
-        rdfs:comment  "The pattern represents entities and their parts i.e., part-whole relations, with transitivity." ;
+        rdfs:comment  "The pattern represents entities and their parts i.e., part-whole relations, with transitivity. Explore instances of this pattern to get information of a thing and the parts its composed by." ;
         rdfs:label    "Part Of" .
 
 a-dd:hasMeasurement  rdfs:domain  a-dd:MeasurementCollection ;
         rdfs:range   a-dd:Measurement .
 
 odp-pat:collection  a  opla:Pattern ;
-        rdfs:comment  "The pattern is a basic one: it catches the idea of a collection and its members. It represents a collection and members of a collection." ;
+        rdfs:comment  "The pattern is a basic one: it catches the idea of a collection and its members. It represents a collection and members of a collection. Explore the instances to see information about the collection and its member." ;
         rdfs:label    "Collection" .
 
 arco:hasCulturalPropertyComponent
@@ -56,12 +56,12 @@ odp-pat:hasTimeIndexedSetting
         rdfs:range          odp-pat:TimeIndexedSituation ;
         rdfs:subPropertyOf  odp-pat:hasSetting .
 
-owl:Thing  rdfs:domain  odp-pat:hasPart , odp-pat:isPartOf ;
+owl:Thing  rdfs:domain  odp-pat:isPartOf , odp-pat:hasPart ;
         rdfs:range   owl:Thing .
 
 a-dd:measurement-collection
         a                             opla:Pattern ;
-        rdfs:comment                  "The pattern represents measurement collection for a cultural property. Types of measurement are height, width, length, weight..." ;
+        rdfs:comment                  "The pattern represents a collection of measurement of an cultural property. Some type of measurement for a cultural property are height, width, length, weight... Explore the instances of the pattern to view data relatives to measurements collected about a cultural property." ;
         rdfs:label                    "Cultural Property Measurements" ;
         opla:specializationOfPattern  odp-pat:collection .
 
@@ -69,7 +69,7 @@ odp-pat:isSettingFor  owl:inverseOf  odp-pat:hasSetting .
 
 a-loc:cultural-property-component-of
         a                             opla:Pattern ;
-        rdfs:comment                  "The pattern represents complex cultural properties and components of them. For example it may represent a building (like a church) and its architectural elements. Or a painting and details of it." ;
+        rdfs:comment                  "The pattern represents complex cultural properties and components of the cultural property. For example it may represent a building (like a church) and their architectural elements. Or a painting and details of it. Explore the instances of this pattern to get information about a complex cultural property and components it's made by." ;
         rdfs:label                    "Cultural Property Components" ;
         opla:specializationOfPattern  odp-pat:part-of .
 
@@ -81,21 +81,21 @@ arco:ComplexCulturalProperty
         rdfs:domain  arco:hasCulturalPropertyComponent ;
         rdfs:range   arco:CulturalPropertyComponent .
 
+odp-pat:hasSetting  rdfs:domain  owl:Thing ;
+        rdfs:range   odp-pat:Situation .
+
 a-loc:hasTimeIndexedTypedLocation
         rdfs:domain         a-loc:CulturalProperty ;
         rdfs:range          a-loc:TimeIndexedTypedLocation ;
         rdfs:subPropertyOf  odp-pat:hasSetting ;
         owl:inverseOf       a-loc:isTimeIndexedTypedLocationOf .
 
-odp-pat:hasSetting  rdfs:domain  owl:Thing ;
-        rdfs:range   odp-pat:Situation .
-
 odp-pat:isTimeIndexFor
         owl:inverseOf  odp-pat:hasTimeIndexedSetting .
 
 odp-pat:time-indexed-situation
         a                             opla:Pattern ;
-        rdfs:comment                  "The pattern represents time indexed situations. It describes situations, things involved and the time interval in which the situation occurred. This pattern adds a time specification (the time interval pattern) to the situation pattern." ;
+        rdfs:comment                  "The pattern represents time indexed situations. This pattern adds a time specification (the Time interval pattern) to the Situation pattern. It represents situations, things contextualized and the time interval in which the situation occured. Explore the instances of this pattern to view data a situation, things involved and the time interval in which situation happened." ;
         rdfs:label                    "Time Indexed Situation" ;
         opla:specializationOfPattern  odp-pat:situation .
 
@@ -114,10 +114,10 @@ a-loc:TimeIndexedTypedLocation
 
 a-loc:time-indexed-typed-location
         a                             opla:Pattern ;
-        rdfs:comment                  "The pattern represents locations of a cultural property in a given time interval. Locations have a specified type like 'current location' or 'previous location'." ;
+        rdfs:comment                  "The pattern represents time indexed typed locations. This pattern represents locations of a cultural property at a specified time interval. Location have a specified type. For example the Current Location of a cultural property or the previous location of a cultural property and the time period during which the cultural property has been in the specified location. Explore instances of this pattern to get information about the location of a cultural property and the time period since it is in that location or has been in the past." ;
         rdfs:label                    "Cultural Property Locations" ;
         opla:specializationOfPattern  odp-pat:time-indexed-situation .
 
 odp-pat:situation  a  opla:Pattern ;
-        rdfs:comment  "The pattern represents contexts or situations, and the things that are contextualized." ;
+        rdfs:comment  "The pattern represents contexts or situations, and the things that are contextualized. Explore the instances to get information about a situation and the things invlolved in that situation." ;
         rdfs:label    "Situation" .

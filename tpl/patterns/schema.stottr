@@ -48,20 +48,20 @@ odp-tpl:PartOf(none,none,none,none) .
 
 odp-tpl:CulturalPropertyComponentOf(none, none, none, none ) .
 
-odp-tpl:LabelDescription(odp-pat:collection, "Collection", "This pattern is a basic one: it catches the idea of a collection and its members.") .
+odp-tpl:LabelDescription(odp-pat:collection, "Collection", "The pattern is a basic one: it catches the idea of a collection and its members. It represents a collection and members of a collection.") .
 
-odp-tpl:LabelDescription(a-dd:measurement-collection, "Measurement Collection", "This pattern represents a collection of measurement of an object") .
+odp-tpl:LabelDescription(a-dd:measurement-collection, "Cultural Property Measurements", "The pattern represents measurement collection for a cultural property. Types of measurement are height, width, length, weight...") .
 
-odp-tpl:LabelDescription(odp-pat:time-interval, "Time Interval", "This pattern represents an interval of time") .
+odp-tpl:LabelDescription(odp-pat:time-interval, "Time Interval", "This pattern represents an interval of time.") .
 
-odp-tpl:LabelDescription(odp-pat:situation, "Situation", "To represent contexts or situations, and the things that are contextualized.") .
+odp-tpl:LabelDescription(odp-pat:situation, "Situation", "The pattern represents contexts or situations, and the things that are contextualized.") .
 
-odp-tpl:LabelDescription(odp-pat:time-indexed-situation, "Time Indexed Situation", "To represent time indexed situations. This pattern adds a time specification (the Time interval pattern) to the Situation pattern, in order to provide a handy solution to many cases. ") .
+odp-tpl:LabelDescription(odp-pat:time-indexed-situation, "Time Indexed Situation", "The pattern represents time indexed situations. It describes situations, things involved and the time interval in which the situation occurred. This pattern adds a time specification (the time interval pattern) to the situation pattern.") .
 
-odp-tpl:LabelDescription(a-loc:time-indexed-typed-location, "Time Indexed Typed Location", "To represent time indexed typed locations. This pattern represents locations of a defined type and a time specification") .
+odp-tpl:LabelDescription(a-loc:time-indexed-typed-location, "Cultural Property Locations", "The pattern represents locations of a cultural property at a specified time interval. Locations have a specified type like 'current location' or 'previous location'.") .
 
-odp-tpl:LabelDescription(odp-pat:part-of, "Part Of", "This Content OP allows designers to represent entities and their parts i.e., part-whole relations, with transitivity.") .
+odp-tpl:LabelDescription(odp-pat:part-of, "Part Of", "The pattern represents entities and their parts i.e., part-whole relations, with transitivity.") .
 
-odp-tpl:LabelDescription(a-loc:cultural-property-component-of, "Cultural Property Component Of", "This Content OP allows designers to represent cultural properties and their components or parts.") .
+odp-tpl:LabelDescription(a-loc:cultural-property-component-of, "Cultural Property Components", "The pattern represents complex cultural properties and components of them. For example it may represent a building (like a church) and its architectural elements. Or a painting and details of it.") .
 
 
