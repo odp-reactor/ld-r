@@ -43,6 +43,7 @@ export default class PatternInstancesNetworkView extends React.Component {
             .did;
         const patternURI = this.props.RouteStore._currentNavigate.route.params
             .pid;
+
         if (!this.props.PatternStore.instances) {
             if (datasetURI && patternURI) {
                 context.executeAction(loadPatternInstances, {
@@ -52,30 +53,24 @@ export default class PatternInstancesNetworkView extends React.Component {
             }
         }
         // fetch schema again and compute color map
-        if (this.props.RouteStore._currentNavigate) {
-            if (!this.props.RouteStore._currentNavigate.colorMap) {
-                this.context.executeAction(loadPatterns, {
-                    dataset: datasetURI //missing
-                });
-            }
-        }
+
+        // if (this.props.RouteStore._currentNavigate) {
+        //     if (!this.props.RouteStore._currentNavigate.colorMap) {
+        //         this.context.executeAction(loadPatterns, {
+        //             dataset: datasetURI //missing
+        //         });
+        //     }
+        // }
     }
 
     componentDidUpdate() {
         const nav = document.getElementById('navbar');
-        console.log('Nav element');
-        console.log(nav);
         nav.classList.add('hidden-navbar');
         nav.classList.add('absolute-navbar');
         const navIcon = document.getElementById('nav-open');
         navIcon.classList.remove('hidden-nav-open');
-        navIcon.addEventListener('mouseover', () => {
-            nav.classList.remove('hidden-navbar');
-        });
-        nav.addEventListener('mouseleave', () => {
-            nav.classList.add('hidden-navbar');
-            navIcon.classList.remove('hidden-nav-open');
-        });
+        navIcon.addEventListener('mouseover', this.openNavbarListener);
+        nav.addEventListener('mouseleave', this.hideNavbarListener);
     }
 
     componentWillUnmount() {
@@ -83,10 +78,24 @@ export default class PatternInstancesNetworkView extends React.Component {
         nav.classList.remove('hidden-navbar');
         nav.classList.remove('absolute-navbar');
         const navIcon = document.getElementById('nav-open');
+        navIcon.removeEventListener('mouseover', this.openNavbarListener);
+        navIcon.classList.add('hidden-nav-open');
+        nav.removeEventListener('mouseleave', this.hideNavbarListener);
+    }
+
+    openNavbarListener() {
+        const nav = document.getElementById('navbar');
+        nav.classList.remove('hidden-navbar');
+    }
+
+    hideNavbarListener() {
+        const nav = document.getElementById('navbar');
+        nav.classList.add('hidden-navbar');
+        const navIcon = document.getElementById('nav-open');
+        navIcon.classList.remove('hidden-nav-open');
     }
 
     render() {
-        console.log('PatternInstancesNetworkView');
         let getInstance;
         let getInstanceTableClick;
         let color;
@@ -95,62 +104,7 @@ export default class PatternInstancesNetworkView extends React.Component {
         const Graph = require('odp-reactor').Graph;
         const Measurement = require('odp-reactor').Measurement;
         if (this.props.RouteStore._currentNavigate) {
-            // node color
-            color = this.props.RouteStore._currentNavigate.route.params.c;
             patternId = this.props.RouteStore._currentNavigate.route.params.pid;
-            colorMap = this.props.RouteStore._currentNavigate.colorMap;
-
-            // if no color map we are here from a reload or a go back button
-            // we compute color map again
-            if (!colorMap && this.props.PatternStore.list) {
-                const schemaGraph = new Graph();
-                const patterns = this.props.PatternStore.list;
-                for (let i = 0; i < patterns.length; i++) {
-                    const pNode = patterns[i];
-                    // add nodes to graph
-                    schemaGraph.addNode({
-                        id: pNode.pattern,
-                        occurences: pNode.occurences,
-                        data: pNode,
-                        label: pNode.label,
-                        description: pNode.description
-                    });
-                    // add component triples
-                    if (pNode.components !== '') {
-                        let components = pNode.components.split(';');
-                        for (let j = 0; j < components.length; j++) {
-                            schemaGraph.addEdge({
-                                s: { id: pNode.pattern },
-                                p: 'has component',
-                                o: { id: components[j] }
-                            });
-                        }
-                    }
-                    // add specializations triples
-                    if (pNode.superPatterns !== '') {
-                        let supers = pNode.superPatterns.split(';');
-                        for (let j = 0; j < supers.length; j++) {
-                            schemaGraph.addEdge({
-                                s: { id: pNode.pattern },
-                                p: 'specialize',
-                                o: { id: supers[j] }
-                            });
-                        }
-                    }
-                }
-                const nodeColorSizeFilter = (node, id) => {
-                    // set colors according to a gradient
-                    node.style.containerFill = schemaGraph.nodeGradient()[id];
-                    node.style.containerStroke = '#000';
-                };
-                schemaGraph.breadthFirstSearch(nodeColorSizeFilter);
-                console.log('MAP SCHEMA NODES');
-                colorMap = {};
-                schemaGraph.nodes.forEach(n => {
-                    colorMap[n.id] = n.style.containerFill;
-                });
-            }
-
             getInstance = node => {
                 // temporary disable time interval to avoid app crash as there is no visualization set for this pattern!
                 if (
@@ -173,7 +127,7 @@ export default class PatternInstancesNetworkView extends React.Component {
             };
         }
 
-        if (this.props.PatternStore.instances && colorMap) {
+        if (this.props.PatternStore.instances) {
             const KG = require('odp-reactor').KG;
             const TimeIntervalFilter = require('odp-reactor')
                 .TimeIntervalFilter;
@@ -270,13 +224,7 @@ export default class PatternInstancesNetworkView extends React.Component {
                 }
                 // parts filter
                 // nodes for filters
-                console.log('[*] Debugging nodes for filters count');
-                console.log('Instances number:', instances.length);
                 nodes.push(nodeForFilters);
-                console.log(nodeForFilters);
-
-                console.log('Color map');
-                console.log(colorMap);
 
                 graph.addNode({
                     id: instanceNode.instance,
@@ -287,9 +235,10 @@ export default class PatternInstancesNetworkView extends React.Component {
                         /** container 容齐 */
                         containerWidth: 40,
                         containerStroke: '#0693E3',
-                        containerFill: colorMap
-                            ? colorMap[instanceNode.type]
-                            : color,
+                        // containerFill: colorMap
+                        //     ? colorMap[instanceNode.type]
+                        //     : color,
+                        containerFill: color,
                         /** icon 图标 */
                         iconSize: 10,
                         iconFill: '#0693E3',
@@ -373,9 +322,6 @@ export default class PatternInstancesNetworkView extends React.Component {
                         break;
                 }
             });
-
-            console.log('locTypeNodeCounts');
-            console.log(locTypeNodesCount);
 
             const patternStateKey = `${patternId}State`;
             const defaultConfig =

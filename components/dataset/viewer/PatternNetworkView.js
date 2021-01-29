@@ -34,20 +34,30 @@ export default class PatternNetworkView extends React.Component {
         nav.classList.add('absolute-navbar');
         const navIcon = document.getElementById('nav-open');
         navIcon.classList.remove('hidden-nav-open');
-        navIcon.addEventListener('mouseover', () => {
-            nav.classList.remove('hidden-navbar');
-        });
-        nav.addEventListener('mouseleave', () => {
-            nav.classList.add('hidden-navbar');
-            navIcon.classList.remove('hidden-nav-open');
-        });
+        nav.addEventListener('mouseleave', this.hideNavbarListener);
+        navIcon.addEventListener('mouseover', this.openNavbarListener);
     }
 
     componentWillUnmount() {
+        console.log('Unmount');
         const nav = document.getElementById('navbar');
         nav.classList.remove('hidden-navbar');
         nav.classList.remove('absolute-navbar');
         const navIcon = document.getElementById('nav-open');
+        navIcon.removeEventListener('mouseover', this.openNavbarListener);
+        nav.removeEventListener('mouseleave', this.hideNavbarListener);
+    }
+
+    openNavbarListener() {
+        const nav = document.getElementById('navbar');
+        nav.classList.remove('hidden-navbar');
+    }
+
+    hideNavbarListener() {
+        const nav = document.getElementById('navbar');
+        nav.classList.add('hidden-navbar');
+        const navIcon = document.getElementById('nav-open');
+        navIcon.classList.remove('hidden-nav-open');
     }
 
     fetchData() {
