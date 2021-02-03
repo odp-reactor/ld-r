@@ -27,34 +27,53 @@ class About extends React.Component {
                                     <div style={{ fontSize: 20, margin: 20 }}>
                                         <ul>
                                             <li className="about-li">
-                                                ODP Reactor is a web-based
-                                                software to visualize knowledge
-                                                graphs modelled with Ontology
-                                                Design Patterns.
+                                                ODP Reactor is a knowledge graph
+                                                visualiser based on{' '}
+                                                <a
+                                                    href="http://ontologydesignpatterns.org/wiki/Main_Page"
+                                                    target="_blank"
+                                                >
+                                                    Ontology Design Patterns
+                                                </a>
                                             </li>
                                             <li className="about-li">
-                                                KnowledgeGraph should be
-                                                annotated with OPLa ontology in
-                                                order to make the tool able to
-                                                analyze and visualize data.
+                                                To trigger the ODP reaction in
+                                                the visualisation, your
+                                                knowledge graph must include{' '}
+                                                <a
+                                                    href="http://ontologydesignpatterns.org/wiki/images/0/0a/Paper-09.pdf"
+                                                    target="_blank"
+                                                >
+                                                    OPLa
+                                                </a>{' '}
+                                                annotations
                                             </li>
                                             <li className="about-li">
-                                                ODP Reactor is developed by
-                                                STLab. STLab research aims at
-                                                identifying cognitively sound
-                                                formal representations of
-                                                knowledge as well as at
-                                                developing efficient ways to
-                                                process it for its automatic
-                                                understanding.
+                                                ODP Reactor is developed by{' '}
+                                                <a
+                                                    href="http://stlab.istc.cnr.it/stlab/"
+                                                    target="_blank"
+                                                >
+                                                    STLab
+                                                </a>
                                             </li>
                                             <li className="about-li">
                                                 ODP Reactor extends
-                                                <a href="http://ld-r.org">
+                                                <a
+                                                    href="http://ld-r.org"
+                                                    target="_blank"
+                                                >
                                                     {' '}
                                                     Ld-r{' '}
                                                 </a>
-                                                developped at VU.
+                                                developped at{' '}
+                                                <a
+                                                    href="https://www.vu.nl/en"
+                                                    target="_blank"
+                                                >
+                                                    VU
+                                                </a>
+                                                .
                                             </li>
                                         </ul>
                                     </div>
@@ -72,9 +91,10 @@ class About extends React.Component {
                                                 src={`${PUBLIC_URL}/assets/img/tool-image/screenshot_patterns.png`}
                                             ></img>
                                             <p className="about-img-desc">
-                                                Explore by knoweldge patterns to
-                                                better grasp what knowledge is
-                                                in large dataset
+                                                Visualise large knowledge graphs
+                                                in one page and be able to grasp
+                                                at first sight what type of data
+                                                it encodes
                                             </p>
                                         </div>
                                         <div className="ldr-padding">
@@ -83,11 +103,11 @@ class About extends React.Component {
                                                 src={`${PUBLIC_URL}/assets/img/tool-image/time_indexed_typed_location_detailed.png`}
                                             ></img>
                                             <p className="about-img-desc">
-                                                Map every pattern with a
-                                                standard visualization. You can
-                                                integrate new visualization best
-                                                to represent different data
-                                                structures
+                                                Visualise data based on the
+                                                context of your interests
+                                                (location -{'>'} maps,
+                                                collection -{'>'} sets,
+                                                structure -{'>'} components)
                                             </p>
                                         </div>
                                     </div>
@@ -98,10 +118,9 @@ class About extends React.Component {
                                                 src={`${PUBLIC_URL}/assets/img/tool-image/list_layout.png`}
                                             ></img>
                                             <p className="about-img-desc">
-                                                Switch and choose between
-                                                several representation to best
-                                                visualize and retrieve data.
-                                                Like Graph or Table
+                                                Choose among different layouts
+                                                the one that better fits your
+                                                needs
                                             </p>
                                         </div>
                                         <div className="ldr-padding">
@@ -110,8 +129,8 @@ class About extends React.Component {
                                                 src={`${PUBLIC_URL}/assets/img/tool-image/geog_filter.png`}
                                             ></img>
                                             <p className="about-img-desc">
-                                                Advanced filtering components
-                                                based on data semantics
+                                                Apply context-aware filters to
+                                                refine your search
                                             </p>
                                         </div>
                                     </div>
