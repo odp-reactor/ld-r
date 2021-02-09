@@ -151,6 +151,7 @@ fetchrPlugin.registerService(require('./services/facet'));
 fetchrPlugin.registerService(require('./services/admin'));
 fetchrPlugin.registerService(require('./services/import'));
 fetchrPlugin.registerService(require('./services/custom'));
+fetchrPlugin.registerService(require('./services/class'));
 // Set up the fetchr middleware
 
 server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());

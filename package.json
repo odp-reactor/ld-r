@@ -36,7 +36,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@christian-nja/geocoding": "^1.0.0",
-    "@comunica/actor-init-sparql": "^1.17.0",
+    "@comunica/actor-init-sparql": "^1.19.2",
     "animate.css": "^3.7.0",
     "async": "^3.1.0",
     "body-parser": "^1.18.3",
@@ -105,6 +105,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.13",
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
     "@types/js-quantities": "^1.6.2",
     "babel-cli": "^7.0.0-beta.3",
     "babel-eslint": "^10.0.3",

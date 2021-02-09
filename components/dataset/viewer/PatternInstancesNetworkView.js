@@ -8,11 +8,11 @@ _________*/
 
 import PatternStore from '../../../stores/PatternStore';
 import loadPatternInstances from '../../../actions/loadPatternInstances';
-import loadPatterns from '../../../actions/loadPatterns';
 import cleanInstance from '../../../actions/cleanInstance';
 
 import CustomLoader from '../../CustomLoader';
-import Qty from 'js-quantities';
+
+import { forEach } from 'lodash';
 
 // import laodInstances action
 // catch dataset id from route not from dataset store
@@ -96,90 +96,42 @@ export default class PatternInstancesNetworkView extends React.Component {
     }
 
     render() {
-        let getInstance;
-        let getInstanceTableClick;
-        let color;
-        let colorMap;
-        let patternId;
-        const Graph = require('odp-reactor').Graph;
-        const Measurement = require('odp-reactor').Measurement;
+        let exploreResourceOnListItemClick;
         if (this.props.RouteStore._currentNavigate) {
-            patternId = this.props.RouteStore._currentNavigate.route.params.pid;
-            getInstance = node => {
-                // temporary disable time interval to avoid app crash as there is no visualization set for this pattern!
-                if (
-                    node.model.data.type !==
-                    'http://www.ontologydesignpatterns.org/cp/owl/time-interval'
-                )
-                    this.context.executeAction(navigateAction, {
-                        url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
-                            this.props.RouteStore._currentNavigate.route.params
-                                .did
-                        )}/resource/${encodeURIComponent(node.id)}`
-                    });
-            };
-            getInstanceTableClick = node => {
+            exploreResourceOnListItemClick = instanceUri => {
                 this.context.executeAction(navigateAction, {
                     url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
                         this.props.RouteStore._currentNavigate.route.params.did
-                    )}/resource/${encodeURIComponent(node.id)}`
+                    )}/resource/${encodeURIComponent(instanceUri)}`
                 });
             };
         }
 
         if (this.props.PatternStore.instances) {
-            const KG = require('odp-reactor').KG;
-            const TimeIntervalFilter = require('odp-reactor')
-                .TimeIntervalFilter;
-            const SliderFilter = require('odp-reactor').SliderFilter;
-            const GeoFilter = require('odp-reactor').GeoFilter;
-            const scaleData = require('odp-reactor').scaleData;
-            const PropertyFilter = require('odp-reactor').PropertyFilter;
-            const graph = new Graph();
-            const list = [];
-            const nodes = [];
+            const KnowledgeGraph = require('odp-reactor').KnowledgeGraph;
+            const ResourceFactory = require('odp-reactor').ResourceFactory;
+            const Measurement = require('odp-reactor').Measurement;
+            const PatternInstancesPage = require('odp-reactor')
+                .PatternInstancesPage;
 
             const instances = this.props.PatternStore.instances;
 
-            // counters are used to conditionally render filters
-            // e.g.
-            // if in the knowledge subgraph there are no nodes with startTime and endTime
-            // the filter is not rendered
-            let timeNodesCount = 0;
-            let measureNodesCount = 0;
-            let partNodesCount = 0;
-            let geoNodesCount = 0;
-            let locTypeNodesCount = 0;
-            const measureTypes = new Set(); // memorize the measure type key to prepare filters
-            for (let i = 0; i < instances.length; i++) {
-                const instanceNode = instances[i];
-                //******************* PREPARING DATA TO FILTERS and FOR GRAPH */
-                // check well data
+            const kg = new KnowledgeGraph();
+            const resourceFactory = new ResourceFactory();
 
-                let nodeForFilters = { id: instanceNode.instance };
+            let resourceInstanceJson = {};
 
-                // prepare startTime and endTime for time filter
-                if (instanceNode.startTime && instanceNode.endTime) {
-                    let startTime, endTime;
-                    let s = instanceNode.startTime.match(/\d+/g);
-                    let e = instanceNode.endTime.match(/\d+/g);
-                    startTime = s ? s[0] : null; // clean time iwth regex ex. 1876 ante , post 1678
-                    endTime = e ? e[0] : null;
-                    nodeForFilters['startTime'] = startTime;
-                    nodeForFilters['endTime'] = endTime;
-                    timeNodesCount++;
+            forEach(instances, instance => {
+                // preprocessing raw data
+
+                let startTime, endTime;
+                if (instance.startTime && instance.endTime) {
+                    startTime = instance.startTime.match(/\d+/g);
+                    endTime = instance.endTime.match(/\d+/g);
                 }
-                if (instanceNode.locationType) {
-                    nodeForFilters['locationType'] = instanceNode.locationType;
-                    locTypeNodesCount++;
-                }
-                if (instanceNode.lat && instanceNode.long) {
-                    nodeForFilters['lat'] = instanceNode.lat;
-                    nodeForFilters['long'] = instanceNode.long;
-                    geoNodesCount++;
-                }
-                if (instanceNode.measures) {
-                    let measures = instanceNode.measures.split(';');
+
+                if (instance.measures) {
+                    let measures = instance.measures.split(';');
                     measures.forEach(measure => {
                         let [rawm, v, u] = measure.split(' ');
                         let m = rawm.split('-').pop();
@@ -205,223 +157,67 @@ export default class PatternInstancesNetworkView extends React.Component {
                         }
 
                         if (Number.parseInt(v)) {
-                            measureTypes.add(m);
-                            instanceNode[m] = v;
-                            instanceNode['measurementUnit'] = u;
-                            nodeForFilters[m] = v;
+                            resourceInstanceJson[m] = v;
+                            resourceInstanceJson[`${m}MeasurementUnit`] = u;
                         }
                     });
-                    nodeForFilters['measureCount'] = measures
-                        ? measures.length
-                        : null;
-                    measureNodesCount++;
+                    resourceInstanceJson['measures'] = measures.length;
                 }
-                if (instanceNode.parts) {
-                    nodeForFilters['parts'] = instanceNode.parts.split(';')
-                        ? instanceNode.parts.split(';').length
-                        : null;
-                    partNodesCount++;
-                }
-                // parts filter
-                // nodes for filters
-                nodes.push(nodeForFilters);
 
-                graph.addNode({
-                    id: instanceNode.instance,
-                    data: instanceNode,
-                    label: `${instanceNode.label.substring(0, 35)}...`,
-                    description: instanceNode.description,
-                    style: {
-                        /** container 容齐 */
-                        containerWidth: 40,
-                        containerStroke: '#0693E3',
-                        // containerFill: colorMap
-                        //     ? colorMap[instanceNode.type]
-                        //     : color,
-                        containerFill: color,
-                        /** icon 图标 */
-                        iconSize: 10,
-                        iconFill: '#0693E3',
-                        /** badge 徽标 */
-                        badgeFill: 'red',
-                        badgeFontColor: '#fff',
-                        badgeSize: 10,
-                        /** text 文本 */
-                        fontColor: '#3b3b3b',
-                        fontSize: 20,
-                        /** state */
-                        dark: '#eee'
-                    }
+                if (instance.parts) {
+                    resourceInstanceJson['parts'] = instance.parts.split(';')
+                        ? instance.parts.split(';').length
+                        : undefined;
+                }
+
+                const instancePropertiesJson = Object.assign(
+                    {
+                        startTime: startTime || undefined,
+                        endTime: endTime || undefined,
+                        locationType: instance.locationType || undefined,
+                        lat: instance.lat || undefined,
+                        long: instance.long || undefined,
+                        addressLabel: instance.addressLabel || undefined,
+                        listProperties: {
+                            listKeys: [
+                                {
+                                    label: 'Label',
+                                    id: 'label'
+                                },
+                                { label: 'Height', id: 'height' },
+                                { label: 'Width', id: 'width' },
+                                { label: 'Length', id: 'length' },
+                                { label: 'Diameter', id: 'diameter' },
+                                { label: 'Location Type', id: 'locationType' },
+                                { label: 'Start Time', id: 'startTime' },
+                                { label: 'End Time', id: 'endTime' },
+                                { label: 'Address', id: 'addressLabel' },
+                                { label: 'Latitude', id: 'lat' },
+                                { label: 'Longitude', id: 'long' },
+                                { label: 'Parts', id: 'parts' }
+                            ],
+                            listItemClick: () => {
+                                exploreResourceOnListItemClick(
+                                    instance.instance
+                                );
+                            },
+                            listTitle: instance.patternLabel
+                        }
+                    },
+                    resourceInstanceJson
+                );
+
+                const instanceResource = resourceFactory.makeResource({
+                    uri: instance.instance,
+                    label: instance.label, // label: `${instance.label.substring(0, 50)}...`,
+                    description: instance.description,
+                    properties: instancePropertiesJson
                 });
-            }
 
-            graph.nodes.forEach(node => {
-                let listNode = {};
-                switch (instances[0].type) {
-                    case 'https://w3id.org/arco/ontology/location/time-indexed-typed-location':
-                        listNode['id'] = node.id;
-                        listNode['Label'] = node.data.data.label;
-                        listNode['Location Type'] = node.data.data.locationType
-                            ? node.data.data.locationType.split('/').pop()
-                            : null;
-                        listNode['Start Time'] = node.data.data.startTime;
-                        listNode['End Time'] = node.data.data.endTime;
-                        listNode['Address'] = node.data.data.addressLabel;
-                        listNode['Latitude'] = node.data.data.lat;
-                        listNode['Longitude'] = node.data.data.long;
-                        list.push(listNode);
-                        break;
-                    case 'https://w3id.org/arco/ontology/location/cultural-property-component-of':
-                        listNode['id'] = node.id;
-                        listNode['Label'] = node.data.data.label;
-                        listNode['Parts'] = node.data.data.parts
-                            ? node.data.data.parts.split(';').length
-                            : null;
-                        list.push(listNode);
-                        break;
-                    case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
-                        listNode['id'] = node.id;
-                        listNode['Label'] = node.data.data.label;
-                        listNode['Height'] = node.data.data.height
-                            ? withUnit(
-                                node.data.data.height,
-                                node.data.data.measurementUnit
-                            )
-                            : '';
-                        listNode['Width'] = node.data.data.width
-                            ? withUnit(
-                                node.data.data.width,
-                                node.data.data.measurementUnit
-                            )
-                            : '';
-                        listNode['Length'] = node.data.data.length
-                            ? withUnit(
-                                node.data.data.length,
-                                node.data.data.measurementUnit
-                            )
-                            : '';
-                        listNode['Depth'] = node.data.data.depth
-                            ? withUnit(
-                                node.data.data.depth,
-                                node.data.data.measurementUnit
-                            )
-                            : '';
-                        listNode['Diameter'] = node.data.data.diameter
-                            ? withUnit(
-                                node.data.data.diameter,
-                                node.data.data.measurementUnit
-                            )
-                            : '';
-                        listNode['Thickness'] = node.data.data.thickness
-                            ? withUnit(
-                                node.data.data.thickness,
-                                node.data.data.measurementUnit
-                            )
-                            : '';
-                        list.push(listNode);
-                        break;
-                }
+                kg.addResource(instanceResource);
             });
 
-            const patternStateKey = `${patternId}State`;
-            const defaultConfig =
-                JSON.parse(
-                    window.sessionStorage.getItem(patternStateKey),
-                    reviver
-                ) || null;
-
-            // render filters only if there are nodes they can filter
-            return (
-                <KG
-                    defaultLayoutOptions={{
-                        menu: true,
-                        help: true,
-                        tableLayout: true,
-                        graphLayout: false,
-                        currentLayout: 'list'
-                    }}
-                    defaultConfig={defaultConfig}
-                    data={{ graph: graph, list: list, nodes: nodes }}
-                    list={list}
-                    onContextChange={context => {
-                        window.sessionStorage.setItem(
-                            patternStateKey,
-                            JSON.stringify(context, replacer)
-                        );
-                    }}
-                    textOnNodeHover={model => {
-                        switch (model.data.data.type) {
-                            case 'https://w3id.org/arco/ontology/location/time-indexed-typed-location':
-                                return `<span class="g6-tooltip-title">Label</span>:<span class="g6-tooltip-text">${model.data.data.label}</span><br/><span class="g6-tooltip-title">Location Type</span>:<span class="g6-tooltip-text">${model.data.data.locationType}</span><br/><span class="g6-tooltip-title">Start Time</span>:<span class="g6-tooltip-text">${model.data.data.startTime}</span>
-                            <br/><span class="g6-tooltip-title">End Time</span>:<span class="g6-tooltip-text">${model.data.data.endTime}</span><br/><span class="g6-tooltip-title">Location</span>:<span class="g6-tooltip-text">${model.data.data.addressLabel}</span>`; //<br/>
-                            case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
-                                let measureString = '';
-                                if (model.data.data.measures) {
-                                    model.data.data.measures
-                                        .split(';')
-                                        .forEach(m => {
-                                            let [type, v, u] = m.split(' ');
-                                            let t = type.split('-').pop();
-                                            measureString =
-                                                measureString +
-                                                `<span class="g6-tooltip-title">${t}</span>:<span class="g6-tooltip-text">${v} ${u.toLowerCase()}</span><br/>`;
-                                        });
-                                }
-                                return `<span class="g6-tooltip-title">Label</span>:<span class="g6-tooltip-text">${model.data.data.label}</span><br/>${measureString}`;
-                            case 'https://w3id.org/arco/ontology/location/cultural-property-component-of':
-                                return `<span class="g6-tooltip-title">Label</span>:<span class="g6-tooltip-text">${
-                                    model.data.data.label
-                                }</span><br/><span class="g6-tooltip-title">Parts</span>:<span class="g6-tooltip-text">${
-                                    model.data.data.parts
-                                        ? model.data.data.parts.split(';')
-                                            .length
-                                        : ''
-                                }</span>`;
-                        }
-                    }}
-                    onNodeDoubleClick={getInstance}
-                    onItemClick={getInstanceTableClick}
-                    itemTooltip="Click to explore the resource"
-                    listTitle={'Instances'}
-                >
-                    {measureNodesCount > 0 ? (
-                        <SliderFilter
-                            title={'Filter by number of measurements'}
-                            valueKey="measureCount"
-                        />
-                    ) : null}
-                    {partNodesCount > 0 ? (
-                        <SliderFilter
-                            title={'Filter by number of parts'}
-                            valueKey="parts"
-                        />
-                    ) : null}
-                    {locTypeNodesCount > 0 ? (
-                        <PropertyFilter
-                            title={'Filter by Location Type'}
-                            property="locationType"
-                        />
-                    ) : null}
-                    {timeNodesCount > 0 ? (
-                        <TimeIntervalFilter title={'Filter by Time Interval'} />
-                    ) : null}
-                    {Array.from(measureTypes).length !== 0
-                        ? Array.from(measureTypes).map(measure => {
-                            return (
-                                <SliderFilter
-                                    title={`Filter by ${measure}`}
-                                    valueKey={measure}
-                                    id={measure}
-                                    measurementUnit="mm"
-                                />
-                            );
-                        })
-                        : null}
-                    {geoNodesCount > 0 ? (
-                        <GeoFilter title={'Filter by Geographic Location'} />
-                    ) : null}
-                </KG>
-            );
+            return <PatternInstancesPage knowledgeGraph={kg} />;
         } else {
             const datasetContainerStyle = {
                 height: '90vh',
@@ -440,27 +236,6 @@ export default class PatternInstancesNetworkView extends React.Component {
     }
 }
 
-function replacer(key, value) {
-    const originalObject = this[key];
-    if (originalObject instanceof Map) {
-        return {
-            dataType: 'Map',
-            value: Array.from(originalObject.entries()) // or with spread: value: [...originalObject]
-        };
-    } else {
-        return value;
-    }
-}
-
-function reviver(key, value) {
-    if (typeof value === 'object' && value !== null) {
-        if (value.dataType === 'Map') {
-            return new Map(value.value);
-        }
-    }
-    return value;
-}
-
 PatternInstancesNetworkView.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
@@ -475,12 +250,3 @@ PatternInstancesNetworkView = connectToStores(
         };
     }
 );
-
-// PatternInstancesNetworkView = handleHistory(PatternInstancesNetworkView, {
-//     enableScroll: false // example to show how to specify options for handleHistory
-// });
-
-function withUnit(value, unit, defaultMeasurementUnit = 'm') {
-    const v = Qty(`${value} ${unit}`).format(defaultMeasurementUnit);
-    return v;
-}

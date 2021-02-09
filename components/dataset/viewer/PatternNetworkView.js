@@ -6,19 +6,33 @@ import { connectToStores } from 'fluxible-addons-react';
 _________*/
 
 import loadPatterns from '../../../actions/loadPatterns';
+import loadClassesAndScores from '../../../actions/loadClassesAndScores';
 import saveColorMap from '../../../actions/saveColorMap';
 import cleanInstances from '../../../actions/cleanInstances';
 import PatternStore from '../../../stores/PatternStore';
 import { navigateAction } from 'fluxible-router';
 import CustomLoader from '../../CustomLoader';
+import { map, forEach } from 'lodash';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 // import { PartWhole } from "odp-reactor/es/index";
 
+import ClassService from '../../../services/clientside-services/ClassService';
+import DbContext from '../../../services/base/DbContext';
+
 export default class PatternNetworkView extends React.Component {
     constructor(props) {
         super(props);
+        // this should be moved global if ali explain how to retireve
+        // sparql endpoint associated to dataset else
+        // we need to write the code ourselves what the fuck
+        const sparqlEndpoint = 'http://arco.istc.cnr.it/visualPatterns/sparql';
+        this.classService = new ClassService(new DbContext(sparqlEndpoint));
+        //
+        this.state = {
+            classesWithScores: null
+        };
     }
 
     componentDidMount() {
@@ -28,8 +42,6 @@ export default class PatternNetworkView extends React.Component {
 
     componentDidUpdate() {
         const nav = document.getElementById('navbar');
-        console.log('Nav element');
-        console.log(nav);
         nav.classList.add('hidden-navbar');
         nav.classList.add('absolute-navbar');
         const navIcon = document.getElementById('nav-open');
@@ -39,7 +51,6 @@ export default class PatternNetworkView extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log('Unmount');
         const nav = document.getElementById('navbar');
         nav.classList.remove('hidden-navbar');
         nav.classList.remove('absolute-navbar');
@@ -78,234 +89,264 @@ export default class PatternNetworkView extends React.Component {
                 dataset: this.props.datasetURI //missing
             });
         }
+        if (!this.state.classesWithScores) {
+            this.classService
+                .findAllClassesWithCentralityScore()
+                .then(classesWithScores => {
+                    this.setState({
+                        classesWithScores: classesWithScores.slice(0, 20)
+                    });
+                });
+        }
     }
 
     render() {
-        if (this.props.PatternStore.list) {
+        if (this.props.PatternStore.list && this.state.classesWithScores) {
             // we dependency inject the function to get instances by pattern URI
             // node is a Graphin node
 
-            const KG = require('odp-reactor').KG;
-            const PatternFilter = require('odp-reactor').PatternFilter;
-            const SliderFilter = require('odp-reactor').SliderFilter;
-            const Graph = require('odp-reactor').Graph;
+            const KnowledgeGraph = require('odp-reactor').KnowledgeGraph;
+            const Resource = require('odp-reactor').Resource;
             const scaleData = require('odp-reactor').scaleData;
-            const graph = new Graph();
-            const list = [];
-            const nodes = [];
-
-            let dataInfoMap = {};
-
-            dataInfoMap[
-                'http://www.ontologydesignpatterns.org/cp/owl/collection'
-            ] =
-                'Explore the instances to see information about collections of items in this dataset';
-            dataInfoMap[
-                'http://www.ontologydesignpatterns.org/cp/owl/part-of'
-            ] =
-                'Explore instances of this pattern in the dataset to get information about things and the parts they’re composed of.';
-            dataInfoMap[
-                'http://www.ontologydesignpatterns.org/cp/owl/situation'
-            ] =
-                'Explore the instances to get information about situations data and the things (participants, people, objects) involved in that situation.';
-            dataInfoMap[
-                'http://www.ontologydesignpatterns.org/cp/owl/time-indexed-situation'
-            ] =
-                'Explore the instances of this pattern to get information about a situation, things involved and the time interval in which situation happened.';
-            dataInfoMap[
-                'http://www.ontologydesignpatterns.org/cp/owl/time-interval'
-            ] = 'There are no independent time interval in the dataset.';
-            dataInfoMap[
-                'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
-            ] =
-                'Explore the instances of the pattern to view data relative to measurements collected about a cultural property.';
-            dataInfoMap[
-                'https://w3id.org/arco/ontology/location/cultural-property-component-of'
-            ] =
-                'Explore the instances of this pattern to get information about a complex cultural property and components it\'s made by.';
-            dataInfoMap[
-                'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
-            ] =
-                'Explore instances of this pattern to get information about the location of a cultural property and the time period since it is in that location or where it was in the past.';
+            const ColorGenerator = require('odp-reactor').ColorGenerator;
+            const PatternsAndClassesPage = require('odp-reactor')
+                .PatternsAndClassesPage;
 
             const patterns = this.props.PatternStore.list;
-            for (let i = 0; i < patterns.length; i++) {
-                const pNode = patterns[i];
-                // add nodes to graph
-                graph.addNode({
-                    id: pNode.pattern,
-                    occurences: pNode.occurences,
-                    data: pNode,
-                    label: pNode.label,
-                    description: pNode.description,
-                    dataInfo: dataInfoMap[pNode.pattern],
-                    style: {
-                        /** container 容齐 */
-                        containerWidth: 40,
-                        containerStroke: '#0693E3',
-                        containerFill: '#fff',
-                        /** icon 图标 */
-                        iconSize: 10,
-                        iconFill: '#0693E3',
-                        /** badge 徽标 */
-                        badgeFill: 'red',
-                        badgeFontColor: '#fff',
-                        badgeSize: 10,
-                        /** text 文本 */
-                        fontColor: '#3b3b3b',
-                        fontSize: 20,
-                        /** state */
-                        dark: '#eee'
+            const classes = this.state.classesWithScores;
+
+            const kg = new KnowledgeGraph();
+
+            // add pattern resource to kg
+            forEach(patterns, p => {
+                const patternResource = Resource.create({
+                    uri: p.pattern,
+                    label: p.label,
+                    description: p.description,
+                    properties: {
+                        type: 'Pattern',
+                        occurences: p.occurences,
+                        graphinProperties: {
+                            onNodeOverTooltip: model => {
+                                return `<span class="g6-tooltip-title">Pattern Name</span>:<span class="g6-tooltip-text">${model.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.description}</span><br/><span class="g6-tooltip-title">Occurrences</span>:<span class="g6-tooltip-text">${model.data.occurences}</span><br/><span class="g6-tooltip-title">Data</span>:<span class="g6-tooltip-text">${model.data.graphinProperties.dataInfo}</span><br/><span class="g6-tooltip-dblclick">Double click to view instances...</span>`;
+                            },
+                            graphinPatternNodeDoubleClick: () => {
+                                if (p.occurences !== '0') {
+                                    this.context.executeAction(navigateAction, {
+                                        url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+                                            this.props.datasetURI
+                                        )}/patterns/${encodeURIComponent(
+                                            p.pattern
+                                        )}/color/${encodeURIComponent(
+                                            'noColor'
+                                        )}`
+                                    });
+                                }
+                            },
+                            shape: 'CustomNode',
+                            dataInfo: dataInfoMap[p.pattern],
+                            style: {
+                                /** container 容齐 */
+                                containerWidth: 40,
+                                containerStroke: '#0693E3',
+                                containerFill: '#fff',
+                                /** icon 图标 */
+                                iconSize: 10,
+                                iconFill: '#0693E3',
+                                /** badge 徽标 */
+                                badgeFill: 'red',
+                                badgeFontColor: '#fff',
+                                badgeSize: 10,
+                                /** text 文本 */
+                                fontColor: '#3b3b3b',
+                                fontSize: 20,
+                                /** state */
+                                dark: '#eee'
+                            }
+                        },
+                        listProperties: {
+                            listKeys: [
+                                {
+                                    label: 'Resources Categories',
+                                    id: 'label'
+                                },
+                                {
+                                    label: 'Description',
+                                    id: 'description'
+                                },
+                                {
+                                    label: 'Occurences',
+                                    id: 'occurences'
+                                }
+                            ],
+                            listItemClick: () => {
+                                if (p.occurences !== '0') {
+                                    this.context.executeAction(navigateAction, {
+                                        url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+                                            this.props.datasetURI
+                                        )}/patterns/${encodeURIComponent(
+                                            p.pattern
+                                        )}/color/removeThis`
+                                    });
+                                }
+                            }
+                        }
                     }
                 });
-                // add component triples
-                if (pNode.components !== '') {
-                    let components = pNode.components.split(';');
-                    for (let j = 0; j < components.length; j++) {
-                        graph.addEdge({
-                            s: { id: pNode.pattern },
-                            p: 'has component',
-                            o: { id: components[j] }
-                        });
-                    }
-                }
-                // add specializations triples
-                if (pNode.superPatterns !== '') {
-                    let supers = pNode.superPatterns.split(';');
-                    for (let j = 0; j < supers.length; j++) {
-                        graph.addEdge({
-                            s: { id: pNode.pattern },
-                            p: 'specialize',
-                            o: { id: supers[j] }
-                        });
-                    }
-                }
-            }
-
-            // this filter is passed to a bfs algorithm to apply colors and size scaling to every node
-            // we use bfs to assign similar color to semantically close nodes
-            const nodeColorSizeFilter = (node, id) => {
-                // set colors according to a gradient
-                node.style.containerFill = graph.nodeGradient()[id];
-                node.style.containerStroke = '#000';
-                // set size as a proportion of occurrences
-                // we add this as we can filter on this with slider filter
-                if (node.data.occurences !== 0) {
-                    node.style.cursor = 'pointer';
-                }
-                if (node.data.occurences === 0) {
-                    node.style.opacity = 0.3;
-                }
-                // compute dynamically max and min degree
-                // with 0 occurrences -> -Infinity
-                node.style.containerWidth = Math.round(
-                    scaleData(node.data.occurences, 0, 350, 40, 150)
-                );
-            };
-            graph.breadthFirstSearch(nodeColorSizeFilter);
-
-            let colorMap = {};
-
-            graph.nodes.forEach(n => {
-                colorMap[n.id] = n.style.containerFill;
+                kg.addResource(patternResource);
             });
-
-            this.context.executeAction(saveColorMap, colorMap);
-
-            const getInstances = node => {
-                console.log(node);
-                if (node.model.data.data.occurences !== '0') {
-                    console.log('GET INSTANCE');
-                    console.log(PUBLIC_URL);
-                    console.log(encodeURIComponent(this.props.datasetURI));
-                    console.log(encodeURIComponent(node.id));
-                    console.log(
-                        encodeURIComponent(node.model.style.containerFill)
-                    );
-                    this.context.executeAction(navigateAction, {
-                        url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
-                            this.props.datasetURI
-                        )}/patterns/${encodeURIComponent(
-                            node.id
-                        )}/color/${encodeURIComponent(
-                            node.model.style.containerFill
-                        )}`,
-                        colorMap: colorMap
-                    });
-                }
-            };
-            const getInstancesTableClick = node => {
-                if (node['Number of Instances'] !== '0') {
-                    this.context.executeAction(navigateAction, {
-                        url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
-                            this.props.datasetURI
-                        )}/patterns/${encodeURIComponent(
-                            node.id
-                        )}/color/removeThis`,
-                        colorMap: colorMap
-                    });
-                }
-            };
-
-            // TODO :
-            // set colors for KnowledgeGraph here
-            // set node size here
-            // link filters
-
-            graph.nodes.forEach(node => {
-                let listNode = {};
-                listNode['id'] = node.id;
-                listNode['Id'] = node.id;
-                listNode['Pattern Name'] = node.data.data.label;
-                listNode['Description'] = node.data.data.description;
-                listNode['Number of Instances'] = node.data.data.occurences;
-                list.push(listNode);
-
-                // nodes for filters, on every node all the information for every filter used
-                console.log(node);
-                nodes.push({
-                    // id ! required
-                    id: node.data.data.pattern,
-                    // property fitler
-                    title: node.data.data.pattern.split('/').pop(),
-                    value: Number.parseInt(node.data.data.occurences),
-                    color: node.style.containerFill,
-                    // occurrency filter
-                    occurences: node.data.data.occurences
+            // add relations between pattern to kg
+            forEach(patterns, p => {
+                const patternResource = Resource.create({
+                    uri: p.pattern
                 });
-            });
-
-            const defaultConfig =
-                JSON.parse(
-                    window.sessionStorage.getItem('patternState'),
-                    reviver
-                ) || null;
-
-            return (
-                <KG
-                    defaultConfig={defaultConfig}
-                    onContextChange={context => {
-                        window.sessionStorage.setItem(
-                            'patternState',
-                            JSON.stringify(context, replacer)
+                if (p.components !== '') {
+                    let components = p.components.split(';');
+                    forEach(components, c => {
+                        const componentResource = Resource.create({
+                            uri: c
+                        });
+                        const propertyResource = Resource.create({
+                            label: 'has component'
+                        });
+                        kg.addTriple(
+                            patternResource,
+                            propertyResource,
+                            componentResource
                         );
-                    }}
-                    data={{ graph: graph, list: list, nodes: nodes }}
-                    onNodeDoubleClick={getInstances}
-                    textOnNodeHover={model => {
-                        return `<span class="g6-tooltip-title">Pattern Name</span>:<span class="g6-tooltip-text">${model.data.data.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.data.description}</span><br/><span class="g6-tooltip-title">Occurrences</span>:<span class="g6-tooltip-text">${model.data.occurences}</span><br/><span class="g6-tooltip-title">Data</span>:<span class="g6-tooltip-text">${model.data.dataInfo}</span><br/><span class="g6-tooltip-dblclick">Double click to view instances...</span>`;
-                    }}
-                    onItemClick={getInstancesTableClick}
-                    itemTooltip="Click to explore instances of this pattern"
-                    listTitle={'Ontology Design Patterns'}
-                >
-                    <SliderFilter
-                        valueKey="occurences"
-                        title="Filter by Occurences"
-                    />
-                    <PatternFilter title={'Filter by Pattern'} />
-                </KG>
-            );
+                    });
+                }
+                if (p.superPatterns !== '') {
+                    let supers = p.superPatterns.split(';');
+                    forEach(supers, s => {
+                        const superResource = Resource.create({
+                            uri: s
+                        });
+                        const propertyResource = Resource.create({
+                            label: 'is a special case of'
+                        });
+                        kg.addTriple(
+                            patternResource,
+                            propertyResource,
+                            superResource
+                        );
+                    });
+                }
+            });
+            // add classes resources to kg
+            forEach(classes, c => {
+                const classResource = Resource.create({
+                    uri: c.uri,
+                    label: c.uri, // to be changed
+                    description: c.description,
+                    properties: {
+                        type: 'Class',
+                        centralityScore: c.pd,
+                        graphinProperties: {
+                            onNodeOverTooltip: model => {
+                                return `<span class="g6-tooltip-title">Class Name</span>:<span class="g6-tooltip-text">${model.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.description}</span><br/><span class="g6-tooltip-title">Centrality Score</span>:<span class="g6-tooltip-text">${model.data.centralityScore}</span><br/><span class="g6-tooltip-title">Data</span>:<span class="g6-tooltip-text">${model.data.graphinProperties.dataInfo}</span><br/><span class="g6-tooltip-dblclick">Double click to view instances...</span>`;
+                            },
+                            graphinPatternNodeDoubleClick: () => {
+                                console.log('Navigate to resource screen');
+                                // this.context.executeAction(navigateAction, {
+                                // url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+                                //     this.props.datasetURI
+                                // )}/patterns/${encodeURIComponent(
+                                //     p.pattern
+                                // )}/color/${encodeURIComponent(
+                                //     "noColor"
+                                // )}`
+                                // });
+                            },
+                            shape: 'diamond',
+                            type: 'diamond',
+                            style: {
+                                /** container 容齐 */
+                                containerWidth: 40,
+                                containerStroke: '#0693E3',
+                                containerFill: '#fff',
+                                /** icon 图标 */
+                                iconSize: 10,
+                                iconFill: '#0693E3',
+                                /** badge 徽标 */
+                                badgeFill: 'red',
+                                badgeFontColor: '#fff',
+                                badgeSize: 10,
+                                /** text 文本 */
+                                fontColor: '#3b3b3b',
+                                fontSize: 20,
+                                /** state */
+                                dark: '#eee'
+                            }
+                        },
+                        listProperties: {
+                            listKeys: [
+                                {
+                                    label: 'Class',
+                                    id: 'label'
+                                },
+                                {
+                                    label: 'Description',
+                                    id: 'description'
+                                }
+                            ],
+                            listItemClick: () => {
+                                console.log(
+                                    'lIST ITEM CLICK NAVIGATE TO CLASS'
+                                );
+                                // this.context.executeAction(navigateAction, {
+                                //     url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+                                //         this.props.datasetURI
+                                //     )}/patterns/${encodeURIComponent(
+                                //         p.pattern
+                                //     )}/color/removeThis`
+                                // });
+                            }
+                        }
+                    }
+                });
+                kg.addResource(classResource);
+            });
+
+            const colors = new ColorGenerator({
+                colorCount: kg.getResourceCount()
+            });
+            const rndColors = colors.getColor();
+            kg.forEachResource(resourceURI => {
+                const oldGraphinProperties = kg.getResourceProperty(
+                    resourceURI,
+                    'graphinProperties'
+                );
+                const oldGraphinStyle = oldGraphinProperties['style'];
+                let newGraphinProperties = Object.assign(
+                    {},
+                    oldGraphinProperties
+                );
+                let newGraphinStyle = Object.assign({}, oldGraphinStyle);
+                const color = rndColors.next().value;
+                newGraphinStyle.containerFill = color;
+                newGraphinStyle.containerStroke = '#000';
+                if (kg.getResourceProperty(resourceURI, 'occurences')) {
+                    newGraphinStyle.containerWidth = Math.round(
+                        scaleData(
+                            kg.getResourceProperty(resourceURI, 'occurences'),
+                            0,
+                            350,
+                            40,
+                            150
+                        )
+                    );
+                }
+                newGraphinProperties.style = newGraphinStyle;
+                kg.updateResourceProperty(
+                    resourceURI,
+                    'graphinProperties',
+                    newGraphinProperties
+                );
+                kg.addResourceProperty(resourceURI, 'color', color);
+            });
+
+            return <PatternsAndClassesPage knowledgeGraph={kg} />;
         } else {
             const datasetContainerStyle = {
                 height: '90vh',
@@ -322,27 +363,6 @@ export default class PatternNetworkView extends React.Component {
             );
         }
     }
-}
-
-function replacer(key, value) {
-    const originalObject = this[key];
-    if (originalObject instanceof Map) {
-        return {
-            dataType: 'Map',
-            value: Array.from(originalObject.entries()) // or with spread: value: [...originalObject]
-        };
-    } else {
-        return value;
-    }
-}
-
-function reviver(key, value) {
-    if (typeof value === 'object' && value !== null) {
-        if (value.dataType === 'Map') {
-            return new Map(value.value);
-        }
-    }
-    return value;
 }
 
 PatternNetworkView.contextTypes = {
@@ -379,3 +399,29 @@ PatternNetworkView = connectToStores(
 //         endTime: "2000"
 //     }
 // ];
+
+let dataInfoMap = {};
+dataInfoMap['http://www.ontologydesignpatterns.org/cp/owl/collection'] =
+    'Explore the instances to see information about collections of items in this dataset';
+dataInfoMap['http://www.ontologydesignpatterns.org/cp/owl/part-of'] =
+    'Explore instances of this pattern in the dataset to get information about things and the parts they’re composed of.';
+dataInfoMap['http://www.ontologydesignpatterns.org/cp/owl/situation'] =
+    'Explore the instances to get information about situations data and the things (participants, people, objects) involved in that situation.';
+dataInfoMap[
+    'http://www.ontologydesignpatterns.org/cp/owl/time-indexed-situation'
+] =
+    'Explore the instances of this pattern to get information about a situation, things involved and the time interval in which situation happened.';
+dataInfoMap['http://www.ontologydesignpatterns.org/cp/owl/time-interval'] =
+    'There are no independent time interval in the dataset.';
+dataInfoMap[
+    'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
+] =
+    'Explore the instances of the pattern to view data relative to measurements collected about a cultural property.';
+dataInfoMap[
+    'https://w3id.org/arco/ontology/location/cultural-property-component-of'
+] =
+    'Explore the instances of this pattern to get information about a complex cultural property and components it\'s made by.';
+dataInfoMap[
+    'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
+] =
+    'Explore instances of this pattern to get information about the location of a cultural property and the time period since it is in that location or where it was in the past.';

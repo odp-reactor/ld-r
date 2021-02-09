@@ -10,6 +10,13 @@ class PatternStore extends BaseStore {
         this.cleanCompositionCount();
         this.cleanSpecializationCount();
         this.cleanInstances();
+        this.cleanClassesAndScores();
+    }
+    updateClassesAndScores(payload) {
+        console.log('Update classes payload', payload);
+        console.log(payload);
+        this.classesAndScores = payload;
+        this.emitChange();
     }
     updateData(payload) {
         this.list = payload['patternData'];
@@ -33,6 +40,10 @@ class PatternStore extends BaseStore {
     }
     updateInstances(payload) {
         this.instances = payload['patternData'];
+        this.emitChange();
+    }
+    cleanClassesAndScores() {
+        this.classesAndScores = null;
         this.emitChange();
     }
     cleanData() {
@@ -75,7 +86,8 @@ class PatternStore extends BaseStore {
             specializationCount: this.specializationCount,
             compositionCount: this.compositionCount,
             instances: this.instances,
-            colors: this.colors
+            colors: this.colors,
+            classesAndScores: this.classesAndScores
         };
     }
     dehydrate() {
@@ -89,11 +101,14 @@ class PatternStore extends BaseStore {
         this.compositionCount = state.compositionCount;
         this.instances = state.instances;
         this.colors = state.colors;
+        this.classesAndScores = state.classesAndScores;
     }
 }
 
 PatternStore.storeName = 'PatternStore'; // PR open in dispatchr to remove this need
 PatternStore.handlers = {
+    LOAD_CLASSES_AND_SCORES_SUCCESS: 'updateClassesAndScores',
+    CLEAN_CLASSES_AND_SCORES_SUCCESS: 'cleanClassesAndScores',
     LOAD_PATTERNS_SUCCESS: 'updateData',
     CLEAN_PATTERNS_SUCCESS: 'cleanData',
     LOAD_PATTERN_SPECIALIZATIONS_SUCCESS: 'updateSpecializations',

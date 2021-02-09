@@ -7,8 +7,10 @@ import HelpModal from './HelpModal';
 import Home from './Home';
 import About from './About';
 import ApplicationStore from '../stores/ApplicationStore';
-import {connectToStores, provideContext} from 'fluxible-addons-react';
-import {handleHistory} from 'fluxible-router';
+import { connectToStores, provideContext } from 'fluxible-addons-react';
+import { handleHistory } from 'fluxible-router';
+
+import regeneratorRuntime from 'regenerator-runtime';
 
 class Application extends React.Component {
     constructor(props, context) {
@@ -16,7 +18,10 @@ class Application extends React.Component {
     }
     componentDidUpdate(prevProps) {
         let newProps = this.props;
-        if (newProps.ApplicationStore.pageTitle === prevProps.ApplicationStore.pageTitle) {
+        if (
+            newProps.ApplicationStore.pageTitle ===
+            prevProps.ApplicationStore.pageTitle
+        ) {
             return;
         }
         document.title = newProps.ApplicationStore.pageTitle;
@@ -40,15 +45,19 @@ Application.contextTypes = {
     getUser: PropTypes.func
 };
 
-Application = connectToStores(Application, [ApplicationStore], function (context, props) {
+Application = connectToStores(Application, [ApplicationStore], function(
+    context,
+    props
+) {
     return {
         ApplicationStore: context.getStore(ApplicationStore).getState()
     };
 });
 
-Application = handleHistory(Application, {enableScroll: false});
+Application = handleHistory(Application, { enableScroll: false });
 
-Application = provideContext(Application, { //jshint ignore:line
+Application = provideContext(Application, {
+    //jshint ignore:line
     getUser: PropTypes.func
 });
 
