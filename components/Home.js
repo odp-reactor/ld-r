@@ -12,8 +12,8 @@ class Home extends React.Component {
                             <div className="column">
                                 <div className="ui segment content">
                                     <h2 className="ui header">
-                                        About{' '}
-                                        <a
+                                        ODPReactor{' '}
+                                        {/* <a
                                             href="http://stlab.istc.cnr.it/stlab/"
                                             target="_blank"
                                             style={{ marginLeft: 0 }}
@@ -22,7 +22,7 @@ class Home extends React.Component {
                                                 className="ui centered little image"
                                                 src="http://stlab.istc.cnr.it/stlab/wp-content/uploads/2016/04/STLabLogo-h80.png"
                                             />
-                                        </a>
+                                        </a> */}
                                     </h2>
                                     <div style={{ fontSize: 20, margin: 20 }}>
                                         <ul>

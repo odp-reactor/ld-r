@@ -17,4 +17,16 @@ export default class ClassRepository {
         );
         return classesWithCentralityScore;
     }
+    async findClassesWithPatternsTheyBelongsTo() {
+        const classesAndPatterns = this.genericRepository.fetchByQueryObject(
+            this.classQuery.getClassesWithPatternsTheyBelongsTo()
+        );
+        return classesAndPatterns;
+    }
+    async findClassesWithPatternsAndScores() {
+        const classesWithPatternsAndScores = this.genericRepository.fetchByQueryObject(
+            this.classQuery.getClassesWithPatternsAndScores()
+        );
+        return classesWithPatternsAndScores;
+    }
 }

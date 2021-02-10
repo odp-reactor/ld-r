@@ -126,8 +126,12 @@ export default class PatternInstancesNetworkView extends React.Component {
 
                 let startTime, endTime;
                 if (instance.startTime && instance.endTime) {
-                    startTime = instance.startTime.match(/\d+/g);
-                    endTime = instance.endTime.match(/\d+/g);
+                    startTime = instance.startTime.match(/\d+/g)
+                        ? instance.startTime.match(/\d+/g)[0]
+                        : null;
+                    endTime = instance.endTime.match(/\d+/g)
+                        ? instance.endTime.match(/\d+/g)[0]
+                        : null;
                 }
 
                 if (instance.measures) {

@@ -10,7 +10,7 @@ import cleanInstances from '../../../actions/cleanInstances';
 import PatternStore from '../../../stores/PatternStore';
 import { navigateAction } from 'fluxible-router';
 import CustomLoader from '../../CustomLoader';
-import { forEach } from 'lodash';
+import { forEach, filter } from 'lodash';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
@@ -29,7 +29,7 @@ export default class PatternNetworkView extends React.Component {
         this.classService = new ClassService(new DbContext(sparqlEndpoint));
         //
         this.state = {
-            classesWithScores: null
+            classesWithPatternsAndScores: null
         };
     }
 
@@ -87,19 +87,24 @@ export default class PatternNetworkView extends React.Component {
                 dataset: this.props.datasetURI //missing
             });
         }
-        if (!this.state.classesWithScores) {
+        if (!this.state.classesWithPatternsAndScores) {
             this.classService
-                .findAllClassesWithCentralityScore()
-                .then(classesWithScores => {
+                .findClassesWithPatternsAndScores()
+                .then(classesWithPatternsAndScores => {
+                    console.log('classes with patterns');
+                    console.log(classesWithPatternsAndScores);
                     this.setState({
-                        classesWithScores: classesWithScores
+                        classesWithPatternsAndScores: classesWithPatternsAndScores
                     });
                 });
         }
     }
 
     render() {
-        if (this.props.PatternStore.list && this.state.classesWithScores) {
+        if (
+            this.props.PatternStore.list &&
+            this.state.classesWithPatternsAndScores
+        ) {
             // we dependency inject the function to get instances by pattern URI
             // node is a Graphin node
 
@@ -110,13 +115,17 @@ export default class PatternNetworkView extends React.Component {
             const PatternsAndClassesPage = require('odp-reactor')
                 .PatternsAndClassesPage;
 
-            const patterns = this.props.PatternStore.list;
-            const classes = this.state.classesWithScores;
+            const patterns = filter(this.props.PatternStore.list, p => {
+                return p.occurences !== '0';
+            });
+            const classes = this.state.classesWithPatternsAndScores;
 
             const kg = new KnowledgeGraph();
 
             // add pattern resource to kg
             forEach(patterns, p => {
+                console.log('Pattern uris');
+                console.log(p.pattern);
                 const patternResource = Resource.create({
                     uri: p.pattern,
                     label: p.label,
@@ -194,44 +203,44 @@ export default class PatternNetworkView extends React.Component {
                 kg.addResource(patternResource);
             });
             // add relations between pattern to kg
-            forEach(patterns, p => {
-                const patternResource = Resource.create({
-                    uri: p.pattern
-                });
-                if (p.components !== '') {
-                    let components = p.components.split(';');
-                    forEach(components, c => {
-                        const componentResource = Resource.create({
-                            uri: c
-                        });
-                        const propertyResource = Resource.create({
-                            label: 'has component'
-                        });
-                        kg.addTriple(
-                            patternResource,
-                            propertyResource,
-                            componentResource
-                        );
-                    });
-                }
-                if (p.superPatterns !== '') {
-                    let supers = p.superPatterns.split(';');
-                    forEach(supers, s => {
-                        const superResource = Resource.create({
-                            uri: s
-                        });
-                        const propertyResource = Resource.create({
-                            label: 'is a special case of'
-                        });
-                        kg.addTriple(
-                            patternResource,
-                            propertyResource,
-                            superResource
-                        );
-                    });
-                }
-            });
-            // add classes resources to kg
+            // forEach(patterns, p => {
+            //     const patternResource = Resource.create({
+            //         uri: p.pattern
+            //     });
+            //     if (p.components !== "") {
+            //         let components = p.components.split(";");
+            //         forEach(components, c => {
+            //             const componentResource = Resource.create({
+            //                 uri: c
+            //             });
+            //             const propertyResource = Resource.create({
+            //                 label: "has component"
+            //             });
+            //             kg.addTriple(
+            //                 patternResource,
+            //                 propertyResource,
+            //                 componentResource
+            //             );
+            //         });
+            //     }
+            //     if (p.superPatterns !== "") {
+            //         let supers = p.superPatterns.split(";");
+            //         forEach(supers, s => {
+            //             const superResource = Resource.create({
+            //                 uri: s
+            //             });
+            //             const propertyResource = Resource.create({
+            //                 label: "is a special case of"
+            //             });
+            //             kg.addTriple(
+            //                 patternResource,
+            //                 propertyResource,
+            //                 superResource
+            //             );
+            //         });
+            //     }
+            // });
+            // add classes resources to kg and relation with patterns
             forEach(classes, c => {
                 const classResource = Resource.create({
                     uri: c.uri,
@@ -242,7 +251,7 @@ export default class PatternNetworkView extends React.Component {
                         centralityScore: c.pd,
                         graphinProperties: {
                             onNodeOverTooltip: model => {
-                                return `<span class="g6-tooltip-title">Class Name</span>:<span class="g6-tooltip-text">${model.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.description}</span><br/><span class="g6-tooltip-title">Centrality Score</span>:<span class="g6-tooltip-text">${model.data.centralityScore}</span><br/><span class="g6-tooltip-title">Data</span>:<span class="g6-tooltip-text">${model.data.graphinProperties.dataInfo}</span><br/><span class="g6-tooltip-dblclick">Double click to view instances...</span>`;
+                                return `<span class="g6-tooltip-title">Entity</span>:<span class="g6-tooltip-text">${model.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.description}</span><br/><span class="g6-tooltip-title">Relevance</span>:<span class="g6-tooltip-text">${model.data.centralityScore}</span><br/><span class="g6-tooltip-dblclick">Double click to view entities...</span>`;
                             },
                             graphinPatternNodeDoubleClick: () => {
                                 console.log('Navigate to resource screen');
@@ -304,6 +313,19 @@ export default class PatternNetworkView extends React.Component {
                     }
                 });
                 kg.addResource(classResource);
+                const relatedPattern = kg.getResource(c.pattern);
+                console.log('classPattern');
+                console.log(c.pattern);
+                if (relatedPattern) {
+                    const classPatternRelation = Resource.create({
+                        label: 'involves'
+                    });
+                    kg.addTriple(
+                        classResource,
+                        classPatternRelation,
+                        relatedPattern
+                    );
+                }
             });
 
             const colors = new ColorGenerator({
