@@ -6,13 +6,11 @@ import { connectToStores } from 'fluxible-addons-react';
 _________*/
 
 import loadPatterns from '../../../actions/loadPatterns';
-import loadClassesAndScores from '../../../actions/loadClassesAndScores';
-import saveColorMap from '../../../actions/saveColorMap';
 import cleanInstances from '../../../actions/cleanInstances';
 import PatternStore from '../../../stores/PatternStore';
 import { navigateAction } from 'fluxible-router';
 import CustomLoader from '../../CustomLoader';
-import { map, forEach } from 'lodash';
+import { forEach } from 'lodash';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
@@ -94,7 +92,7 @@ export default class PatternNetworkView extends React.Component {
                 .findAllClassesWithCentralityScore()
                 .then(classesWithScores => {
                     this.setState({
-                        classesWithScores: classesWithScores.slice(0, 20)
+                        classesWithScores: classesWithScores
                     });
                 });
         }
@@ -309,10 +307,10 @@ export default class PatternNetworkView extends React.Component {
             });
 
             const colors = new ColorGenerator({
-                colorCount: kg.getResourceCount()
+                colorCount: kg.getPatternCount()
             });
             const rndColors = colors.getColor();
-            kg.forEachResource(resourceURI => {
+            kg.forEachPattern((resourceURI, attributes) => {
                 const oldGraphinProperties = kg.getResourceProperty(
                     resourceURI,
                     'graphinProperties'
