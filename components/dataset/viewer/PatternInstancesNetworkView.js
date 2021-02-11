@@ -11,6 +11,7 @@ import loadPatternInstances from '../../../actions/loadPatternInstances';
 import cleanInstance from '../../../actions/cleanInstance';
 
 import CustomLoader from '../../CustomLoader';
+import NavbarHider from './NavbarHider';
 
 import { forEach } from 'lodash';
 
@@ -22,6 +23,7 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 export default class PatternInstancesNetworkView extends React.Component {
     constructor(props) {
         super(props);
+        this.navbarHider = new NavbarHider();
     }
 
     componentDidMount() {
@@ -64,35 +66,11 @@ export default class PatternInstancesNetworkView extends React.Component {
     }
 
     componentDidUpdate() {
-        const nav = document.getElementById('navbar');
-        nav.classList.add('hidden-navbar');
-        nav.classList.add('absolute-navbar');
-        const navIcon = document.getElementById('nav-open');
-        navIcon.classList.remove('hidden-nav-open');
-        navIcon.addEventListener('mouseover', this.openNavbarListener);
-        nav.addEventListener('mouseleave', this.hideNavbarListener);
+        this.navbarHider.hideNavbarAndAddShowOnOverListener();
     }
 
     componentWillUnmount() {
-        const nav = document.getElementById('navbar');
-        nav.classList.remove('hidden-navbar');
-        nav.classList.remove('absolute-navbar');
-        const navIcon = document.getElementById('nav-open');
-        navIcon.removeEventListener('mouseover', this.openNavbarListener);
-        navIcon.classList.add('hidden-nav-open');
-        nav.removeEventListener('mouseleave', this.hideNavbarListener);
-    }
-
-    openNavbarListener() {
-        const nav = document.getElementById('navbar');
-        nav.classList.remove('hidden-navbar');
-    }
-
-    hideNavbarListener() {
-        const nav = document.getElementById('navbar');
-        nav.classList.add('hidden-navbar');
-        const navIcon = document.getElementById('nav-open');
-        navIcon.classList.remove('hidden-nav-open');
+        this.navbarHider.showNavbarAndRemoveShowOnOverListener();
     }
 
     render() {

@@ -13,4 +13,17 @@ export default class ClassService {
     async findClassesWithPatternsAndScores() {
         return this.classRepository.findClassesWithPatternsAndScores();
     }
+    async findResourcesByClassWithPatterns(classUri) {
+        // here I parse to remove duplicates
+        const resources = await this.classRepository.findResourcesByClass(
+            classUri
+        );
+        const patterns = await this.classRepository.findPatternsByClass(
+            classUri
+        );
+        return {
+            resources: resources,
+            patterns: patterns
+        };
+    }
 }

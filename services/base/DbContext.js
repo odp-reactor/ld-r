@@ -8,6 +8,7 @@ export default class DbContext {
         this.sparqlQueryingEngine = newEngine();
     }
     async executeQuery(query) {
+        console.log(query);
         let bindings;
         try {
             const result = await this.sparqlQueryingEngine.query(query, {

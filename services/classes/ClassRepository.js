@@ -29,4 +29,16 @@ export default class ClassRepository {
         );
         return classesWithPatternsAndScores;
     }
+    async findResourcesByClass(classUri) {
+        const resources = this.genericRepository.fetchByQueryObject(
+            this.classQuery.getResourcesByClass(classUri)
+        );
+        return resources;
+    }
+    async findPatternsByClass(classUri) {
+        const patterns = this.genericRepository.fetchByQueryObject(
+            this.classQuery.getPatternsByClass(classUri)
+        );
+        return patterns;
+    }
 }

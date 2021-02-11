@@ -16,10 +16,32 @@ export default class ClassQuery {
     getClassesWithPatternsAndScores() {
         return `PREFIX opla: <http://ontologydesignpatterns.org/opla/>
                 PREFIX arco-gm: <https://w3id.org/arco/graph.measures/>
-                SELECT ?uri ?pattern ?pd WHERE {
+                SELECT ?uri (SAMPLE(?label) as ?label) ?description ?pattern ?pd WHERE {
                     ?uri opla:isNativeTo ?pattern .
-                    ?uri arco-gm:percentageDegree ?pd .
+                    ?uri arco-gm:numberOfIncidentEdges ?pd .
+                    ?uri rdfs:label ?label .
+                    ?uri rdfs:comment ?description .
+                    FILTER(LANG(?label) = "" || LANGMATCHES(LANG(?label), "en"))
+                    FILTER(LANG(?description) = "" || LANGMATCHES(LANG(?description), "en"))
                  } ORDER BY DESC(?pd)
+        `;
+    }
+    getResourcesByClass(classUri) {
+        return `
+            SELECT DISTINCT ?uri (SAMPLE(?label) as ?label) WHERE {
+                ?uri a ?sc .
+                ?sc rdfs:subClassOf* <${classUri}> .
+                ?uri rdfs:label ?label .
+            }
+        `;
+    }
+    getPatternsByClass(classUri) {
+        return `
+        PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+            SELECT DISTINCT ?uri ?label WHERE {
+                <${classUri}> opla:isNativeTo ?uri .
+                ?uri rdfs:label ?label .
+            }
         `;
     }
 }

@@ -395,7 +395,7 @@ class Datasets extends React.Component {
                                 <span className="ui big black circular label">
                                     {dss.length}
                                 </span>{' '}
-                                Datasets
+                                Knowledge Graphs
                             </h2>
                             {this.props.DatasetsStore.datasetsList.length >
                             7 ? (

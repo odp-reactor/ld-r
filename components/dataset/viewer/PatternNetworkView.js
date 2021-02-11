@@ -10,6 +10,7 @@ import cleanInstances from '../../../actions/cleanInstances';
 import PatternStore from '../../../stores/PatternStore';
 import { navigateAction } from 'fluxible-router';
 import CustomLoader from '../../CustomLoader';
+import NavbarHider from './NavbarHider';
 import { forEach, filter } from 'lodash';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
@@ -25,12 +26,14 @@ export default class PatternNetworkView extends React.Component {
         // this should be moved global if ali explain how to retireve
         // sparql endpoint associated to dataset else
         // we need to write the code ourselves what the fuck
-        const sparqlEndpoint = 'http://arco.istc.cnr.it/visualPatterns/sparql';
+        // BUT it's a simple query to dynamic endpoint
+        const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
         this.classService = new ClassService(new DbContext(sparqlEndpoint));
         //
         this.state = {
             classesWithPatternsAndScores: null
         };
+        this.navbarHider = new NavbarHider();
     }
 
     componentDidMount() {
@@ -39,34 +42,11 @@ export default class PatternNetworkView extends React.Component {
     }
 
     componentDidUpdate() {
-        const nav = document.getElementById('navbar');
-        nav.classList.add('hidden-navbar');
-        nav.classList.add('absolute-navbar');
-        const navIcon = document.getElementById('nav-open');
-        navIcon.classList.remove('hidden-nav-open');
-        nav.addEventListener('mouseleave', this.hideNavbarListener);
-        navIcon.addEventListener('mouseover', this.openNavbarListener);
+        this.navbarHider.hideNavbarAndAddShowOnOverListener();
     }
 
     componentWillUnmount() {
-        const nav = document.getElementById('navbar');
-        nav.classList.remove('hidden-navbar');
-        nav.classList.remove('absolute-navbar');
-        const navIcon = document.getElementById('nav-open');
-        navIcon.removeEventListener('mouseover', this.openNavbarListener);
-        nav.removeEventListener('mouseleave', this.hideNavbarListener);
-    }
-
-    openNavbarListener() {
-        const nav = document.getElementById('navbar');
-        nav.classList.remove('hidden-navbar');
-    }
-
-    hideNavbarListener() {
-        const nav = document.getElementById('navbar');
-        nav.classList.add('hidden-navbar');
-        const navIcon = document.getElementById('nav-open');
-        navIcon.classList.remove('hidden-nav-open');
+        this.navbarHider.showNavbarAndRemoveShowOnOverListener();
     }
 
     fetchData() {
@@ -91,8 +71,6 @@ export default class PatternNetworkView extends React.Component {
             this.classService
                 .findClassesWithPatternsAndScores()
                 .then(classesWithPatternsAndScores => {
-                    console.log('classes with patterns');
-                    console.log(classesWithPatternsAndScores);
                     this.setState({
                         classesWithPatternsAndScores: classesWithPatternsAndScores
                     });
@@ -124,8 +102,6 @@ export default class PatternNetworkView extends React.Component {
 
             // add pattern resource to kg
             forEach(patterns, p => {
-                console.log('Pattern uris');
-                console.log(p.pattern);
                 const patternResource = Resource.create({
                     uri: p.pattern,
                     label: p.label,
@@ -135,7 +111,7 @@ export default class PatternNetworkView extends React.Component {
                         occurences: p.occurences,
                         graphinProperties: {
                             onNodeOverTooltip: model => {
-                                return `<span class="g6-tooltip-title">Pattern Name</span>:<span class="g6-tooltip-text">${model.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.description}</span><br/><span class="g6-tooltip-title">Occurrences</span>:<span class="g6-tooltip-text">${model.data.occurences}</span><br/><span class="g6-tooltip-title">Data</span>:<span class="g6-tooltip-text">${model.data.graphinProperties.dataInfo}</span><br/><span class="g6-tooltip-dblclick">Double click to view instances...</span>`;
+                                return `<span class="g6-tooltip-title">Pattern Name</span>:<span class="g6-tooltip-text">${model.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.graphinProperties.dataInfo}</span><br/><span class="g6-tooltip-title">Occurrences</span>:<span class="g6-tooltip-text">${model.data.occurences}</span><br/><span class="g6-tooltip-dblclick">Double click to view instances...</span>`;
                             },
                             graphinPatternNodeDoubleClick: () => {
                                 if (p.occurences !== '0') {
@@ -202,49 +178,11 @@ export default class PatternNetworkView extends React.Component {
                 });
                 kg.addResource(patternResource);
             });
-            // add relations between pattern to kg
-            // forEach(patterns, p => {
-            //     const patternResource = Resource.create({
-            //         uri: p.pattern
-            //     });
-            //     if (p.components !== "") {
-            //         let components = p.components.split(";");
-            //         forEach(components, c => {
-            //             const componentResource = Resource.create({
-            //                 uri: c
-            //             });
-            //             const propertyResource = Resource.create({
-            //                 label: "has component"
-            //             });
-            //             kg.addTriple(
-            //                 patternResource,
-            //                 propertyResource,
-            //                 componentResource
-            //             );
-            //         });
-            //     }
-            //     if (p.superPatterns !== "") {
-            //         let supers = p.superPatterns.split(";");
-            //         forEach(supers, s => {
-            //             const superResource = Resource.create({
-            //                 uri: s
-            //             });
-            //             const propertyResource = Resource.create({
-            //                 label: "is a special case of"
-            //             });
-            //             kg.addTriple(
-            //                 patternResource,
-            //                 propertyResource,
-            //                 superResource
-            //             );
-            //         });
-            //     }
-            // });
             // add classes resources to kg and relation with patterns
             forEach(classes, c => {
                 const classResource = Resource.create({
                     uri: c.uri,
-                    label: c.uri, // to be changed
+                    label: c.label, // to be changed
                     description: c.description,
                     properties: {
                         type: 'Class',
@@ -255,15 +193,11 @@ export default class PatternNetworkView extends React.Component {
                             },
                             graphinPatternNodeDoubleClick: () => {
                                 console.log('Navigate to resource screen');
-                                // this.context.executeAction(navigateAction, {
-                                // url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
-                                //     this.props.datasetURI
-                                // )}/patterns/${encodeURIComponent(
-                                //     p.pattern
-                                // )}/color/${encodeURIComponent(
-                                //     "noColor"
-                                // )}`
-                                // });
+                                this.context.executeAction(navigateAction, {
+                                    url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+                                        this.props.datasetURI
+                                    )}/classes/${encodeURIComponent(c.uri)}`
+                                });
                             },
                             shape: 'diamond',
                             type: 'diamond',
@@ -298,24 +232,17 @@ export default class PatternNetworkView extends React.Component {
                                 }
                             ],
                             listItemClick: () => {
-                                console.log(
-                                    'lIST ITEM CLICK NAVIGATE TO CLASS'
-                                );
-                                // this.context.executeAction(navigateAction, {
-                                //     url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
-                                //         this.props.datasetURI
-                                //     )}/patterns/${encodeURIComponent(
-                                //         p.pattern
-                                //     )}/color/removeThis`
-                                // });
+                                this.context.executeAction(navigateAction, {
+                                    url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+                                        this.props.datasetURI
+                                    )}/classes/${encodeURIComponent(c.uri)}`
+                                });
                             }
                         }
                     }
                 });
                 kg.addResource(classResource);
                 const relatedPattern = kg.getResource(c.pattern);
-                console.log('classPattern');
-                console.log(c.pattern);
                 if (relatedPattern) {
                     const classPatternRelation = Resource.create({
                         label: 'involves'
@@ -436,12 +363,12 @@ dataInfoMap['http://www.ontologydesignpatterns.org/cp/owl/time-interval'] =
 dataInfoMap[
     'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
 ] =
-    'Explore the instances of the pattern to view data relative to measurements collected about a cultural property.';
+    'Cultural properties described through collections of measurements e.g. dimensional measures. Explore this view to see the data about measurements collected for a cultural property.';
 dataInfoMap[
     'https://w3id.org/arco/ontology/location/cultural-property-component-of'
 ] =
-    'Explore the instances of this pattern to get information about a complex cultural property and components it\'s made by.';
+    'Cultural Properties and their components. Explore this view to see the data about a complex cultural property and components it\'s made by.';
 dataInfoMap[
     'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
 ] =
-    'Explore instances of this pattern to get information about the location of a cultural property and the time period since it is in that location or where it was in the past.';
+    'Locations of cultural properties at a certain time and with a specific location (e.g Current Location). Explore this view to see the data about the location of a cultural property and the time period since it is in that location or where it was in the past.';

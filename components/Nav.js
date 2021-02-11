@@ -169,7 +169,7 @@ class Nav extends React.Component {
                             About {appShortTitle}{' '}
                         </a>
                         <a className="item" href={`${PUBLIC_URL}/datasets`}>
-                            Datasets
+                            Knowledge Graphs
                         </a>
                         <div className="right menu">
                             <div
