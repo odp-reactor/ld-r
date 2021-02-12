@@ -61,16 +61,8 @@ export default class ClassInstances extends React.Component {
     }
 
     render() {
-        let exploreClassOnListItemClick;
+        let exploreResourceOnListItemClick;
         if (this.props.RouteStore._currentNavigate) {
-            // HERE WE NEED A NEW COMPONENT RESOURCE WITH PATTERN VIEWS
-            exploreClassOnListItemClick = resourceUri => {
-                this.context.executeAction(navigateAction, {
-                    url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
-                        this.props.RouteStore._currentNavigate.route.params.did
-                    )}/resource/${encodeURIComponent(resourceUri)}`
-                });
-            };
         }
         const classURI = this.props.RouteStore._currentNavigate.route.params
             .cid;
@@ -87,6 +79,7 @@ export default class ClassInstances extends React.Component {
             const { resources, patterns } = this.state;
 
             forEach(resources, resource => {
+                console.log('URI:', resource.uri);
                 const resourceKG = resourceFactory.makeResource({
                     uri: resource.uri,
                     label: resource.label, // label: `${resource.label.substring(0, 50)}...`,
@@ -99,7 +92,18 @@ export default class ClassInstances extends React.Component {
                                 }
                             ],
                             listItemClick: () => {
-                                exploreResourceOnListItemClick(resource.uri);
+                                console.log(
+                                    'CLICKED LIST ITEM: uri ',
+                                    resource.uri
+                                );
+                                this.context.executeAction(navigateAction, {
+                                    url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
+                                        this.props.RouteStore._currentNavigate
+                                            .route.params.did
+                                    )}/resource/${encodeURIComponent(
+                                        resource.uri
+                                    )}`
+                                });
                             },
                             listTitle: classURI
                         }

@@ -26,4 +26,9 @@ export default class ClassService {
             patterns: patterns
         };
     }
+    async findAllPatternInstancesWithTypeByResource(resourceUri) {
+        return this.classRepository.findAllPatternInstancesWithTypeByResource(
+            resourceUri
+        );
+    }
 }

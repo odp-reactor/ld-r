@@ -44,4 +44,13 @@ export default class ClassQuery {
             }
         `;
     }
+    getPatternInstancesWithTypeByResource(resourceUri) {
+        return `
+        PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+            SELECT DISTINCT ?uri ?type WHERE {
+                <${resourceUri}> opla:belongsToPatternInstance ?uri .
+                ?uri opla:isPatternInstanceOf ?type .
+            }
+        `;
+    }
 }

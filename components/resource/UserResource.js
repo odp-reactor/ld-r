@@ -13,6 +13,7 @@ class UserResource extends React.Component {
         super(props);
     }
     componentDidMount() {
+        console.log('USER RESOURCEEE');
         //scroll to top of the page
         if (this.props.config && this.props.config.readOnly) {
             scrollToTop();

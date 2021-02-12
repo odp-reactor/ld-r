@@ -23,17 +23,37 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
  * @class Collection
  * @extends {React.Component}
  */
+
+import PatternService from '../../../services/clientside-services/PatternService';
+import DbContext from '../../../services/base/DbContext';
+
 class PartWholeView extends React.Component {
     constructor(props) {
         super(props);
+        const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
+        this.patternService = new PatternService(new DbContext(sparqlEndpoint));
+        //
+        this.state = {
+            culturalPropertyWithParts: null
+        };
     }
 
     componentDidMount() {
-        fetchInstanceData(this.props, this.context);
+        if (!this.state.culturalPropertyWithParts) {
+            this.patternService
+                .findCulturalPropertyWithParts(this.props.patternInstanceUri)
+                .then(culturalPropertyWithParts => {
+                    console.log('C prop and parts QUERY RESULT:');
+                    console.log(culturalPropertyWithParts);
+                    this.setState({
+                        culturalPropertyWithParts: culturalPropertyWithParts
+                    });
+                });
+        }
     }
 
     render() {
-        let data = this.props.data.instanceData.cPropComponentOf;
+        let data = this.state.culturalPropertyWithParts;
 
         const PartWhole = require('odp-reactor').PartWhole;
 
@@ -72,22 +92,25 @@ class PartWholeView extends React.Component {
                             parts={parts}
                             whole={whole}
                             onResourceClick={getResource}
-                        ></PartWhole>
-                    </div>
-                    <div style={{ marginTop: 50, marginBottom: 50 }}>
-                        <PropertyValueList
-                            properties={propertyList}
-                            label={true}
                         />
                     </div>
+                    {this.props.showPropertyValueList && (
+                        <div style={{ marginTop: 50, marginBottom: 50 }}>
+                            <PropertyValueList
+                                properties={propertyList}
+                                label={true}
+                            />
+                        </div>
+                    )}
                 </div>
             );
         } else {
-            return (
-                <div style={{ textAlign: 'center' }}>
-                    <CustomLoader></CustomLoader>
-                </div>
-            );
+            return null;
+
+            //     <div style={{ textAlign: 'center' }}>
+            //         <CustomLoader></CustomLoader>
+            //     </div>
+            // );
         }
     }
 }

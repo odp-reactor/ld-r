@@ -24,20 +24,46 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
  * @class Collection
  * @extends {React.Component}
  */
+
+import PatternService from '../../../services/clientside-services/PatternService';
+import DbContext from '../../../services/base/DbContext';
+
 class CollectionView extends React.Component {
     constructor(props) {
         super(props);
+        const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
+        this.patternService = new PatternService(new DbContext(sparqlEndpoint));
+        //
+        this.state = {
+            culturalPropertyWithMeasurements: null
+        };
     }
 
     componentDidMount() {
-        fetchInstanceData(this.props, this.context);
+        if (!this.state.culturalPropertyWithMeasurements) {
+            this.patternService
+                .findCulturalPropertyWithMeasurements(
+                    this.props.patternInstanceUri
+                )
+                .then(culturalPropertyWithMeasurements => {
+                    console.log('MEASUREMENTS QUERY RESULT:');
+                    console.log(culturalPropertyWithMeasurements);
+                    this.setState({
+                        culturalPropertyWithMeasurements: culturalPropertyWithMeasurements
+                    });
+                });
+        }
     }
 
     render() {
+        console.log(
+            'PatternInstanceURI, with this we get data for the instance',
+            this.props.patternInstanceUri
+        );
         const customClasses = {
             entityImage: 'custom-collection-image'
         };
-        let collection = this.props.data.instanceData.collection;
+        let collection = this.state.culturalPropertyWithMeasurements;
 
         // import Collection component from odp-reactor package
         const Collection = require('odp-reactor').Collection;
@@ -59,33 +85,35 @@ class CollectionView extends React.Component {
 
             return (
                 <div>
-                    <div className="property-title">
-                        <div className="ui horizontal list">
-                            <div className="item">
-                                <h3
-                                    style={{
-                                        color: '#4183c4',
-                                        cursor: 'pointer'
-                                    }}
-                                    onClick={() => {
-                                        this.context.executeAction(
-                                            navigateAction,
-                                            {
-                                                url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
-                                                    this.props.dataset
-                                                )}/resource/${encodeURIComponent(
-                                                    collection[0].cProp
-                                                )}`
-                                            }
-                                        );
-                                    }}
-                                >
-                                    {collection[0].cPropLabel}
-                                </h3>
+                    {this.props.showResourceTitle && (
+                        <div className="property-title">
+                            <div className="ui horizontal list">
+                                <div className="item">
+                                    <h3
+                                        style={{
+                                            color: '#4183c4',
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={() => {
+                                            this.context.executeAction(
+                                                navigateAction,
+                                                {
+                                                    url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
+                                                        this.props.dataset
+                                                    )}/resource/${encodeURIComponent(
+                                                        collection[0].cProp
+                                                    )}`
+                                                }
+                                            );
+                                        }}
+                                    >
+                                        {collection[0].cPropLabel}
+                                    </h3>
+                                </div>
                             </div>
+                            <div className="ui dividing header"></div>
                         </div>
-                        <div className="ui dividing header"></div>
-                    </div>
+                    )}
                     <div style={{ display: 'flex', padding: 30 }}>
                         <div style={{ margin: 'auto' }}>
                             <Depiction
@@ -111,20 +139,21 @@ class CollectionView extends React.Component {
                             ></Collection>
                         </div>
                     </div>
-                    <div style={{ marginTop: 50, marginBottom: 50 }}>
-                        <PropertyValueList
-                            properties={propertyList}
-                            label={true}
-                        />
-                    </div>
+                    {this.props.showPropertyValueList && (
+                        <div style={{ marginTop: 50, marginBottom: 50 }}>
+                            <PropertyValueList
+                                properties={propertyList}
+                                label={true}
+                            />
+                        </div>
+                    )}
                 </div>
             );
         } else {
-            return (
-                <div style={{ textAlign: 'center' }}>
-                    <CustomLoader></CustomLoader>
-                </div>
-            );
+            return null;
+            // <div style={{ textAlign: 'center' }}>
+            //     <CustomLoader></CustomLoader>
+            // </div>
         }
     }
 }

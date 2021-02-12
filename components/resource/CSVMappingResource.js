@@ -19,6 +19,7 @@ class CSVMappingResource extends React.Component {
         this.state = { status: 0 };
     }
     componentDidMount() {
+        console.log('CSV MAPPING RESORU');
         //scroll to top of the page
         if (this.props.config && this.props.config.readOnly) {
             scrollToTop();

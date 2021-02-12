@@ -92,7 +92,7 @@ export default class Pattern extends React.Component {
     patternReactor() {
         let patternView = '';
         let patternURI;
-        console.log('pattern reactor');
+        console.log('WHERE THE FUCK IS RESOURCE ?');
         console.log(this.props);
         const [instanceResources, pURI] = this.getInstanceResources(
             this.props.resource,
@@ -121,25 +121,32 @@ export default class Pattern extends React.Component {
             case 'TimeIndexedTypedLocationView':
                 return (
                     <TimeIndexedTypedLocationView
+                        showPropertyValueList={true}
+                        showImageGrid={true}
                         pattern={patternURI}
                         dataset={this.props.datasetURI}
                         instanceResources={instanceResources}
+                        patternInstanceUri={this.props.resource}
                     />
                 );
             case 'CollectionView':
                 return (
                     <CollectionView
+                        showResourceTitle={true}
                         pattern={patternURI}
                         dataset={this.props.datasetURI}
                         instanceResources={instanceResources}
+                        patternInstanceUri={this.props.resource}
                     />
                 );
             case 'PartWholeView':
                 return (
                     <PartWholeView
+                        showPropertyValueList={true}
                         pattern={patternURI}
                         dataset={this.props.datasetURI}
                         instanceResources={instanceResources}
+                        patternInstanceUri={this.props.resource}
                     ></PartWholeView>
                 );
             default:

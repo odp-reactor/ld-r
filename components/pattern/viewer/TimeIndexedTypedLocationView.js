@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
-import fetchInstanceData from './fetchInstanceData';
 import PatternInstanceStore from '../../../stores/PatternInstanceStore';
 import ResourceStore from '../../../stores/ResourceStore';
 import { navigateAction } from 'fluxible-router';
@@ -24,13 +23,35 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
  * @class Collection
  * @extends {React.Component}
  */
+
+import PatternService from '../../../services/clientside-services/PatternService';
+import DbContext from '../../../services/base/DbContext';
+
 class TimeIndexedTypedLocationView extends React.Component {
     constructor(props) {
         super(props);
+        const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
+        this.patternService = new PatternService(new DbContext(sparqlEndpoint));
+        //
+        this.state = {
+            culturalPropertyWithTimeIndexedTypedLocation: null
+        };
     }
 
     componentDidMount() {
-        fetchInstanceData(this.props, this.context);
+        if (!this.state.culturalPropertyWithTimeIndexedTypedLocation) {
+            this.patternService
+                .findCulturalPropertyWithTimeIndexedTypedLocation(
+                    this.props.patternInstanceUri
+                )
+                .then(culturalPropertyWithTimeIndexedTypedLocation => {
+                    console.log('TITL QUERY RESULT:');
+                    console.log(culturalPropertyWithTimeIndexedTypedLocation);
+                    this.setState({
+                        culturalPropertyWithTimeIndexedTypedLocation: culturalPropertyWithTimeIndexedTypedLocation
+                    });
+                });
+        }
     }
 
     render() {
@@ -41,9 +62,7 @@ class TimeIndexedTypedLocationView extends React.Component {
             _______________________________________________________________________
         */
         if (process.env.BROWSER) {
-            console.log('time indexed typed location props');
-            console.log(this.props);
-            if (this.props.data.instanceData.tITLocations) {
+            if (this.state.culturalPropertyWithTimeIndexedTypedLocation) {
                 let TimeIndexedTypedLocation = require('odp-reactor/lib/client-side')
                     .TimeIndexedTypedLocation;
                 let ImageGrid = require('odp-reactor').ImageGrid;
@@ -58,13 +77,16 @@ class TimeIndexedTypedLocationView extends React.Component {
                     });
                 };
 
-                const culturalPropertyURI = this.props.data.instanceData
-                    .tITLocations[0].culturalProperty;
+                const culturalPropertyURI = this.state
+                    .culturalPropertyWithTimeIndexedTypedLocation[0]
+                    .culturalProperty;
 
-                const locationTypeURI = this.props.data.instanceData
-                    .tITLocations[0].locationType;
+                const locationTypeURI = this.state
+                    .culturalPropertyWithTimeIndexedTypedLocation[0]
+                    .locationType;
 
-                let titl = this.props.data.instanceData.tITLocations[0];
+                let titl = this.state
+                    .culturalPropertyWithTimeIndexedTypedLocation[0];
 
                 let propertyList = {};
                 propertyList['Cultural property:'] = {
@@ -100,27 +122,36 @@ class TimeIndexedTypedLocationView extends React.Component {
                         <div style={childStyle}>
                             <TimeIndexedTypedLocation
                                 timeIndexedTypedLocations={
-                                    this.props.data.instanceData.tITLocations
+                                    this.state
+                                        .culturalPropertyWithTimeIndexedTypedLocation
                                 }
                                 onObjectClick={() => {
                                     getResource(culturalPropertyURI);
                                 }}
                             />
                         </div>
-                        <div style={childStyle}>
-                            <ImageGrid resourceURI={culturalPropertyURI} />
-                        </div>
-                        <div style={Object.assign({ margin: 50 }, childStyle)}>
-                            <PropertyValueList properties={propertyList} />
-                        </div>
+                        {this.props.showImageGrid && (
+                            <div style={childStyle}>
+                                <ImageGrid resourceURI={culturalPropertyURI} />
+                            </div>
+                        )}
+                        {this.props.showPropertyValueList && (
+                            <div
+                                style={Object.assign(
+                                    { margin: 50 },
+                                    childStyle
+                                )}
+                            >
+                                <PropertyValueList properties={propertyList} />
+                            </div>
+                        )}
                     </div>
                 );
             } else {
-                return (
-                    <div style={{ textAlign: 'center' }}>
-                        <CustomLoader></CustomLoader>
-                    </div>
-                );
+                return null;
+                // <div style={{ textAlign: 'center' }}>
+                //     <CustomLoader></CustomLoader>
+                // </div>
             }
         } else return null;
     }

@@ -41,4 +41,10 @@ export default class ClassRepository {
         );
         return patterns;
     }
+    async findAllPatternInstancesWithTypeByResource(resourceUri) {
+        const patternInstances = this.genericRepository.fetchByQueryObject(
+            this.classQuery.getPatternInstancesWithTypeByResource(resourceUri)
+        );
+        return patternInstances;
+    }
 }

@@ -6,17 +6,26 @@ import URIUtil from '../utils/URIUtil';
 import cloneResource from '../../actions/cloneResource';
 import deleteResource from '../../actions/deleteResource';
 import { scrollToTop } from '../utils/scrollToTop';
+import loadPatternViewsFromLocalStorage from './loadPatternViewsFromLocalStorage';
+import PatternViewsMosaic from '../pattern/PatternViewsMosaic';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class Resource extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            patternViews: null
+        };
     }
     componentDidMount() {
         //scroll to top of the page
         if (this.props.config && this.props.config.readOnly) {
             scrollToTop();
+        }
+        const patternViews = loadPatternViewsFromLocalStorage();
+        if (patternViews) {
+            this.setState({ patternViews: patternViews });
         }
     }
     handleCloneResource(datasetURI, resourceURI, e) {
@@ -79,6 +88,12 @@ class Resource extends React.Component {
                 readOnly = self.props.config.readOnly;
             }
         }
+
+        // check if one of the property trigger <Pattern />
+        // we don't want <Pattern /> and <PatternMosaic />
+        // in the same screen
+        let isPatternView = true;
+
         //create a list of properties
         let list = this.props.properties.map(function(node, index) {
             //if there was no config at all or it is hidden, do not render the property
@@ -95,6 +110,12 @@ class Resource extends React.Component {
                             configReadOnly = false;
                         }
                     }
+                }
+                if (
+                    node.config.propertyReactor &&
+                    node.config.propertyReactor[0] === 'Pattern'
+                ) {
+                    isPatternView = true;
                 }
                 if (
                     node.propertyURI ===
@@ -243,8 +264,16 @@ class Resource extends React.Component {
                     </div>
                 );
             });
+
             mainDIV = (
                 <div>
+                    {this.state.patternViews && !isPatternView && (
+                        <PatternViewsMosaic
+                            datasetURI={this.props.datasetURI}
+                            resourceURI={this.props.resource}
+                            patternViews={this.state.patternViews}
+                        />
+                    )}
                     <div className="ui top attached tabular menu">
                         {tabsDIV}
                     </div>
@@ -256,6 +285,13 @@ class Resource extends React.Component {
                 <div className="ui segment">
                     <div className="ui grid">
                         <div className="column ui list">
+                            {this.state.patternViews && !isPatternView && (
+                                <PatternViewsMosaic
+                                    datasetURI={this.props.datasetURI}
+                                    resourceURI={this.props.resource}
+                                    patternViews={this.state.patternViews}
+                                />
+                            )}
                             {list}
                             {annotationDIV}
                             {annotationMetaDIV}
