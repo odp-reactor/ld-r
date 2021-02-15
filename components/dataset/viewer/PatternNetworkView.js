@@ -89,6 +89,7 @@ export default class PatternNetworkView extends React.Component {
             const KnowledgeGraph = require('odp-reactor').KnowledgeGraph;
             const Resource = require('odp-reactor').Resource;
             const scaleData = require('odp-reactor').scaleData;
+            const findMinMax = require('odp-reactor').findSliderDomain;
             const ColorGenerator = require('odp-reactor').ColorGenerator;
             const PatternsAndClassesPage = require('odp-reactor')
                 .PatternsAndClassesPage;
@@ -97,6 +98,11 @@ export default class PatternNetworkView extends React.Component {
                 return p.occurences !== '0';
             });
             const classes = this.state.classesWithPatternsAndScores;
+
+            const [minCentralityScore, maxCentralityScore] = findMinMax(
+                classes,
+                'pd'
+            );
 
             const kg = new KnowledgeGraph();
 
@@ -189,10 +195,17 @@ export default class PatternNetworkView extends React.Component {
                         centralityScore: c.pd,
                         graphinProperties: {
                             onNodeOverTooltip: model => {
-                                return `<span class="g6-tooltip-title">Entity</span>:<span class="g6-tooltip-text">${model.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.description}</span><br/><span class="g6-tooltip-title">Relevance</span>:<span class="g6-tooltip-text">${model.data.centralityScore}</span><br/><span class="g6-tooltip-dblclick">Double click to view entities...</span>`;
+                                return `<span class="g6-tooltip-title">Entity</span>:<span class="g6-tooltip-text">${
+                                    model.label
+                                }</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${
+                                    model.data.description
+                                }</span><br/><span class="g6-tooltip-title">Relevance</span>:<span class="g6-tooltip-text">${scaleInto01(
+                                    model.data.centralityScore,
+                                    minCentralityScore,
+                                    maxCentralityScore
+                                )}</span><br/><span class="g6-tooltip-dblclick">Double click to view entities...</span>`;
                             },
                             graphinPatternNodeDoubleClick: () => {
-                                console.log('Navigate to resource screen');
                                 this.context.executeAction(navigateAction, {
                                     url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
                                         this.props.datasetURI
@@ -372,3 +385,7 @@ dataInfoMap[
     'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
 ] =
     'Locations of cultural properties at a certain time and with a specific location (e.g Current Location). Explore this view to see the data about the location of a cultural property and the time period since it is in that location or where it was in the past.';
+
+function scaleInto01(x, min, max) {
+    return (x - min) / (max - min);
+}
