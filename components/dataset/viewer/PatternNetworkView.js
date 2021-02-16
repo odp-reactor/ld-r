@@ -89,6 +89,7 @@ export default class PatternNetworkView extends React.Component {
             const KnowledgeGraph = require('odp-reactor').KnowledgeGraph;
             const Resource = require('odp-reactor').Resource;
             const scaleData = require('odp-reactor').scaleData;
+            const findMinMax = require('odp-reactor').findSliderDomain;
             const ColorGenerator = require('odp-reactor').ColorGenerator;
             const PatternsAndClassesPage = require('odp-reactor')
                 .PatternsAndClassesPage;
@@ -97,6 +98,11 @@ export default class PatternNetworkView extends React.Component {
                 return p.occurences !== '0';
             });
             const classes = this.state.classesWithPatternsAndScores;
+
+            const [minCentralityScore, maxCentralityScore] = findMinMax(
+                classes,
+                'pd'
+            );
 
             const kg = new KnowledgeGraph();
 
@@ -109,10 +115,13 @@ export default class PatternNetworkView extends React.Component {
                     properties: {
                         type: 'Pattern',
                         occurences: p.occurences,
+                        nodeSize: 15,
+                        nodeLabelSize: 20,
+                        nodeColor: 'red',
+                        nodeBorderColor: 'red',
+                        nodeType: 'graphin-circle',
+                        tooltipInfo: dataInfoMap[p.pattern],
                         graphinProperties: {
-                            onNodeOverTooltip: model => {
-                                return `<span class="g6-tooltip-title">Pattern Name</span>:<span class="g6-tooltip-text">${model.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.graphinProperties.dataInfo}</span><br/><span class="g6-tooltip-title">Occurrences</span>:<span class="g6-tooltip-text">${model.data.occurences}</span><br/><span class="g6-tooltip-dblclick">Double click to view instances...</span>`;
-                            },
                             graphinPatternNodeDoubleClick: () => {
                                 if (p.occurences !== '0') {
                                     this.context.executeAction(navigateAction, {
@@ -126,31 +135,14 @@ export default class PatternNetworkView extends React.Component {
                                     });
                                 }
                             },
-                            shape: 'CustomNode',
-                            dataInfo: dataInfoMap[p.pattern],
-                            style: {
-                                /** container 容齐 */
-                                containerWidth: 40,
-                                containerStroke: '#0693E3',
-                                containerFill: '#fff',
-                                /** icon 图标 */
-                                iconSize: 10,
-                                iconFill: '#0693E3',
-                                /** badge 徽标 */
-                                badgeFill: 'red',
-                                badgeFontColor: '#fff',
-                                badgeSize: 10,
-                                /** text 文本 */
-                                fontColor: '#3b3b3b',
-                                fontSize: 20,
-                                /** state */
-                                dark: '#eee'
-                            }
+                            shape: 'CircleNode',
+                            nodeColor: 'red',
+                            nodeBorderColor: 'red'
                         },
                         listProperties: {
                             listKeys: [
                                 {
-                                    label: 'Resources Categories',
+                                    label: 'Classes and Views',
                                     id: 'label'
                                 },
                                 {
@@ -178,6 +170,7 @@ export default class PatternNetworkView extends React.Component {
                 });
                 kg.addResource(patternResource);
             });
+            const displayAlwaysOneClassPerPattern = [];
             // add classes resources to kg and relation with patterns
             forEach(classes, c => {
                 const classResource = Resource.create({
@@ -187,12 +180,17 @@ export default class PatternNetworkView extends React.Component {
                     properties: {
                         type: 'Class',
                         centralityScore: c.pd,
+                        nodeSize: 60,
+                        nodeLabelSize: 20,
+                        nodeType: 'diamond',
+                        nodeLabelPosition: 'bottom',
+                        scaledCentralityScore: scaleInto01(
+                            c.pd,
+                            minCentralityScore,
+                            maxCentralityScore
+                        ),
                         graphinProperties: {
-                            onNodeOverTooltip: model => {
-                                return `<span class="g6-tooltip-title">Entity</span>:<span class="g6-tooltip-text">${model.label}</span></br> <span class="g6-tooltip-title">Description</span>:<span class="g6-tooltip-text">${model.data.description}</span><br/><span class="g6-tooltip-title">Relevance</span>:<span class="g6-tooltip-text">${model.data.centralityScore}</span><br/><span class="g6-tooltip-dblclick">Double click to view entities...</span>`;
-                            },
                             graphinPatternNodeDoubleClick: () => {
-                                console.log('Navigate to resource screen');
                                 this.context.executeAction(navigateAction, {
                                     url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
                                         this.props.datasetURI
@@ -243,9 +241,29 @@ export default class PatternNetworkView extends React.Component {
                 });
                 kg.addResource(classResource);
                 const relatedPattern = kg.getResource(c.pattern);
+                if (
+                    relatedPattern &&
+                    !displayAlwaysOneClassPerPattern.includes(
+                        relatedPattern.getUri()
+                    )
+                ) {
+                    displayAlwaysOneClassPerPattern.push(
+                        relatedPattern.getUri()
+                    );
+                    kg.updateResourceProperty(
+                        classResource.getUri(),
+                        'alwaysVisible',
+                        true
+                    );
+                }
                 if (relatedPattern) {
                     const classPatternRelation = Resource.create({
-                        label: 'involves'
+                        label: 'has View',
+                        properties: {
+                            edgeLabelSize: 20,
+                            edgeWidth: 3,
+                            edgeColor: 'grey'
+                        }
                     });
                     kg.addTriple(
                         classResource,
@@ -260,37 +278,31 @@ export default class PatternNetworkView extends React.Component {
             });
             const rndColors = colors.getColor();
             kg.forEachPattern((resourceURI, attributes) => {
-                const oldGraphinProperties = kg.getResourceProperty(
-                    resourceURI,
-                    'graphinProperties'
-                );
-                const oldGraphinStyle = oldGraphinProperties['style'];
-                let newGraphinProperties = Object.assign(
-                    {},
-                    oldGraphinProperties
-                );
-                let newGraphinStyle = Object.assign({}, oldGraphinStyle);
-                const color = rndColors.next().value;
-                newGraphinStyle.containerFill = color;
-                newGraphinStyle.containerStroke = '#000';
                 if (kg.getResourceProperty(resourceURI, 'occurences')) {
-                    newGraphinStyle.containerWidth = Math.round(
-                        scaleData(
-                            kg.getResourceProperty(resourceURI, 'occurences'),
-                            0,
-                            350,
-                            40,
-                            150
+                    kg.updateResourceProperty(
+                        resourceURI,
+                        'nodeSize',
+                        Math.round(
+                            scaleData(
+                                kg.getResourceProperty(
+                                    resourceURI,
+                                    'occurences'
+                                ),
+                                0,
+                                350,
+                                20,
+                                80
+                            )
                         )
                     );
                 }
-                newGraphinProperties.style = newGraphinStyle;
+                const color = rndColors.next().value;
+                kg.updateResourceProperty(resourceURI, 'nodeColor', color);
                 kg.updateResourceProperty(
                     resourceURI,
-                    'graphinProperties',
-                    newGraphinProperties
+                    'nodeBorderColor',
+                    color
                 );
-                kg.addResourceProperty(resourceURI, 'color', color);
             });
 
             return <PatternsAndClassesPage knowledgeGraph={kg} />;
@@ -326,27 +338,6 @@ PatternNetworkView = connectToStores(
     }
 );
 
-// const Graph = new Graph(this.props.PatternStore.list)
-
-// const nodes = [
-//     {
-//         id: "node_1"
-//     },
-//     {
-//         id: "node_2",
-//         startTime: "1950",
-//         endTime: "1980"
-//     },
-//     {
-//         id: "node_3"
-//     },
-//     {
-//         id: "node_4",
-//         startTime: "1900",
-//         endTime: "2000"
-//     }
-// ];
-
 let dataInfoMap = {};
 dataInfoMap['http://www.ontologydesignpatterns.org/cp/owl/collection'] =
     'Explore the instances to see information about collections of items in this dataset';
@@ -372,3 +363,7 @@ dataInfoMap[
     'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
 ] =
     'Locations of cultural properties at a certain time and with a specific location (e.g Current Location). Explore this view to see the data about the location of a cultural property and the time period since it is in that location or where it was in the past.';
+
+function scaleInto01(x, min, max) {
+    return (x - min) / (max - min);
+}

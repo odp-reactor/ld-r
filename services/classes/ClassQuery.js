@@ -17,6 +17,9 @@ export default class ClassQuery {
         return `PREFIX opla: <http://ontologydesignpatterns.org/opla/>
                 PREFIX arco-gm: <https://w3id.org/arco/graph.measures/>
                 SELECT ?uri (SAMPLE(?label) as ?label) ?description ?pattern ?pd WHERE {
+
+                    ?atLeastOneInstance opla:isPatternInstanceOf ?pattern .
+
                     ?uri opla:isNativeTo ?pattern .
                     ?uri arco-gm:numberOfIncidentEdges ?pd .
                     ?uri rdfs:label ?label .
