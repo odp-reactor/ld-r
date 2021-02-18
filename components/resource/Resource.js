@@ -46,6 +46,7 @@ class Resource extends React.Component {
         e.stopPropagation();
     }
     render() {
+        console.log('Resource component');
         //check erros first
         if (this.props.error) {
             return (

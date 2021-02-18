@@ -9,12 +9,24 @@ export default {
             path: "/sparql",
             endpointType: "virtuoso"
         },
-        "http://arco.istc.cnr.it/ldr/configurations": {
+        default: {
             host: "arco.istc.cnr.it",
             port: 80,
             path: "/visualPatterns/sparql",
             endpointType: "virtuoso"
         },
+        "http://arco.istc.cnr.it/ldr/arco-toy": {
+            host: "arco.istc.cnr.it",
+            port: 80,
+            path: "/visualPatterns/sparql",
+            endpointType: "virtuoso"
+        },
+        // "http://arco.istc.cnr.it/ldr/configurations": {
+        //     host: "arco.istc.cnr.it",
+        //     port: 80,
+        //     path: "/visualPatterns/sparql",
+        //     endpointType: "virtuoso"
+        // },
         "http://dpedia.org/sparql": {
             host: "dbpedia.org",
             port: 80,

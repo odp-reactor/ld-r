@@ -59,12 +59,15 @@ class ResourceReactor extends React.Component {
         let config = this.props.ResourceStore.config;
         let error = this.props.ResourceStore.error;
         let resourceReactor;
+        console.log('resourcestore', this.props.ResourceStore);
+        console.log('config', config);
+        console.log(`[* debug *] properties: ${JSON.stringify(properties)}`);
         if (config && config.resourceReactor) {
             switch (config.resourceReactor[0]) {
                 case 'Resource':
-                    // console.log(
-                    //     `[* debug *] properties: ${JSON.stringify(properties)}`
-                    // );
+                    console.log(
+                        `[* debug *] properties: ${JSON.stringify(properties)}`
+                    );
                     resourceReactor = (
                         <Resource
                             enableAuthentication={enableAuthentication}

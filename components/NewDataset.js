@@ -128,8 +128,11 @@ class NewDataset extends React.Component {
                 <div className="ui warning message">
                     <div className="header">
                         {' '}
-                        Please <a href="/register">Register</a> or{' '}
-                        <a href="/login">Login</a> to see the datasets.
+                        Please <a href={`${PUBLIC_URL}/register`}>
+                            Register
+                        </a>{' '}
+                        or <a href={`${PUBLIC_URL}/login`}>Login</a> to see the
+                        datasets.
                     </div>
                 </div>
             );

@@ -16,12 +16,12 @@ export default class PatternQuery extends SPARQLQuery {
      */
     getPatternList(graphName) {
         let { gStart, gEnd } = this.prepareGraphName(graphName);
-        this.query = `SELECT DISTINCT  ?pattern ?label ?description
-                       (COUNT(DISTINCT ?instance) as ?occurences)  
-                      (GROUP_CONCAT(DISTINCT ?superPattern; SEPARATOR=";") as ?superPatterns)
-                      (GROUP_CONCAT(DISTINCT ?component; SEPARATOR=";") as ?components) WHERE {
-            ${gStart}
-           { SELECT ?pattern ?instance ?label ?description WHERE     {   
+        this.query = `
+                        SELECT DISTINCT  ?pattern ?label ?description
+                        (COUNT(DISTINCT ?instance) as ?occurences)  
+                        (GROUP_CONCAT(DISTINCT ?superPattern; SEPARATOR=";") as ?superPatterns)
+                       (GROUP_CONCAT(DISTINCT ?component; SEPARATOR=";") as ?components) WHERE {
+            { SELECT ?pattern ?instance ?label ?description WHERE     {   
                            #?instance opla:isPatternInstanceOf ?pattern1 .
                            #?pattern1 opla:specializationOfPattern* ?pattern .
                            ?instance opla:isPatternInstanceOf ?pattern .
@@ -44,7 +44,6 @@ export default class PatternQuery extends SPARQLQuery {
             
                        } 
                   }
-            ${gEnd}
         }`;
         return this.query; // TODO: ?pattern rdf:type opla:Pattern (if reasoning available)
     }
@@ -141,13 +140,13 @@ export default class PatternQuery extends SPARQLQuery {
         ] = this.getInstanceInstanceDependentData(id);
         let { gStart, gEnd } = this.prepareGraphName(graphName);
         this.query = `SELECT DISTINCT ?instance ?label ?type ?patternLabel ?patternDescription ?nodes ${instanceDependentVariables} 
-        WHERE {${gStart}?instance opla:isPatternInstanceOf ?type .
+        WHERE {?instance opla:isPatternInstanceOf ?type .
         ?type opla:specializationOfPattern* <${id}> .
         ?type rdfs:label ?patternLabel .
         ?type rdfs:comment ?patternDescription .
             OPTIONAL { SELECT DISTINCT  ?instance (SAMPLE(?label) as ?label)  WHERE {
                 ?instance <http://www.w3.org/2000/01/rdf-schema#label> ?label2B . BIND ( IF (BOUND (?label2B), ?label2B, '')  as ?label) . } } . OPTIONAL{ SELECT DISTINCT ?instance (GROUP_CONCAT(DISTINCT ?nodeType; SEPARATOR=";") AS ?nodes) WHERE { 
- ?instance opla:hasPatternInstanceMember ?node .  OPTIONAL { ?node rdf:type ?typet . } BIND (CONCAT(?node, " ",?typet) AS ?nodeType)} GROUP BY ?instance } ${body} ${gEnd}
+ ?instance opla:hasPatternInstanceMember ?node .  OPTIONAL { ?node rdf:type ?typet . } BIND (CONCAT(?node, " ",?typet) AS ?nodeType)} GROUP BY ?instance } ${body} 
         }`;
         return this.query;
     }

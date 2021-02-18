@@ -20,6 +20,22 @@ export default {
                 datasetReactor: ["PatternNetwork"],
                 datasetViewer: ["PatternNetwork"]
             },
+            "http://arco.istc.cnr.it/ldr/arco-toy": {
+                resourceFocusType: [],
+                //only allow to view data -> disable edit
+                readOnly: 1,
+                //used for pagination in resource list
+                maxNumberOfResourcesOnPage: 20,
+                allowResourceNew: 1,
+                allowResourceDelete: 0,
+                allowResourceClone: 0,
+                allowPropertyNew: 1,
+                allowPropertyDelete: 0,
+                //datasetReactor: ["Dataset"],
+                //datasetViewer: ["BasicResourceList"]
+                datasetReactor: ["PatternNetwork"],
+                datasetViewer: ["PatternNetwork"]
+            },
             "http://virtuoso.local/users": {
                 readOnly: 1,
                 resourceFocusType: [
