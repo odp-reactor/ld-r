@@ -27,8 +27,7 @@ export default class ClassInstances extends React.Component {
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
         this.classService = new ClassService(new DbContext(sparqlEndpoint));
         this.state = {
-            resources: null,
-            patterns: null
+            resourcesWithPatternInstances: null
         };
     }
 
@@ -40,13 +39,14 @@ export default class ClassInstances extends React.Component {
         const classURI = this.props.RouteStore._currentNavigate.route.params
             .cid;
 
-        if (!this.state.classWithPatterns) {
+        if (!this.state.resourcesWithPatternInstances) {
             if (datasetURI && classURI) {
                 this.classService
-                    .findResourcesByClassWithPatterns(classURI)
-                    .then(resourcesWithPatterns => {
-                        console.log(resourcesWithPatterns);
-                        this.setState(resourcesWithPatterns);
+                    .findResourcesByClassWithPatternInstancesTheyBelongsTo(
+                        classURI
+                    )
+                    .then(resourcesWithPatternInstances => {
+                        this.setState(resourcesWithPatternInstances);
                     });
             }
         }
@@ -67,23 +67,38 @@ export default class ClassInstances extends React.Component {
         const classURI = this.props.RouteStore._currentNavigate.route.params
             .cid;
 
-        if (this.state.resources && this.state.patterns) {
+        console.log(
+            'resourcesWithPatternInstances',
+            this.state.resourcesWithPatternInstances
+        );
+
+        if (this.state.resourcesWithPatternInstances) {
             const KnowledgeGraph = require('odp-reactor').KnowledgeGraph;
             const ResourceFactory = require('odp-reactor').ResourceFactory;
-            const ResourcesWithViewControllerPage = require('odp-reactor')
-                .ResourcesWithViewControllerPage;
+            const ResourcesPage = require('odp-reactor').ResourcesPage;
 
             const kg = new KnowledgeGraph();
             const resourceFactory = new ResourceFactory();
 
-            const { resources, patterns } = this.state;
+            const { resourcesWithPatternInstances } = this.state;
+            const resources = resourcesWithPatternInstances;
 
             forEach(resources, resource => {
-                console.log('URI:', resource.uri);
+                let patternInstancesUriStringified = '';
+                if (resource.patternInstances) {
+                    resource.patternInstances.forEach(
+                        (patternInstance, index) => {
+                            patternInstancesUriStringified += `${
+                                index !== 0 ? '|' : ''
+                            }${patternInstance.uri}`;
+                        }
+                    );
+                }
                 const resourceKG = resourceFactory.makeResource({
                     uri: resource.uri,
                     label: resource.label, // label: `${resource.label.substring(0, 50)}...`,
                     properties: {
+                        patternInstances: resource.patternInstances,
                         listProperties: {
                             listKeys: [
                                 {
@@ -97,11 +112,13 @@ export default class ClassInstances extends React.Component {
                                     resource.uri
                                 );
                                 this.context.executeAction(navigateAction, {
-                                    url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
+                                    url: `${PUBLIC_URL}/patterns/dataset/${encodeURIComponent(
                                         this.props.RouteStore._currentNavigate
                                             .route.params.did
                                     )}/resource/${encodeURIComponent(
                                         resource.uri
+                                    )}/${encodeURIComponent(
+                                        patternInstancesUriStringified
                                     )}`
                                 });
                             },
@@ -113,7 +130,7 @@ export default class ClassInstances extends React.Component {
                 kg.addResource(resourceKG);
             });
 
-            return <ResourcesWithViewControllerPage knowledgeGraph={kg} />;
+            return <ResourcesPage knowledgeGraph={kg} classUri={classURI} />;
         } else {
             const datasetContainerStyle = {
                 height: '90vh',

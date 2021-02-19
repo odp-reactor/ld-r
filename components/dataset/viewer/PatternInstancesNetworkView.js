@@ -93,6 +93,10 @@ export default class PatternInstancesNetworkView extends React.Component {
                 .PatternInstancesPage;
 
             const instances = this.props.PatternStore.instances;
+            console.log('Get type from instances');
+            console.log(instances);
+
+            const patternType = instances[0].type;
 
             const kg = new KnowledgeGraph();
             const resourceFactory = new ResourceFactory();
@@ -199,7 +203,12 @@ export default class PatternInstancesNetworkView extends React.Component {
                 kg.addResource(instanceResource);
             });
 
-            return <PatternInstancesPage knowledgeGraph={kg} />;
+            return (
+                <PatternInstancesPage
+                    knowledgeGraph={kg}
+                    patternTypeUri={patternType}
+                />
+            );
         } else {
             const datasetContainerStyle = {
                 height: '90vh',

@@ -11,6 +11,16 @@ export default class PatternQuery {
         PREFIX a-dd: <https://w3id.org/arco/ontology/denotative-description/>
         `;
     }
+    getPatternWithLabel(patternInstanceUri) {
+        return `
+        PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+
+        SELECT DISTINCT ?type (SAMPLE(?label) as ?typeLabel) WHERE {
+            <${patternInstanceUri}> opla:isPatternInstanceOf ?type .
+            ?type rdfs:label ?label .
+         }
+        `;
+    }
     getCulturalPropertyWithTimeIndexedTypedLocation(patternURI) {
         return `
             ${this.prefixes()}

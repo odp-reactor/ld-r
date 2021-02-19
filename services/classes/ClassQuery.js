@@ -29,15 +29,25 @@ export default class ClassQuery {
                  } ORDER BY DESC(?pd)
         `;
     }
-    getResourcesByClass(classUri) {
-        return `
-            SELECT DISTINCT ?uri (SAMPLE(?label) as ?label) WHERE {
+    getResourcesByClassWithPatternInstancesTheyBelongsTo(classUri) {
+        return `PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+
+            SELECT DISTINCT ?uri (SAMPLE(?label) as ?label) (GROUP_CONCAT(DISTINCT ?patternInstanceWithTypeAndTypeLabel; SEPARATOR="|") AS ?belongsToPatternInstances) WHERE {
                 ?uri a ?sc .
                 ?sc rdfs:subClassOf* <${classUri}> .
                 ?uri rdfs:label ?label .
+                
+                OPTIONAL
+                  {
+                    ?uri opla:belongsToPatternInstance ?patternInstance .
+                    ?patternInstance a ?pattern .
+                    ?pattern rdfs:label ?patternLabel.
+                    BIND (CONCAT(?patternInstance, ';' , ?pattern, ';' , ?patternLabel ) AS ?patternInstanceWithTypeAndTypeLabel)
+                  }            
             }
         `;
     }
+
     getPatternsByClass(classUri) {
         return `
         PREFIX opla: <http://ontologydesignpatterns.org/opla/>

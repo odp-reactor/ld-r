@@ -46,8 +46,6 @@ class CollectionView extends React.Component {
                     this.props.patternInstanceUri
                 )
                 .then(culturalPropertyWithMeasurements => {
-                    console.log('MEASUREMENTS QUERY RESULT:');
-                    console.log(culturalPropertyWithMeasurements);
                     this.setState({
                         culturalPropertyWithMeasurements: culturalPropertyWithMeasurements
                     });
@@ -56,13 +54,6 @@ class CollectionView extends React.Component {
     }
 
     render() {
-        console.log(
-            'PatternInstanceURI, with this we get data for the instance',
-            this.props.patternInstanceUri
-        );
-        const customClasses = {
-            entityImage: 'custom-collection-image'
-        };
         let collection = this.state.culturalPropertyWithMeasurements;
 
         // import Collection component from odp-reactor package
@@ -114,14 +105,21 @@ class CollectionView extends React.Component {
                             <div className="ui dividing header"></div>
                         </div>
                     )}
-                    <div style={{ display: 'flex', padding: 30 }}>
+                    <div
+                        style={{
+                            display: 'flex',
+                            padding: 30,
+                            width: '100%',
+                            margin: 'auto'
+                        }}
+                    >
                         <div style={{ margin: 'auto' }}>
                             <Depiction
                                 uri={collection[0].cProp}
-                                style={{ maxHeight: 500 }}
+                                style={this.props.styles.depiction}
                             />
                         </div>
-                        <div style={{ margin: 'auto' }}>
+                        <div style={{ margin: 'auto', marginLeft: 30 }}>
                             <Collection
                                 members={collection.map(member => {
                                     return {
@@ -135,7 +133,10 @@ class CollectionView extends React.Component {
                                             'https://image.flaticon.com/icons/png/512/5/5095.png'
                                     };
                                 })}
-                                classes={customClasses}
+                                styles={
+                                    this.props.styles.collection ||
+                                    defaultCollectionStyle
+                                }
                             ></Collection>
                         </div>
                     </div>
@@ -157,6 +158,12 @@ class CollectionView extends React.Component {
         }
     }
 }
+
+const defaultCollectionStyle = {
+    collectionContainerWidth: {
+        width: '150%' // set this width to 120, 130, 140% to increase padding between items
+    }
+};
 
 CollectionView.contextTypes = {
     executeAction: PropTypes.func.isRequired,

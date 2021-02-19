@@ -1,5 +1,6 @@
 import { appFullTitle } from '../configs/general';
 export default function loadResource(context, payload, done) {
+    console.log('load resource running');
     context.dispatch('LOADING_DATA', {});
     context.service.read(
         'resource.properties',
@@ -24,6 +25,7 @@ export default function loadResource(context, payload, done) {
                         payload.category || ''
             });
             context.dispatch('LOADED_DATA', {});
+            console.log('LOAD RESOURCE ACTION END');
             done();
         }
     );

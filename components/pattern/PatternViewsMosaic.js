@@ -3,90 +3,99 @@ import PartWholeView from './viewer/PartWholeView';
 import TimeIndexedTypedLocationView from './viewer/TimeIndexedTypedLocationView';
 import CollectionView from './viewer/CollectionView';
 
-import ClassService from '../../services/clientside-services/ClassService';
+import PatternService from '../../services/clientside-services/PatternService';
 import DbContext from '../../services/base/DbContext';
+import { clone } from 'lodash';
+import { Grid } from 'semantic-ui-react';
 
 export default class PatternViewsMosaic extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.classService = new ClassService(new DbContext(sparqlEndpoint));
+        this.patternService = new PatternService(new DbContext(sparqlEndpoint));
         //
         this.state = {
-            patternInstances: null
+            patternInstances: []
         };
     }
     componentDidMount() {
-        if (!this.state.patternInstances) {
-            if (this.props.resourceURI) {
-                this.classService
-                    .findAllPatternInstancesWithTypeByResource(
-                        this.props.resourceURI
-                    )
-                    .then(patternInstances => {
-                        console.log(
-                            'MOSAIC: retrieved pattern instances',
-                            patternInstances
+        console.log('Mount start querying');
+
+        if (this.props.patternInstancesUris) {
+            console.log('Mount start querying');
+            this.props.patternInstancesUris.forEach(patternInstanceUri => {
+                this.patternService
+                    .findPattern(patternInstanceUri)
+                    .then(pattern => {
+                        console.log('Pattern result from query:', pattern);
+                        let newPatternInstances = clone(
+                            this.state.patternInstances
                         );
-                        this.setState({ patternInstances: patternInstances });
+                        newPatternInstances.push({
+                            uri: patternInstanceUri,
+                            type: pattern.type,
+                            typeLabel: pattern.typeLabel
+                        });
+                        this.setState({
+                            patternInstances: newPatternInstances
+                        });
                     });
-            }
-        }
-    }
-    componentDidUpdate() {
-        if (!this.state.patternInstances) {
-            if (this.props.resourceURI) {
-                this.classService
-                    .findAllPatternInstancesWithTypeByResource(
-                        this.props.resourceURI
-                    )
-                    .then(patternInstances => {
-                        console.log(
-                            'MOSAIC: retrieved pattern instances',
-                            patternInstances
-                        );
-                        this.setState({ patternInstances: patternInstances });
-                    });
-            }
+            });
         }
     }
     render() {
         console.log('MOSAIC RENDERED');
-        console.log(this.props.resourceURI);
-        if (this.props.patternViews.length === 0) {
+        console.log(this.props);
+        console.log(this.state);
+        if (this.props.patternInstancesUris.length === 0) {
             return null;
         }
-        if (
-            this.state.patternInstances === null ||
-            this.state.patternInstances.length === 0
-        ) {
+        if (this.state.patternInstances.length === 0) {
             return null;
         }
+        let titlCount = 0;
+        let rowCount = 0;
         return (
-            <div
-                className="mosaic-container"
-                style={{
-                    /* display: flex; */
-                    display: 'grid',
-                    /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
-                    gridAutoFlow: 'column',
-                    gridGap: 20,
-                    gridTemplateRows: '50% 50%',
-                    gridTemplateColumns: '50% 50%',
-                    padding: 10
-                }}
-            >
-                {this.state.patternInstances.map(patternInstance => {
+            // <div
+            //     style={{
+            //         /* display: flex; */
+            //         display: "grid",
+            //         /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+            //         gridAutoFlow: "column",
+            //         gridGap: 20,
+            //         gridTemplateRows: "50% 50%",
+            //         gridTemplateColumns: "50% 50%",
+            //         padding: 10,
+            //         rowGap: 80
+            //     }}
+            // >
+            <Grid container stackable columns={2}>
+                {this.state.patternInstances.map((patternInstance, index) => {
                     if (
                         patternInstance.type ===
                         'https://w3id.org/arco/ontology/location/cultural-property-component-of'
                     ) {
                         return (
-                            <PartWholeView
-                                pattern={patternInstance.type}
-                                dataset={this.props.datasetURI}
-                                patternInstanceUri={patternInstance.uri}
-                            />
+                            <Grid.Column key={index}>
+                                <PartWholeView
+                                    pattern={patternInstance.type}
+                                    dataset={this.props.datasetURI}
+                                    patternInstanceUri={patternInstance.uri}
+                                    styles={{
+                                        partWhole: {
+                                            containerStyle: {
+                                                width: 450
+                                            },
+                                            littleItemStyle: {
+                                                width: 100
+                                            },
+                                            centerItemStyle: {
+                                                width: 300
+                                            }
+                                        }
+                                    }}
+                                />
+                            </Grid.Column>
                         );
                     }
                     if (
@@ -94,27 +103,44 @@ export default class PatternViewsMosaic extends React.Component {
                         'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
                     ) {
                         return (
-                            <CollectionView
-                                pattern={patternInstance.type}
-                                dataset={this.props.datasetURI}
-                                patternInstanceUri={patternInstance.uri}
-                            />
+                            <Grid.Column key={index}>
+                                <CollectionView
+                                    pattern={patternInstance.type}
+                                    dataset={this.props.datasetURI}
+                                    patternInstanceUri={patternInstance.uri}
+                                    styles={{
+                                        depiction: {
+                                            width: '100%',
+                                            margin: 'auto'
+                                        },
+                                        collection: {
+                                            collectionContainerWidth: {
+                                                width: '120%' // set this width to 120, 130, 140% to increase padding between items
+                                            }
+                                        }
+                                    }}
+                                />
+                            </Grid.Column>
                         );
                     }
                     if (
                         patternInstance.type ===
-                        'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
+                            'https://w3id.org/arco/ontology/location/time-indexed-typed-location' &&
+                        titlCount === 0
                     ) {
+                        titlCount++;
                         return (
-                            <TimeIndexedTypedLocationView
-                                pattern={patternInstance.type}
-                                dataset={this.props.datasetURI}
-                                patternInstanceUri={patternInstance.uri}
-                            />
+                            <Grid.Column key={index}>
+                                <TimeIndexedTypedLocationView
+                                    pattern={patternInstance.type}
+                                    dataset={this.props.datasetURI}
+                                    patternInstanceUri={patternInstance.uri}
+                                />
+                            </Grid.Column>
                         );
                     }
                 })}
-            </div>
+            </Grid>
         );
         // return this.props.patternViews.map(viewKey => {
         //     if (viewKey === "partWhole") return <PartWholeView />;

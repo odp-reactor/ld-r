@@ -45,8 +45,6 @@ class TimeIndexedTypedLocationView extends React.Component {
                     this.props.patternInstanceUri
                 )
                 .then(culturalPropertyWithTimeIndexedTypedLocation => {
-                    console.log('TITL QUERY RESULT:');
-                    console.log(culturalPropertyWithTimeIndexedTypedLocation);
                     this.setState({
                         culturalPropertyWithTimeIndexedTypedLocation: culturalPropertyWithTimeIndexedTypedLocation
                     });
@@ -116,7 +114,8 @@ class TimeIndexedTypedLocationView extends React.Component {
                         style={{
                             display: 'flex',
                             justifyContent: 'space-evenly',
-                            flexWrap: 'wrap'
+                            flexWrap: 'wrap',
+                            margin: 'auto'
                         }}
                     >
                         <div style={childStyle}>

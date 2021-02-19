@@ -1,4 +1,5 @@
 import ClassRepository from '../classes/ClassRepository';
+import { map } from 'lodash';
 
 export default class ClassService {
     constructor(dbCtx) {
@@ -13,17 +14,38 @@ export default class ClassService {
     async findClassesWithPatternsAndScores() {
         return this.classRepository.findClassesWithPatternsAndScores();
     }
-    async findResourcesByClassWithPatterns(classUri) {
+    async findResourcesByClassWithPatternInstancesTheyBelongsTo(classUri) {
         // here I parse to remove duplicates
-        const resources = await this.classRepository.findResourcesByClass(
+        let resourcesWithPatternInstances = await this.classRepository.findResourcesByClassWithPatternInstancesTheyBelongsTo(
             classUri
         );
-        const patterns = await this.classRepository.findPatternsByClass(
-            classUri
+        resourcesWithPatternInstances = map(
+            resourcesWithPatternInstances,
+            r => {
+                if (r.belongsToPatternInstances === '') {
+                    return {
+                        uri: r.uri,
+                        label: r.label
+                    };
+                }
+                let patternInstances = r.belongsToPatternInstances.split('|');
+                patternInstances = map(patternInstances, patternInstance => {
+                    const [uri, type, typeLabel] = patternInstance.split(';');
+                    return {
+                        uri: uri,
+                        type: type,
+                        typeLabel: typeLabel
+                    };
+                });
+                return {
+                    uri: r.uri,
+                    label: r.label,
+                    patternInstances: patternInstances
+                };
+            }
         );
         return {
-            resources: resources,
-            patterns: patterns
+            resourcesWithPatternInstances: resourcesWithPatternInstances
         };
     }
     async findAllPatternInstancesWithTypeByResource(resourceUri) {

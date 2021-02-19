@@ -29,9 +29,11 @@ export default class ClassRepository {
         );
         return classesWithPatternsAndScores;
     }
-    async findResourcesByClass(classUri) {
+    async findResourcesByClassWithPatternInstancesTheyBelongsTo(classUri) {
         const resources = this.genericRepository.fetchByQueryObject(
-            this.classQuery.getResourcesByClass(classUri)
+            this.classQuery.getResourcesByClassWithPatternInstancesTheyBelongsTo(
+                classUri
+            )
         );
         return resources;
     }

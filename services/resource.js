@@ -70,7 +70,7 @@ export default {
     read: (req, resource, params, config, callback) => {
         if (resource === 'resource.properties') {
             console.log('[*] Resource.properties reuqest');
-            console.log(req);
+            console.log('req');
             category = params.category;
             //SPARQL QUERY
             datasetURI =
@@ -78,6 +78,8 @@ export default {
                     ? decodeURIComponent(params.dataset)
                     : 0;
             //control access on authentication
+            console.log('dataset uri', datasetURI);
+
             if (enableAuthentication) {
                 if (!req.user) {
                     callback(null, {
@@ -99,6 +101,8 @@ export default {
             }
             //graph name used for server settings and configs
 
+            console.log('BEFORE EXECUTING GET DYNAMIC ENDPOINT PARAMS');
+            console.log('params', params);
             getDynamicEndpointParameters(
                 user,
                 datasetURI,

@@ -46,7 +46,7 @@ class Datasets extends React.Component {
     }
     handleCreateDataset() {
         this.context.executeAction(navigateAction, {
-            url: '/newDataset'
+            url: `${PUBLIC_URL}/newDataset`
         });
     }
     displayResource() {
@@ -55,9 +55,9 @@ class Datasets extends React.Component {
             this.refs.datasetURI
         ).value.trim();
         let output =
-            '/dataset/' +
+            `${PUBLIC_URL}/dataset/` +
             encodeURIComponent(datasetURI) +
-            '/resource/' +
+            `${PUBLIC_URL}/resource/` +
             encodeURIComponent(resourceURI);
         if (resourceURI) {
             this.context.executeAction(navigateAction, {

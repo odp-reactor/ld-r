@@ -27,4 +27,11 @@ export default class PatternRepository {
             this.patternQuery.getCulturalPropertyWithParts(patternURI)
         );
     }
+    async findPattern(patternInstanceUri) {
+        let pattern = await this.genericRepository.fetchByQueryObject(
+            this.patternQuery.getPatternWithLabel(patternInstanceUri)
+        );
+        console.log('Find pattern', pattern);
+        return pattern[0];
+    }
 }

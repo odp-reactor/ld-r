@@ -17,4 +17,7 @@ export default class PatternService {
             patternUri
         );
     }
+    async findPattern(patternInstanceUri) {
+        return this.patternRepository.findPattern(patternInstanceUri);
+    }
 }

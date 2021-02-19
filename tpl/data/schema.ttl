@@ -18,14 +18,14 @@ odp-pat:hasPart  owl:inverseOf  odp-pat:isPartOf .
 
 odp-pat:part-of  a    opla:Pattern ;
         rdfs:comment  "The pattern represents entities and their parts i.e., part-whole relations, with transitivity." ;
-        rdfs:label    "Part Of" .
+        rdfs:label    "Objects and their parts" .
 
 a-dd:hasMeasurement  rdfs:domain  a-dd:MeasurementCollection ;
         rdfs:range   a-dd:Measurement .
 
 odp-pat:collection  a  opla:Pattern ;
         rdfs:comment  "The pattern is a basic one: it catches the idea of a collection and its members. It represents a collection and members of a collection." ;
-        rdfs:label    "Collection" .
+        rdfs:label    "Collections and their members" .
 
 arco:hasCulturalPropertyComponent
         rdfs:subPropertyOf  odp-pat:hasPart ;
@@ -62,7 +62,7 @@ owl:Thing  rdfs:domain  odp-pat:hasPart , odp-pat:isPartOf ;
 a-dd:measurement-collection
         a                             opla:Pattern ;
         rdfs:comment                  "The pattern represents measurement collection for a cultural property. Types of measurement are height, width, length, weight..." ;
-        rdfs:label                    "Cultural Property Measurements" ;
+        rdfs:label                    "Collections of cultural property measures" ;
         opla:specializationOfPattern  odp-pat:collection .
 
 odp-pat:isSettingFor  owl:inverseOf  odp-pat:hasSetting .
@@ -70,7 +70,7 @@ odp-pat:isSettingFor  owl:inverseOf  odp-pat:hasSetting .
 a-loc:cultural-property-component-of
         a                             opla:Pattern ;
         rdfs:comment                  "The pattern represents complex cultural properties and components of them. For example it may represent a building (like a church) and its architectural elements. Or a painting and details of it." ;
-        rdfs:label                    "Cultural Property Components" ;
+        rdfs:label                    "Cultural properties and their parts" ;
         opla:specializationOfPattern  odp-pat:part-of .
 
 <https://w3id.org/italia/onto/TI/hasIntervalEndDate>
@@ -96,7 +96,7 @@ odp-pat:isTimeIndexFor
 odp-pat:time-indexed-situation
         a                             opla:Pattern ;
         rdfs:comment                  "The pattern represents time indexed situations. It describes situations, things involved and the time interval in which the situation occurred. This pattern adds a time specification (the time interval pattern) to the situation pattern." ;
-        rdfs:label                    "Time Indexed Situation" ;
+        rdfs:label                    "Involvement in situations at a certain time" ;
         opla:specializationOfPattern  odp-pat:situation .
 
 odp-pat:TimeIndexedSituation
@@ -114,10 +114,10 @@ a-loc:TimeIndexedTypedLocation
 
 a-loc:time-indexed-typed-location
         a                             opla:Pattern ;
-        rdfs:comment                  "The pattern represents locations of a cultural property in a given time interval. Locations have a specified type like 'current location' or 'previous location'." ;
-        rdfs:label                    "Cultural Property Locations" ;
+        rdfs:comment                  "The pattern represents locations of a cultural property at a specified time interval. Locations have a specified type like 'current location' or 'previous location'." ;
+        rdfs:label                    "Locations of cultural properties at a certain time" ;
         opla:specializationOfPattern  odp-pat:time-indexed-situation .
 
 odp-pat:situation  a  opla:Pattern ;
         rdfs:comment  "The pattern represents contexts or situations, and the things that are contextualized." ;
-        rdfs:label    "Situation" .
+        rdfs:label    "Involvement in situations" .
