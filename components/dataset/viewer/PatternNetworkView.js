@@ -310,7 +310,7 @@ export default class PatternNetworkView extends React.Component {
             return (
                 <PatternsAndClassesPage
                     knowledgeGraph={kg}
-                    knowledgeGraphUri={datasetURI}
+                    knowledgeGraphUri={this.props.datasetURI}
                 />
             );
         } else {

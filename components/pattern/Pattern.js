@@ -137,6 +137,11 @@ export default class Pattern extends React.Component {
                         dataset={this.props.datasetURI}
                         instanceResources={instanceResources}
                         patternInstanceUri={this.props.resource}
+                        styles={{
+                            depiction: {
+                                maxHeight: 500
+                            }
+                        }}
                     />
                 );
             case 'PartWholeView':

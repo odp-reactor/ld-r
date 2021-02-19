@@ -206,7 +206,7 @@ export default class PatternInstancesNetworkView extends React.Component {
             return (
                 <PatternInstancesPage
                     knowledgeGraph={kg}
-                    typeUri={patternType}
+                    patternTypeUri={patternType}
                 />
             );
         } else {

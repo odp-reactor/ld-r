@@ -199,6 +199,41 @@ export default {
             );
         }
     },
+    resourcePatterns: {
+        path: `${PUBLIC_URL}/patterns/dataset/:did/:resource/:rid/:patternIds`,
+        method: "get",
+        handler: require("../components/reactors/ResourceReactor"),
+        label: "ResourcePatterns",
+        action: (context, payload, done) => {
+            console.log(
+                "resourcePatternsRoute patternIds: ",
+                payload.params.patternIds
+            );
+            //predicate Category
+            let category = payload.params.pcategory;
+            if (!category) {
+                category = 0;
+            }
+            let propertyPath = payload.params.propertyPath;
+            if (!propertyPath) {
+                propertyPath = [];
+            }
+            let datasetURI = payload.params.did;
+            if (!datasetURI) {
+                datasetURI = 0;
+            }
+            context.executeAction(
+                loadResource,
+                {
+                    dataset: datasetURI,
+                    resource: payload.params.rid,
+                    category: category,
+                    propertyPath: propertyPath
+                },
+                done
+            );
+        }
+    },
     user: {
         path: `${PUBLIC_URL}/user/:id`,
         method: "get",

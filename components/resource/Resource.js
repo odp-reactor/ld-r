@@ -6,26 +6,19 @@ import URIUtil from '../utils/URIUtil';
 import cloneResource from '../../actions/cloneResource';
 import deleteResource from '../../actions/deleteResource';
 import { scrollToTop } from '../utils/scrollToTop';
-import loadPatternViewsFromLocalStorage from './loadPatternViewsFromLocalStorage';
 import PatternViewsMosaic from '../pattern/PatternViewsMosaic';
+import { connectToStores } from 'fluxible-addons-react';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class Resource extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            patternViews: null
-        };
     }
     componentDidMount() {
         //scroll to top of the page
         if (this.props.config && this.props.config.readOnly) {
             scrollToTop();
-        }
-        const patternViews = loadPatternViewsFromLocalStorage();
-        if (patternViews) {
-            this.setState({ patternViews: patternViews });
         }
     }
     handleCloneResource(datasetURI, resourceURI, e) {
@@ -93,7 +86,26 @@ class Resource extends React.Component {
         // check if one of the property trigger <Pattern />
         // we don't want <Pattern /> and <PatternMosaic />
         // in the same screen
-        let isPatternView = true;
+        let isResourceWithPatternInstances;
+
+        // we get these URIs from url params in currentNavigate
+        // we receive this in props from navigateHandler
+        let patternInstancesUris;
+        if (
+            this.props.RouteStore &&
+            this.props.RouteStore._currentNavigate &&
+            this.props.RouteStore._currentNavigate.route &&
+            this.props.RouteStore._currentNavigate.route.params &&
+            this.props.RouteStore._currentNavigate.route.params.patternIds
+        ) {
+            patternInstancesUris =
+                this.props.RouteStore._currentNavigate.route.params
+                    .patternIds !== ''
+                    ? this.props.RouteStore._currentNavigate.route.params.patternIds.split(
+                        '|'
+                    )
+                    : undefined;
+        }
 
         //create a list of properties
         let list = this.props.properties.map(function(node, index) {
@@ -112,11 +124,14 @@ class Resource extends React.Component {
                         }
                     }
                 }
-                if (
-                    node.config.propertyReactor &&
-                    node.config.propertyReactor[0] === 'Pattern'
-                ) {
-                    isPatternView = true;
+                // if (
+                //     node.config.propertyReactor &&
+                //     node.config.propertyReactor[0] === "Pattern"
+                // ) {
+                //     isPatternView = true;
+                // }
+                if (patternInstancesUris) {
+                    isResourceWithPatternInstances = true;
                 }
                 if (
                     node.propertyURI ===
@@ -268,11 +283,11 @@ class Resource extends React.Component {
 
             mainDIV = (
                 <div>
-                    {this.state.patternViews && !isPatternView && (
+                    {isResourceWithPatternInstances && (
                         <PatternViewsMosaic
                             datasetURI={this.props.datasetURI}
+                            patternInstancesUris={patternInstancesUris}
                             resourceURI={this.props.resource}
-                            patternViews={this.state.patternViews}
                         />
                     )}
                     <div className="ui top attached tabular menu">
@@ -286,11 +301,11 @@ class Resource extends React.Component {
                 <div className="ui segment">
                     <div className="ui grid">
                         <div className="column ui list">
-                            {this.state.patternViews && !isPatternView && (
+                            {isResourceWithPatternInstances && (
                                 <PatternViewsMosaic
                                     datasetURI={this.props.datasetURI}
                                     resourceURI={this.props.resource}
-                                    patternViews={this.state.patternViews}
+                                    patternInstancesUris={patternInstancesUris}
                                 />
                             )}
                             {list}
@@ -454,4 +469,10 @@ Resource.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
+Resource = connectToStores(Resource, [], function(context, props) {
+    return {
+        RouteStore: context.getStore('RouteStore')
+    };
+});
+
 export default Resource;

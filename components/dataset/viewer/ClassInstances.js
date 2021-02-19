@@ -84,6 +84,16 @@ export default class ClassInstances extends React.Component {
             const resources = resourcesWithPatternInstances;
 
             forEach(resources, resource => {
+                let patternInstancesUriStringified = '';
+                if (resource.patternInstances) {
+                    resource.patternInstances.forEach(
+                        (patternInstance, index) => {
+                            patternInstancesUriStringified += `${
+                                index !== 0 ? '|' : ''
+                            }${patternInstance.uri}`;
+                        }
+                    );
+                }
                 const resourceKG = resourceFactory.makeResource({
                     uri: resource.uri,
                     label: resource.label, // label: `${resource.label.substring(0, 50)}...`,
@@ -102,11 +112,13 @@ export default class ClassInstances extends React.Component {
                                     resource.uri
                                 );
                                 this.context.executeAction(navigateAction, {
-                                    url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
+                                    url: `${PUBLIC_URL}/patterns/dataset/${encodeURIComponent(
                                         this.props.RouteStore._currentNavigate
                                             .route.params.did
                                     )}/resource/${encodeURIComponent(
                                         resource.uri
+                                    )}/${encodeURIComponent(
+                                        patternInstancesUriStringified
                                     )}`
                                 });
                             },

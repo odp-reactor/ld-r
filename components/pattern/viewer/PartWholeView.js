@@ -43,8 +43,6 @@ class PartWholeView extends React.Component {
             this.patternService
                 .findCulturalPropertyWithParts(this.props.patternInstanceUri)
                 .then(culturalPropertyWithParts => {
-                    console.log('C prop and parts QUERY RESULT:');
-                    console.log(culturalPropertyWithParts);
                     this.setState({
                         culturalPropertyWithParts: culturalPropertyWithParts
                     });
@@ -87,11 +85,16 @@ class PartWholeView extends React.Component {
 
             return (
                 <div>
-                    <div style={{ textAlign: 'center' }}>
+                    <div style={{ textAlign: 'center', margin: 'auto' }}>
                         <PartWhole
                             parts={parts}
                             whole={whole}
                             onResourceClick={getResource}
+                            styles={
+                                this.props.styles && this.props.styles.partWhole
+                                    ? this.props.styles.partWhole
+                                    : defaultPartWholeStyle
+                            }
                         />
                     </div>
                     {this.props.showPropertyValueList && (
@@ -114,6 +117,18 @@ class PartWholeView extends React.Component {
         }
     }
 }
+
+const defaultPartWholeStyle = {
+    containerStyle: {
+        width: 700
+    },
+    littleItemStyle: {
+        width: 100
+    },
+    centerItemStyle: {
+        width: 500
+    }
+};
 
 PartWholeView.contextTypes = {
     executeAction: PropTypes.func.isRequired,
