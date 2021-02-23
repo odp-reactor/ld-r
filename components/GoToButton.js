@@ -16,7 +16,7 @@ export default class GoToButton extends React.Component {
                     borderRadius: 5,
                     cursor: 'pointer',
                     background: '#6c7ae0',
-                    width: 'fit-content'
+                    width: 'max-content'
                 }}
                 onClick={() => window.history.back()}
             >
