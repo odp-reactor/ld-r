@@ -87,12 +87,14 @@ class TimeIndexedTypedLocationView extends React.Component {
                     .culturalPropertyWithTimeIndexedTypedLocation[0];
 
                 let propertyList = {};
-                propertyList['Cultural property:'] = {
-                    label: titl.cPropLabel,
-                    onClick: () => {
-                        getResource(culturalPropertyURI);
-                    }
-                };
+                if (!this.props.hideCulturalProperty) {
+                    propertyList['Cultural property:'] = {
+                        label: titl.cPropLabel,
+                        onClick: () => {
+                            getResource(culturalPropertyURI);
+                        }
+                    };
+                }
                 propertyList['Address:'] = { label: titl.addressLabel };
                 propertyList['Location Type:'] = {
                     label: titl.locationTypeLabel,

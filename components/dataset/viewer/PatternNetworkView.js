@@ -92,7 +92,6 @@ export default class PatternNetworkView extends React.Component {
             const Resource = require('odp-reactor').Resource;
             const scaleData = require('odp-reactor').scaleData;
             const findMinMax = require('odp-reactor').findSliderDomain;
-            const ColorGenerator = require('odp-reactor').ColorGenerator;
             const PatternsAndClassesPage = require('odp-reactor')
                 .PatternsAndClassesPage;
 
@@ -119,8 +118,8 @@ export default class PatternNetworkView extends React.Component {
                         occurences: p.occurences,
                         nodeSize: 15,
                         nodeLabelSize: 20,
-                        nodeColor: 'red',
-                        nodeBorderColor: 'red',
+                        nodeColor: 'purple',
+                        nodeBorderColor: 'purple',
                         nodeType: 'graphin-circle',
                         tooltipInfo: dataInfoMap[p.pattern],
                         graphinProperties: {
@@ -136,10 +135,7 @@ export default class PatternNetworkView extends React.Component {
                                         )}`
                                     });
                                 }
-                            },
-                            shape: 'CircleNode',
-                            nodeColor: 'red',
-                            nodeBorderColor: 'red'
+                            }
                         },
                         listProperties: {
                             listKeys: [
@@ -186,6 +182,8 @@ export default class PatternNetworkView extends React.Component {
                         nodeLabelSize: 20,
                         nodeType: 'diamond',
                         nodeLabelPosition: 'bottom',
+                        nodeColor: 'red',
+                        nodeBorderColor: 'red',
                         scaledCentralityScore: scaleInto01(
                             c.pd,
                             minCentralityScore,
@@ -198,26 +196,6 @@ export default class PatternNetworkView extends React.Component {
                                         this.props.datasetURI
                                     )}/classes/${encodeURIComponent(c.uri)}`
                                 });
-                            },
-                            shape: 'diamond',
-                            type: 'diamond',
-                            style: {
-                                /** container 容齐 */
-                                containerWidth: 40,
-                                containerStroke: '#0693E3',
-                                containerFill: '#fff',
-                                /** icon 图标 */
-                                iconSize: 10,
-                                iconFill: '#0693E3',
-                                /** badge 徽标 */
-                                badgeFill: 'red',
-                                badgeFontColor: '#fff',
-                                badgeSize: 10,
-                                /** text 文本 */
-                                fontColor: '#3b3b3b',
-                                fontSize: 20,
-                                /** state */
-                                dark: '#eee'
                             }
                         },
                         listProperties: {
@@ -243,21 +221,7 @@ export default class PatternNetworkView extends React.Component {
                 });
                 kg.addResource(classResource);
                 const relatedPattern = kg.getResource(c.pattern);
-                if (
-                    relatedPattern &&
-                    !displayAlwaysOneClassPerPattern.includes(
-                        relatedPattern.getUri()
-                    )
-                ) {
-                    displayAlwaysOneClassPerPattern.push(
-                        relatedPattern.getUri()
-                    );
-                    kg.updateResourceProperty(
-                        classResource.getUri(),
-                        'alwaysVisible',
-                        true
-                    );
-                }
+
                 if (relatedPattern) {
                     const classPatternRelation = Resource.create({
                         label: 'has View',
@@ -275,10 +239,7 @@ export default class PatternNetworkView extends React.Component {
                 }
             });
 
-            const colors = new ColorGenerator({
-                colorCount: kg.getPatternCount()
-            });
-            const rndColors = colors.getColor();
+            // update pattern size
             kg.forEachPattern((resourceURI, attributes) => {
                 if (kg.getResourceProperty(resourceURI, 'occurences')) {
                     kg.updateResourceProperty(
@@ -298,13 +259,6 @@ export default class PatternNetworkView extends React.Component {
                         )
                     );
                 }
-                const color = rndColors.next().value;
-                kg.updateResourceProperty(resourceURI, 'nodeColor', color);
-                kg.updateResourceProperty(
-                    resourceURI,
-                    'nodeBorderColor',
-                    color
-                );
             });
 
             return (
@@ -369,7 +323,7 @@ dataInfoMap[
 dataInfoMap[
     'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
 ] =
-    'Locations of cultural properties at a certain time and with a specific location (e.g Current Location). Explore this view to see the data about the location of a cultural property and the time period since it is in that location or where it was in the past.';
+    'Locations of cultural properties at a certain time and with indication of the specific role of the location (e.g Current Location). Explore this view to see the data about the location of a cultural property and the time period since it is in that location or where it was in the past.';
 
 function scaleInto01(x, min, max) {
     return (x - min) / (max - min);
