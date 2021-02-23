@@ -63,16 +63,28 @@ class CollectionView extends React.Component {
 
         if (collection) {
             let propertyList = {};
-            propertyList['Cultural Property:'] = {
-                uri: collection[0].cProp,
-                onClick: () => {
-                    this.context.executeAction(navigateAction, {
-                        url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
-                            this.props.dataset
-                        )}/resource/${encodeURIComponent(collection[0].cProp)}`
-                    });
-                }
-            };
+            if (!this.props.hideCulturalProperty) {
+                propertyList['Cultural Property:'] = {
+                    uri: collection[0].cProp,
+                    onClick: () => {
+                        this.context.executeAction(navigateAction, {
+                            url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
+                                this.props.dataset
+                            )}/resource/${encodeURIComponent(
+                                collection[0].cProp
+                            )}`
+                        });
+                    }
+                };
+            }
+            collection.forEach(c => {
+                let label = c.meas.split('-').pop() + ':';
+
+                label = label.charAt(0).toUpperCase() + label.slice(1);
+                propertyList[label] = {
+                    label: `${c.value} ${c.unit}`
+                };
+            });
 
             return (
                 <div>
@@ -144,7 +156,7 @@ class CollectionView extends React.Component {
                         <div style={{ marginTop: 50, marginBottom: 50 }}>
                             <PropertyValueList
                                 properties={propertyList}
-                                label={true}
+                                label={false}
                             />
                         </div>
                     )}

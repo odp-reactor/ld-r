@@ -13,7 +13,7 @@ import cleanInstance from '../../../actions/cleanInstance';
 import CustomLoader from '../../CustomLoader';
 import NavbarHider from './NavbarHider';
 
-import { forEach } from 'lodash';
+import { forEach, filter } from 'lodash';
 
 // import laodInstances action
 // catch dataset id from route not from dataset store
@@ -93,18 +93,15 @@ export default class PatternInstancesNetworkView extends React.Component {
                 .PatternInstancesPage;
 
             const instances = this.props.PatternStore.instances;
-            console.log('Get type from instances');
-            console.log(instances);
 
             const patternType = instances[0].type;
 
             const kg = new KnowledgeGraph();
             const resourceFactory = new ResourceFactory();
 
-            let resourceInstanceJson = {};
-
             forEach(instances, instance => {
                 // preprocessing raw data
+                let resourceInstanceJson = {};
 
                 let startTime, endTime;
                 if (instance.startTime && instance.endTime) {
@@ -148,6 +145,12 @@ export default class PatternInstancesNetworkView extends React.Component {
                         }
                     });
                     resourceInstanceJson['measures'] = measures.length;
+                    if (
+                        instance.instance ===
+                        'http://arco.istc.cnr.it/ns/measurement_collection_instance_eaee00135bbd8c93a1bb851e54eb8740'
+                    ) {
+                        console.log('bugged', resourceInstanceJson);
+                    }
                 }
 
                 if (instance.parts) {
@@ -183,6 +186,8 @@ export default class PatternInstancesNetworkView extends React.Component {
                                 { label: 'Parts', id: 'parts' }
                             ],
                             listItemClick: () => {
+                                console.log('Clicked Instance');
+                                console.log(instance);
                                 exploreResourceOnListItemClick(
                                     instance.instance
                                 );
@@ -202,6 +207,16 @@ export default class PatternInstancesNetworkView extends React.Component {
 
                 kg.addResource(instanceResource);
             });
+
+            console.log(
+                'PatternInstancesNetwork Bugged resource',
+                filter(kg.getResources(), r => {
+                    return (
+                        r.getUri() ===
+                        'http://arco.istc.cnr.it/ns/measurement_collection_instance_eaee00135bbd8c93a1bb851e54eb8740'
+                    );
+                })
+            );
 
             return (
                 <PatternInstancesPage

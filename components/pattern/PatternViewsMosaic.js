@@ -5,8 +5,8 @@ import CollectionView from './viewer/CollectionView';
 
 import PatternService from '../../services/clientside-services/PatternService';
 import DbContext from '../../services/base/DbContext';
-import { clone } from 'lodash';
-import { Grid } from 'semantic-ui-react';
+import { clone, chunk } from 'lodash';
+import { Grid, Segment } from 'semantic-ui-react';
 
 export default class PatternViewsMosaic extends React.Component {
     constructor(props) {
@@ -55,6 +55,126 @@ export default class PatternViewsMosaic extends React.Component {
         }
         let titlCount = 0;
         let rowCount = 0;
+
+        const viewTitleStyle = {
+            fontSize: 20,
+            color: 'rgb(98, 91, 95)',
+            marginBottom: 40
+        };
+
+        const cellStyle = {
+            borderBottom: '1px solid rgba(34,36,38,.15)',
+            marginBottom: 50
+        };
+
+        const viewsContent = this.state.patternInstances.map(
+            (patternInstance, index) => {
+                if (
+                    patternInstance.type ===
+                    'https://w3id.org/arco/ontology/location/cultural-property-component-of'
+                ) {
+                    return (
+                        <div
+                            key={index}
+                            style={index % 2 === 0 ? cellStyle : {}}
+                        >
+                            <div
+                                class="mosaic-view-title"
+                                style={viewTitleStyle}
+                            >
+                                {patternInstance.typeLabel}
+                            </div>
+                            <PartWholeView
+                                pattern={patternInstance.type}
+                                dataset={this.props.datasetURI}
+                                patternInstanceUri={patternInstance.uri}
+                                showPropertyValueList={true}
+                                styles={{
+                                    partWhole: {
+                                        containerStyle: {
+                                            width: 450
+                                        },
+                                        littleItemStyle: {
+                                            width: 100
+                                        },
+                                        centerItemStyle: {
+                                            width: 300
+                                        }
+                                    }
+                                }}
+                            />
+                        </div>
+                    );
+                }
+                if (
+                    patternInstance.type ===
+                    'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
+                ) {
+                    return (
+                        <div
+                            key={index}
+                            style={index % 2 === 0 ? cellStyle : {}}
+                        >
+                            <div
+                                class="mosaic-view-title"
+                                style={viewTitleStyle}
+                            >
+                                {patternInstance.typeLabel}
+                            </div>
+                            <CollectionView
+                                pattern={patternInstance.type}
+                                dataset={this.props.datasetURI}
+                                patternInstanceUri={patternInstance.uri}
+                                showPropertyValueList={true}
+                                hideCulturalProperty={true}
+                                styles={{
+                                    depiction: {
+                                        width: '100%',
+                                        margin: 'auto'
+                                    },
+                                    collection: {
+                                        collectionContainerWidth: {
+                                            width: '120%' // set this width to 120, 130, 140% to increase padding between items
+                                        }
+                                    }
+                                }}
+                            />
+                        </div>
+                    );
+                }
+                if (
+                    patternInstance.type ===
+                        'https://w3id.org/arco/ontology/location/time-indexed-typed-location' &&
+                    titlCount === 0
+                ) {
+                    titlCount++;
+                    return (
+                        <div
+                            key={index}
+                            style={index % 2 === 0 ? cellStyle : {}}
+                        >
+                            <div
+                                class="mosaic-view-title"
+                                style={viewTitleStyle}
+                            >
+                                {patternInstance.typeLabel}
+                            </div>
+                            <TimeIndexedTypedLocationView
+                                pattern={patternInstance.type}
+                                dataset={this.props.datasetURI}
+                                patternInstanceUri={patternInstance.uri}
+                                showPropertyValueList={true}
+                                hideCulturalProperty={true}
+                            />
+                        </div>
+                    );
+                }
+            }
+        );
+        const viewsRowsAndColumns = chunk(viewsContent, 2).map(function(group) {
+            return <Grid.Column>{group}</Grid.Column>;
+        });
+
         return (
             // <div
             //     style={{
@@ -69,77 +189,15 @@ export default class PatternViewsMosaic extends React.Component {
             //         rowGap: 80
             //     }}
             // >
-            <Grid container stackable columns={2}>
-                {this.state.patternInstances.map((patternInstance, index) => {
-                    if (
-                        patternInstance.type ===
-                        'https://w3id.org/arco/ontology/location/cultural-property-component-of'
-                    ) {
-                        return (
-                            <Grid.Column key={index}>
-                                <PartWholeView
-                                    pattern={patternInstance.type}
-                                    dataset={this.props.datasetURI}
-                                    patternInstanceUri={patternInstance.uri}
-                                    styles={{
-                                        partWhole: {
-                                            containerStyle: {
-                                                width: 450
-                                            },
-                                            littleItemStyle: {
-                                                width: 100
-                                            },
-                                            centerItemStyle: {
-                                                width: 300
-                                            }
-                                        }
-                                    }}
-                                />
-                            </Grid.Column>
-                        );
-                    }
-                    if (
-                        patternInstance.type ===
-                        'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
-                    ) {
-                        return (
-                            <Grid.Column key={index}>
-                                <CollectionView
-                                    pattern={patternInstance.type}
-                                    dataset={this.props.datasetURI}
-                                    patternInstanceUri={patternInstance.uri}
-                                    styles={{
-                                        depiction: {
-                                            width: '100%',
-                                            margin: 'auto'
-                                        },
-                                        collection: {
-                                            collectionContainerWidth: {
-                                                width: '120%' // set this width to 120, 130, 140% to increase padding between items
-                                            }
-                                        }
-                                    }}
-                                />
-                            </Grid.Column>
-                        );
-                    }
-                    if (
-                        patternInstance.type ===
-                            'https://w3id.org/arco/ontology/location/time-indexed-typed-location' &&
-                        titlCount === 0
-                    ) {
-                        titlCount++;
-                        return (
-                            <Grid.Column key={index}>
-                                <TimeIndexedTypedLocationView
-                                    pattern={patternInstance.type}
-                                    dataset={this.props.datasetURI}
-                                    patternInstanceUri={patternInstance.uri}
-                                />
-                            </Grid.Column>
-                        );
-                    }
-                })}
+            <Grid
+                container
+                stackable
+                columns={2}
+                celled
+                divided="vertically"
+                // verticalAlign="middle"
+            >
+                <Grid.Row>{viewsRowsAndColumns}</Grid.Row>
             </Grid>
         );
         // return this.props.patternViews.map(viewKey => {

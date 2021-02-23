@@ -8,6 +8,7 @@ import deleteResource from '../../actions/deleteResource';
 import { scrollToTop } from '../utils/scrollToTop';
 import PatternViewsMosaic from '../pattern/PatternViewsMosaic';
 import { connectToStores } from 'fluxible-addons-react';
+import GoToButton from '../GoToButton';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
@@ -248,7 +249,7 @@ class Resource extends React.Component {
                         key={index}
                         routeName="resource"
                         href={
-                            '/dataset/' +
+                            `${PUBLIC_URL}/dataset/` +
                             encodeURIComponent(self.props.datasetURI) +
                             '/resource/' +
                             encodeURIComponent(self.props.resource) +
@@ -329,7 +330,7 @@ class Resource extends React.Component {
                     <a
                         className="section"
                         href={
-                            '/dataset/1/' +
+                            `${PUBLIC_URL}/dataset/1/` +
                             encodeURIComponent(self.props.datasetURI)
                         }
                     >
@@ -340,7 +341,7 @@ class Resource extends React.Component {
                     <a
                         className="section"
                         href={
-                            '/dataset/' +
+                            `${PUBLIC_URL}/dataset/` +
                             encodeURIComponent(self.props.datasetURI) +
                             '/resource/' +
                             encodeURIComponent(self.props.propertyPath[0])
@@ -361,7 +362,7 @@ class Resource extends React.Component {
                     <a
                         className="section"
                         href={
-                            '/dataset/1/' +
+                            `${PUBLIC_URL}/dataset/1/` +
                             encodeURIComponent(self.props.datasetURI)
                         }
                     >
@@ -403,12 +404,13 @@ class Resource extends React.Component {
             <div className="ui fluid container ldr-padding-more" ref="resource">
                 <div className="ui grid">
                     <div className="ui column">
-                        {breadcrumb}
+                        {/* {breadcrumb} */}
+                        <GoToButton style={{}} />
                         <h2>
                             <a
                                 target="_blank"
                                 href={
-                                    '/export/NTriples/' +
+                                    `${PUBLIC_URL}/export/NTriples/` +
                                     encodeURIComponent(this.props.datasetURI) +
                                     '/' +
                                     encodeURIComponent(this.props.resource)
