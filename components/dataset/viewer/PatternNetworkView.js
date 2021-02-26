@@ -41,14 +41,6 @@ export default class PatternNetworkView extends React.Component {
         this.fetchData();
     }
 
-    componentDidUpdate() {
-        this.navbarHider.hideNavbarAndAddShowOnOverListener();
-    }
-
-    componentWillUnmount() {
-        this.navbarHider.showNavbarAndRemoveShowOnOverListener();
-    }
-
     fetchData() {
         // If there are instances of a single pattern loaded in the PatternStore we clean them
         // We expect a user click on a pattern and navigate new pattern instances

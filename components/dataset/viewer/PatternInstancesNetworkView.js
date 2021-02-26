@@ -65,14 +65,6 @@ export default class PatternInstancesNetworkView extends React.Component {
         // }
     }
 
-    componentDidUpdate() {
-        this.navbarHider.hideNavbarAndAddShowOnOverListener();
-    }
-
-    componentWillUnmount() {
-        this.navbarHider.showNavbarAndRemoveShowOnOverListener();
-    }
-
     render() {
         let exploreResourceOnListItemClick;
         if (this.props.RouteStore._currentNavigate) {

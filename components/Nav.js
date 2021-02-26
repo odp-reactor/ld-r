@@ -105,36 +105,6 @@ class Nav extends React.Component {
         return (
             <div>
                 <div
-                    id="nav-open"
-                    className="hidden-nav-open"
-                    onMouseOver={() => {
-                        document
-                            .getElementById('navbar')
-                            .classList.remove('hidden-navbar');
-                        document
-                            .getElementById('nav-open')
-                            .classList.add('hidden-nav-open');
-                    }}
-                >
-                    <img
-                        style={{
-                            height: 30,
-                            margin: 'auto',
-                            display: 'block',
-                            position: 'absolute',
-                            marginLeft: 'auto',
-                            marginRight: 'auto',
-                            marginTop: 10,
-                            left: 0,
-                            right: 0,
-                            textAlign: 'center',
-                            zIndex: 2
-                        }}
-                        src="https://cdn2.iconfinder.com/data/icons/arrows-3-1/512/xxx039-512.png"
-                    ></img>
-                </div>
-
-                <div
                     id="navbar"
                     className="ui fluid container"
                     ref="defaultNavbar"
