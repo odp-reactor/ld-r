@@ -65,18 +65,15 @@ export default class PatternInstancesNetworkView extends React.Component {
         // }
     }
 
-    componentDidUpdate() {
-        this.navbarHider.hideNavbarAndAddShowOnOverListener();
-    }
-
-    componentWillUnmount() {
-        this.navbarHider.showNavbarAndRemoveShowOnOverListener();
-    }
-
     render() {
         let exploreResourceOnListItemClick;
         if (this.props.RouteStore._currentNavigate) {
             exploreResourceOnListItemClick = instanceUri => {
+                console.log(
+                    this.props.RouteStore._currentNavigate.route.params.did
+                );
+                console.log('Instance uri:');
+                console.log(instanceUri);
                 this.context.executeAction(navigateAction, {
                     url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
                         this.props.RouteStore._currentNavigate.route.params.did
@@ -207,16 +204,6 @@ export default class PatternInstancesNetworkView extends React.Component {
 
                 kg.addResource(instanceResource);
             });
-
-            console.log(
-                'PatternInstancesNetwork Bugged resource',
-                filter(kg.getResources(), r => {
-                    return (
-                        r.getUri() ===
-                        'http://arco.istc.cnr.it/ns/measurement_collection_instance_eaee00135bbd8c93a1bb851e54eb8740'
-                    );
-                })
-            );
 
             return (
                 <PatternInstancesPage

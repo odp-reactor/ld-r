@@ -10,6 +10,7 @@ export default class GoToButton extends React.Component {
     render() {
         return (
             <div
+                className="go-to-button"
                 style={{
                     padding: 20,
                     color: 'white',

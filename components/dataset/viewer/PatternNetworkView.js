@@ -41,14 +41,6 @@ export default class PatternNetworkView extends React.Component {
         this.fetchData();
     }
 
-    componentDidUpdate() {
-        this.navbarHider.hideNavbarAndAddShowOnOverListener();
-    }
-
-    componentWillUnmount() {
-        this.navbarHider.showNavbarAndRemoveShowOnOverListener();
-    }
-
     fetchData() {
         // If there are instances of a single pattern loaded in the PatternStore we clean them
         // We expect a user click on a pattern and navigate new pattern instances
@@ -83,8 +75,6 @@ export default class PatternNetworkView extends React.Component {
             this.props.PatternStore.list &&
             this.state.classesWithPatternsAndScores
         ) {
-            console.log('Pattern Store', this.props.PatternStore);
-
             // we dependency inject the function to get instances by pattern URI
             // node is a Graphin node
 
