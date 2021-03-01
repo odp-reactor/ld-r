@@ -75,8 +75,6 @@ export default class PatternNetworkView extends React.Component {
             this.props.PatternStore.list &&
             this.state.classesWithPatternsAndScores
         ) {
-            console.log('Pattern Store', this.props.PatternStore);
-
             // we dependency inject the function to get instances by pattern URI
             // node is a Graphin node
 

@@ -85,6 +85,8 @@ export default class ClassInstances extends React.Component {
                             }${patternInstance.uri}`;
                         }
                     );
+                } else {
+                    patternInstancesUriStringified = 'noInstance';
                 }
                 const resourceKG = resourceFactory.makeResource({
                     uri: resource.uri,
