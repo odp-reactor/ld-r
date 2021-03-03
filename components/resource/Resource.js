@@ -9,19 +9,49 @@ import { scrollToTop } from '../utils/scrollToTop';
 import PatternViewsMosaic from '../pattern/PatternViewsMosaic';
 import { connectToStores } from 'fluxible-addons-react';
 import GoToButton from '../GoToButton';
+import ClassRepository from '../../services/classes/ClassRepository';
+import DbContext from '../../services/base/DbContext';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class Resource extends React.Component {
     constructor(props) {
         super(props);
+        const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
+        this.classRepository = new ClassRepository(
+            new DbContext(sparqlEndpoint)
+        );
+        this.state = {
+            patternInstancesUris: null
+        };
     }
     componentDidMount() {
+        console.log('First Resource Component mount:', this.props.resource);
+        if (!this.state.patternInstancesUris && this.props.resource) {
+            this.classRepository
+                .findPatternInstancesResourceBelongsTo(this.props.resource)
+                .then(patternInstances => {
+                    this.setState({
+                        patternInstancesUris: patternInstances.map(p => {
+                            return p.uri;
+                        })
+                    });
+                })
+                .catch(e => {
+                    console.log(
+                        '[!] Failed to load pattern instances for resource: ',
+                        this.props.resource,
+                        e
+                    );
+                });
+        }
+
         //scroll to top of the page
         if (this.props.config && this.props.config.readOnly) {
             scrollToTop();
         }
     }
+
     handleCloneResource(datasetURI, resourceURI, e) {
         this.context.executeAction(cloneResource, {
             dataset: datasetURI,
@@ -40,7 +70,6 @@ class Resource extends React.Component {
         e.stopPropagation();
     }
     render() {
-        console.log('Resource component');
         //check erros first
         if (this.props.error) {
             return (
@@ -91,22 +120,23 @@ class Resource extends React.Component {
 
         // we get these URIs from url params in currentNavigate
         // we receive this in props from navigateHandler
-        let patternInstancesUris;
-        if (
-            this.props.RouteStore &&
-            this.props.RouteStore._currentNavigate &&
-            this.props.RouteStore._currentNavigate.route &&
-            this.props.RouteStore._currentNavigate.route.params &&
-            this.props.RouteStore._currentNavigate.route.params.patternIds
-        ) {
-            patternInstancesUris =
-                this.props.RouteStore._currentNavigate.route.params
-                    .patternIds !== ''
-                    ? this.props.RouteStore._currentNavigate.route.params.patternIds.split(
-                        '|'
-                    )
-                    : undefined;
-        }
+        let patternInstancesUris = this.state.patternInstancesUris;
+        // if (
+        //     this.props.RouteStore &&
+        //     this.props.RouteStore._currentNavigate &&
+        //     this.props.RouteStore._currentNavigate.route &&
+        //     this.props.RouteStore._currentNavigate.route.params &&
+        //     this.props.RouteStore._currentNavigate.route.params.patternIds
+        // ) {
+        //     patternInstancesUris =
+        //         this.props.RouteStore._currentNavigate.route.params
+        //             .patternIds !== ""
+        //             ? this.props.RouteStore._currentNavigate.route.params.patternIds.split(
+        //                   "|"
+        //               )
+        //             : undefined;
+        // }
+        console.log('MOSAIC PATTERN INSTANCES URIs:', patternInstancesUris);
 
         //create a list of properties
         let list = this.props.properties.map(function(node, index) {

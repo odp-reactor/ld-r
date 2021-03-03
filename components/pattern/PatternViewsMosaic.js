@@ -19,15 +19,11 @@ export default class PatternViewsMosaic extends React.Component {
         };
     }
     componentDidMount() {
-        console.log('Mount start querying');
-
         if (this.props.patternInstancesUris) {
-            console.log('Mount start querying');
             this.props.patternInstancesUris.forEach(patternInstanceUri => {
                 this.patternService
                     .findPattern(patternInstanceUri)
                     .then(pattern => {
-                        console.log('Pattern result from query:', pattern);
                         let newPatternInstances = clone(
                             this.state.patternInstances
                         );
@@ -44,9 +40,6 @@ export default class PatternViewsMosaic extends React.Component {
         }
     }
     render() {
-        console.log('MOSAIC RENDERED');
-        console.log(this.props);
-        console.log(this.state);
         if (this.props.patternInstancesUris.length === 0) {
             return null;
         }

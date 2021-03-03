@@ -48,7 +48,16 @@ class ResourceReactor extends React.Component {
         this.setState({ newObjetValue: v.trim() });
     }
     render() {
-        console.log('RESOURCE REACTOR');
+        // we use this to always force component remount
+        let resourceComponentKey;
+        if (
+            this.props.RouteStore &&
+            this.props.RouteStore._currentNavigate &&
+            this.props.RouteStore._currentNavigate.url
+        ) {
+            resourceComponentKey = this.props.RouteStore._currentNavigate.url;
+            console.log(resourceComponentKey);
+        }
         let datasetURI = this.props.ResourceStore.datasetURI;
         let properties = this.props.ResourceStore.properties;
         let resourceURI = this.props.ResourceStore.resourceURI;
@@ -76,6 +85,7 @@ class ResourceReactor extends React.Component {
                                 'resourceReactor'
                             ])}
                             error={error}
+                            key={resourceComponentKey}
                         />
                     );
                     break;
@@ -263,6 +273,9 @@ ResourceReactor = connectToStores(ResourceReactor, [ResourceStore], function(
     context,
     props
 ) {
-    return { ResourceStore: context.getStore(ResourceStore).getState() };
+    return {
+        ResourceStore: context.getStore(ResourceStore).getState(),
+        RouteStore: context.getStore('RouteStore')
+    };
 });
 export default ResourceReactor;
