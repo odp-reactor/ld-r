@@ -96,6 +96,8 @@ export default class PatternInstancesNetworkView extends React.Component {
             const kg = new KnowledgeGraph();
             const resourceFactory = new ResourceFactory();
 
+            const listHeadersSet = new Set();
+            listHeadersSet.add('label');
             forEach(instances, instance => {
                 // preprocessing raw data
                 let resourceInstanceJson = {};
@@ -108,6 +110,12 @@ export default class PatternInstancesNetworkView extends React.Component {
                     endTime = instance.endTime.match(/\d+/g)
                         ? instance.endTime.match(/\d+/g)[0]
                         : null;
+                    listHeadersSet.add('startTime');
+                    listHeadersSet.add('endTime');
+                    listHeadersSet.add('locationType');
+                    listHeadersSet.add('addressLabel');
+                    listHeadersSet.add('lat');
+                    listHeadersSet.add('long');
                 }
 
                 if (instance.measures) {
@@ -142,20 +150,21 @@ export default class PatternInstancesNetworkView extends React.Component {
                         }
                     });
                     resourceInstanceJson['measures'] = measures.length;
-                    if (
-                        instance.instance ===
-                        'http://arco.istc.cnr.it/ns/measurement_collection_instance_eaee00135bbd8c93a1bb851e54eb8740'
-                    ) {
-                        console.log('bugged', resourceInstanceJson);
-                    }
+
+                    listHeadersSet.add('height');
+                    listHeadersSet.add('width');
+                    listHeadersSet.add('length');
+                    listHeadersSet.add('diameter');
                 }
 
                 if (instance.parts) {
                     resourceInstanceJson['parts'] = instance.parts.split(';')
                         ? instance.parts.split(';').length
                         : undefined;
+                    listHeadersSet.add('parts');
                 }
 
+                console.log('Instance keys', listHeadersSet);
                 const instancePropertiesJson = Object.assign(
                     {
                         startTime: startTime || undefined,
@@ -165,23 +174,11 @@ export default class PatternInstancesNetworkView extends React.Component {
                         long: instance.long || undefined,
                         addressLabel: instance.addressLabel || undefined,
                         listProperties: {
-                            listKeys: [
-                                {
-                                    label: 'Label',
-                                    id: 'label'
-                                },
-                                { label: 'Height', id: 'height' },
-                                { label: 'Width', id: 'width' },
-                                { label: 'Length', id: 'length' },
-                                { label: 'Diameter', id: 'diameter' },
-                                { label: 'Location Type', id: 'locationType' },
-                                { label: 'Start Time', id: 'startTime' },
-                                { label: 'End Time', id: 'endTime' },
-                                { label: 'Address', id: 'addressLabel' },
-                                { label: 'Latitude', id: 'lat' },
-                                { label: 'Longitude', id: 'long' },
-                                { label: 'Parts', id: 'parts' }
-                            ],
+                            listKeys: Array.from(listHeadersSet).map(
+                                headerKey => {
+                                    return listKeysIndex[headerKey];
+                                }
+                            ),
                             listItemClick: () => {
                                 console.log('Clicked Instance');
                                 console.log(instance);
@@ -243,3 +240,21 @@ PatternInstancesNetworkView = connectToStores(
         };
     }
 );
+
+const listKeysIndex = {
+    label: {
+        label: 'Label',
+        id: 'label'
+    },
+    height: { label: 'Height', id: 'height' },
+    width: { label: 'Width', id: 'width' },
+    length: { label: 'Length', id: 'length' },
+    diameter: { label: 'Diameter', id: 'diameter' },
+    locationType: { label: 'Location Type', id: 'locationType' },
+    startTime: { label: 'Start Time', id: 'startTime' },
+    endTime: { label: 'End Time', id: 'endTime' },
+    addressLabel: { label: 'Address', id: 'addressLabel' },
+    lat: { label: 'Latitude', id: 'lat' },
+    long: { label: 'Longitude', id: 'long' },
+    parts: { label: 'Parts', id: 'parts' }
+};
