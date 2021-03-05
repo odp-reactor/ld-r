@@ -49,4 +49,9 @@ export default class ClassRepository {
         );
         return patternInstances;
     }
+    async findPatternInstancesResourceBelongsTo(resourceUri) {
+        return this.genericRepository.fetchByQueryObject(
+            this.classQuery.getPatternInstancesResourceBelongsTo(resourceUri)
+        );
+    }
 }

@@ -32,9 +32,10 @@ export default class ClassQuery {
     getResourcesByClassWithPatternInstancesTheyBelongsTo(classUri) {
         return `PREFIX opla: <http://ontologydesignpatterns.org/opla/>
 
-            SELECT DISTINCT ?uri (SAMPLE(?label) as ?label) (GROUP_CONCAT(DISTINCT ?patternInstanceWithTypeAndTypeLabel; SEPARATOR="|") AS ?belongsToPatternInstances) WHERE {
+            SELECT DISTINCT ?uri (SAMPLE(?label) as ?label) (SAMPLE(?classLabel) as ?classLabel) (GROUP_CONCAT(DISTINCT ?patternInstanceWithTypeAndTypeLabel; SEPARATOR="|") AS ?belongsToPatternInstances) WHERE {
                 ?uri a ?sc .
                 ?sc rdfs:subClassOf* <${classUri}> .
+                <${classUri}> rdfs:label ?classLabel.
                 ?uri rdfs:label ?label .
                 
                 OPTIONAL
@@ -47,7 +48,15 @@ export default class ClassQuery {
             }
         `;
     }
-
+    getPatternInstancesResourceBelongsTo(resourceUri) {
+        return `PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+        
+        SELECT DISTINCT ?uri WHERE
+              {
+                <${resourceUri}> opla:belongsToPatternInstance ?uri .
+              }            
+    `;
+    }
     getPatternsByClass(classUri) {
         return `
         PREFIX opla: <http://ontologydesignpatterns.org/opla/>

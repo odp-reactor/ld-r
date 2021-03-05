@@ -4,7 +4,7 @@ import { connectToStores } from 'fluxible-addons-react';
 import PatternInstanceStore from '../../../stores/PatternInstanceStore';
 import ResourceStore from '../../../stores/ResourceStore';
 import { navigateAction } from 'fluxible-router';
-
+import { cloneDeep } from 'lodash';
 import CustomLoader from '../../CustomLoader';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
@@ -34,22 +34,20 @@ class TimeIndexedTypedLocationView extends React.Component {
         this.patternService = new PatternService(new DbContext(sparqlEndpoint));
         //
         this.state = {
-            culturalPropertyWithTimeIndexedTypedLocation: null
+            titls: null
         };
     }
 
     componentDidMount() {
-        if (!this.state.culturalPropertyWithTimeIndexedTypedLocation) {
-            this.patternService
-                .findCulturalPropertyWithTimeIndexedTypedLocation(
-                    this.props.patternInstanceUri
-                )
-                .then(culturalPropertyWithTimeIndexedTypedLocation => {
-                    this.setState({
-                        culturalPropertyWithTimeIndexedTypedLocation: culturalPropertyWithTimeIndexedTypedLocation
-                    });
-                });
-        }
+        const fetchData = async () => {
+            const titls = await this.patternService.findCulturalPropertyWithTimeIndexedTypedLocationByUris(
+                this.props.patternInstancesUri
+            );
+            this.setState({
+                titls: titls
+            });
+        };
+        fetchData();
     }
 
     render() {
@@ -60,7 +58,9 @@ class TimeIndexedTypedLocationView extends React.Component {
             _______________________________________________________________________
         */
         if (process.env.BROWSER) {
-            if (this.state.culturalPropertyWithTimeIndexedTypedLocation) {
+            const { titls } = cloneDeep(this.state);
+            if (titls && titls.length > 0) {
+                console.log('RENDERING COMPONENT');
                 let TimeIndexedTypedLocation = require('odp-reactor/lib/client-side')
                     .TimeIndexedTypedLocation;
                 let ImageGrid = require('odp-reactor').ImageGrid;
@@ -75,37 +75,36 @@ class TimeIndexedTypedLocationView extends React.Component {
                     });
                 };
 
-                const culturalPropertyURI = this.state
-                    .culturalPropertyWithTimeIndexedTypedLocation[0]
-                    .culturalProperty;
-
-                const locationTypeURI = this.state
-                    .culturalPropertyWithTimeIndexedTypedLocation[0]
-                    .locationType;
-
-                let titl = this.state
-                    .culturalPropertyWithTimeIndexedTypedLocation[0];
+                const culturalPropertyURI = titls[0].culturalProperty;
 
                 let propertyList = {};
                 if (!this.props.hideCulturalProperty) {
                     propertyList['Cultural property:'] = {
-                        label: titl.cPropLabel,
+                        label: titls[0].cPropLabel,
                         onClick: () => {
                             getResource(culturalPropertyURI);
                         }
                     };
                 }
-                propertyList['Address:'] = { label: titl.addressLabel };
-                propertyList['Location Type:'] = {
-                    label: titl.locationTypeLabel,
-                    onClick: () => {
-                        getResource(locationTypeURI);
-                    }
-                };
-                propertyList['Longitude:'] = { label: titl.long };
-                propertyList['Latitude:'] = { label: titl.lat };
-                propertyList['Start Time:'] = { label: titl.startTime };
-                propertyList['End Time:'] = { label: titl.endTime };
+                titls.map((titl, index) => {
+                    propertyList[`Address ${index}`] = {
+                        label: titl.addressLabel
+                    };
+                    propertyList[`Location Type ${index}`] = {
+                        label: titl.locationTypeLabel,
+                        onClick: () => {
+                            getResource(titl.locationType);
+                        }
+                    };
+                    propertyList[`Longitude: ${index}`] = { label: titl.long };
+                    propertyList[`Latitude: ${index}`] = { label: titl.lat };
+                    propertyList[`Start Time: ${index}`] = {
+                        label: titl.startTime
+                    };
+                    propertyList[`End Time: ${index}`] = {
+                        label: titl.endTime
+                    };
+                });
 
                 const childStyle = {
                     flex: '1 0 45%'
@@ -122,10 +121,7 @@ class TimeIndexedTypedLocationView extends React.Component {
                     >
                         <div style={childStyle}>
                             <TimeIndexedTypedLocation
-                                timeIndexedTypedLocations={
-                                    this.state
-                                        .culturalPropertyWithTimeIndexedTypedLocation
-                                }
+                                timeIndexedTypedLocations={titls}
                                 onObjectClick={() => {
                                     getResource(culturalPropertyURI);
                                 }}

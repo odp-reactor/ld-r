@@ -75,6 +75,8 @@ export default class ClassInstances extends React.Component {
             const { resourcesWithPatternInstances } = this.state;
             const resources = resourcesWithPatternInstances;
 
+            console.log(resourcesWithPatternInstances);
+
             forEach(resources, resource => {
                 let patternInstancesUriStringified = '';
                 if (resource.patternInstances) {
@@ -116,7 +118,7 @@ export default class ClassInstances extends React.Component {
                                     )}`
                                 });
                             },
-                            listTitle: classURI
+                            listTitle: resource.classLabel
                         }
                     }
                 });

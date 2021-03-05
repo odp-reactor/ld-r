@@ -25,43 +25,52 @@ export default class PatternQuery {
         return `
             ${this.prefixes()}
 
-            SELECT DISTINCT ?culturalProperty ?tITLLabel ?locationType ?depiction
-            ?locationTypeLabel ?lat ?long ?addressLabel ?startTime ?endTime
-            ?cPropLabel WHERE {
-                ?culturalProperty opla:belongsToPatternInstance <${patternURI}> .
-                ?culturalProperty a-loc:hasTimeIndexedTypedLocation ?titl .
-                ?titl a-loc:hasLocationType ?locationType .
-                ?locationType rdfs:label ?locationTypeLabel .
-                OPTIONAL { ?titl a-loc:atSite ?site .
-                           ?site cis:siteAddress ?siteAddress .
-                           ?siteAddress rdfs:label ?addressLabel2B . 
-                          }
-                OPTIONAL { ?titl tiapit:atTime ?timeInterval . 
-                            ?timeInterval arco:startTime ?startTime2B .
-                            ?timeInterval arco:endTime ?endTime2B . 
-                          }
-                OPTIONAL { ?titl a-loc:atSite ?site .
-                           ?site clvapit:hasGeometry ?geometry .
-                           ?geometry clvapit:lat ?lat2B .
-                           ?geometry clvapit:long ?long2B . 
-                          }
-                OPTIONAL { ?culturalProperty rdfs:label ?cPropLabel2B . 
-                            FILTER langMatches(lang(?cPropLabel2B), "it")
-                          }
-                OPTIONAL { ?titl rdfs:label ?tITLLabel2B . 
-                            FILTER langMatches(lang(?tITLLabel2B), "it")  
-                          }
-                OPTIONAL { ?culturalProperty foaf:depiction ?depiction2B . 
-                          } .                
-                BIND ( IF (BOUND (?depiction2B), ?depiction2B, '')  as ?depiction) . 
-                BIND ( IF (BOUND (?tITLLabel2B), ?tITLLabel2B, '')  as ?tITLLabel) . 
-                BIND ( IF (BOUND (?cPropLabel2B), ?cPropLabel2B, '')  as ?cPropLabel) .
-                BIND ( IF (BOUND (?lat2B),  ?lat2B,  '')  as ?lat) . 
-                BIND ( IF (BOUND (?long2B), ?long2B, '')  as ?long) . 
-                BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .  
-                BIND ( IF (BOUND (?startTime2B),?startTime2B,'')  as ?startTime) .         
-                BIND ( IF (BOUND (?endTime2B),  ?endTime2B,'')  as ?endTime) .
-            } LIMIT 1                 
+                SELECT DISTINCT 
+                ?culturalProperty 
+                ?titl
+                (SAMPLE(?tITLLabel) as ?tITLLabel) 
+                ?locationType 
+                (SAMPLE(?locationTypeLabel) as ?locationTypeLabel)
+                ?lat ?long ?addressLabel ?startTime ?endTime
+                (SAMPLE(?cPropLabel) as ?cPropLabel) 
+                WHERE {
+    
+                    ?culturalProperty opla:belongsToPatternInstance <${patternURI}> .
+                    ?titl opla:belongsToPatternInstance <${patternURI}> .
+                    ?culturalProperty a-loc:hasTimeIndexedTypedLocation ?titl .
+                    ?titl a-loc:hasLocationType ?locationType .
+                    ?locationType rdfs:label ?locationTypeLabel .
+    
+                    OPTIONAL { ?titl a-loc:atSite ?site .
+                               ?site cis:siteAddress ?siteAddress .
+                               ?siteAddress rdfs:label ?addressLabel2B . 
+                              }
+                    OPTIONAL { ?titl tiapit:atTime ?timeInterval . 
+                                ?timeInterval arco:startTime ?startTime2B .
+                                ?timeInterval arco:endTime ?endTime2B . 
+                              }
+                    OPTIONAL { ?titl a-loc:atSite ?site .
+                               ?site clvapit:hasGeometry ?geometry .
+                               ?geometry clvapit:lat ?lat2B .
+                               ?geometry clvapit:long ?long2B . 
+                              }
+                    OPTIONAL { ?culturalProperty rdfs:label ?cPropLabel2B . 
+                                FILTER langMatches(lang(?cPropLabel2B), "it")
+                              }
+                    OPTIONAL { ?titl rdfs:label ?tITLLabel2B . 
+                                FILTER langMatches(lang(?tITLLabel2B), "it")  
+                              }
+                    OPTIONAL { ?culturalProperty foaf:depiction ?depiction2B . 
+                              } .                
+                    BIND ( IF (BOUND (?depiction2B), ?depiction2B, '')  as ?depiction) . 
+                    BIND ( IF (BOUND (?tITLLabel2B), ?tITLLabel2B, '')  as ?tITLLabel) . 
+                    BIND ( IF (BOUND (?cPropLabel2B), ?cPropLabel2B, '')  as ?cPropLabel) .
+                    BIND ( IF (BOUND (?lat2B),  ?lat2B,  '')  as ?lat) . 
+                    BIND ( IF (BOUND (?long2B), ?long2B, '')  as ?long) . 
+                    BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .  
+                    BIND ( IF (BOUND (?startTime2B),?startTime2B,'')  as ?startTime) .         
+                    BIND ( IF (BOUND (?endTime2B),  ?endTime2B,'')  as ?endTime) .
+                } LIMIT 1       
         `;
     }
     getCulturalPropertyWithMeasurements(patternURI) {

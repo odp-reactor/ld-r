@@ -25,7 +25,8 @@ export default class ClassService {
                 if (r.belongsToPatternInstances === '') {
                     return {
                         uri: r.uri,
-                        label: r.label
+                        label: r.label,
+                        classLabel: r.classLabel
                     };
                 }
                 let patternInstances = r.belongsToPatternInstances.split('|');
@@ -40,7 +41,8 @@ export default class ClassService {
                 return {
                     uri: r.uri,
                     label: r.label,
-                    patternInstances: patternInstances
+                    patternInstances: patternInstances,
+                    classLabel: r.classLabel
                 };
             }
         );
