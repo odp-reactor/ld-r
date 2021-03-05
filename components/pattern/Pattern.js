@@ -126,7 +126,7 @@ export default class Pattern extends React.Component {
                         pattern={patternURI}
                         dataset={this.props.datasetURI}
                         instanceResources={instanceResources}
-                        patternInstanceUri={this.props.resource}
+                        patternInstancesUri={[this.props.resource]}
                     />
                 );
             case 'CollectionView':

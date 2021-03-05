@@ -60,110 +60,117 @@ export default class PatternViewsMosaic extends React.Component {
             marginBottom: 50
         };
 
-        const viewsContent = this.state.patternInstances.map(
-            (patternInstance, index) => {
-                if (
-                    patternInstance.type ===
-                    'https://w3id.org/arco/ontology/location/cultural-property-component-of'
-                ) {
-                    return (
-                        <div
-                            key={index}
-                            style={index % 2 === 0 ? cellStyle : {}}
-                        >
-                            <div
-                                class="mosaic-view-title"
-                                style={viewTitleStyle}
-                            >
-                                {patternInstance.typeLabel}
-                            </div>
-                            <PartWholeView
-                                pattern={patternInstance.type}
-                                dataset={this.props.datasetURI}
-                                patternInstanceUri={patternInstance.uri}
-                                showPropertyValueList={true}
-                                styles={{
-                                    partWhole: {
-                                        containerStyle: {
-                                            width: 450
-                                        },
-                                        littleItemStyle: {
-                                            width: 100
-                                        },
-                                        centerItemStyle: {
-                                            width: 300
-                                        }
-                                    }
-                                }}
-                            />
-                        </div>
-                    );
-                }
-                if (
-                    patternInstance.type ===
-                    'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
-                ) {
-                    return (
-                        <div
-                            key={index}
-                            style={index % 2 === 0 ? cellStyle : {}}
-                        >
-                            <div
-                                class="mosaic-view-title"
-                                style={viewTitleStyle}
-                            >
-                                {patternInstance.typeLabel}
-                            </div>
-                            <CollectionView
-                                pattern={patternInstance.type}
-                                dataset={this.props.datasetURI}
-                                patternInstanceUri={patternInstance.uri}
-                                showPropertyValueList={true}
-                                hideCulturalProperty={true}
-                                styles={{
-                                    depiction: {
-                                        width: '100%',
-                                        margin: 'auto'
-                                    },
-                                    collection: {
-                                        collectionContainerWidth: {
-                                            width: '120%' // set this width to 120, 130, 140% to increase padding between items
-                                        }
-                                    }
-                                }}
-                            />
-                        </div>
-                    );
-                }
-                if (
-                    patternInstance.type ===
-                        'https://w3id.org/arco/ontology/location/time-indexed-typed-location' &&
-                    titlCount === 0
-                ) {
-                    titlCount++;
-                    return (
-                        <div
-                            key={index}
-                            style={index % 2 === 0 ? cellStyle : {}}
-                        >
-                            <div
-                                class="mosaic-view-title"
-                                style={viewTitleStyle}
-                            >
-                                {patternInstance.typeLabel}
-                            </div>
-                            <TimeIndexedTypedLocationView
-                                pattern={patternInstance.type}
-                                dataset={this.props.datasetURI}
-                                patternInstanceUri={patternInstance.uri}
-                                showPropertyValueList={true}
-                                hideCulturalProperty={true}
-                            />
-                        </div>
-                    );
-                }
+        const timeIndexedTypedLocationInstances = this.state.patternInstances.filter(
+            p => {
+                return (
+                    p.type ===
+                    'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
+                );
             }
         );
+        const nonTimeIndexedTypedLocationInstancs = this.state.patternInstances.filter(
+            p => {
+                return (
+                    p.type !==
+                    'https://w3id.org/arco/ontology/location/time-indexed-typed-location'
+                );
+            }
+        );
+
+        let index = 0;
+        const viewsContent = [];
+        nonTimeIndexedTypedLocationInstancs.forEach(patternInstance => {
+            if (
+                patternInstance.type ===
+                'https://w3id.org/arco/ontology/location/cultural-property-component-of'
+            ) {
+                viewsContent.push(
+                    <div key={index} style={index % 2 === 0 ? cellStyle : {}}>
+                        <div class="mosaic-view-title" style={viewTitleStyle}>
+                            {patternInstance.typeLabel}
+                        </div>
+                        <PartWholeView
+                            pattern={patternInstance.type}
+                            dataset={this.props.datasetURI}
+                            patternInstanceUri={patternInstance.uri}
+                            showPropertyValueList={true}
+                            styles={{
+                                partWhole: {
+                                    containerStyle: {
+                                        width: 450
+                                    },
+                                    littleItemStyle: {
+                                        width: 100
+                                    },
+                                    centerItemStyle: {
+                                        width: 300
+                                    }
+                                }
+                            }}
+                        />
+                    </div>
+                );
+            }
+            if (
+                patternInstance.type ===
+                'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
+            ) {
+                viewsContent.push(
+                    <div key={index} style={index % 2 === 0 ? cellStyle : {}}>
+                        <div class="mosaic-view-title" style={viewTitleStyle}>
+                            {patternInstance.typeLabel}
+                        </div>
+                        <CollectionView
+                            pattern={patternInstance.type}
+                            dataset={this.props.datasetURI}
+                            patternInstanceUri={patternInstance.uri}
+                            showPropertyValueList={true}
+                            hideCulturalProperty={true}
+                            styles={{
+                                depiction: {
+                                    width: '100%',
+                                    margin: 'auto'
+                                },
+                                collection: {
+                                    collectionContainerWidth: {
+                                        width: '120%' // set this width to 120, 130, 140% to increase padding between items
+                                    }
+                                }
+                            }}
+                        />
+                    </div>
+                );
+            }
+            index++;
+        });
+        if (timeIndexedTypedLocationInstances.length > 0) {
+            viewsContent.push(
+                <div key={index} style={index % 2 === 0 ? cellStyle : {}}>
+                    <div class="mosaic-view-title" style={viewTitleStyle}>
+                        {timeIndexedTypedLocationInstances[0].typeLabel}
+                    </div>
+                    <TimeIndexedTypedLocationView
+                        key={timeIndexedTypedLocationInstances.reduce(
+                            (string, p) => {
+                                console.log(p);
+                                return string + p.uri;
+                            },
+                            ''
+                        )}
+                        pattern={timeIndexedTypedLocationInstances[0].type}
+                        dataset={this.props.datasetURI}
+                        patternInstancesUri={timeIndexedTypedLocationInstances.map(
+                            p => {
+                                return p.uri;
+                            }
+                        )}
+                        showPropertyValueList={true}
+                        hideCulturalProperty={true}
+                    />
+                </div>
+            );
+        }
+
         const viewsRowsAndColumns = chunk(viewsContent, 2).map(function(group) {
             return <Grid.Column>{group}</Grid.Column>;
         });

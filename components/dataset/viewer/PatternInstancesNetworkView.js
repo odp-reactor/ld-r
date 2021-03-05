@@ -164,7 +164,6 @@ export default class PatternInstancesNetworkView extends React.Component {
                     listHeadersSet.add('parts');
                 }
 
-                console.log('Instance keys', listHeadersSet);
                 const instancePropertiesJson = Object.assign(
                     {
                         startTime: startTime || undefined,
