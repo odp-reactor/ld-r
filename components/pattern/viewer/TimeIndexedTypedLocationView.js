@@ -60,7 +60,6 @@ class TimeIndexedTypedLocationView extends React.Component {
         if (process.env.BROWSER) {
             const { titls } = cloneDeep(this.state);
             if (titls && titls.length > 0) {
-                console.log('RENDERING COMPONENT');
                 let TimeIndexedTypedLocation = require('odp-reactor/lib/client-side')
                     .TimeIndexedTypedLocation;
                 let ImageGrid = require('odp-reactor').ImageGrid;
@@ -79,7 +78,7 @@ class TimeIndexedTypedLocationView extends React.Component {
 
                 let propertyList = {};
                 if (!this.props.hideCulturalProperty) {
-                    propertyList['Cultural property:'] = {
+                    propertyList['Cultural property :'] = {
                         label: titls[0].cPropLabel,
                         onClick: () => {
                             getResource(culturalPropertyURI);
@@ -87,23 +86,39 @@ class TimeIndexedTypedLocationView extends React.Component {
                     };
                 }
                 titls.map((titl, index) => {
-                    propertyList[`Address ${index}`] = {
-                        label: titl.addressLabel
-                    };
-                    propertyList[`Location Type ${index}`] = {
-                        label: titl.locationTypeLabel,
-                        onClick: () => {
-                            getResource(titl.locationType);
-                        }
-                    };
-                    propertyList[`Longitude: ${index}`] = { label: titl.long };
-                    propertyList[`Latitude: ${index}`] = { label: titl.lat };
-                    propertyList[`Start Time: ${index}`] = {
-                        label: titl.startTime
-                    };
-                    propertyList[`End Time: ${index}`] = {
-                        label: titl.endTime
-                    };
+                    let number = titls > 1 ? index + 1 : '';
+                    if (titl.addressLabel && titl.addressLabel !== '') {
+                        propertyList[`Address ${number}:`] = {
+                            label: titl.addressLabel
+                        };
+                    }
+                    if (titl.locationType && titl.locationType !== '') {
+                        propertyList[`Location Type ${number}:`] = {
+                            label: titl.locationTypeLabel,
+                            onClick: () => {
+                                getResource(titl.locationType);
+                            }
+                        };
+                    }
+                    if (titl.long && titl.long !== '') {
+                        propertyList[`Longitude ${number}:`] = {
+                            label: titl.long
+                        };
+                    }
+                    if (titl.lat && titl.lat !== '') {
+                        propertyList[`Latitude ${number}:`] = {
+                            label: titl.lat
+                        };
+                    }
+                    if (titl.startTime && titl.startTime !== '')
+                        propertyList[`Start Time ${number}:`] = {
+                            label: titl.startTime
+                        };
+                    if (titl.endTime && titl.endTime !== '') {
+                        propertyList[`End Time ${number}:`] = {
+                            label: titl.endTime
+                        };
+                    }
                 });
 
                 const childStyle = {

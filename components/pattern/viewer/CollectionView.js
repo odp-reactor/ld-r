@@ -64,7 +64,7 @@ class CollectionView extends React.Component {
         if (collection) {
             let propertyList = {};
             if (!this.props.hideCulturalProperty) {
-                propertyList['Cultural Property:'] = {
+                propertyList['Cultural Property :'] = {
                     uri: collection[0].cProp,
                     onClick: () => {
                         this.context.executeAction(navigateAction, {

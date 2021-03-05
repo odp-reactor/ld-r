@@ -74,7 +74,7 @@ class PartWholeView extends React.Component {
             let propertyList = {};
             let c = 1;
             data.map(part => {
-                propertyList[`Component ${c}:`] = {
+                propertyList[`Component ${c} :`] = {
                     uri: part.cPropComponent,
                     onClick: () => {
                         getResource(part.cPropComponent);
