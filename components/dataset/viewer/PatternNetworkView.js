@@ -111,6 +111,7 @@ export default class PatternNetworkView extends React.Component {
                         nodeColor: 'purple',
                         nodeBorderColor: 'purple',
                         nodeType: 'graphin-circle',
+                        mobileNodeType: 'circle',
                         tooltipInfo: dataInfoMap[p.pattern],
                         graphinProperties: {
                             graphinPatternNodeDoubleClick: () => {
@@ -171,6 +172,7 @@ export default class PatternNetworkView extends React.Component {
                         nodeSize: 60,
                         nodeLabelSize: 20,
                         nodeType: 'diamond',
+                        mobileNodeType: 'diamond',
                         nodeLabelPosition: 'bottom',
                         nodeColor: 'red',
                         nodeBorderColor: 'red',
