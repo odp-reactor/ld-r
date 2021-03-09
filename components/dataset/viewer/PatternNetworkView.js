@@ -107,9 +107,12 @@ export default class PatternNetworkView extends React.Component {
                         type: 'Pattern',
                         occurences: p.occurences,
                         nodeSize: 15,
+                        nodeMobileSize: 15,
                         nodeLabelSize: 20,
                         nodeColor: 'purple',
                         nodeBorderColor: 'purple',
+                        nodeMobileColor: 'thistle',
+                        nodeBorderMobileColor: 'purple',
                         nodeType: 'graphin-circle',
                         mobileNodeType: 'circle',
                         tooltipInfo: dataInfoMap[p.pattern],
@@ -170,12 +173,15 @@ export default class PatternNetworkView extends React.Component {
                         type: 'Class',
                         centralityScore: c.pd,
                         nodeSize: 60,
+                        nodeMobileSize: 60 * 5,
                         nodeLabelSize: 20,
                         nodeType: 'diamond',
-                        mobileNodeType: 'diamond',
+                        mobileNodeType: 'triangle',
                         nodeLabelPosition: 'bottom',
                         nodeColor: 'red',
                         nodeBorderColor: 'red',
+                        nodeMobileColor: '#ffcccb',
+                        nodeBorderMobileColor: 'red',
                         scaledCentralityScore: scaleInto01(
                             c.pd,
                             minCentralityScore,
@@ -234,21 +240,25 @@ export default class PatternNetworkView extends React.Component {
             // update pattern size
             kg.forEachPattern((resourceURI, attributes) => {
                 if (kg.getResourceProperty(resourceURI, 'occurences')) {
+                    const scaledSize = Math.round(
+                        scaleData(
+                            kg.getResourceProperty(resourceURI, 'occurences'),
+                            0,
+                            350,
+                            20,
+                            80
+                        )
+                    );
+
                     kg.updateResourceProperty(
                         resourceURI,
                         'nodeSize',
-                        Math.round(
-                            scaleData(
-                                kg.getResourceProperty(
-                                    resourceURI,
-                                    'occurences'
-                                ),
-                                0,
-                                350,
-                                20,
-                                80
-                            )
-                        )
+                        scaledSize
+                    );
+                    kg.updateResourceProperty(
+                        resourceURI,
+                        'nodeMobileSize',
+                        scaledSize * 10
                     );
                 }
             });
