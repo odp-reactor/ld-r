@@ -157,41 +157,8 @@ export default class PatternQuery extends SPARQLQuery {
             case 'http://www.ontologydesignpatterns.org/cp/owl/time-indexed-situation':
             case 'http://www.ontologydesignpatterns.org/cp/owl/situation': {
                 return [
-                    '?locationType ?startTime ?endTime ?lat ?long ?addressLabel',
-                    `    OPTIONAL{ SELECT ?instance (SAMPLE(?locationType) as ?locationType) {
-                OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .
-                 ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
-                 ?titl <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType2B .
-                 ?locationType2B rdfs:label ?locationLabel .
-                 #FILTER langMatches(lang(?locationLabel), "it")
-                 } BIND ( IF ( BOUND (?locationLabel), ?locationLabel, "" ) as ?locationType ) .
-                 } GROUP BY ?instance }
-        OPTIONAL{
-                  SELECT ?instance (SAMPLE(?addressLabel) as ?addressLabel) WHERE {
-OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .
-?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
-?titl <https://w3id.org/arco/ontology/location/atSite> ?site .
-?site <http://dati.beniculturali.it/cis/siteAddress>?siteAddress .
-?siteAddress rdfs:label ?addressLabel2B . }
-BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .  
-} GROUP BY ?instance
-              }
-        OPTIONAL{ SELECT ?instance (SAMPLE(?startTime) AS ?startTime) (SAMPLE(?endTime) as ?endTime) {
-OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .
-?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
-?titl <https://w3id.org/italia/onto/TI/atTime> ?tInterval . 
-?tInterval <https://w3id.org/arco/ontology/arco/startTime> ?startTime2B ;
-<https://w3id.org/arco/ontology/arco/endTime> ?endTime2B .
-                   } 
-                       BIND ( IF ( BOUND (?startTime2B), ?startTime2B, "" ) as ?startTime ) .
-                       BIND ( IF ( BOUND (?endTime2B), ?endTime2B, "" ) as ?endTime ) .
-                   } GROUP BY ?instance
-                 }
-    OPTIONAL{ SELECT ?instance (SAMPLE(?lat) as ?lat) (SAMPLE(?long) AS ?long) {
-                   OPTIONAL {
-                    ?instance opla:hasPatternInstanceMember ?titl .
-                    ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
-                    ?titl <https://w3id.org/arco/ontology/location/atSite> ?site .
+                    '?locationType ?startTime ?endTime ?lat ?long ?addressLabel ?cProp ?cPropLabel',
+                    `    OPTIONAL {SELECT ?instance (SAMPLE(?cProp) as ?cProp) (SAMPLE(?cPropLabel) as?cPropLabel) {OPTIONAL {?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?cProp <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> ?titl .?cProp rdfs:label ?cPropLabel .}}}OPTIONAL{ SELECT ?instance (SAMPLE(?locationType) as ?locationType) { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType2B . ?locationType2B rdfs:label ?locationLabel . } BIND ( IF ( BOUND (?locationLabel), ?locationLabel, "" ) as ?locationType ) .} GROUP BY ?instance } OPTIONAL{ SELECT ?instance (SAMPLE(?addressLabel) as ?addressLabel) WHERE { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/arco/ontology/location/atSite> ?site . ?site <http://dati.beniculturali.it/cis/siteAddress>?siteAddress . ?siteAddress rdfs:label ?addressLabel2B . } BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .} GROUP BY ?instance } OPTIONAL{ SELECT ?instance (SAMPLE(?startTime) AS ?startTime) (SAMPLE(?endTime) as ?endTime) { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/italia/onto/TI/atTime> ?tInterval .  ?tInterval <https://w3id.org/arco/ontology/arco/startTime> ?startTime2B ; <https://w3id.org/arco/ontology/arco/endTime> ?endTime2B . }                       BIND ( IF ( BOUND (?startTime2B), ?startTime2B, "" ) as ?startTime ) . BIND ( IF ( BOUND (?endTime2B), ?endTime2B, "" ) as ?endTime ) . } GROUP BY ?instance } OPTIONAL{ SELECT ?instance (SAMPLE(?lat) as ?lat) (SAMPLE(?long) AS ?long) { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .                    ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/arco/ontology/location/atSite> ?site .
                 ?site <https://w3id.org/italia/onto/CLV/hasGeometry> ?geometry .
                 ?geometry <https://w3id.org/italia/onto/CLV/lat>     ?lat2B .
                 ?geometry <https://w3id.org/italia/onto/CLV/long>    ?long2B .   }
