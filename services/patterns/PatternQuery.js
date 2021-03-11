@@ -40,6 +40,7 @@ export default class PatternQuery {
                     ?culturalProperty a-loc:hasTimeIndexedTypedLocation ?titl .
                     ?titl a-loc:hasLocationType ?locationType .
                     ?locationType rdfs:label ?locationTypeLabel .
+                    FILTER langMatches(lang(?locationTypeLabel), "it")
     
                     OPTIONAL { ?titl a-loc:atSite ?site .
                                ?site cis:siteAddress ?siteAddress .

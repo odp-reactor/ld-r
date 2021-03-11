@@ -29,7 +29,7 @@ let webpackConfig = {
         filename: '[name].js'
     },
     optimization: {
-        minimize: true,
+        minimize: false,
         runtimeChunk: {
             name: 'vendor.bundle'
         },
