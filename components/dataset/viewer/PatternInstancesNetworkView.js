@@ -264,7 +264,8 @@ PatternInstancesNetworkView = connectToStores(
 const listKeysIndex = {
     label: {
         label: 'Label',
-        id: 'label'
+        id: 'label',
+        uri: 'uri'
     },
     culturalProperty: {
         label: 'Cultural Property',

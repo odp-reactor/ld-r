@@ -158,7 +158,7 @@ export default class PatternQuery extends SPARQLQuery {
             case 'http://www.ontologydesignpatterns.org/cp/owl/situation': {
                 return [
                     '?locationType ?startTime ?endTime ?lat ?long ?addressLabel ?cProp ?cPropLabel',
-                    `    OPTIONAL {SELECT ?instance (SAMPLE(?cProp) as ?cProp) (SAMPLE(?cPropLabel) as?cPropLabel) {OPTIONAL {?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?cProp <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> ?titl .?cProp rdfs:label ?cPropLabel .}}}OPTIONAL{ SELECT ?instance (SAMPLE(?locationType) as ?locationType) { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType2B . ?locationType2B rdfs:label ?locationLabel . } BIND ( IF ( BOUND (?locationLabel), ?locationLabel, "" ) as ?locationType ) .} GROUP BY ?instance } OPTIONAL{ SELECT ?instance (SAMPLE(?addressLabel) as ?addressLabel) WHERE { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/arco/ontology/location/atSite> ?site . ?site <http://dati.beniculturali.it/cis/siteAddress>?siteAddress . ?siteAddress rdfs:label ?addressLabel2B . } BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .} GROUP BY ?instance } OPTIONAL{ SELECT ?instance (SAMPLE(?startTime) AS ?startTime) (SAMPLE(?endTime) as ?endTime) { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/italia/onto/TI/atTime> ?tInterval .  ?tInterval <https://w3id.org/arco/ontology/arco/startTime> ?startTime2B ; <https://w3id.org/arco/ontology/arco/endTime> ?endTime2B . }                       BIND ( IF ( BOUND (?startTime2B), ?startTime2B, "" ) as ?startTime ) . BIND ( IF ( BOUND (?endTime2B), ?endTime2B, "" ) as ?endTime ) . } GROUP BY ?instance } OPTIONAL{ SELECT ?instance (SAMPLE(?lat) as ?lat) (SAMPLE(?long) AS ?long) { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .                    ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/arco/ontology/location/atSite> ?site .
+                    `    OPTIONAL {SELECT ?instance (SAMPLE(?cProp) as ?cProp) (SAMPLE(?cPropLabel) as?cPropLabel) {OPTIONAL {?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?cProp <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> ?titl .?cProp rdfs:label ?cPropLabel .}}}OPTIONAL{ SELECT ?instance (SAMPLE(?locationType) as ?locationType) { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/arco/ontology/location/hasLocationType> ?locationType2B . ?locationType2B rdfs:label ?locationLabel . FILTER (lang(?locationLabel) = 'it') } BIND ( IF ( BOUND (?locationLabel), ?locationLabel, "" ) as ?locationType ) .} GROUP BY ?instance } OPTIONAL{ SELECT ?instance (SAMPLE(?addressLabel) as ?addressLabel) WHERE { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/arco/ontology/location/atSite> ?site . ?site <http://dati.beniculturali.it/cis/siteAddress>?siteAddress . ?siteAddress rdfs:label ?addressLabel2B . } BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .} GROUP BY ?instance } OPTIONAL{ SELECT ?instance (SAMPLE(?startTime) AS ?startTime) (SAMPLE(?endTime) as ?endTime) { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl . ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/italia/onto/TI/atTime> ?tInterval .  ?tInterval <https://w3id.org/arco/ontology/arco/startTime> ?startTime2B ; <https://w3id.org/arco/ontology/arco/endTime> ?endTime2B . }                       BIND ( IF ( BOUND (?startTime2B), ?startTime2B, "" ) as ?startTime ) . BIND ( IF ( BOUND (?endTime2B), ?endTime2B, "" ) as ?endTime ) . } GROUP BY ?instance } OPTIONAL{ SELECT ?instance (SAMPLE(?lat) as ?lat) (SAMPLE(?long) AS ?long) { OPTIONAL { ?instance opla:hasPatternInstanceMember ?titl .                    ?titl rdf:type <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> . ?titl <https://w3id.org/arco/ontology/location/atSite> ?site .
                 ?site <https://w3id.org/italia/onto/CLV/hasGeometry> ?geometry .
                 ?geometry <https://w3id.org/italia/onto/CLV/lat>     ?lat2B .
                 ?geometry <https://w3id.org/italia/onto/CLV/long>    ?long2B .   }
@@ -171,8 +171,14 @@ export default class PatternQuery extends SPARQLQuery {
             case 'https://w3id.org/arco/ontology/denotative-description/measurement-collection':
             case 'http://www.ontologydesignpatterns.org/cp/owl/collection': {
                 return [
-                    '?measures',
-                    ` OPTIONAL { SELECT ?instance (GROUP_CONCAT(DISTINCT ?measure; SEPARATOR=";") AS ?measures) {  
+                    '?measures ?cProp ?cPropLabel',
+                    `OPTIONAL { SELECT ?instance ?cProp (SAMPLE(?cPropLabel) as ?cPropLabel) WHERE {
+                        OPTIONAL   { ?instance opla:hasPatternInstanceMember ?cProp .
+                                      ?cProp <https://w3id.org/arco/ontology/denotative-description/hasMeasurementCollection> ?mc .
+                                      ?cProp rdfs:label ?cPropLabel
+                                   }
+                                   } GROUP BY ?instance ?cProp  }   
+                    OPTIONAL { SELECT ?instance (GROUP_CONCAT(DISTINCT ?measure; SEPARATOR=";") AS ?measures) {  
                         ?instance opla:hasPatternInstanceMember ?node .
                         { ?node <https://w3id.org/arco/ontology/denotative-description/hasValue> ?val .
                         ?val <https://w3id.org/italia/onto/MU/value> ?value .
@@ -193,13 +199,18 @@ export default class PatternQuery extends SPARQLQuery {
             case 'https://w3id.org/arco/ontology/location/cultural-property-component-of':
             case 'http://www.ontologydesignpatterns.org/cp/owl/part-of': {
                 return [
-                    '?parts',
+                    '?parts ?cProp ?cPropLabel',
                     `OPTIONAL { SELECT ?instance (GROUP_CONCAT(DISTINCT ?node; SEPARATOR=";") AS ?parts) { OPTIONAL { 
                     ?instance opla:hasPatternInstanceMember ?node .
                     ?node <https://w3id.org/arco/ontology/arco/isCulturalPropertyComponentOf> ?cProp .
                     } 
                   } 
-          }`
+          }OPTIONAL { SELECT ?instance (SAMPLE(?cProp) as ?cProp) (SAMPLE(?cPropLabel) as ?cPropLabel) WHERE {
+            ?instance opla:hasPatternInstanceMember ?component .
+                                  ?component <https://w3id.org/arco/ontology/arco/isCulturalPropertyComponentOf> ?cProp .
+                                  ?cProp rdfs:label ?cPropLabel
+                               } 
+     } `
                 ];
             }
             default:
