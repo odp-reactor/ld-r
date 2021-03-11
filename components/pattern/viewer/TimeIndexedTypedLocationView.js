@@ -120,6 +120,21 @@ class TimeIndexedTypedLocationView extends React.Component {
                         };
                     }
                 });
+                console.log(titls);
+                try {
+                    titls.sort((a, b) => {
+                        if (a.locationTypeLabel.includes('precedente')) {
+                            return -1;
+                        }
+                        if (a.locationTypeLabel.includes('attuale')) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                } catch (e) {
+                    console.log('Error sorting values');
+                }
+                console.log('TITLS TO BE SORT:', titls);
 
                 const childStyle = {
                     flex: '1 0 45%'

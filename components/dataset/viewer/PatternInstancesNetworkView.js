@@ -163,6 +163,13 @@ export default class PatternInstancesNetworkView extends React.Component {
                         : undefined;
                     listHeadersSet.add('parts');
                 }
+                if (instance.cPropLabel && instance.cProp) {
+                    resourceInstanceJson['culturalProperty'] =
+                        instance.cPropLabel;
+                    resourceInstanceJson['culturalPropertyUri'] =
+                        instance.cProp;
+                    listHeadersSet.add('culturalProperty');
+                }
 
                 const instancePropertiesJson = Object.assign(
                     {
@@ -184,6 +191,16 @@ export default class PatternInstancesNetworkView extends React.Component {
                                 exploreResourceOnListItemClick(
                                     instance.instance
                                 );
+                            },
+                            listEntityClick: resourceURI => {
+                                this.context.executeAction(navigateAction, {
+                                    url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
+                                        this.props.RouteStore._currentNavigate
+                                            .route.params.did
+                                    )}/resource/${encodeURIComponent(
+                                        resourceURI
+                                    )}`
+                                });
                             },
                             listTitle: instance.patternLabel
                         }
@@ -240,10 +257,20 @@ PatternInstancesNetworkView = connectToStores(
     }
 );
 
+// uri is used in the list like this instance[uri] so you need to save in the instance
+// instance[uri] = https://example.com/instanceUri
+//
+// e.g. instance[cPropURI] = "someURIofTheCprop"
 const listKeysIndex = {
     label: {
         label: 'Label',
-        id: 'label'
+        id: 'label',
+        uri: 'uri'
+    },
+    culturalProperty: {
+        label: 'Cultural Property',
+        id: 'culturalProperty',
+        uri: 'culturalPropertyUri'
     },
     height: { label: 'Height', id: 'height' },
     width: { label: 'Width', id: 'width' },

@@ -99,7 +99,8 @@ export default class ClassInstances extends React.Component {
                             listKeys: [
                                 {
                                     label: 'Label',
-                                    id: 'label'
+                                    id: 'label',
+                                    uri: 'uri'
                                 }
                             ],
                             listItemClick: () => {
@@ -115,6 +116,16 @@ export default class ClassInstances extends React.Component {
                                         resource.uri
                                     )}/${encodeURIComponent(
                                         patternInstancesUriStringified
+                                    )}`
+                                });
+                            },
+                            listEntityClick: resourceURI => {
+                                this.context.executeAction(navigateAction, {
+                                    url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
+                                        this.props.RouteStore._currentNavigate
+                                            .route.params.did
+                                    )}/resource/${encodeURIComponent(
+                                        resourceURI
                                     )}`
                                 });
                             },
