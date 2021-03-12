@@ -11,6 +11,7 @@ import { connectToStores, provideContext } from 'fluxible-addons-react';
 import { handleHistory } from 'fluxible-router';
 
 import regeneratorRuntime from 'regenerator-runtime';
+import { hotjar } from 'react-hotjar';
 
 class Application extends React.Component {
     constructor(props, context) {
@@ -25,6 +26,9 @@ class Application extends React.Component {
             return;
         }
         document.title = newProps.ApplicationStore.pageTitle;
+    }
+    componentDidMount() {
+        hotjar.initialize(2294500, 6);
     }
     render() {
         var Handler = this.props.currentRoute.handler;
