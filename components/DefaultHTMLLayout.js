@@ -11,6 +11,10 @@ class DefaultHTMLLayout extends React.Component {
         return (
             <html>
                 <head>
+                    <meta
+                        http-equiv="Content-Security-Policy"
+                        content="upgrade-insecure-requests"
+                    />
                     <meta charSet="utf-8" />
                     <title>
                         {this.props.context
