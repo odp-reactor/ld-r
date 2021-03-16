@@ -102,6 +102,14 @@ export default class PatternInstancesNetworkView extends React.Component {
                 // preprocessing raw data
                 let resourceInstanceJson = {};
 
+                if (instance.cPropLabel && instance.cProp) {
+                    resourceInstanceJson['culturalProperty'] =
+                        instance.cPropLabel;
+                    resourceInstanceJson['culturalPropertyUri'] =
+                        instance.cProp;
+                    listHeadersSet.add('culturalProperty');
+                }
+
                 let startTime, endTime;
                 if (instance.startTime && instance.endTime) {
                     startTime = instance.startTime.match(/\d+/g)
@@ -163,21 +171,14 @@ export default class PatternInstancesNetworkView extends React.Component {
                         : undefined;
                     listHeadersSet.add('parts');
                 }
-                if (instance.cPropLabel && instance.cProp) {
-                    resourceInstanceJson['culturalProperty'] =
-                        instance.cPropLabel;
-                    resourceInstanceJson['culturalPropertyUri'] =
-                        instance.cProp;
-                    listHeadersSet.add('culturalProperty');
-                }
 
                 const instancePropertiesJson = Object.assign(
                     {
                         startTime: startTime || undefined,
                         endTime: endTime || undefined,
                         locationType: instance.locationType || undefined,
-                        lat: instance.lat || undefined,
-                        long: instance.long || undefined,
+                        lat: toPrecision(instance.lat) || undefined,
+                        long: toPrecision(instance.long) || undefined,
                         addressLabel: instance.addressLabel || undefined,
                         listProperties: {
                             listKeys: Array.from(listHeadersSet).map(
@@ -263,7 +264,7 @@ PatternInstancesNetworkView = connectToStores(
 // e.g. instance[cPropURI] = "someURIofTheCprop"
 const listKeysIndex = {
     label: {
-        label: 'Label',
+        label: 'View',
         id: 'label',
         uri: 'uri'
     },
@@ -284,3 +285,8 @@ const listKeysIndex = {
     long: { label: 'Longitude', id: 'long' },
     parts: { label: 'Parts', id: 'parts' }
 };
+
+function toPrecision(n, p = 3) {
+    if (n) return Number.parseFloat(n).toFixed(p);
+    else return undefined;
+}

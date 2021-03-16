@@ -5,16 +5,21 @@ export default class PatternService {
         this.patternRepository = new PatternRepository(dbCtx);
     }
     async findCulturalPropertyWithTimeIndexedTypedLocationByUris(patternUris) {
-        const titls = [];
         const promises = patternUris.map(patternUri => {
             return this.patternRepository.findCulturalPropertyWithTimeIndexedTypedLocation(
                 patternUri
             );
         });
         const results = await Promise.all(promises);
-        return results.map(arr => {
+        const resultsToReturn = results.map(arr => {
             return arr[0];
         });
+        if (
+            resultsToReturn &&
+            resultsToReturn.length > 0 &&
+            typeof resultsToReturn[0] !== 'undefined'
+        )
+            return resultsToReturn;
     }
     async findCulturalPropertyWithParts(patternUri) {
         return this.patternRepository.findCulturalPropertyWithParts(patternUri);
