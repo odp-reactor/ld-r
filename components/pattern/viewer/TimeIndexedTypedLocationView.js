@@ -60,6 +60,7 @@ class TimeIndexedTypedLocationView extends React.Component {
         if (process.env.BROWSER) {
             const { titls } = cloneDeep(this.state);
             if (titls && titls.length > 0) {
+                console.log('BUG:', titls);
                 let TimeIndexedTypedLocation = require('odp-reactor/lib/client-side')
                     .TimeIndexedTypedLocation;
                 let ImageGrid = require('odp-reactor').ImageGrid;
@@ -74,7 +75,9 @@ class TimeIndexedTypedLocationView extends React.Component {
                     });
                 };
 
-                const culturalPropertyURI = titls[0].culturalProperty;
+                const culturalPropertyURI = titls[0]
+                    ? titls[0].culturalProperty
+                    : '';
 
                 let propertyList = {};
                 if (!this.props.hideCulturalProperty) {
