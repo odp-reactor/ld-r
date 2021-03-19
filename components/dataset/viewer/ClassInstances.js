@@ -137,7 +137,20 @@ export default class ClassInstances extends React.Component {
                 kg.addResource(resourceKG);
             });
 
-            return <ResourcesPage knowledgeGraph={kg} classUri={classURI} />;
+            let resetFilters = false;
+            if (this.props.RouteStore._currentNavigate) {
+                resetFilters =
+                    this.props.RouteStore._currentNavigate.route.query
+                        .resetFilters || false;
+            }
+
+            return (
+                <ResourcesPage
+                    knowledgeGraph={kg}
+                    classUri={classURI}
+                    resetFilters={resetFilters}
+                />
+            );
         } else {
             const datasetContainerStyle = {
                 height: '90vh',
