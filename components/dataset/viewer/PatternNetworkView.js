@@ -75,6 +75,13 @@ export default class PatternNetworkView extends React.Component {
             this.props.PatternStore.list &&
             this.state.classesWithPatternsAndScores
         ) {
+            let resetFilters = false;
+            if (this.props.RouteStore._currentNavigate) {
+                resetFilters =
+                    this.props.RouteStore._currentNavigate.route.query
+                        .resetFilters || false;
+            }
+
             // we dependency inject the function to get instances by pattern URI
             // node is a Graphin node
 
@@ -126,7 +133,11 @@ export default class PatternNetworkView extends React.Component {
                                             p.pattern
                                         )}/color/${encodeURIComponent(
                                             'noColor'
-                                        )}`
+                                        )}${
+                                            resetFilters
+                                                ? '?resetFilters=true'
+                                                : ''
+                                        }`
                                     });
                                 }
                             }
@@ -153,7 +164,11 @@ export default class PatternNetworkView extends React.Component {
                                             this.props.datasetURI
                                         )}/patterns/${encodeURIComponent(
                                             p.pattern
-                                        )}/color/removeThis`
+                                        )}/color/removeThis${
+                                            resetFilters
+                                                ? '?resetFilters=true'
+                                                : ''
+                                        }`
                                     });
                                 }
                             }
@@ -192,7 +207,9 @@ export default class PatternNetworkView extends React.Component {
                                 this.context.executeAction(navigateAction, {
                                     url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
                                         this.props.datasetURI
-                                    )}/classes/${encodeURIComponent(c.uri)}`
+                                    )}/classes/${encodeURIComponent(c.uri)}${
+                                        resetFilters ? '?resetFilters=true' : ''
+                                    }`
                                 });
                             }
                         },
@@ -211,7 +228,9 @@ export default class PatternNetworkView extends React.Component {
                                 this.context.executeAction(navigateAction, {
                                     url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
                                         this.props.datasetURI
-                                    )}/classes/${encodeURIComponent(c.uri)}`
+                                    )}/classes/${encodeURIComponent(c.uri)}${
+                                        resetFilters ? '?resetFilters=true' : ''
+                                    }`
                                 });
                             }
                         }
@@ -267,6 +286,7 @@ export default class PatternNetworkView extends React.Component {
                 <PatternsAndClassesPage
                     knowledgeGraph={kg}
                     knowledgeGraphUri={this.props.datasetURI}
+                    resetFilters={resetFilters}
                 />
             );
         } else {
@@ -296,7 +316,8 @@ PatternNetworkView = connectToStores(
     [PatternStore],
     function(context, props) {
         return {
-            PatternStore: context.getStore(PatternStore).getState()
+            PatternStore: context.getStore(PatternStore).getState(),
+            RouteStore: context.getStore('RouteStore')
         };
     }
 );

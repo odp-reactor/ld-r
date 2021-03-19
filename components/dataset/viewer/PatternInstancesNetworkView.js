@@ -219,10 +219,18 @@ export default class PatternInstancesNetworkView extends React.Component {
                 kg.addResource(instanceResource);
             });
 
+            let resetFilters = false;
+            if (this.props.RouteStore._currentNavigate) {
+                resetFilters =
+                    this.props.RouteStore._currentNavigate.route.query
+                        .resetFilters || false;
+            }
+
             return (
                 <PatternInstancesPage
                     knowledgeGraph={kg}
                     patternTypeUri={patternType}
+                    resetFilters={resetFilters}
                 />
             );
         } else {
