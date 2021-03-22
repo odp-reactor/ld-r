@@ -133,11 +133,17 @@ export default class PatternInstancesNetworkView extends React.Component {
                         let m = rawm.split('-').pop();
 
                         const lengthUnits = ['cm', 'm', 'mm'];
-                        const defaultMeasurementUnit = 'mm';
+                        const defaultMeasurementUnit = 'm';
 
                         if (lengthUnits.includes(u) && v != 'MNR') {
                             v = v.replace(',', '.');
                             // do conversion
+
+                            let a = false;
+                            if (v.includes('350')) {
+                                a = true;
+                                console.log('DELETED', measure);
+                            }
 
                             const measurement = Measurement.create({
                                 unit: u,
@@ -150,13 +156,22 @@ export default class PatternInstancesNetworkView extends React.Component {
                                 v = newMeasurement.getValue();
                                 u = newMeasurement.getUnit();
                             }
+
+                            if (a) {
+                                console.log(
+                                    'deleted',
+                                    measurement,
+                                    newMeasurement
+                                );
+                            }
                         }
 
-                        if (Number.parseInt(v)) {
+                        if (!isNaN(v)) {
                             resourceInstanceJson[m] = v;
                             resourceInstanceJson[`${m}MeasurementUnit`] = u;
                         }
                     });
+
                     resourceInstanceJson['measures'] = measures.length;
 
                     listHeadersSet.add('height');
@@ -225,6 +240,8 @@ export default class PatternInstancesNetworkView extends React.Component {
                     this.props.RouteStore._currentNavigate.route.query
                         .resetFilters || false;
             }
+
+            console.log('RESOURCES:', kg.getResources().length);
 
             return (
                 <PatternInstancesPage

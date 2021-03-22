@@ -123,6 +123,7 @@ export default class PatternNetworkView extends React.Component {
                         nodeType: 'graphin-circle',
                         mobileNodeType: 'circle',
                         tooltipInfo: dataInfoMap[p.pattern],
+                        iconUrl: iconMap[p.pattern],
                         graphinProperties: {
                             graphinPatternNodeDoubleClick: () => {
                                 if (p.occurences !== '0') {
@@ -321,6 +322,26 @@ PatternNetworkView = connectToStores(
         };
     }
 );
+
+let iconMap = {};
+iconMap['http://www.ontologydesignpatterns.org/cp/owl/collection'] =
+    'Explore the instances to see information about collections of items in this dataset';
+iconMap['http://www.ontologydesignpatterns.org/cp/owl/part-of'] =
+    'Explore instances of this pattern in the dataset to get information about things and the parts they’re composed of.';
+iconMap['http://www.ontologydesignpatterns.org/cp/owl/situation'] =
+    'Explore the instances to get information about situations data and the things (participants, people, objects) involved in that situation.';
+iconMap['http://www.ontologydesignpatterns.org/cp/owl/time-indexed-situation'] =
+    'Explore the instances of this pattern to get information about a situation, things involved and the time interval in which situation happened.';
+iconMap['http://www.ontologydesignpatterns.org/cp/owl/time-interval'] =
+    'There are no independent time interval in the dataset.';
+iconMap[
+    'https://w3id.org/arco/ontology/denotative-description/measurement-collection'
+] = 'https://cdn.onlinewebfonts.com/svg/img_536281.png';
+iconMap[
+    'https://w3id.org/arco/ontology/location/cultural-property-component-of'
+] = 'https://cdn.onlinewebfonts.com/svg/img_562672.png';
+iconMap['https://w3id.org/arco/ontology/location/time-indexed-typed-location'] =
+    'https://cdn3.iconfinder.com/data/icons/banking-toolbar/512/xxx047-512.png';
 
 let dataInfoMap = {};
 dataInfoMap['http://www.ontologydesignpatterns.org/cp/owl/collection'] =
