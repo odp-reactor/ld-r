@@ -6,6 +6,7 @@ import Nav from './Nav';
 import HelpModal from './HelpModal';
 import Home from './Home';
 import About from './About';
+import ErrorHandler from './ErrorHandler';
 import ApplicationStore from '../stores/ApplicationStore';
 import { connectToStores, provideContext } from 'fluxible-addons-react';
 import { handleHistory } from 'fluxible-router';
@@ -35,9 +36,11 @@ class Application extends React.Component {
         //render content
         return (
             <div>
-                <Nav loading={this.props.ApplicationStore.loading} />
-                <Handler />
-                <HelpModal />
+                <ErrorHandler>
+                    <Nav loading={this.props.ApplicationStore.loading} />
+                    <Handler />
+                    <HelpModal />
+                </ErrorHandler>
             </div>
         );
     }
