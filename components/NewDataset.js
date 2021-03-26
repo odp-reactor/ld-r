@@ -25,6 +25,7 @@ class NewDataset extends React.Component {
             graphName: '',
             resourceFocusType: ''
         };
+        this.handleCreateDataset.bind(this);
     }
     componentDidMount() {}
     handleChange(element, e) {
@@ -207,7 +208,13 @@ class NewDataset extends React.Component {
                     <Divider hidden />
                     <div
                         className="ui big blue button"
-                        onClick={this.handleCreateDataset.bind(this)}
+                        onClick={() => {
+                            try {
+                                // this.handleCreateDataset();
+                            } catch (e) {
+                                console.log(e);
+                            }
+                        }}
                     >
                         Add Dataset
                     </div>
