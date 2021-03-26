@@ -171,7 +171,7 @@ export default class PatternViewsMosaic extends React.Component {
             );
         }
 
-        const viewsRowsAndColumns = chunk(viewsContent, 2).map(function(group) {
+        const viewsRowsAndColumns = chunk(viewsContent, 1).map(function(group) {
             return <Grid.Column>{group}</Grid.Column>;
         });
 

@@ -9,6 +9,7 @@ import About from './About';
 import ApplicationStore from '../stores/ApplicationStore';
 import { connectToStores, provideContext } from 'fluxible-addons-react';
 import { handleHistory } from 'fluxible-router';
+import ErrorHandler from './ErrorHandler';
 
 import regeneratorRuntime from 'regenerator-runtime';
 import { hotjar } from 'react-hotjar';
@@ -34,11 +35,13 @@ class Application extends React.Component {
         var Handler = this.props.currentRoute.handler;
         //render content
         return (
-            <div>
-                <Nav loading={this.props.ApplicationStore.loading} />
-                <Handler />
-                <HelpModal />
-            </div>
+            <ErrorHandler>
+                <div>
+                    <Nav loading={this.props.ApplicationStore.loading} />
+                    <Handler />
+                    <HelpModal />
+                </div>
+            </ErrorHandler>
         );
     }
 }

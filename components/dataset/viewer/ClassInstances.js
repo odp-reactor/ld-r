@@ -138,10 +138,13 @@ export default class ClassInstances extends React.Component {
             });
 
             let resetFilters = false;
+            let noTutorial = false;
             if (this.props.RouteStore._currentNavigate) {
                 resetFilters =
                     this.props.RouteStore._currentNavigate.route.query
                         .resetFilters || false;
+                noTutorial = this.props.RouteStore._currentNavigate.route.query
+                    .noTutorial;
             }
 
             return (
@@ -149,6 +152,7 @@ export default class ClassInstances extends React.Component {
                     knowledgeGraph={kg}
                     classUri={classURI}
                     resetFilters={resetFilters}
+                    noTutorial={noTutorial}
                 />
             );
         } else {

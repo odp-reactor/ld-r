@@ -88,11 +88,13 @@ class TimeIndexedTypedLocationView extends React.Component {
                         }
                     };
                 }
+                console.log('TITLS to put in table:', titls);
                 titls.map((titl, index) => {
-                    let number = titls > 1 ? index + 1 : '';
+                    let number = titls.length > 1 ? index + 1 : '';
                     if (titl.addressLabel && titl.addressLabel !== '') {
                         propertyList[`Address ${number}:`] = {
-                            label: titl.addressLabel
+                            label: titl.addressLabel,
+                            index: number
                         };
                     }
                     if (titl.locationType && titl.locationType !== '') {
@@ -100,30 +102,35 @@ class TimeIndexedTypedLocationView extends React.Component {
                             label: titl.locationTypeLabel,
                             onClick: () => {
                                 getResource(titl.locationType);
-                            }
+                            },
+                            index: number
                         };
                     }
                     if (titl.long && titl.long !== '') {
                         propertyList[`Longitude ${number}:`] = {
-                            label: titl.long
+                            label: titl.long,
+                            index: number
                         };
                     }
                     if (titl.lat && titl.lat !== '') {
                         propertyList[`Latitude ${number}:`] = {
-                            label: titl.lat
+                            label: titl.lat,
+                            index: number
                         };
                     }
                     if (titl.startTime && titl.startTime !== '')
                         propertyList[`Start Time ${number}:`] = {
-                            label: titl.startTime
+                            label: titl.startTime,
+                            index: number
                         };
                     if (titl.endTime && titl.endTime !== '') {
                         propertyList[`End Time ${number}:`] = {
-                            label: titl.endTime
+                            label: titl.endTime,
+                            index: number
                         };
                     }
                 });
-                console.log(titls);
+                console.log('Property List:', propertyList);
                 try {
                     titls.sort((a, b) => {
                         if (a.locationTypeLabel.includes('precedente')) {
@@ -137,7 +144,6 @@ class TimeIndexedTypedLocationView extends React.Component {
                 } catch (e) {
                     console.log('Error sorting values');
                 }
-                console.log('TITLS TO BE SORT:', titls);
 
                 const childStyle = {
                     flex: '1 0 45%'

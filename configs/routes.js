@@ -276,5 +276,11 @@ export default {
         method: "get",
         handler: require("../components/dataset/viewer/ClassInstances"),
         label: "Class Instances"
+    },
+    errortest: {
+        path: `${PUBLIC_URL}/errortest`,
+        method: "get",
+        handler: require("../components/ErrorTest"),
+        label: "Error Test"
     }
 };

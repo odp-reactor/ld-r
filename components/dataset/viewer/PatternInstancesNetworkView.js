@@ -235,10 +235,13 @@ export default class PatternInstancesNetworkView extends React.Component {
             });
 
             let resetFilters = false;
+            let noTutorial = false;
             if (this.props.RouteStore._currentNavigate) {
                 resetFilters =
                     this.props.RouteStore._currentNavigate.route.query
                         .resetFilters || false;
+                noTutorial = this.props.RouteStore._currentNavigate.route.query
+                    .noTutorial;
             }
 
             console.log('RESOURCES:', kg.getResources().length);
@@ -248,6 +251,7 @@ export default class PatternInstancesNetworkView extends React.Component {
                     knowledgeGraph={kg}
                     patternTypeUri={patternType}
                     resetFilters={resetFilters}
+                    noTutorial={noTutorial}
                 />
             );
         } else {
