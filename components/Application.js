@@ -6,10 +6,10 @@ import Nav from './Nav';
 import HelpModal from './HelpModal';
 import Home from './Home';
 import About from './About';
-import ErrorHandler from './ErrorHandler';
 import ApplicationStore from '../stores/ApplicationStore';
 import { connectToStores, provideContext } from 'fluxible-addons-react';
 import { handleHistory } from 'fluxible-router';
+import ErrorHandler from './ErrorHandler';
 
 import regeneratorRuntime from 'regenerator-runtime';
 import { hotjar } from 'react-hotjar';
@@ -35,13 +35,13 @@ class Application extends React.Component {
         var Handler = this.props.currentRoute.handler;
         //render content
         return (
-            <div>
-                <ErrorHandler>
+            <ErrorHandler>
+                <div>
                     <Nav loading={this.props.ApplicationStore.loading} />
                     <Handler />
                     <HelpModal />
-                </ErrorHandler>
-            </div>
+                </div>
+            </ErrorHandler>
         );
     }
 }
