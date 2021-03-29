@@ -37,6 +37,7 @@
   "dependencies": {
     "@christian-nja/geocoding": "^1.0.0",
     "@comunica/actor-init-sparql": "^1.19.2",
+    "@datapunt/matomo-tracker-js": "^0.4.0",
     "animate.css": "^3.7.0",
     "async": "^3.1.0",
     "body-parser": "^1.18.3",
