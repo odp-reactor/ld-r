@@ -1,0 +1,553 @@
+@prefix a-dd:  <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix arco:  <https://w3id.org/arco/ontology/arco/> .
+@prefix opla:  <http://ontologydesignpatterns.org/opla/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0500443978-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/1500372017-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Profondità" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500372017-1> ;
+        a-dd:hasValue                  "9" .
+
+<https://w3id.org/arco/resource/Measurement/0500447305-1-front-total-length>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Lunghezza totale parte anteriore" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500447305-1> ;
+        a-dd:hasValue                  "MNR" .
+
+<https://w3id.org/arco/resource/Measurement/1500371884-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500371884-1> ;
+        a-dd:hasValue                  "40" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1100181819-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/0300033877-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300033877-1> ;
+        a-dd:hasValue                  "11.5" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0300026610-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300026610-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300026610-1-height> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100016509>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "reliquiario, serie - bottega marchigiana (sec. XVIII)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/1100016509-1> .
+
+<https://w3id.org/arco/resource/Measurement/1500371884-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500371884-1> .
+
+<https://w3id.org/arco/resource/Measurement/0300214262-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300214262-1> ;
+        a-dd:hasValue                  "38" .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300174393>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "ritratto di don Giovanni Marco Spinelli Benefattore (dipinto, opera isolata) di Brighenti Giovanni Battista (attribuito) (sec. XIX, prima metà)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0300174393-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0300174393-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300174393-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300174393-1-width> , <https://w3id.org/arco/resource/Measurement/0300174393-1-height> .
+
+<https://w3id.org/arco/resource/Measurement/1500329017-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500329017-1> ;
+        a-dd:hasValue                  "341" .
+
+<https://w3id.org/arco/resource/Measurement/0500303780-1-length>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500303780-1> ;
+        a-dd:hasValue                  "5.4" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0300026610-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/NumismaticProperty/0500443978>
+        a                              arco:NumismaticProperty , arco:MovableCulturalProperty ;
+        rdfs:label                     "moneta - ambito Italia centrale (secc. XVIII/ XIX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0500443978-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0300115449-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300115449-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300115449-1-depth> , <https://w3id.org/arco/resource/Measurement/0300115449-1-width> , <https://w3id.org/arco/resource/Measurement/0300115449-1-height> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300178183>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "ritratto d'uomo (dipinto) - ambito lombardo (sec. XIX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0300178183-1> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300115449>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "poltrona, coppia - bottega lombarda (sec. XVIII, seconda metà)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0300115449-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0300181595-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300181595-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300181595-1-height> , <https://w3id.org/arco/resource/Measurement/0300181595-1-width> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300174649>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "acquasantiera da parete, opera isolata - bottega bergamasca (sec. XIX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0300174649-1> .
+
+<https://w3id.org/arco/resource/Measurement/0500305448-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500305448-1> ;
+        a-dd:hasValue                  "37.7" .
+
+<https://w3id.org/arco/resource/Measurement/0300214262-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Profondità" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300214262-1> ;
+        a-dd:hasValue                  "99" .
+
+<https://w3id.org/arco/resource/Measurement/0500303930-1-length>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Lunghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500303930-1> ;
+        a-dd:hasValue                  "42.9" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0300174393-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/0300214262-1-depth>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300214262-1> ;
+        a-dd:hasValue                  "217.5" .
+
+<https://w3id.org/arco/resource/Measurement/1100181819-1-length>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100181819-1> ;
+        a-dd:hasValue                  "8" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1500329017-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500329017-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1500329017-1-height> , <https://w3id.org/arco/resource/Measurement/1500329017-1-width> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100018570>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "servizio d'altare, serie - bottega marchigiana (sec. XVII)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/1100018570-1> .
+
+<https://w3id.org/arco/resource/Measurement/0300174649-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300174649-1> ;
+        a-dd:hasValue                  "24" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0500042464-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0300181595-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/1500345042-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500345042-1> ;
+        a-dd:hasValue                  "526" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0300033877-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300033877-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300033877-1-height> .
+
+<https://w3id.org/arco/resource/Measurement/0500042464-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500042464-1> ;
+        a-dd:hasValue                  "1000" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1500372017-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500372017-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1500372017-1-depth> , <https://w3id.org/arco/resource/Measurement/1500372017-1-width> , <https://w3id.org/arco/resource/Measurement/1500372017-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0500303780-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500303780-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500303780-1-length> , <https://w3id.org/arco/resource/Measurement/0500303780-1-width> .
+
+<https://w3id.org/arco/resource/Measurement/0300178183-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300178183-1> ;
+        a-dd:hasValue                  "44.5" .
+
+<https://w3id.org/arco/resource/Measurement/0300174393-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300174393-1> ;
+        a-dd:hasValue                  "66.05" .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500372017>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "candelabro - bottega napoletana (sec. XX, primo quarto)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/1500372017-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1500329017-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/ArchaeologicalProperty/0300026610>
+        a                              arco:MovableCulturalProperty , arco:ArchaeologicalProperty ;
+        rdfs:label                     "amuleto (XXVI Dinastia-età tolemaica)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0300026610-1> .
+
+<https://w3id.org/arco/resource/Measurement/0300115449-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300115449-1> ;
+        a-dd:hasValue                  "95" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1100018570-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100018570-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1100018570-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1000016935-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1000016935-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1000016935-1-height> , <https://w3id.org/arco/resource/Measurement/1000016935-1-diameter> .
+
+<https://w3id.org/arco/resource/Measurement/1500329017-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500329017-1> ;
+        a-dd:hasValue                  "190" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0500303780-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0300178183-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300178183-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300178183-1-width> , <https://w3id.org/arco/resource/Measurement/0300178183-1-height> .
+
+<https://w3id.org/arco/resource/Measurement/0500069929-2-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500069929-2-1> ;
+        a-dd:hasValue                  "6.08" .
+
+<https://w3id.org/arco/resource/Measurement/1100018570-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100018570-1> ;
+        a-dd:hasValue                  "56" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0300174649-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300174649-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300174649-1-height> , <https://w3id.org/arco/resource/Measurement/0300174649-1-width> .
+
+<https://w3id.org/arco/resource/Measurement/1500345042-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500345042-1> ;
+        a-dd:hasValue                  "334" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1100018570-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1500345042-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500345042-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1500345042-1-width> , <https://w3id.org/arco/resource/Measurement/1500345042-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1000016935-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500303780>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "figure (inro, opera isolata) - ambito giapponese (secc. XVII/ XIX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0500303780-1> .
+
+<https://w3id.org/arco/resource/ArchaeologicalProperty/0300033877>
+        a                              arco:MovableCulturalProperty , arco:ArchaeologicalProperty ;
+        rdfs:label                     "oinochoe a bocca trilobata - produzione apula, fabbrica di Gnathia (secc. IV a.C.-III a.C, fine/ fine)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0300033877-1> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500371884>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "simboli della passione (mozzetta) - manifattura napoletana (sec. XIX, fine)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/1500371884-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0300115449-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/1100181819-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100181819-1> ;
+        a-dd:hasValue                  "21" .
+
+<https://w3id.org/arco/resource/Measurement/0300181595-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300181595-1> ;
+        a-dd:hasValue                  "22" .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500345042>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "PIANTA DELLA SEZIONE LONGITUDINALE DELLA SCUOLA DI CHIRURGIA (stampa) di Poulleau Claude René Gabriel (sec. XVIII)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/1500345042-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0300174649-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/0500305448-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500305448-1> ;
+        a-dd:hasValue                  "40" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0500069929-2-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500069929-2-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500069929-2-1-width> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0300214262-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300214262-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0300214262-1-width> , <https://w3id.org/arco/resource/Measurement/0300214262-1-depth> , <https://w3id.org/arco/resource/Measurement/0300214262-1-height> .
+
+<https://w3id.org/arco/resource/Measurement/0500042464-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500042464-1> ;
+        a-dd:hasValue                  "670" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1500345042-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042464>
+        a                              arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "soffitto - manifattura veneta (sec. XVI)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0500042464-1> .
+
+<https://w3id.org/arco/resource/Measurement/1100181819-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Lunghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100181819-1> .
+
+<https://w3id.org/arco/resource/DemoEthnoAnthropologicalHeritage/1100181819>
+        a                              arco:MovableCulturalProperty , arco:DemoEthnoAnthropologicalHeritage ;
+        rdfs:label                     "forma per dolci - produzione marchigiana (secc. XIX/ XX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/1100181819-1> .
+
+<https://w3id.org/arco/resource/Measurement/1100016509-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100016509-1> ;
+        a-dd:hasValue                  "60" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0500305448-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500305448-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500305448-1-width> , <https://w3id.org/arco/resource/Measurement/0500305448-1-height> .
+
+<https://w3id.org/arco/resource/NumismaticProperty/0500447305>
+        a                              arco:NumismaticProperty , arco:MovableCulturalProperty ;
+        rdfs:label                     "moneta - ambito veneziano (sec. XVIII)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0500447305-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0300033877-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/0500443978-1-front-total-length>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Lunghezza totale parte anteriore" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500443978-1> ;
+        a-dd:hasValue                  "MNR" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1500372017-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214262>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "panca con schienale, serie - bottega lombarda (sec. XX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0300214262-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0300214262-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0500069929-2-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500329017>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "veduta della pianura nolana (disegno) di Gigante Giacinto (sec. XIX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/1500329017-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1100016509-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100016509-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1100016509-1-height> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500303930>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "maschera (pugnale, opera isolata) - manifattura giavanese (XVII/ XIX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0500303930-1> .
+
+<https://w3id.org/arco/resource/Measurement/1000016935-1-diameter>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1000016935-1> ;
+        a-dd:hasValue                  "2.5" .
+
+<https://w3id.org/arco/resource/Measurement/0300174649-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300174649-1> ;
+        a-dd:hasValue                  "10" .
+
+<https://w3id.org/arco/resource/Measurement/0300178183-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300178183-1> ;
+        a-dd:hasValue                  "59" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0500305448-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1000016935>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "alzata, opera isolata - ambito dell'Italia centrale (sec. XVII)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/1000016935-1> .
+
+<https://w3id.org/arco/resource/Measurement/1500372017-1-depth>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500372017-1> ;
+        a-dd:hasValue                  "21" .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0300178183-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0500303930-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500303930-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500303930-1-length> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1100016509-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/Measurement/0300174393-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300174393-1> ;
+        a-dd:hasValue                  "84.05" .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500305448>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "elementi decorativi (portabiti, opera isolata) - ambito giapponese (secc. XVII/ XIX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0500305448-1> .
+
+<https://w3id.org/arco/resource/Measurement/1000016935-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Diametro" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1000016935-1> ;
+        a-dd:hasValue                  "23" .
+
+<https://w3id.org/arco/resource/Measurement/0300181595-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300181595-1> ;
+        a-dd:hasValue                  "16" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1500371884-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500371884-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1500371884-1-width> , <https://w3id.org/arco/resource/Measurement/1500371884-1-height> .
+
+<https://w3id.org/arco/resource/Measurement/0500303780-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Lunghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500303780-1> ;
+        a-dd:hasValue                  "8.7" .
+
+<https://w3id.org/arco/resource/Measurement/0300026610-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300026610-1> ;
+        a-dd:hasValue                  "3" .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300181595>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "cartagloria, opera isolata - ambito lombardo (sec. XIX, ultimo quarto)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0300181595-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0500303930-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500069929-2>
+        a                              arco:MovableCulturalProperty , arco:HistoricOrArtisticProperty ;
+        rdfs:label                     "Libellula su un viticcio di tessen, motivi decorativi vegetali e animali (placchetta di spada, insieme) - ambito giapponese (secc. XVIII/ XIX)"@it ;
+        a-dd:hasMeasurementCollection  <https://w3id.org/arco/resource/MeasurementCollection/0500069929-2-1> .
+
+<https://w3id.org/arco/resource/Measurement/0300115449-1-width>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Profondità" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300115449-1> .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0500447305-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500447305-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500447305-1-front-total-length> .
+
+<https://w3id.org/arco/resource/Measurement/0300115449-1-depth>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Altezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0300115449-1> ;
+        a-dd:hasValue                  "72" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0500443978-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500443978-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500443978-1-front-total-length> .
+
+<https://w3id.org/arco/resource/Measurement/1500372017-1-height>
+        a                              a-dd:Measurement ;
+        rdfs:label                     "Larghezza" ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1500372017-1> ;
+        a-dd:hasValue                  "60" .
+
+<https://w3id.org/arco/resource/MeasurementCollection/0500042464-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/0500042464-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/0500042464-1-width> , <https://w3id.org/arco/resource/Measurement/0500042464-1-height> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/1500371884-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .
+
+<https://w3id.org/arco/resource/MeasurementCollection/1100181819-1>
+        a                              a-dd:MeasurementCollection ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/MeasurementCollectionPattern/1100181819-1> ;
+        a-dd:hasMeasurement            <https://w3id.org/arco/resource/Measurement/1100181819-1-height> , <https://w3id.org/arco/resource/Measurement/1100181819-1-width> , <https://w3id.org/arco/resource/Measurement/1100181819-1-length> .
+
+<https://w3id.org/arco/resource/MeasurementCollectionPattern/0500447305-1>
+        opla:isPatternInstanceOf  a-dd:measurement-collection .

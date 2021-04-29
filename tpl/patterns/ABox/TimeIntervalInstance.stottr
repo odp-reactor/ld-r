@@ -1,0 +1,22 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+
+odp-tpl:TimeIntervalInstance[  ottr:IRI ?timeInterval, 
+                             ? rdfs:Literal ?startDate , ? rdfs:Literal ?endDate , 
+                             ? rdfs:Literal ?date, ! owl:DatatypeProperty ?hasIntervalDate=odp-pat:hasIntervalDate , 
+                             ! owl:DatatypeProperty ?hasIntervalEndDate=odp-pat:hasIntervalEndDate, 
+                             ! owl:DatatypeProperty ?hasIntervalStartDate=odp-pat:hasIntervalStartDate ,
+                             ? ottr:IRI ?instanceIRI, ! ottr:IRI ?instanceType=odp-pat:time-interval 
+                              ] :: {
+    odp-tpl:PatternInstance(?instanceIRI, ?instanceType, (?timeInterval), none),
+    ottr:Triple(?timeInterval, ?hasIntervalDate , ?date),
+    ottr:Triple(?timeInterval, ?hasIntervalEndDate , ?endDate),
+    ottr:Triple(?timeInterval, ?hasIntervalStartDate , ?startDate)    
+} .
+
+

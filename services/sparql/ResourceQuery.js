@@ -1,44 +1,24 @@
 'use strict';
-import {getQueryDataTypeValue} from '../utils/helpers';
-class ResourceQuery{
+import { getQueryDataTypeValue } from '../utils/helpers';
+import SPARQLQuery from './SPARQLQuery';
+class ResourceQuery extends SPARQLQuery {
     constructor() {
-        this.prefixes=`
-        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        PREFIX ldr: <https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#>
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX owl: <http://www.w3.org/2002/07/owl#>
-        PREFIX dcterms: <http://purl.org/dc/terms/>
-        PREFIX void: <http://rdfs.org/ns/void#>
-        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-        PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-        PREFIX DBpedia: <http://dbpedia.org/ontology/>
-        PREFIX Schema: <http://schema.org/>
-        `;
-        this.query='';
+        super();
+        this.prefixes = this.prefixes + '';
     }
-    getPrefixes() {
-        return this.prefixes;
-    }
-    prepareGraphName(graphName){
-        let gStart = 'GRAPH <'+ graphName +'> { ';
-        let gEnd = ' } ';
-        if(!graphName || graphName === 'default'){
-            gStart =' ';
-            gEnd = ' ';
-        }
-        return {gStart: gStart, gEnd: gEnd}
-    }
-    createDynamicURI(datasetURI, prefix){
-        let newResourceURI = datasetURI + '/' + prefix + Math.round(+new Date() / 1000);
+    createDynamicURI(datasetURI, prefix) {
+        let newResourceURI =
+            datasetURI + '/' + prefix + Math.round(+new Date() / 1000);
         //do not add two slashes
-        if(datasetURI.slice(-1) === '/'){
-            newResourceURI = datasetURI + prefix + Math.round(+new Date() / 1000);
+        if (datasetURI.slice(-1) === '/') {
+            newResourceURI =
+                datasetURI + prefix + Math.round(+new Date() / 1000);
         }
         return newResourceURI;
     }
+
     getProperties(endpointParameters, graphName, resourceURI) {
-        let {gStart, gEnd} = this.prepareGraphName(graphName);
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
         this.query = `
             SELECT ?p ?o (count(DISTINCT ?extendedVal) AS ?hasExtendedValue) (SAMPLE(?olb) AS ?oLabel) (SAMPLE(?otb) AS ?oTitle) WHERE {
                 ${gStart}
@@ -53,9 +33,34 @@ class ResourceQuery{
         `;
         return this.query;
     }
+
+    getPatternProperties(
+        graphName,
+        resourceURI,
+        selectStatement,
+        queryBody,
+        aggregatesBlock
+    ) {
+        // groupByStatement default to ''
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
+        const resourcePlaceholder = 'resourceURI';
+        let cleanQueryBody = this.prepareQueryBody(
+            resourceURI,
+            resourcePlaceholder,
+            queryBody
+        );
+        this.query = `
+            SELECT ${selectStatement} WHERE {
+                ${gStart} 
+                    ${cleanQueryBody}
+                ${gEnd}
+            } ${aggregatesBlock}
+        `;
+        return this.query;
+    }
     deleteResource(endpointParameters, user, graphName, resourceURI) {
         //todo: consider different value types
-        let {gStart, gEnd} = this.prepareGraphName(graphName);
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
         this.query = `
         DELETE {
             ${gStart}
@@ -69,12 +74,22 @@ class ResourceQuery{
         `;
         return this.query;
     }
-    cloneResource(endpointParameters, user, graphName, resourceURI, newResourceURI) {
+    cloneResource(
+        endpointParameters,
+        user,
+        graphName,
+        resourceURI,
+        newResourceURI
+    ) {
         //todo: consider different value types
-        let {gStart, gEnd} = this.prepareGraphName(graphName);
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
         let userSt = '';
-        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
-            userSt=` ldr:createdBy <${user.id}> ;`;
+        if (
+            user &&
+            user.accountName !== 'open' &&
+            !parseInt(user.isSuperUser)
+        ) {
+            userSt = ` ldr:createdBy <${user.id}> ;`;
         }
         let date = new Date();
         let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
@@ -95,17 +110,27 @@ class ResourceQuery{
         `;
         return this.query;
     }
-    newResource(endpointParameters, user, graphName, newResourceURI, templateResourceURI) {
+    newResource(
+        endpointParameters,
+        user,
+        graphName,
+        newResourceURI,
+        templateResourceURI
+    ) {
         //todo: consider different value types
-        let {gStart, gEnd} = this.prepareGraphName(graphName);
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
         let userSt = '';
-        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
-            userSt=` ldr:createdBy <${user.id}> ;`;
+        if (
+            user &&
+            user.accountName !== 'open' &&
+            !parseInt(user.isSuperUser)
+        ) {
+            userSt = ` ldr:createdBy <${user.id}> ;`;
         }
         let date = new Date();
         let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         // use a template for resource if set
-        if(templateResourceURI){
+        if (templateResourceURI) {
             this.query = `
             INSERT {
                 ${gStart}
@@ -134,16 +159,30 @@ class ResourceQuery{
             `;
         }
 
-
         return this.query;
     }
-    annotateResource(endpointParameters, user, datasetURI, graphName, resourceURI, propertyURI, annotations, inNewDataset, options) {
+    annotateResource(
+        endpointParameters,
+        user,
+        datasetURI,
+        graphName,
+        resourceURI,
+        propertyURI,
+        annotations,
+        inNewDataset,
+        options
+    ) {
         //todo: consider different value types
         let self = this;
-        let {gStart, gEnd} = this.prepareGraphName(graphName);
-        let userSt = '', atypeSt ='';
-        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
-            userSt=` ldr:createdBy <${user.id}> ;`;
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
+        let userSt = '',
+            atypeSt = '';
+        if (
+            user &&
+            user.accountName !== 'open' &&
+            !parseInt(user.isSuperUser)
+        ) {
+            userSt = ` ldr:createdBy <${user.id}> ;`;
         }
         let date = new Date();
         let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
@@ -152,39 +191,58 @@ class ResourceQuery{
         let annotationsSTR = '';
         let newDSt = '';
         //add more data if it is stored in a different dataset than the original one
-        if(inNewDataset){
+        if (inNewDataset) {
             newDSt = `<${resourceURI}> a  ldr:AnnotatedResource .`;
         }
         let default_api = options && options.api ? options.api : 'dbspotlight';
-        let default_api_name = options && options.api ? options.api : 'DBpedia Spotlight';
+        let default_api_name =
+            options && options.api ? options.api : 'DBpedia Spotlight';
         let annotation_Detail = '';
-        let annotatedByURI = self.createDynamicURI(datasetURI, default_api+'_'+Math.floor((Math.random() * 1000) + 1)+'_');
-        annotations.forEach((annotation, index)=>{
-            eresource = '<'+self.createDynamicURI(datasetURI, 'annotation_'+index+'_'+Math.floor((Math.random() * 1000) + 1)+'_')+'>';
+        let annotatedByURI = self.createDynamicURI(
+            datasetURI,
+            default_api + '_' + Math.floor(Math.random() * 1000 + 1) + '_'
+        );
+        annotations.forEach((annotation, index) => {
+            eresource =
+                '<' +
+                self.createDynamicURI(
+                    datasetURI,
+                    'annotation_' +
+                        index +
+                        '_' +
+                        Math.floor(Math.random() * 1000 + 1) +
+                        '_'
+                ) +
+                '>';
             aresources.push(eresource);
             let atypes = [];
-            if(annotation.types){
-                annotation.types.forEach((t, i)=>{
+            if (annotation.types) {
+                annotation.types.forEach((t, i) => {
                     //only supports following vocabs
-                    if(t.indexOf('DBpedia') !== -1 || t.indexOf('Schema') !== -1){
+                    if (
+                        t.indexOf('DBpedia') !== -1 ||
+                        t.indexOf('Schema') !== -1
+                    ) {
                         atypes.push(t);
                     }
                 });
             }
-            atypeSt ='';
-            if(atypes.length){
+            atypeSt = '';
+            if (atypes.length) {
                 atypeSt = `<${annotation.uri}> a ${atypes.join(',')} .`;
             }
-            if(default_api === 'spotlight'){
+            if (default_api === 'spotlight') {
                 annotation_Detail = `
                 ldr:offset "${annotation.offset}"^^xsd:integer;
                 ldr:similarityScore "${annotation.similarityScore}"^^xsd:float;
                 ldr:percentageOfSecondRank "${annotation.percentageOfSecondRank}"^^xsd:float;
               `;
-            }else{
+            } else {
                 annotation_Detail = '';
             }
-            annotationsSTR = annotationsSTR + `
+            annotationsSTR =
+                annotationsSTR +
+                `
                 ${eresource} a ldr:Annotation;
                              ldr:annotationDetail <${annotatedByURI}> ;
                              ldr:surfaceForm """${annotation.surfaceForm}""";
@@ -195,8 +253,10 @@ class ResourceQuery{
              `;
         });
         let mainAnnSt = '';
-        if(aresources.length){
-            mainAnnSt = `<${resourceURI}> ldr:annotations ${aresources.join(',')} .`;
+        if (aresources.length) {
+            mainAnnSt = `<${resourceURI}> ldr:annotations ${aresources.join(
+                ','
+            )} .`;
         }
         this.query = `
         INSERT {
@@ -218,10 +278,19 @@ class ResourceQuery{
         `;
         return this.query;
     }
-    addTriple(endpointParameters, graphName, resourceURI, propertyURI, objectValue, valueType, dataType) {
+    addTriple(
+        endpointParameters,
+        graphName,
+        resourceURI,
+        propertyURI,
+        objectValue,
+        valueType,
+        dataType
+    ) {
         //todo: consider different value types
-        let newValue, tmp = {};
-        let {gStart, gEnd} = this.prepareGraphName(graphName);
+        let newValue,
+            tmp = {};
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
         tmp = getQueryDataTypeValue(valueType, dataType, objectValue);
         newValue = tmp.value;
         this.query = `
@@ -233,10 +302,20 @@ class ResourceQuery{
         `;
         return this.query;
     }
-    deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, objectValue, valueType, dataType) {
-        let dtype, newValue, tmp = {};
-        let {gStart, gEnd} = this.prepareGraphName(graphName);
-        if(objectValue){
+    deleteTriple(
+        endpointParameters,
+        graphName,
+        resourceURI,
+        propertyURI,
+        objectValue,
+        valueType,
+        dataType
+    ) {
+        let dtype,
+            newValue,
+            tmp = {};
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
+        if (objectValue) {
             tmp = getQueryDataTypeValue(valueType, dataType, objectValue);
             newValue = tmp.value;
             dtype = tmp.dtype;
@@ -253,7 +332,7 @@ class ResourceQuery{
                     ${gEnd}
                 }
             `;
-        }else{
+        } else {
             this.query = `
                 DELETE {
                     ${gStart}
@@ -268,45 +347,174 @@ class ResourceQuery{
         }
         return this.query;
     }
-    deleteTriples(endpointParameters, graphName, resourceURI, propertyURI, changes) {
+    deleteTriples(
+        endpointParameters,
+        graphName,
+        resourceURI,
+        propertyURI,
+        changes
+    ) {
         let self = this;
-        self.query= '';
+        self.query = '';
         changes.forEach(function(change) {
-            self.query = self.query + self.deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, change.oldValue, change.valueType, change.dataType);
+            self.query =
+                self.query +
+                self.deleteTriple(
+                    endpointParameters,
+                    graphName,
+                    resourceURI,
+                    propertyURI,
+                    change.oldValue,
+                    change.valueType,
+                    change.dataType
+                );
         });
         return self.query;
     }
-    updateTriple (endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, newObjectValue, valueType, dataType) {
-        this.query = this.deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + this.addTriple(endpointParameters, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType);
+    updateTriple(
+        endpointParameters,
+        graphName,
+        resourceURI,
+        propertyURI,
+        oldObjectValue,
+        newObjectValue,
+        valueType,
+        dataType
+    ) {
+        this.query =
+            this.deleteTriple(
+                endpointParameters,
+                graphName,
+                resourceURI,
+                propertyURI,
+                oldObjectValue,
+                valueType,
+                dataType
+            ) +
+            ' ; ' +
+            this.addTriple(
+                endpointParameters,
+                graphName,
+                resourceURI,
+                propertyURI,
+                newObjectValue,
+                valueType,
+                dataType
+            );
         return this.query;
     }
-    updateTriples (endpointParameters, graphName, resourceURI, propertyURI, changes) {
+    updateTriples(
+        endpointParameters,
+        graphName,
+        resourceURI,
+        propertyURI,
+        changes
+    ) {
         let self = this;
-        self.query= '';
+        self.query = '';
         changes.forEach(function(change) {
-            self.query = self.query + self.updateTriple(endpointParameters, graphName, resourceURI, propertyURI, change.oldValue, change.newValue, change.valueType, change.dataType) + ' ; ';
+            self.query =
+                self.query +
+                self.updateTriple(
+                    endpointParameters,
+                    graphName,
+                    resourceURI,
+                    propertyURI,
+                    change.oldValue,
+                    change.newValue,
+                    change.valueType,
+                    change.dataType
+                ) +
+                ' ; ';
         });
         return self.query;
     }
-    updateObjectTriples (endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, newObjectValue, valueType, dataType, detailData) {
-        let self=this;
-        self.query = self.deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + self.addTriple(endpointParameters, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType) + ' ; ';
+    updateObjectTriples(
+        endpointParameters,
+        graphName,
+        resourceURI,
+        propertyURI,
+        oldObjectValue,
+        newObjectValue,
+        valueType,
+        dataType,
+        detailData
+    ) {
+        let self = this;
+        self.query =
+            self.deleteTriple(
+                endpointParameters,
+                graphName,
+                resourceURI,
+                propertyURI,
+                oldObjectValue,
+                valueType,
+                dataType
+            ) +
+            ' ; ' +
+            self.addTriple(
+                endpointParameters,
+                graphName,
+                resourceURI,
+                propertyURI,
+                newObjectValue,
+                valueType,
+                dataType
+            ) +
+            ' ; ';
         for (let propURI in detailData) {
-            self.query = self.query + self.deleteTriple(endpointParameters, graphName, oldObjectValue, propURI, '', detailData[propURI].valueType, detailData[propURI].dataType) + ' ; ';
-            self.query = self.query + self.addTriple(endpointParameters, graphName, newObjectValue, propURI, detailData[propURI].value, detailData[propURI].valueType, detailData[propURI].dataType)+ ' ; ';
+            self.query =
+                self.query +
+                self.deleteTriple(
+                    endpointParameters,
+                    graphName,
+                    oldObjectValue,
+                    propURI,
+                    '',
+                    detailData[propURI].valueType,
+                    detailData[propURI].dataType
+                ) +
+                ' ; ';
+            self.query =
+                self.query +
+                self.addTriple(
+                    endpointParameters,
+                    graphName,
+                    newObjectValue,
+                    propURI,
+                    detailData[propURI].value,
+                    detailData[propURI].valueType,
+                    detailData[propURI].dataType
+                ) +
+                ' ; ';
         }
         return self.query;
     }
-    createObjectDetails (endpointParameters, user, graphName, resourceURI, propertyURI, oldObjectValue, newObjectValue, valueType, dataType, detailData) {
-        let {gStart, gEnd} = this.prepareGraphName(graphName);
+    createObjectDetails(
+        endpointParameters,
+        user,
+        graphName,
+        resourceURI,
+        propertyURI,
+        oldObjectValue,
+        newObjectValue,
+        valueType,
+        dataType,
+        detailData
+    ) {
+        let { gStart, gEnd } = this.prepareGraphName(graphName);
         let date = new Date();
         let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         let userSt = '';
         let dateSt = '';
-        this.query= '';
-        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
+        this.query = '';
+        if (
+            user &&
+            user.accountName !== 'open' &&
+            !parseInt(user.isSuperUser)
+        ) {
             let dateSt = ` ldr:createdOn "${currentDate}"^^xsd:dateTime;`;
-            userSt=` ldr:createdBy <${user.id}> .`;
+            userSt = ` ldr:createdBy <${user.id}> .`;
             this.query = `
             INSERT DATA {
                 ${gStart}
@@ -317,15 +525,57 @@ class ResourceQuery{
             };
             `;
         }
-        let self=this;
-        self.query = self.query + self.deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + self.addTriple(endpointParameters, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType) + ' ; ';
+        let self = this;
+        self.query =
+            self.query +
+            self.deleteTriple(
+                endpointParameters,
+                graphName,
+                resourceURI,
+                propertyURI,
+                oldObjectValue,
+                valueType,
+                dataType
+            ) +
+            ' ; ' +
+            self.addTriple(
+                endpointParameters,
+                graphName,
+                resourceURI,
+                propertyURI,
+                newObjectValue,
+                valueType,
+                dataType
+            ) +
+            ' ; ';
         for (let propURI in detailData) {
-            self.query = self.query + self.deleteTriple(endpointParameters, graphName, oldObjectValue, propURI, '', detailData[propURI].valueType, detailData[propURI].dataType) + ' ; ';
-            self.query = self.query + self.addTriple(endpointParameters, graphName, newObjectValue, propURI, detailData[propURI].value, detailData[propURI].valueType, detailData[propURI].dataType)+ ' ; ';
+            self.query =
+                self.query +
+                self.deleteTriple(
+                    endpointParameters,
+                    graphName,
+                    oldObjectValue,
+                    propURI,
+                    '',
+                    detailData[propURI].valueType,
+                    detailData[propURI].dataType
+                ) +
+                ' ; ';
+            self.query =
+                self.query +
+                self.addTriple(
+                    endpointParameters,
+                    graphName,
+                    newObjectValue,
+                    propURI,
+                    detailData[propURI].value,
+                    detailData[propURI].valueType,
+                    detailData[propURI].dataType
+                ) +
+                ' ; ';
         }
 
         return this.query;
     }
-
 }
 export default ResourceQuery;

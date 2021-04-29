@@ -1,0 +1,53 @@
+@prefix rdf:	    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs:	    <http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix owl:	    <http://www.w3.org/2002/07/owl#> . 
+@prefix xsd:	    <http://www.w3.org/2001/XMLSchema#> . 
+@prefix foaf:	    <http://xmlns.com/foaf/0.1/> . 
+@prefix dbp:    	<http://dbpedia.org/ontology/> . 
+@prefix ex:         <http://example.com/ns#> . 
+@prefix ottr:   	<http://ns.ottr.xyz/0.4/> . 
+@prefix ax:	        <http://tpl.ottr.xyz/owl/axiom/0.1/> . 
+@prefix rstr:   	<http://tpl.ottr.xyz/owl/restriction/0.1/> .
+@prefix a-dd:       <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+@prefix tiapit:     <https://w3id.org/italia/onto/TI/> .
+@prefix arco:        <https://w3id.org/arco/ontology/arco/> .
+@prefix cis:        <http://dati.beniculturali.it/cis/> .
+@prefix clvapit:    <https://w3id.org/italia/onto/CLV/> .
+
+
+[] a ottr:InstanceMap ;
+  ottr:source 
+      [ a ottr:SPARQLEndpointSource ; 
+        ottr:sourceURL "https://dati.beniculturali.it/sparql" ] ;
+        ottr:query """
+             SELECT DISTINCT ?complexCProp 
+                             ?cPropComponents
+                             (URI(CONCAT ("https://w3id.org/arco/resource/CPropComponentOfPattern", STRAFTER(STR(?complexCProp), "https://w3id.org/arco/resource/HistoricOrArtisticProperty"))) as ?instanceIRI)  # we hack instance URI as <new_ns + other_resource_UUID> | note: UUID() doesn't work in virtuoso 
+                             ?depiction 
+
+                  WHERE {
+                          ?complexCProp foaf:depiction ?depiction .
+                          ?complexCProp rdfs:label ?complexCPropLabel .
+                   {
+
+                   SELECT ?complexCProp 
+                          (GROUP_CONCAT(DISTINCT ?cPropComponent; SEPARATOR=";") AS ?cPropComponents)
+                         WHERE
+                          {
+                                  ?cPropComponent <https://w3id.org/arco/ontology/arco/isCulturalPropertyComponentOf> ?complexCProp .
+                          }
+                         GROUP BY ?complexCProp
+                        
+                   }
+                   }  LIMIT 70 """;
+  ottr:template odp-tpl:ExtendedCPropCompOfInstance ;
+  ottr:argumentMaps (
+    [ ottr:type ottr:IRI ]   ## ?cProp
+    [ ottr:type (rdf:List ottr:IRI); 
+      ottr:translationSettings [ ottr:listSep ";"]  ## ?cPropComponents
+    ]
+    [ ottr:type ottr:IRI ]   ## ?instanceIRI
+    [ ottr:type ottr:IRI ]   ## ?depiction
+  ) .

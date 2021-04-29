@@ -1,0 +1,3 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+odp-tpl:PartOfInstance(<automobile>, (<motore>, <volante>, <freno>, <carburatore>), none, <partOfinstance1>, none) .

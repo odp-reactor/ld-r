@@ -1,0 +1,8 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix opla:       <http://ontologydesignpatterns.org/opla/> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+
+
+odp-tpl:ComponentOfPattern[ opla:Pattern ?componentPattern, opla:Pattern ?pattern ] :: {
+    ottr:Triple(?componentPattern, opla:componentOfPattern, ?pattern)
+} .

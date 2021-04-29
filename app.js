@@ -15,6 +15,10 @@ import DatasetsStore from './stores/DatasetsStore';
 import DatasetAnnotationStore from './stores/DatasetAnnotationStore';
 import QueryImportStore from './stores/QueryImportStore';
 import ImportStore from './stores/ImportStore';
+import PatternStore from './stores/PatternStore';
+import PatternInstanceStore from './stores/PatternInstanceStore';
+
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 let app = new Fluxible({
     component: Application,
@@ -31,13 +35,17 @@ let app = new Fluxible({
         FacetedBrowserStore,
         DatasetAnnotationStore,
         QueryImportStore,
-        ImportStore
+        ImportStore,
+        PatternStore,
+        PatternInstanceStore
     ]
 });
 
-app.plug(fetchrPlugin({
-    xhrPath: '/api' // Path for XHR to be served from
-}));
+app.plug(
+    fetchrPlugin({
+        xhrPath: `${PUBLIC_URL}/api` // Path for XHR to be served from
+    })
+);
 app.plug(authPlugin({}));
 
 export default app;

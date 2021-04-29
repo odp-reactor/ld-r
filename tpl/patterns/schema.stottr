@@ -1,0 +1,67 @@
+### ODP tpl library namespace
+## The namespace for all the templates relatives to odp 
+##
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+### ODP namespace
+## The namespace for ontology design pattern classes 
+##
+@prefix odp-pat:    <http://www.ontologydesignpatterns.org/cp/owl/> .
+
+### ODP prefixes
+@prefix odp-sit:	<http://www.ontologydesignpatterns.org/cp/owl/situation.owl#> .
+@prefix odp-col:	<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#> .
+
+### Arco prefixes
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+@prefix a-dd:       <https://w3id.org/arco/ontology/denotative-description/> .
+
+@prefix opla:       <http://ontologydesignpatterns.org/opla/> .
+@prefix o-rdfs:     <http://tpl.ottr.xyz/rdfs/0.2/> .
+@prefix tiapit:     <https://w3id.org/italia/onto/TI/> .
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> . 
+@prefix foaf:       <http://xmlns.com/foaf/0.1/> . 
+@prefix dbp:        <http://dbpedia.org/ontology/> . 
+@prefix ex:         <http://example.com/ns#> . 
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix ax:         <http://tpl.ottr.xyz/owl/axiom/0.1/> . 
+@prefix rstr:       <http://tpl.ottr.xyz/owl/restriction/0.1/> .
+@prefix a-dd:       <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+
+odp-tpl:Collection(none, none, none) . 
+
+odp-tpl:MeasurementCollection(a-dd:MeasurementCollection, odp-col:Collection, a-dd:Measurement, a-dd:hasMeasurement) .
+
+odp-tpl:TimeInterval(tiapit:TimeInterval, tiapit:hasIntervalDate, tiapit:hasIntervalEndDate, tiapit:hasIntervalStartDate) .
+
+odp-tpl:Situation(none, none, none, none) .
+
+odp-tpl:TimeIndexedSituation(none, none, none, tiapit:TimeInterval, none, none, none, none, none) .
+
+odp-tpl:TimeIndexedTypedLocation(none, none, none, tiapit:TimeInterval, none, none, none) .
+
+odp-tpl:PartOf(none,none,none,none) .
+
+odp-tpl:CulturalPropertyComponentOf(none, none, none, none ) .
+
+odp-tpl:LabelDescription(odp-pat:collection, "Collections and their members", "The pattern is a basic one: it catches the idea of a collection and its members. It represents a collection and members of a collection.") .
+
+odp-tpl:LabelDescription(a-dd:measurement-collection, "Collections of cultural property measures", "The pattern represents measurement collection for a cultural property. Types of measurement are height, width, length, weight...") .
+
+odp-tpl:LabelDescription(odp-pat:time-interval, "Time Interval", "This pattern represents an interval of time.") .
+
+odp-tpl:LabelDescription(odp-pat:situation, "Involvement in situations", "The pattern represents contexts or situations, and the things that are contextualized.") .
+
+odp-tpl:LabelDescription(odp-pat:time-indexed-situation, "Involvement in situations at a certain time", "The pattern represents time indexed situations. It describes situations, things involved and the time interval in which the situation occurred. This pattern adds a time specification (the time interval pattern) to the situation pattern.") .
+
+odp-tpl:LabelDescription(a-loc:time-indexed-typed-location, "Locations of cultural properties at a certain time", "The pattern represents locations of a cultural property at a specified time interval. Locations have a specified type like 'current location' or 'previous location'.") .
+
+odp-tpl:LabelDescription(odp-pat:part-of, "Objects and their parts", "The pattern represents entities and their parts i.e., part-whole relations, with transitivity.") .
+
+odp-tpl:LabelDescription(a-loc:cultural-property-component-of, "Cultural properties and their parts", "The pattern represents complex cultural properties and components of them. For example it may represent a building (like a church) and its architectural elements. Or a painting and details of it.") .
+
+

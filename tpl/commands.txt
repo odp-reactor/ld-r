@@ -1,0 +1,6 @@
+# Instantiate MeasurementCollection
+$ lutra -m expand -I bottr -f -l ./patterns/ -L stottr -O wottr -o data/measurement-collection maps/MeasurementCollectionMap.bottr 
+
+# Run tests, expanding stottr
+$ lutra -m expand -f -I stottr -l ./patterns/ -L stottr -O wottr tests/TimeInterval.stottr --stdout
+

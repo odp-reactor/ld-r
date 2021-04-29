@@ -1,0 +1,35 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
+
+# @despcription
+#
+# @param [situationInstanceIRI] if this is not none the TimeIndexedSituationInstance generates also an instance of situation
+# @param [situationInstanceType=odp-pat:situation] if situationInstanceIRI is true and is equal for TimeIndexedSituation and Situation, 
+#                                instanceIRI is both an instance of both
+
+odp-tpl:TimeIndexedSituationInstance[ List<ottr:IRI> ?things, ottr:IRI ?situation,
+                                    ? ottr:IRI ?timeInterval, 
+                                    ? rdfs:Literal ?startDate,
+                                    ? rdfs:Literal ?endDate, ? rdfs:Literal ?date,
+                                    ! owl:ObjectProperty ?hasTimeIndexedSetting=odp-pat:hasTimeIndexedSetting,
+                                    ! owl:ObjectProperty ?atTime=odp-pat:atTime,
+                                    ! owl:DatatypeProperty ?hasIntervalDate=odp-pat:hasIntervalDate,
+                                    ! owl:DatatypeProperty ?hasIntervalEndDate=odp-pat:hasIntervalEndDate,
+                                    ! owl:DatatypeProperty ?hasIntervalStartDate=odp-pat:hasIntervalStartDate ,
+                                    ? ottr:IRI ?instanceIRI, ! ottr:IRI ?instanceType=odp-pat:time-indexed-situation,
+                                    ? ottr:IRI ?situationInstanceIRI, ! ottr:IRI  ?situationInstanceType=odp-pat:situation,
+                                    ? ottr:IRI ?timeIntervalInstanceIRI, ! ottr:IRI  ?timeIntervalInstanceType=odp-pat:time-interval ] :: {
+
+    odp-tpl:PatternInstance(?instanceIRI, ?instanceType, ?things, (?situation, ?timeInterval ) ),
+    odp-tpl:SituationInstance(?things, ?situation, 
+                              ?hasTimeIndexedSetting, ?situationInstanceIRI, ?situationInstanceType),
+    odp-tpl:TimeIntervalInstance(?timeInterval, 
+                                  ?startDate, ?endDate, ?date, ?hasIntervalDate, 
+                                  ?hasIntervalEndDate, ?hasIntervalStartDate, ?timeIntervalInstanceIRI, ?timeIntervalInstanceType ),
+    ottr:Triple(?situation, ?atTime, ?timeInterval)
+} .

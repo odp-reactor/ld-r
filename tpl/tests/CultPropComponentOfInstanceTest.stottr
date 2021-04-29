@@ -1,0 +1,4 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+odp-tpl:CulturalPropertyComponentOfInstance(<chiesa1>, 
+                (<navata>, <abside>, <cappella> ), none, <cultPropComponentOfinstance1>, none, none, none) .

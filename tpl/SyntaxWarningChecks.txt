@@ -1,0 +1,15 @@
+# Check that last pattern statement hasn't a comma
+
+<!-- OK --!>
+
+odp-tpl:MeasurementCollection[ ottr:IRI ?collectionIRI, List<ottr:IRI> ?measurements, ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+    odp-tpl:Collection(?collectionIRI, ?measurements, ?instanceIRI, ?instanceType)
+} .
+
+<!-- WRONG --!>
+
+odp-tpl:MeasurementCollection[ ottr:IRI ?collectionIRI, List<ottr:IRI> ?measurements, ottr:IRI ?instanceIRI, ottr:IRI ?instanceType ] :: {
+    odp-tpl:Collection(?collectionIRI, ?measurements, ?instanceIRI, ?instanceType),   <========
+} .
+
+# Check that every prefix used in a pattern is declared in the file where pattern is declared

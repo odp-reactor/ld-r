@@ -1,4 +1,4 @@
-import {BaseStore} from 'fluxible/addons';
+import { BaseStore } from 'fluxible/addons';
 import ResourceStoreUtil from './utils/ResourceStoreUtil';
 let utilObject = new ResourceStoreUtil();
 
@@ -15,7 +15,10 @@ class ResourceStore extends BaseStore {
         this.currentCategory = payload.currentCategory;
         this.propertyPath = payload.propertyPath;
         // this.properties = payload.properties;
-        this.properties = utilObject.preservePropertiesOrder(this.properties, payload.properties);
+        this.properties = utilObject.preservePropertiesOrder(
+            this.properties,
+            payload.properties
+        );
         this.title = payload.title ? payload.title : payload.resourceURI;
         this.config = payload.config;
         this.error = payload.error;
@@ -70,8 +73,8 @@ class ResourceStore extends BaseStore {
 
 ResourceStore.storeName = 'ResourceStore'; // PR open in dispatchr to remove this need
 ResourceStore.handlers = {
-    'LOAD_RESOURCE_SUCCESS': 'updatePropertyList',
-    'CLEAN_RESOURCE_SUCCESS': 'cleanResource'
+    LOAD_RESOURCE_SUCCESS: 'updatePropertyList',
+    CLEAN_RESOURCE_SUCCESS: 'cleanResource'
 };
 
 export default ResourceStore;

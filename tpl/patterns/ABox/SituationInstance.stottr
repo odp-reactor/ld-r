@@ -1,0 +1,18 @@
+# PREFIXES
+
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
+
+
+odp-tpl:SituationInstance[ List<ottr:IRI> ?things, ottr:IRI ?situation, 
+                         ! owl:ObjectProperty ?hasSetting=odp-pat:hasSetting, 
+                         ? ottr:IRI ?instanceIRI, 
+                         ! ottr:IRI ?instanceType=odp-pat:situation ] :: {
+    odp-tpl:PatternInstance(?instanceIRI, ?instanceType, ?things, (?situation)),
+    cross
+      |  ottr:Triple(++?things, ?hasSetting, ?situation)
+} .
+
+

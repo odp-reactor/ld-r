@@ -1,0 +1,42 @@
+# Here the convention used to document javascript code according to jscode
+
+
+#function params and returns with types
+/**
+ * Function gets as input a surname
+ * finds an associated name and returns
+ * it back.
+ * 
+ * @param    {string} surname
+ * @returns  {Object} name
+ * 
+ */
+function getName(surname) {
+	return { name: getNameBySurname(surname)}
+}
+
+# other types for params
+@param {number}
+@param {boolean}
+@param {number[]} an array of number
+
+If you define a class you can type your documentation with that
+
+class Person {
+}
+
+
+/**
+ * @param {Person} person
+ */
+function printPerson(person) {
+	... 
+}
+
+# type of a constant
+/**
+ * @type Person
+ * 
+ * see {@link Person}
+ */
+const person = new Person()

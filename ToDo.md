@@ -1,13 +1,8 @@
-#TODO list
-- Design a smart routing algorithm for default routing of components (e.g. based on value types or components metadata).
-- Add interface for more Triple stores other than Virtuoso and Stardog.
-- Consider Language tag in SPARQL Queries.
-- Support LD-Fragment for streaming query results (useful esp. in facets).
-- Add infinite scrolling features to facets.
-- Add more customized facets (e.g. for taxonomical data, timeline, etc.).
-- Implement Aggregate Property Reactor.
-- In case of resource access level, find a way to update user session after a new resource is created by the user.
-- Adding Microdata annotations to components
-- test agg objects + Queries
-- add http authentication Support
-- extend export plugin for faceted browser and other cases when not all triples are needed
+# TODO list
+
+-   analyze faceted browser to understand if you can integrate its facet with PatternInstance visualizations
+
+-   load multiple instance at the same time
+-   add geocoding possibility from address information if lat/long are not in the KG (TimeIndexedTypedLocationView)
+-   decide interaction you load an instance. Example: Collection is loaded: you see the list of resources, onClick load the instance (you need to pass a onResourceClick to ld-ui-react visualizations)
+-   when all the data required for an instance visualization are not in the KG, land on generic default ones by LD-R

@@ -1,0 +1,1807 @@
+@prefix arco:  <https://w3id.org/arco/ontology/arco/> .
+@prefix opla:  <http://ontologydesignpatterns.org/opla/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix odp-pat: <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500216527-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500216527-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007103/ICCD3675612_216527.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-8>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500191245-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500191245-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500191245-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-36>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-213>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247406-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500247406-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247406-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217410-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500092894-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500092894-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007133/ICCD2101523_25290044.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200217847-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200217847-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200217847-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500027975-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500027975-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007103/ICCD3617240_004105.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373430-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100373430-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373430-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-16>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500664603-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500664603-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007108/ICCD3989266_89932.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900281551-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900281551-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900281551-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-12>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500677770-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500677770-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500677770-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200229747A-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229685A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-28>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-8>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500091350-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-7>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0500247406-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100217410-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373492-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100373492-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373492-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-31>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100203133-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100373430-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229747A-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229747A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229747A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200212110-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-11>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212116-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200212116-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4558368_SBAS%20RM%20113880.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4558367_SBAS%20RM%20113878.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4558369_SBAS%20RM%20113879.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100201843-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100201843-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD12506/ICCD2263235_00192946.jpg> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0900281551-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300211106-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300211106-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300211106-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300214223-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-12>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0900302739-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229685A-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4528945_Arch.%20Guidotti%20Opp.%202a.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-23>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-18>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-8>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-25>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100373492-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500402041-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201220254-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201220254-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1026145/ICCD11527539_SBSAE%20LAZIO%20J%2014032.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1026145/ICCD11683176_SBSAE%20LAZIO%20J%2011814.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-9>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500216527-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500216527-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500216527-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202630-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100202630-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD12506/ICCD2266075_00204007.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100203133-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD12506/ICCD2267661_00203413.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD12506/ICCD2267660_00203424.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD12506/ICCD2267659_00204756.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100209403-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100209403-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD12506/ICCD2395295_00211380.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-214>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217410-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500092894-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500092894-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500092894-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202569-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100202569-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD12506/ICCD2263253_00192920.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500027975-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500027975-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500027975-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0300211106-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-17>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201203662-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1026367/ICCD11475895_MNCSA%20D%2011.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1026367/ICCD11475894_MNCSA%20D%204.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1026367/ICCD11475893_MNCSA%20D%202.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1026367/ICCD11475892_MNCSA%20D%201.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300214223-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007116/ICCD8302258_SC089164.jpg> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1500281159-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500664603-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500664603-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500664603-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900281551-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900281551-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900281551-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-13>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-29>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500077718-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500077718-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007132/ICCD8170646_ArchFotSBASVENETO73100014.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-9>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1500191245-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-8>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201220295-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201220295-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1026145/ICCD11464705_SBSAE%20LAZIO%20J%2012275.JPG> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1026145/ICCD11464704_SBSAE%20LAZIO%20J%2012274.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-30>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-32>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100203133-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-21>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500091350-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229747A-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229747A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229747A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200229685A-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1030383/ICCD11726618_SSPSAEPM%20FI%20538914.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1027635/ICCD11594758_DIG09374.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1027635/ICCD11594783_DIG09373.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1027635/ICCD11594770_DIG09318.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800223181-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800223181-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007110/ICCD4051466_CCXXXI_326.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-12>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212116-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200212116-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212116-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100201843-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100201843-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100201843-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217461-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217461-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1027635/ICCD11596258_DIG09438.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300211106-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300211106-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300211106-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201203662-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300214223-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-13>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229685A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-19>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-24>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-9>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500091350-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007133/ICCD2098383_20470083.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-26>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500402041-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201220254-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201220254-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201220254-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-20>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300648921-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300648921-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1024624/ICCD11396008_OA%2DG1050%2D00435_01.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500216527-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500216527-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500216527-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202630-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100202630-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202630-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100203133-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100209403-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100209403-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100209403-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-215>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217410-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500092894-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500092894-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500092894-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202569-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100202569-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202569-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500027975-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500027975-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500027975-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500189607-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500189607-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007103/ICCD3699428_101199.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-18>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201203662-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100168348-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100168348-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD12506/ICCD2394372_00065508.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300214223-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1201203662-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900281551-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900281551-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900281551-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0500402041-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-14>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247350-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500247350-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007134/ICCD5498414_24823.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1030944/ICCD11961077_2141%2D2444.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-21>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007132/ICCD5400570_ArchFotSBASVENETO60915320.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500077718-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500077718-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500077718-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1500216527-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091179-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500091179-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007133/ICCD2187491_22380029.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-9>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201220295-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201220295-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201220295-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-31>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0500092894-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-33>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212175-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200212175-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4558540_SBAS%20RM%2062533.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4558545_SBAS%20RM%2062566.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-210>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1500027975-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500028126-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500028126-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007103/ICCD3617658_004251.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229747A-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229747A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229747A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200217847-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200217847-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4444211_SBAS%20RM%2096507.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1500664603-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800223181-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800223181-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800223181-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-13>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200795535A-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200795535A-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4554825_CRD%202885.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100201843-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100201843-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100201843-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217461-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217461-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217461-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300211106-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300211106-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300211106-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-7>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300214223-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500677770-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500677770-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1020724/ICCD11171053_MAOV2717%2D13.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229685A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-25>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500091350-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-27>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500402041-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1025704/ICCD11591490_SSPSAEPM%20FI%2027543UC.JPG> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1025704/ICCD11591489_SSPSAEPM%20FI%2027542UC.JPG> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1025704/ICCD11591488_SSPSAEPM%20FI%2027541UC.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300648921-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300648921-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300648921-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500216527-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500216527-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500216527-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202630-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100202630-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202630-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200163839-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200163839-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4553944_SBAS%20RM%2051281.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100203133-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100209403-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100209403-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100209403-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-216>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217410-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500092894-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500092894-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500092894-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200212116-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100201843-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-10>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202569-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100202569-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202569-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500027975-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500027975-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500027975-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500189607-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500189607-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500189607-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-7>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-19>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201203662-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100168348-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100168348-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100168348-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300214223-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-20>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-15>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1201220254-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4608247_SBAS%20RM%2079444.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247350-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500247350-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247350-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-22>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500077718-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500077718-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500077718-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091179-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500091179-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091179-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100202630-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200795535A-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100203133-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100209403-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-32>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-34>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212175-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200212175-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212175-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-211>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100202569-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247406-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500247406-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1030944/ICCD11999378_2197%2D2520.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007134/ICCD5498606_25403.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217410-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1027635/ICCD11596082_DIG09144.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1027635/ICCD11596087_DIG09145.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1027635/ICCD11596085_DIG09117.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500028126-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500028126-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500028126-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200217847-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200217847-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200217847-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373430-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100373430-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1018404/ICCD11151175_POLITO_PRM0047r.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1018404/ICCD11151178_POLITO_PRM0047v.jpg> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0300214223-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200795535A-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200795535A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200795535A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-14>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100201843-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100201843-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100201843-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212110-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200212110-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4558344_SBAS%20RM%2062630.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4558343_SBAS%20RM%20113986.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900281551-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900281551-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1017804/ICCD10701169_SSPSAEPM%20FI%2024437.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-10>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0500077718-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4529002_Arch.%20Guidotti%20Opp.%207a.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500677770-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500677770-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500677770-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229685A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-26>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1201220295-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900302739-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900302739-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007125/ICCD8237817_431571.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500091350-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-28>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500402041-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-7>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300648921-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300648921-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300648921-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373492-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100373492-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1018404/ICCD11172457_POLITO_PRM0109r.jpg> , <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD1018404/ICCD11172429_POLITO_PRM0109v.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200163839-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200163839-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200163839-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100203133-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100209403-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100209403-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100209403-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217410-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0800223181-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500092894-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500092894-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500092894-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-11>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100217461-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202569-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100202569-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100202569-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500027975-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500027975-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500027975-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-8>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300211106-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300211106-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007116/ICCD3235998_S0253767.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201203662-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100168348-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100168348-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100168348-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300214223-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-10>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0500091350-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-21>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-16>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500281159-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500281159-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007103/ICCD3604847_281159.JPG> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-10>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247350-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500247350-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247350-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-23>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0300648921-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007109/ICCD5513313_00171015.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500077718-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500077718-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500077718-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091179-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500091179-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091179-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-7>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500191245-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500191245-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007103/ICCD3600287_191245.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-212>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-35>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212175-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200212175-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212175-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247406-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500247406-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500247406-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217410-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217410-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1500189607-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200217847-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200217847-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200217847-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373430-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100373430-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373430-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0100168348-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200795535A-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200795535A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200795535A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-15>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212110-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200212110-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200212110-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0500247350-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900281551-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900281551-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900281551-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-11>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500677770-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500677770-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500677770-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0500091179-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229685A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229685A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-27>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-7>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900302739-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900302739-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900302739-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500091350-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500091350-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-29>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-5>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500402041-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-6>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-8>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200212175-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300648921-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300648921-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300648921-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1500028126-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373492-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100373492-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100373492-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200217847-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100203133-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100203133-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100209403-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100209403-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100209403-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229747A-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229747A-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007114/ICCD4529080_Arch.%20Guidotti%20Opp.%2013a.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-12>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-10>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-9>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100217291-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100217291-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0500677770-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300211106-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300211106-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300211106-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1201203662-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1201203662-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100168348-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0100168348-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0100168348-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-4>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0300214223-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0300214223-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-11>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-17>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-22>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900344236-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500281159-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1500281159-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1500281159-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-7>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200229711A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200229711A-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-2>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/1200201166A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200201166A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/0900344236-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-24>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0900646180-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900646180-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500402041-0>
+        a                              arco:ComplexCulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500402041-0> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007134/ICCD8493619_g1000a.jpg> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-1>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0800068828-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0800068828-0> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-3>
+        a                              arco:CulturalPropertyComponent ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/CPropComponentOfPattern/0500042443A-0> ;
+        odp-pat:isCulturalPropertyComponentOf
+                <https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500042443A-0> .
+
+<https://w3id.org/arco/resource/CPropComponentOfPattern/1200163839-0>
+        opla:isPatternInstanceOf  odp-pat:cultural-property-component-of .

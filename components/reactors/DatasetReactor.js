@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DatasetStore from '../../stores/DatasetStore';
-import {connectToStores} from 'fluxible-addons-react';
-import {enableAuthentication} from '../../configs/general';
-import getResourcesCount from '../../actions/getResourcesCount';
+import { connectToStores } from 'fluxible-addons-react';
+import { enableAuthentication } from '../../configs/general';
 import Dataset from '../dataset/Dataset';
 import cloneResource from '../../actions/cloneResource';
 import createResource from '../../actions/createResource';
-
+import PatternNetworkView from '../dataset/viewer/PatternNetworkView';
 
 class DatasetReactor extends React.Component {
-    componentDidMount() {
-
-    }
+    componentDidMount() {}
     handleCloneResource(datasetURI, resourceURI) {
         this.context.executeAction(cloneResource, {
             dataset: datasetURI,
@@ -28,9 +25,9 @@ class DatasetReactor extends React.Component {
     //removes properties from an object
     configMinus(config, props) {
         let o = {};
-        for(let p in config) {
-            if(props.indexOf(p) === -1){
-                o [p] = config [p];
+        for (let p in config) {
+            if (props.indexOf(p) === -1) {
+                o[p] = config[p];
             }
         }
         return o;
@@ -45,28 +42,87 @@ class DatasetReactor extends React.Component {
         let resourceQuery = this.props.DatasetStore.dataset.resourceQuery;
         let error = this.props.DatasetStore.dataset.error;
         let datasetReactor;
-        if(config && config.datasetReactor){
-            switch(config.datasetReactor[0]){
+        if (config && config.datasetReactor) {
+            switch (config.datasetReactor[0]) {
                 case 'Dataset':
-                    datasetReactor = <Dataset enableAuthentication={enableAuthentication} datasetURI={datasetURI} resources={resources} page={page} total={total} error={error} config={this.configMinus(config, ['datasetReactor'])} resourceQuery={resourceQuery} onCloneResource={this.handleCloneResource.bind(this)} onCreateResource={this.handleCreateResource.bind(this)}/>;
+                    datasetReactor = (
+                        <Dataset
+                            enableAuthentication={enableAuthentication}
+                            datasetURI={datasetURI}
+                            resources={resources}
+                            page={page}
+                            total={total}
+                            error={error}
+                            config={this.configMinus(config, [
+                                'datasetReactor'
+                            ])}
+                            resourceQuery={resourceQuery}
+                            onCloneResource={this.handleCloneResource.bind(
+                                this
+                            )}
+                            onCreateResource={this.handleCreateResource.bind(
+                                this
+                            )}
+                        />
+                    );
+                    break;
+                case 'PatternNetwork':
+                    datasetReactor = (
+                        <PatternNetworkView
+                            enableAuthentication={enableAuthentication}
+                            datasetURI={datasetURI}
+                            resources={resources}
+                            page={page}
+                            total={total}
+                            error={error}
+                            config={this.configMinus(config, [
+                                'datasetReactor'
+                            ])}
+                            resourceQuery={resourceQuery}
+                            onCloneResource={this.handleCloneResource.bind(
+                                this
+                            )}
+                            onCreateResource={this.handleCreateResource.bind(
+                                this
+                            )}
+                        ></PatternNetworkView>
+                    );
                     break;
                 default:
-                    datasetReactor = <Dataset enableAuthentication={enableAuthentication} datasetURI={datasetURI} resources={resources} page={page} total={total} error={error} config={this.configMinus(config, ['datasetReactor'])} resourceQuery={resourceQuery} onCloneResource={this.handleCloneResource.bind(this)} onCreateResource={this.handleCreateResource.bind(this)}/>;
+                    datasetReactor = (
+                        <Dataset
+                            enableAuthentication={enableAuthentication}
+                            datasetURI={datasetURI}
+                            resources={resources}
+                            page={page}
+                            total={total}
+                            error={error}
+                            config={this.configMinus(config, [
+                                'datasetReactor'
+                            ])}
+                            resourceQuery={resourceQuery}
+                            onCloneResource={this.handleCloneResource.bind(
+                                this
+                            )}
+                            onCreateResource={this.handleCreateResource.bind(
+                                this
+                            )}
+                        />
+                    );
             }
         }
 
-        return (
-            <div ref="datasetReactor">
-                {datasetReactor}
-            </div>
-        );
+        return <div ref="datasetReactor">{datasetReactor}</div>;
     }
 }
 DatasetReactor.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
-DatasetReactor = connectToStores(DatasetReactor, [DatasetStore], function (context, props) {
+DatasetReactor = connectToStores(DatasetReactor, [DatasetStore], function(
+    context,
+    props
+) {
     return {
         DatasetStore: context.getStore(DatasetStore).getState()
     };

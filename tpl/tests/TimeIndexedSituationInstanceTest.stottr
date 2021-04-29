@@ -1,0 +1,22 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+odp-tpl:TimeIndexedSituationInstance((<thing1>,<thing2>), <situation1>, <timeInterval1>, 
+                                     "1-10-2020", "3-10-2020", none, 
+                                     none, none, none, none, none, <t-i-s-instance1>, none,
+                                     none, none, none, none 
+) .
+
+# we want also time interval instantiated
+odp-tpl:TimeIndexedSituationInstance((<thing3>,<thing4>), <situation2>, <timeInterval2>, 
+                                     "1-11-2020", "3-11-2020", none, 
+                                     none, none, none, none, none, <t-i-s-instance2>, none,
+                                     none, none, <time-interval-instance2>, none 
+) .
+
+# time indexed situation is also an instance of situation
+# we want custom properties
+odp-tpl:TimeIndexedSituationInstance((<thing5>,<thing6>), <situation3>, <timeInterval3>, 
+                                     "1-11-2021", "3-11-2021", none, 
+                                     none, <arco:atTime>, none, none, none, <t-i-s-instance3>, none,
+                                     <t-i-s-instance3>, none, <time-interval-instance3>, none 
+) .

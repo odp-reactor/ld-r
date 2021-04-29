@@ -5,13 +5,19 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
 const Visualizer = require('webpack-visualizer-plugin');
 
+require('dotenv').config();
+
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
+
+const PUBLIC_DIR = `${PUBLIC_URL}/public/js`;
+
 let webpackConfig = {
     mode: 'production',
     devtool: '',
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.jsx'],
         alias: {
-            react: path.resolve('./node_modules/react'),
+            react: path.resolve('./node_modules/react')
         }
     },
     entry: {
@@ -19,11 +25,11 @@ let webpackConfig = {
     },
     output: {
         path: path.resolve('./build/js'),
-        publicPath: '/public/js/',
+        publicPath: PUBLIC_DIR,
         filename: '[name].js'
     },
     optimization: {
-        minimize: true,
+        minimize: false,
         runtimeChunk: {
             name: 'vendor.bundle'
         },
@@ -43,24 +49,40 @@ let webpackConfig = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules(?!(\/|\\)react-sigma)/ ,
+                exclude: /node_modules(?!(\/|\\)react-sigma)/,
                 loader: 'babel-loader',
                 options: {
                     babelrc: true
                 }
             },
             {
+                test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+                loader: 'file-loader'
+            },
+            {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: 'css-loader',
-                    publicPath: '/public/css/'
-                })
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader'
+                    }
+                ]
             }
+            // {
+            //     test: /\.css$/,
+            //     loader: ExtractTextPlugin.extract({
+            //         fallback: 'style-loader',
+            //         use: 'css-loader',
+            //         publicPath: '/public/css/'
+            //     })
+            // }
         ]
     },
     node: {
-        setImmediate: false
+        setImmediate: false,
+        console: true
     },
     plugins: [
         // css files from the extract-text-plugin loader
@@ -72,23 +94,24 @@ let webpackConfig = {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
-                BROWSER: JSON.stringify('true')
+                BROWSER: JSON.stringify('true'),
+                PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL)
             }
         }),
         // Write out stats file to build directory.
         new StatsWriterPlugin({
             filename: 'webpack.stats.json', // Default
             fields: null,
-            transform: function (data) {
+            transform: function(data) {
                 return JSON.stringify(data, null, 2);
             }
         }),
         new Visualizer()
     ],
     stats: {
-	       colors: true,
-		   children: false,
-	       }
+        colors: true,
+        children: false
+    }
 };
 
 module.exports = webpackConfig;

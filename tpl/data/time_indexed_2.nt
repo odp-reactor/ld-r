@@ -1,0 +1,530 @@
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132544> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132544> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132544> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132544> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926200_13753.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132544> <http://www.w3.org/2000/01/rdf-schema#label> "adorazione dei pastori (disegno) - ambito ascolano (secc. XVII/ XVIII)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132544> <http://www.w3.org/2000/01/rdf-schema#label> "adorazione dei pastori (disegno) - ambito ascolano (secc. XVII/ XVIII)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132544> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132544> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132544> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-alternative-1> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333187> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-current> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132544"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132544"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132544"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132544"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132544-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333187> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132552"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132552"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132552> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-alternative-1> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333250> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-current> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132552> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132552> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132552> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132552> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926216_13815.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132552> <http://www.w3.org/2000/01/rdf-schema#label> "progetto di nicchia con figura allegorica (disegno) by Cappelli Agostino (secc. XVIII/ XIX)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132552> <http://www.w3.org/2000/01/rdf-schema#label> "progetto di nicchia con figura allegorica (disegno) di Cappelli Agostino (secc. XVIII/ XIX)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132552> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132552> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132552"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132552"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132552-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333250> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-current> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132558> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333307> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132558> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132558> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132558> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132558> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926228_13525.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132558> <http://www.w3.org/2000/01/rdf-schema#label> "Assunzione della Madonna (disegno) by Mariani Giovanni Maria (sec. XVII, seconda metà)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132558> <http://www.w3.org/2000/01/rdf-schema#label> "Assunzione della Madonna (disegno) di Mariani Giovanni Maria (sec. XVII, seconda metà)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132558> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132558> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132558"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132558"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333307> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132558"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132558"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132558-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132561"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132561"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132561"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132561"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132561> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-alternative-1> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-current> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333363> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132561> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333363> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132561> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132561> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132561-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132561> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926234_13530.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132561> <http://www.w3.org/2000/01/rdf-schema#label> "carità di San Tommaso da Villanova (disegno) by Trasi Ludovico (sec. XVII)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132561> <http://www.w3.org/2000/01/rdf-schema#label> "carità di San Tommaso da Villanova (disegno) di Trasi Ludovico (sec. XVII)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132561> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132561> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132564"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132564"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132564> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132564> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132564> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132564> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926240_13533.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132564> <http://www.w3.org/2000/01/rdf-schema#label> "San Giovanni Battista (disegno) di Trasi Ludovico (sec. XVII, seconda metà)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132564> <http://www.w3.org/2000/01/rdf-schema#label> "San Giovanni Battista (disegno) by Trasi Ludovico (sec. XVII, seconda metà)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132564> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132564> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132564"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132564"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132564> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-alternative-1> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132564-current> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333422> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333422> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132570> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132570> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132570> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132570> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926252_13540.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132570> <http://www.w3.org/2000/01/rdf-schema#label> "portico del Palazzo dell'Arengo di Ascoli Piceno (disegno) by Giosafatti Giuseppe (sec. XVIII, primo quarto)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132570> <http://www.w3.org/2000/01/rdf-schema#label> "portico del Palazzo dell'Arengo di Ascoli Piceno (disegno) di Giosafatti Giuseppe (sec. XVIII, primo quarto)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132570> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132570> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132570"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132570"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-alternative-1> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-current> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132570> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333482> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132570"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132570"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132570-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333482> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132582"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132582"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132582> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132582> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132582> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132582> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926277_13557.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132582> <http://www.w3.org/2000/01/rdf-schema#label> "espositorio per immagini sacre (disegno) di Fabiani Ferdinando (secc. XVII/ XVIII)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132582> <http://www.w3.org/2000/01/rdf-schema#label> "espositorio per immagini sacre (disegno) by Fabiani Ferdinando (secc. XVII/ XVIII)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132582> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132582> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-current> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-alternative-1> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132582> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333542> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333542> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132582"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132582"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132582-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132585"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132585"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132585"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132585"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132585> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132585> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132585> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132585> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926283_13560.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132585> <http://www.w3.org/2000/01/rdf-schema#label> "scena di accampamento romano (disegno) di Fabiani Ferdinando (secc. XVII/ XVIII)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132585> <http://www.w3.org/2000/01/rdf-schema#label> "scena di accampamento romano (disegno) by Fabiani Ferdinando (secc. XVII/ XVIII)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132585> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132585> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-current> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132585-alternative-1> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132585> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333602> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333602> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132591"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132591"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132591> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132591> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132591> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132591> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926294_13593.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132591> <http://www.w3.org/2000/01/rdf-schema#label> "Visitazione (disegno) di Nardini Tommaso (secc. XVII/ XVIII)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132591> <http://www.w3.org/2000/01/rdf-schema#label> "Visitazione (disegno) by Nardini Tommaso (secc. XVII/ XVIII)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132591> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132591> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132591> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-alternative-1> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-current> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333661> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132591"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132591"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132591-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333661> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132597> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132597> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-current> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132597> <https://w3id.org/arco/ontology/location/hasTimeIndexedTypedLocation> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-alternative-1> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132597> <http://xmlns.com/foaf/0.1/depiction> <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007117/ICCD2926307_13599.jpg> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132597> <http://www.w3.org/2000/01/rdf-schema#label> "orazione di Cristo nell'orto di Getsemani (disegno) by Nardini Tommaso (secc. XVII/ XVIII)"@en .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132597> <http://www.w3.org/2000/01/rdf-schema#label> "orazione di Cristo nell'orto di Getsemani (disegno) di Nardini Tommaso (secc. XVII/ XVIII)"@it .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132597> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/MovableCulturalProperty> .
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132597> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/arco/HistoricOrArtisticProperty> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-alternative-1> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-alternative-1> <https://w3id.org/italia/onto/TI/atTime> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-alternative-1> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-alternative-1> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Alternative location 1 of cultural property: 1100132597"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-alternative-1> <http://www.w3.org/2000/01/rdf-schema#label> "Altra localizzazione 1 del bene: 1100132597"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-alternative-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/startTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "1908" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <https://w3id.org/arco/ontology/arco/endTime> "" .
+<https://w3id.org/arco/resource/TimeInterval/1908> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/italia/onto/TI/TimeInterval> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-current> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-current> <https://w3id.org/arco/ontology/location/hasLocationType> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-current> <https://w3id.org/arco/ontology/location/atSite> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-current> <http://www.w3.org/2000/01/rdf-schema#label> "Localizzazione fisica attuale del bene: 1100132597"@it .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-current> <http://www.w3.org/2000/01/rdf-schema#label> "Current physical location of cultural property: 1100132597"@en .
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-current> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/TimeIndexedTypedLocation> .
+<https://w3id.org/arco/ontology/location/LastLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-alternative-1> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/isPatternInstanceOf> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeIndexedTypedLocation/1100132597-current> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1100132597> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/arco/ontology/location/time-indexed-typed-location> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Address/f9029a28299c9a57476fb70ca98a7746> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/LastLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/TimeInterval/1908> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bae3aff8b34e0d29b79d9865027624e4> .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://www.w3.org/2000/01/rdf-schema#label> "An instance of the Time Indexed Typed Location Pattern" .
+<https://w3id.org/arco/resource/pattern_instance_1607516333720> <http://ontologydesignpatterns.org/opla/hasPatternInstanceMember> <https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> .
+<https://w3id.org/arco/ontology/location/CurrentPhysicalLocation> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/Site/bb2071d22552f204e6c1101b49762e95> <http://dati.beniculturali.it/cis/siteAddress> <https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://ontologydesignpatterns.org/opla/belongsToPatternInstance> <https://w3id.org/arco/resource/pattern_instance_1607516333720> .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "ITALIA, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Italia, Marche, AP, Ascoli Piceno" .
+<https://w3id.org/arco/resource/Address/1d9d9b5d2873457084b0de66b938ccec> <http://www.w3.org/2000/01/rdf-schema#label> "Ap, Ascoli Piceno" .

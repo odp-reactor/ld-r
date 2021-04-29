@@ -1,0 +1,123 @@
+@prefix a-dd:  <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix arco:  <https://w3id.org/arco/ontology/arco/> .
+@prefix opla:  <http://ontologydesignpatterns.org/opla/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix odp-pat: <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+a-loc:isTimeIndexedTypedLocationOf
+        owl:inverseOf  a-loc:hasTimeIndexedTypedLocation .
+
+odp-pat:atTime  rdfs:domain  a-loc:TimeIndexedTypedLocation , odp-pat:TimeIndexedSituation ;
+        rdfs:range          <https://w3id.org/italia/onto/TI/TimeInterval> ;
+        rdfs:subPropertyOf  odp-pat:isSettingFor .
+
+odp-pat:hasPart  owl:inverseOf  odp-pat:isPartOf .
+
+odp-pat:part-of  a    opla:Pattern ;
+        rdfs:comment  "This Content OP allows designers to represent entities and their parts i.e., part-whole relations, with transitivity." ;
+        rdfs:label    "Part Of" .
+
+a-dd:hasMeasurement  rdfs:domain  a-dd:MeasurementCollection ;
+        rdfs:range   a-dd:Measurement .
+
+odp-pat:collection  a  opla:Pattern ;
+        rdfs:comment  "This pattern is a basic one: it catches the idea of a collection and its members." ;
+        rdfs:label    "Collection" .
+
+arco:hasCulturalPropertyComponent
+        rdfs:subPropertyOf  odp-pat:hasPart ;
+        owl:inverseOf       arco:isCulturalPropertyComponentOf .
+
+arco:isCulturalPropertyComponentOf
+        rdfs:subPropertyOf  odp-pat:isPartOf .
+
+arco:CulturalPropertyComponent
+        rdfs:domain  arco:isCulturalPropertyComponentOf ;
+        rdfs:range   arco:ComplexCulturalProperty .
+
+odp-pat:hasMember  rdfs:domain  odp-pat:Collection ;
+        rdfs:range   owl:Thing .
+
+<https://w3id.org/italia/onto/TI/hasIntervalDate>
+        a            owl:DatatypeProperty ;
+        rdfs:domain  <https://w3id.org/italia/onto/TI/TimeInterval> .
+
+odp-pat:time-interval
+        a                        opla:Pattern ;
+        rdfs:comment             "This pattern represents an interval of time" ;
+        rdfs:label               "Time Interval" ;
+        opla:componentOfPattern  a-loc:time-indexed-typed-location , odp-pat:time-indexed-situation .
+
+odp-pat:hasTimeIndexedSetting
+        rdfs:domain         owl:Thing ;
+        rdfs:range          odp-pat:TimeIndexedSituation ;
+        rdfs:subPropertyOf  odp-pat:hasSetting .
+
+owl:Thing  rdfs:domain  odp-pat:hasPart , odp-pat:isPartOf ;
+        rdfs:range   owl:Thing .
+
+a-dd:measurement-collection
+        a                             opla:Pattern ;
+        rdfs:comment                  "This pattern represents a collection of measurement of an object" ;
+        rdfs:label                    "Measurement Collection" ;
+        opla:specializationOfPattern  odp-pat:collection .
+
+odp-pat:isSettingFor  owl:inverseOf  odp-pat:hasSetting .
+
+a-loc:cultural-property-component-of
+        a                             opla:Pattern ;
+        rdfs:comment                  "This Content OP allows designers to represent cultural properties and their components or parts." ;
+        rdfs:label                    "Cultural Property Component Of" ;
+        opla:specializationOfPattern  odp-pat:part-of .
+
+<https://w3id.org/italia/onto/TI/hasIntervalEndDate>
+        a                   owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <https://w3id.org/italia/onto/TI/hasIntervalDate> .
+
+arco:ComplexCulturalProperty
+        rdfs:domain  arco:hasCulturalPropertyComponent ;
+        rdfs:range   arco:CulturalPropertyComponent .
+
+a-loc:hasTimeIndexedTypedLocation
+        rdfs:domain         a-loc:CulturalProperty ;
+        rdfs:range          a-loc:TimeIndexedTypedLocation ;
+        rdfs:subPropertyOf  odp-pat:hasSetting ;
+        owl:inverseOf       a-loc:isTimeIndexedTypedLocationOf .
+
+odp-pat:hasSetting  rdfs:domain  owl:Thing ;
+        rdfs:range   odp-pat:Situation .
+
+odp-pat:isTimeIndexFor
+        owl:inverseOf  odp-pat:hasTimeIndexedSetting .
+
+odp-pat:time-indexed-situation
+        a                             opla:Pattern ;
+        rdfs:comment                  "To represent time indexed situations. This pattern adds a time specification (the Time interval pattern) to the Situation pattern, in order to provide a handy solution to many cases. " ;
+        rdfs:label                    "Time Indexed Situation" ;
+        opla:specializationOfPattern  odp-pat:situation .
+
+odp-pat:TimeIndexedSituation
+        rdfs:subClassOf  odp-pat:Situation .
+
+a-dd:MeasurementCollection
+        rdfs:subClassOf  <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> .
+
+<https://w3id.org/italia/onto/TI/hasIntervalStartDate>
+        a                   owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <https://w3id.org/italia/onto/TI/hasIntervalDate> .
+
+a-loc:TimeIndexedTypedLocation
+        rdfs:subClassOf  odp-pat:TimeIndexedSituation .
+
+a-loc:time-indexed-typed-location
+        a                             opla:Pattern ;
+        rdfs:comment                  "To represent time indexed typed locations. This pattern represents locations of a defined type and a time specification" ;
+        rdfs:label                    "Time Indexed Typed Location" ;
+        opla:specializationOfPattern  odp-pat:time-indexed-situation .
+
+odp-pat:situation  a  opla:Pattern ;
+        rdfs:comment  "To represent contexts or situations, and the things that are contextualized." ;
+        rdfs:label    "Situation" .

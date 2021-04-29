@@ -1,0 +1,28 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+@prefix a-dd:       <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
+
+odp-tpl:MeasurementCollectionInstance[ ottr:IRI ?collection, 
+                                       List<ottr:IRI> ?measurements, 
+                                     ! owl:ObjectProperty ?hasMeasurement=a-dd:hasMeasurement, 
+                                     ? ottr:IRI ?instanceIRI,
+                                     ! ottr:IRI ?instanceType=a-dd:measurement-collection,
+                                     ? ottr:IRI ?collectionInstanceIRI,
+                                     ! ottr:IRI ?collectionInstanceType=odp-pat:collection
+                                        ] :: {
+    odp-tpl:PatternInstance(?instanceIRI, ?instanceType, ?measurements, (?collection) ),
+    odp-tpl:CollectionInstance(?collection,
+                               ?measurements,
+                               ?hasMeasurement,
+                               ?collectionInstanceIRI,
+                               ?collectionInstanceType
+                               ),
+    # this types are used in combination with map to extract data from ArCo 
+    # move this outside if you plan to reuse this template in another domain
+    o-rdf:Type(?collection, a-dd:MeasurementCollection),    
+    odp-tpl:ListType(?measurements, a-dd:Measurement)
+} .
+

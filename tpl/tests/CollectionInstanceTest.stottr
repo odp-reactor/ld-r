@@ -1,0 +1,3 @@
+@prefix odp-tpl:  <http://www.ontologydesignpatterns.org/tpl#>   .
+
+odp-tpl:CollectionInstance( <collection1>, (<entity1>, <entity2> ) , none, <collection-instance1>, none ) .

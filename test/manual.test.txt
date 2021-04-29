@@ -1,0 +1,87 @@
+View and classes screen:
+
+ * Graph
+    - it should render the graph
+    - graph nodes should have different node size
+    - graph nodes and edges should have label
+    - graph nodes should have tooltip without undefined values
+ 
+ * Tutorial
+    - if no cookie is set it should render tutorial at app access
+    - it should open tutorial 
+    - tutorial should start, skim and end
+    - tutorial should ahead of time end with close tutorial button
+ 
+ * Pattern Menu
+    - pattern menu should open on hover
+    - every section of pattern menu should open on click (filters, layout, graph layouts)
+    - every filter should open on click
+    - every filter should be visible
+    - every filter should activate and deactivate
+        { 
+            button should become green
+            filter update alert should appear
+            graph should change (nodes/edges appear, disappear)
+        }
+    - graph layout should change
+    - list layout should appear 
+
+ * Configuration state through navigation
+    - persistent filter (activation/deactivation) should remain with the same state through browser navigation
+    - persistent filter (settings) should remain with the same state through browser navigation
+    - non persistent filter should reset through browser navigation
+
+ * Navigation
+    - all the views should be reachable through navigation (via every layout)
+    - all the concepts should be reachable through navigation (via every layout)
+    - app should refresh 
+
+
+Views instances screen:
+ * List 
+    - searchbar should work (filter nodes, reset)
+    
+  for every view do:
+        - filter check (activate/deactivate tune)
+
+Resource view screen:
+ * Measurement Collection
+        - it should show measures
+        - it should show depiction if present
+
+ * Time Indexed Typed Location
+        - it should show map
+        - it should show tooltip
+        - it should show depiction if present
+
+ * Cultural Property Component
+        - it should show depiction of main component
+        - it should show depiction for parts
+        - labels should appear for every part and component under depiction
+ 
+Integration/queries:
+
+ - number of occurences for every view in View and Classes screen should be the same 
+   as in View Instances screen
+ - data preview in View Instances screen should be the same as View screen 
+   e.g. same location type, start time, end time ...
+        same number of measurements and same value for every measure
+        same number of components
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+

@@ -1,6 +1,7 @@
 module.exports = {
     list: {
         'aair': 'http://xmlns.notu.be/aair#',
+        'arco': '<https://w3id.org/arco/ontology/arco/>',
         'ldr': 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#',
         'aapi': 'http://rdf.alchemyapi.com/rdf/v1/s/aapi-schema#',
         'abc': 'http://www.metadata.net/harmony/ABCSchemaV5Commented.rdf#',

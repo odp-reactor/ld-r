@@ -1,0 +1,8 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix opla:       <http://ontologydesignpatterns.org/opla/> .
+@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> . 
+
+odp-tpl:Pattern[ owl:NamedIndividual ?pattern ] :: {
+    o-rdf:Type(?pattern, opla:Pattern)
+} .

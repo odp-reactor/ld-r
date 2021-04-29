@@ -1,0 +1,87 @@
+@prefix rdf:	    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs:	    <http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix owl:	    <http://www.w3.org/2002/07/owl#> . 
+@prefix xsd:	    <http://www.w3.org/2001/XMLSchema#> . 
+@prefix foaf:	    <http://xmlns.com/foaf/0.1/> . 
+@prefix dbp:    	<http://dbpedia.org/ontology/> . 
+@prefix ex:         <http://example.com/ns#> . 
+@prefix ottr:   	<http://ns.ottr.xyz/0.4/> . 
+@prefix ax:	        <http://tpl.ottr.xyz/owl/axiom/0.1/> . 
+@prefix rstr:   	<http://tpl.ottr.xyz/owl/restriction/0.1/> .
+@prefix a-dd:       <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix a-loc:      <https://w3id.org/arco/ontology/location/> .
+@prefix tiapit:     <https://w3id.org/italia/onto/TI/> .
+@prefix arco:        <https://w3id.org/arco/ontology/arco/> .
+@prefix cis:        <http://dati.beniculturali.it/cis/> .
+@prefix clvapit:    <https://w3id.org/italia/onto/CLV/> .
+
+[] a ottr:InstanceMap ;
+  ottr:source 
+      [ a ottr:SPARQLEndpointSource ; 
+        ottr:sourceURL "https://dati.beniculturali.it/sparql" ] ;
+  ottr:query """
+             SELECT DISTINCT 
+                            ?cProp               
+                            ?tITL
+                            ?timeInterval 
+                            ?startDate
+                            ?endDate
+                            ?locationType
+                            (URI(CONCAT ("https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern", STRAFTER(STR(?tITL), "https://w3id.org/arco/resource/TimeIndexedTypedLocation"))) as ?instanceIRI)  # we hack instance URI as <new_ns + other_resource_UUID> | note: UUID() doesn't work in virtuoso
+    #                        ?instanceType
+                            (URI(CONCAT ("https://w3id.org/arco/resource/TimeIntervalPattern", STRAFTER(STR(?timeInterval), "https://w3id.org/arco/resource/TimeInterval"))) as ?timeIntervalInstanceIRI)  # we hack instance URI as <new_ns + other_resource_UUID> | note: UUID() doesn't work in virtuoso
+                            # data external to pattern schema
+                            ?depiction
+                            ?site
+                            ?geometry
+                            ?lat
+                            ?long
+                            ?siteAddress
+                            ?addressLabel       
+             WHERE
+                   {
+                          ?cProp a-loc:hasTimeIndexedTypedLocation ?tITL .
+                          ?cProp foaf:depiction ?depiction .
+                          ?tITL  a  a-loc:TimeIndexedTypedLocation .
+                          ?tITL a-loc:hasLocationType ?locationType .
+                          ?tITL tiapit:atTime ?timeInterval .           
+                          ?timeInterval arco:startTime ?startDate .
+                          ?timeInterval arco:startTime ?endDate    .                           
+                           
+                          ?tITL a-loc:atSite ?site .
+                          ?site a cis:Site .
+
+                                ?site cis:siteAddress ?siteAddress .
+                                ?siteAddress a clvapit:Address .
+
+                                ?siteAddress rdfs:label ?addressLabel .
+
+                          OPTIONAL {
+                                ?site clvapit:hasGeometry ?geometry .
+                                ?geometry clvapit:lat ?lat .
+                                ?geometry clvapit:long ?long .
+                          }
+#                       OPTIONAL {?patternInstanceUnboundable a rdf:HackToAssignType . }                       
+#                       BIND ( IF (BOUND  (?patternInstanceUnboundable), a-loc:time-indexed-typed-location, a-loc:time-indexed-typed-location )  as ?instanceType  ) .
+                   }
+                   LIMIT 180
+          """;
+  ottr:template odp-tpl:ExtendedTimeIndexedTypedLocationInstance ;
+  ottr:argumentMaps (
+    [ ottr:type ottr:IRI ]   ## ?cProp
+    [ ottr:type ottr:IRI ]   ## ?tITL
+    [ ottr:type ottr:IRI ]   ## ?timeInterval
+    [ ottr:type rdfs:Literal ]   ## ?startDate    
+    [ ottr:type rdfs:Literal ]   ## ?endDate      
+    [ ottr:type ottr:IRI ]   ## ?locationType 
+    [ ottr:type ottr:IRI ]   ## ?instanceIRI
+    [ ottr:type ottr:IRI ]   ## ?timeIntervalIRI
+    [ ottr:type ottr:IRI ]   ## ?depiction
+    [ ottr:type ottr:IRI ]   ## ?site
+    [ ottr:type ottr:IRI ]   ## ?geometry
+    [ ottr:type ottr:IRI ]   ## ?lat
+    [ ottr:type ottr:IRI ]   ## ?long
+    [ ottr:type ottr:IRI ]   ## ?siteAddress
+    [ ottr:type rdfs:Literal ]   ## ?addressLabel
+  ) .

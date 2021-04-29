@@ -1,0 +1,6 @@
+@prefix odp-tpl:  <http://www.ontologydesignpatterns.org/tpl#>   .
+
+odp-tpl:SituationInstance( ( <thing1>, <thing2> ), <situation1>, none, <situation-instance1>, none ) .
+
+odp-tpl:SituationInstance( ( <thing3>, <thing4> ), <situation2>, <hasSituation> , <situation-instance2>, <custom-situation-instance> ) .
+

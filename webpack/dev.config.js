@@ -1,16 +1,22 @@
 let webpack = require('webpack');
 let path = require('path');
 
+require('dotenv').config();
+
 const host = process.env.HOST ? process.env.HOST : 'localhost';
 const mainPort = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const devPort = process.env.PORT ? parseInt(process.env.PORT) + 1 : 3001;
+
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
+
+const PUBLIC_DIR = `${PUBLIC_URL}/public/js`;
 
 let webpackConfig = {
     mode: 'development',
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-            react: path.resolve('./node_modules/react'),
+            react: path.resolve('./node_modules/react')
         }
     },
     entry: {
@@ -22,7 +28,7 @@ let webpackConfig = {
     },
     output: {
         path: path.resolve('./build/js'),
-        publicPath: '/public/js/',
+        publicPath: PUBLIC_DIR,
         filename: '[name].js'
     },
     module: {
@@ -32,7 +38,17 @@ let webpackConfig = {
                 exclude: /node_modules/,
                 loader: 'babel-loader'
             },
-            { test: /\.css$/,
+            // {
+            //     test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+            //     loader: "url-loader?limit=10000"
+            // },
+            {
+                test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+                loader: 'file-loader'
+            },
+
+            {
+                test: /\.css$/,
                 use: [
                     {
                         loader: 'style-loader'
@@ -45,7 +61,11 @@ let webpackConfig = {
         ]
     },
     node: {
-        setImmediate: false
+        setImmediate: false,
+        console: true
+        // fs: 'empty',
+        // //net: 'empty',
+        // tls: 'empty'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
@@ -53,7 +73,8 @@ let webpackConfig = {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('dev'),
-                BROWSER: JSON.stringify('true')
+                BROWSER: JSON.stringify('true'),
+                PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL)
             }
         })
     ],

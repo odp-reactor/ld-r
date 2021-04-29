@@ -1,20 +1,140 @@
 import React from 'react';
 
+const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
+
 class Home extends React.Component {
     render() {
         return (
-            <div className="ui fluid container ldr-padding" ref="home">
-                <div className="ui grid">
-                    <div className="ui row">
-                        <div className="column">
-                            <div className="ui segment content">
-                                <h2 className="ui header">Linked Data Reactor (LD-R)</h2>
-                                <p>
-                                    <img className="ui left floated image animated zoomIn" src="/assets/img/ld-reactor.gif" alt="ld-reactor" />
-                                    Linked Data Reactor (LD-Reactor or LD-R) is a framework to develop <b>reactive</b> and <b>reusable</b> User Interface components for <b>Linked Data applications</b>. LD-Reactor utilizes Facebook's <a href="https://facebook.github.io/react/">ReactJS</a> components, <a href="https://facebook.github.io/flux">Flux</a> architecture and Yahoo!'s <a href="http://fluxible.io/">Fluxible</a> framework for isomorphic Web applications.
-                                    It also exploits <a href="http://semantic-ui.com/"> Semantic-UI </a> framework for flexible UI themes.
-                                    LD-Reactor aims to apply the idea of component-based application development into <a href="http://www.w3.org/RDF/">RDF</a> data model hence enhancing current user interfaces to view, browse and edit <a href="http://linkeddata.org/">Linked Data</a>.<br/> More information is available at <a href="http://ld-r.org">ld-r.org</a>.<br/><br/>
-                                </p>
+            <div className="credits">
+                <div className="ui fluid container ldr-padding" ref="about">
+                    <div className="ui grid">
+                        <div className="ui row">
+                            <div className="column">
+                                <div className="ui segment content">
+                                    <h2 className="ui header">
+                                        ODPReactor{' '}
+                                        {/* <a
+                                            href="http://stlab.istc.cnr.it/stlab/"
+                                            target="_blank"
+                                            style={{ marginLeft: 0 }}
+                                        >
+                                            <img
+                                                className="ui centered little image"
+                                                src="http://stlab.istc.cnr.it/stlab/wp-content/uploads/2016/04/STLabLogo-h80.png"
+                                            />
+                                        </a> */}
+                                    </h2>
+                                    <div style={{ fontSize: 20, margin: 20 }}>
+                                        <ul>
+                                            <li className="about-li">
+                                                ODP Reactor is a knowledge graph
+                                                visualiser based on{' '}
+                                                <a
+                                                    href="http://ontologydesignpatterns.org/wiki/Main_Page"
+                                                    target="_blank"
+                                                >
+                                                    Ontology Design Patterns
+                                                </a>
+                                            </li>
+                                            <li className="about-li">
+                                                To trigger the ODP reaction in
+                                                the visualisation, your
+                                                knowledge graph must include{' '}
+                                                <a
+                                                    href="http://ontologydesignpatterns.org/wiki/images/0/0a/Paper-09.pdf"
+                                                    target="_blank"
+                                                >
+                                                    OPLa
+                                                </a>{' '}
+                                                annotations
+                                            </li>
+                                            <li className="about-li">
+                                                ODP Reactor is developed by{' '}
+                                                <a
+                                                    href="http://stlab.istc.cnr.it/stlab/"
+                                                    target="_blank"
+                                                >
+                                                    STLab
+                                                </a>
+                                            </li>
+                                            <li className="about-li">
+                                                ODP Reactor extends
+                                                <a
+                                                    href="http://ld-r.org"
+                                                    target="_blank"
+                                                >
+                                                    {' '}
+                                                    Ld-r{' '}
+                                                </a>
+                                                developped at{' '}
+                                                <a
+                                                    href="https://www.vu.nl/en"
+                                                    target="_blank"
+                                                >
+                                                    VU
+                                                </a>
+                                                .
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="ui row">
+                            <div className="ui fluid grid container">
+                                <div className="two column row">
+                                    <div className="column">
+                                        <div className="ldr-padding">
+                                            <img
+                                                style={{ width: '100%' }}
+                                                src={`${PUBLIC_URL}/assets/img/tool-image/screenshot_patterns.png`}
+                                            ></img>
+                                            <p className="about-img-desc">
+                                                Visualise large knowledge graphs
+                                                in one page and be able to grasp
+                                                at first sight what type of data
+                                                it encodes
+                                            </p>
+                                        </div>
+                                        <div className="ldr-padding">
+                                            <img
+                                                style={{ width: '100%' }}
+                                                src={`${PUBLIC_URL}/assets/img/tool-image/time_indexed_typed_location_detailed.png`}
+                                            ></img>
+                                            <p className="about-img-desc">
+                                                Visualise data based on the
+                                                context of your interests
+                                                (location -{'>'} maps,
+                                                collection -{'>'} sets,
+                                                structure -{'>'} components)
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="column">
+                                        <div className="ldr-padding">
+                                            <img
+                                                style={{ width: '100%' }}
+                                                src={`${PUBLIC_URL}/assets/img/tool-image/list_layout.png`}
+                                            ></img>
+                                            <p className="about-img-desc">
+                                                Choose among different layouts
+                                                the one that better fits your
+                                                needs
+                                            </p>
+                                        </div>
+                                        <div className="ldr-padding">
+                                            <img
+                                                style={{ width: '100%' }}
+                                                src={`${PUBLIC_URL}/assets/img/tool-image/geog_filter.png`}
+                                            ></img>
+                                            <p className="about-img-desc">
+                                                Apply context-aware filters to
+                                                refine your search
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,18 @@
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+@prefix odp-pat:     <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix ottr:       <http://ns.ottr.xyz/0.4/> . 
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix o-rdf:      <http://tpl.ottr.xyz/rdf/0.1/> .
+@prefix arco:        <https://w3id.org/arco/ontology/arco/> .
+@prefix foaf:      	<http://xmlns.com/foaf/0.1/> . 
+
+
+odp-tpl:ExtendedCPropCompOfInstance[ ottr:IRI ?complexCulturalProperty, 
+                            List<ottr:IRI> ?culturalPropertyComponents,
+                          ?  ottr:IRI ?instance, ottr:IRI ?depiction
+ ] :: {
+    odp-tpl:CulturalPropertyComponentOfInstance(?complexCulturalProperty, ?culturalPropertyComponents, none, ?instance, none, none, none), 
+    o-rdf:Type(?complexCulturalProperty, arco:ComplexCulturalProperty),
+    odp-tpl:ListType(?culturalPropertyComponents, arco:CulturalPropertyComponent),
+    ottr:Triple(?complexCulturalProperty, foaf:depiction, ?depiction)
+} .

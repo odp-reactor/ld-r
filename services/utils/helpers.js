@@ -1,69 +1,81 @@
-import {sparqlEndpoint} from '../../configs/server';
-import {defaultDatasetURI, enableDynamicServerConfiguration, enableAuthentication} from '../../configs/general';
+import { sparqlEndpoint } from '../../configs/server';
+import {
+    defaultDatasetURI,
+    enableDynamicServerConfiguration,
+    enableAuthentication
+} from '../../configs/general';
 import validUrl from 'valid-url';
 import queryString from 'query-string';
 
-let prepareStaticDGFunc = (datasetURI)=>{
-    let d = datasetURI, g = datasetURI;
+let prepareStaticDGFunc = datasetURI => {
+    let d = datasetURI,
+        g = datasetURI;
     //try default graph if no datasetURI is given
-    if(String(defaultDatasetURI[0]) !==''){
-        if(!d) {
+    if (String(defaultDatasetURI[0]) !== '') {
+        if (!d) {
             d = defaultDatasetURI[0];
         }
     }
-    if(sparqlEndpoint[d]){
-        if(sparqlEndpoint[d].graphName){
+    if (sparqlEndpoint[d]) {
+        if (sparqlEndpoint[d].graphName) {
             g = sparqlEndpoint[d].graphName;
-        }else{
-            if(d === 'generic'){
+        } else {
+            if (d === 'generic') {
                 g = 'default';
-            }else{
+            } else {
                 g = d;
             }
         }
-    }else{
+    } else {
         //go for generic SPARQL endpoint
-        if(sparqlEndpoint['generic'].graphName){
+        if (sparqlEndpoint['generic'].graphName) {
             g = sparqlEndpoint['generic'].graphName;
-        }else{
+        } else {
             g = d;
         }
         d = 'generic';
     }
-    return {d: d, g: g};
-}
+    return { d: d, g: g };
+};
 
-let includesDataset= (rights, dataset)=> {
+let includesDataset = (rights, dataset) => {
     let out = false;
     rights.forEach(function(el) {
         if (el.scope === 'D') {
-            if(el.dataset === dataset){
+            if (el.dataset === dataset) {
                 out = true;
                 return out;
             }
         }
     });
     return out;
-}
-let includesResource= (rights, dataset, resource, resourceType)=> {
+};
+let includesResource = (rights, dataset, resource, resourceType) => {
     let out = false;
     rights.forEach(function(el) {
         if (el.scope === 'DR') {
-            if(el.dataset === dataset && el.resource === resource){
+            if (el.dataset === dataset && el.resource === resource) {
                 out = true;
                 return out;
-            }else{
-                if(el.treatAsResourceType && el.dataset === dataset &&  resourceType.indexOf(el.resource)!==-1){
+            } else {
+                if (
+                    el.treatAsResourceType &&
+                    el.dataset === dataset &&
+                    resourceType.indexOf(el.resource) !== -1
+                ) {
                     out = true;
                     return out;
                 }
             }
-        }else if (el.scope === 'R') {
-            if(el.resource === resource){
+        } else if (el.scope === 'R') {
+            if (el.resource === resource) {
                 out = true;
                 return out;
-            }else{
-                if(el.treatAsResourceType &&  resourceType.indexOf(el.resource)!==-1){
+            } else {
+                if (
+                    el.treatAsResourceType &&
+                    resourceType.indexOf(el.resource) !== -1
+                ) {
                     out = true;
                     return out;
                 }
@@ -71,189 +83,285 @@ let includesResource= (rights, dataset, resource, resourceType)=> {
         }
     });
     return out;
-}
-let includesProperty= (rights, dataset, resource, resourceType, property)=> {
+};
+let includesProperty = (rights, dataset, resource, resourceType, property) => {
     let out = false;
     rights.forEach(function(el) {
-        if (el.scope  && el.scope === 'DP') {
-            if(el.dataset === dataset && el.property === property){
+        if (el.scope && el.scope === 'DP') {
+            if (el.dataset === dataset && el.property === property) {
                 out = true;
                 return out;
             }
-        }else if (el.scope  && el.scope === 'RP') {
-            if(el.resource === resource && el.property === property){
+        } else if (el.scope && el.scope === 'RP') {
+            if (el.resource === resource && el.property === property) {
                 out = true;
                 return out;
-            }else{
-                if(el.treatAsResourceType && el.resource === resourceType && el.property === property){
+            } else {
+                if (
+                    el.treatAsResourceType &&
+                    el.resource === resourceType &&
+                    el.property === property
+                ) {
                     out = true;
                     return out;
                 }
             }
-        }else if (el.scope  && el.scope === 'DRP') {
-            if(el.dataset === dataset && el.resource === resource && el.property === property){
+        } else if (el.scope && el.scope === 'DRP') {
+            if (
+                el.dataset === dataset &&
+                el.resource === resource &&
+                el.property === property
+            ) {
                 out = true;
                 return out;
-            }else{
-                if(el.treatAsResourceType && el.dataset === dataset && el.resource === resourceType && el.property === property){
+            } else {
+                if (
+                    el.treatAsResourceType &&
+                    el.dataset === dataset &&
+                    el.resource === resourceType &&
+                    el.property === property
+                ) {
                     out = true;
                     return out;
                 }
             }
-        }else if (el.scope  && el.scope === 'P') {
-            if(el.property === property){
+        } else if (el.scope && el.scope === 'P') {
+            if (el.property === property) {
                 out = true;
                 return out;
             }
         }
     });
     return out;
-}
+};
 
 export default {
     //returns dataset and graphName
-    prepareDG(datasetURI){
+    prepareDG(datasetURI) {
         return prepareStaticDGFunc(datasetURI);
     },
     //it is used for users and configs
-    getStaticEndpointParameters(datasetURI){
-        let httpOptions, {d, g} = prepareStaticDGFunc(datasetURI);
+    getStaticEndpointParameters(datasetURI) {
+        let httpOptions,
+            { d, g } = prepareStaticDGFunc(datasetURI);
         httpOptions = {
             host: sparqlEndpoint[d].host,
             port: sparqlEndpoint[d].port,
             path: sparqlEndpoint[d].path,
             protocol: sparqlEndpoint[d].protocol,
             username: sparqlEndpoint[d].username,
-            password: sparqlEndpoint[d].password,
+            password: sparqlEndpoint[d].password
         };
         let useReasoning = 0;
-        if(sparqlEndpoint[d].useReasoning){
+        if (sparqlEndpoint[d].useReasoning) {
             useReasoning = 1;
         }
-        let etype = sparqlEndpoint[d].endpointType ? sparqlEndpoint[d].endpointType : 'virtuoso';
-        return {httpOptions: httpOptions, type: etype.toLowerCase(), graphName: g, useReasoning: useReasoning};
+        let etype = sparqlEndpoint[d].endpointType
+            ? sparqlEndpoint[d].endpointType
+            : 'virtuoso';
+        return {
+            httpOptions: httpOptions,
+            type: etype.toLowerCase(),
+            graphName: g,
+            useReasoning: useReasoning
+        };
     },
     //build the write URI and params for different SPARQL endpoints
     getHTTPQuery(mode, query, endpointParameters, outputFormat) {
-        let outputObject = {uri: '', params: {}};
+        let outputObject = { uri: '', params: {} };
 
-        if(endpointParameters.useReasoning){
+        if (endpointParameters.useReasoning) {
             outputObject.params['reasoning'] = 'true';
         }
         let protocol = 'http';
-        if(endpointParameters.httpOptions.protocol){
+        if (endpointParameters.httpOptions.protocol) {
             protocol = endpointParameters.httpOptions.protocol;
         }
         let host = endpointParameters.httpOptions.host;
         let port = endpointParameters.httpOptions.port;
         let path = endpointParameters.httpOptions.path;
         //remove the tralining slash at the end of the path if applicable
-        path = (path.length > 1 && path.slice(-1) ) === '/' ? path.slice(0, -1) : path;
+        path =
+            (path.length > 1 && path.slice(-1)) === '/'
+                ? path.slice(0, -1)
+                : path;
         let userPass = '';
-        if(endpointParameters.httpOptions.username && endpointParameters.httpOptions.password){
-            userPass = endpointParameters.httpOptions.username + ':' + endpointParameters.httpOptions.password + '@';
+        if (
+            endpointParameters.httpOptions.username &&
+            endpointParameters.httpOptions.password
+        ) {
+            userPass =
+                endpointParameters.httpOptions.username +
+                ':' +
+                endpointParameters.httpOptions.password +
+                '@';
         }
         switch (endpointParameters.type.toLowerCase()) {
             case 'virtuoso':
-                outputObject.uri = protocol + '://' + userPass + host + ':' + port + path;
+                outputObject.uri =
+                    protocol + '://' + userPass + host + ':' + port + path;
                 outputObject.params['query'] = query;
                 outputObject.params['format'] = outputFormat;
 
                 break;
             case 'blazegraph':
-                outputObject.uri = protocol + '://' + userPass + host + ':' + port + path;
+                outputObject.uri =
+                    protocol + '://' + userPass + host + ':' + port + path;
                 outputObject.params['query'] = query;
                 //application/sparql-results+json is not supported!
                 outputObject.params['format'] = 'json';
 
                 break;
             case 'graphdb':
-                if(mode === 'update'){
-                    outputObject.uri = protocol + '://' + userPass + host + ':' + port + path + '/statements';
+                if (mode === 'update') {
+                    outputObject.uri =
+                        protocol +
+                        '://' +
+                        userPass +
+                        host +
+                        ':' +
+                        port +
+                        path +
+                        '/statements';
                     outputObject.params['update'] = query;
                     //outputObject.params['format'] = outputFormat;
-                }else{
-                    outputObject.uri = protocol + '://' + userPass + host + ':' + port + path;
+                } else {
+                    outputObject.uri =
+                        protocol + '://' + userPass + host + ':' + port + path;
                     outputObject.params['query'] = query;
                     outputObject.params['format'] = outputFormat;
                 }
                 //use infer instead of reasoning
-                if(endpointParameters.useReasoning){
+                if (endpointParameters.useReasoning) {
                     outputObject.params['infer'] = 'true';
                 }
                 break;
             case 'stardog':
                 //to make it compatible with old Stardog API
-                if(endpointParameters.httpOptions.path.indexOf('annex') !== -1){
-                    outputObject.uri = protocol + '://' + userPass + host + (port === '80' ? '' : ':' + port) + path;
+                if (
+                    endpointParameters.httpOptions.path.indexOf('annex') !== -1
+                ) {
+                    outputObject.uri =
+                        protocol +
+                        '://' +
+                        userPass +
+                        host +
+                        (port === '80' ? '' : ':' + port) +
+                        path;
                     outputObject.params['query'] = query;
                     outputObject.params['Accept'] = outputFormat;
-                }else{
+                } else {
                     //new Stardog API /query and /update
-                    if(mode === 'update'){
-                        outputObject.uri = protocol + '://' + userPass + host + (port === '80' ? '' : ':' + port) + path + '/update';
+                    if (mode === 'update') {
+                        outputObject.uri =
+                            protocol +
+                            '://' +
+                            userPass +
+                            host +
+                            (port === '80' ? '' : ':' + port) +
+                            path +
+                            '/update';
                         outputObject.params['update'] = query;
                         outputObject.params['query'] = query;
-                    }else{
+                    } else {
                         outputObject.params['query'] = query;
-                        outputObject.uri = protocol + '://' + userPass + host + (port === '80' ? '' : ':' + port) + path + '/query';
+                        outputObject.uri =
+                            protocol +
+                            '://' +
+                            userPass +
+                            host +
+                            (port === '80' ? '' : ':' + port) +
+                            path +
+                            '/query';
                         outputObject.params['Accept'] = outputFormat;
                     }
                 }
                 break;
             case 'cliopatria':
-                if(mode === 'update'){
-                    outputObject.uri = protocol + '://' + userPass + host + (port === '80' ? '' : ':' + port) + path + 'update';
+                if (mode === 'update') {
+                    outputObject.uri =
+                        protocol +
+                        '://' +
+                        userPass +
+                        host +
+                        (port === '80' ? '' : ':' + port) +
+                        path +
+                        'update';
                     outputObject.params['update'] = query;
-                }else{
+                } else {
                     outputObject.params['query'] = query;
-                    outputObject.uri = protocol + '://' + userPass + host + path;
+                    outputObject.uri =
+                        protocol + '://' + userPass + host + path;
                     outputObject.params['format'] = outputFormat;
                 }
 
                 break;
-                //todo: check the differences for other triple stores
+            //todo: check the differences for other triple stores
             case 'sesame':
-                if(mode === 'update'){
-                    outputObject.uri = protocol + '://' + userPass + host + (port === '80' ? '' : ':' + port) + path + '/statements';
+                if (mode === 'update') {
+                    outputObject.uri =
+                        protocol +
+                        '://' +
+                        userPass +
+                        host +
+                        (port === '80' ? '' : ':' + port) +
+                        path +
+                        '/statements';
                     outputObject.params['update'] = query;
-                }else{
+                } else {
                     outputObject.params['query'] = query;
-                    outputObject.uri = protocol + '://' + userPass + host + (port === '80' ? '' : ':' + port) + path;
+                    outputObject.uri =
+                        protocol +
+                        '://' +
+                        userPass +
+                        host +
+                        (port === '80' ? '' : ':' + port) +
+                        path;
                     outputObject.params['Accept'] = outputFormat;
                 }
 
                 break;
             case 'neptune':
-                outputObject.uri = 'http://' + endpointParameters.httpOptions.host + ':' + endpointParameters.httpOptions.port + endpointParameters.httpOptions.path;
+                outputObject.uri =
+                    'http://' +
+                    endpointParameters.httpOptions.host +
+                    ':' +
+                    endpointParameters.httpOptions.port +
+                    endpointParameters.httpOptions.path;
                 outputObject.params['Accept'] = outputFormat;
-                if(mode === 'update'){
+                if (mode === 'update') {
                     outputObject.params['update'] = query;
-                }else{
+                } else {
                     outputObject.params['query'] = query;
                 }
 
                 break;
             default:
-                outputObject.uri = protocol + '://' + userPass + host+ (port === '80' ? '' : ':' + port) + path;
+                outputObject.uri =
+                    protocol +
+                    '://' +
+                    userPass +
+                    host +
+                    (port === '80' ? '' : ':' + port) +
+                    path;
                 outputObject.params['query'] = query;
                 outputObject.params['format'] = outputFormat;
         }
         return outputObject;
     },
     ///builds the HTTP get URL for SPARQL requests
-    getHTTPGetURL(object){
+    getHTTPGetURL(object) {
         let uri = object.uri + '?' + queryString.stringify(object.params);
         return uri;
     },
-    prepareGraphName(graphName){
-        let gStart = 'GRAPH <'+ graphName +'> { ';
+    prepareGraphName(graphName) {
+        let gStart = 'GRAPH <' + graphName + '> { ';
         let gEnd = ' } ';
-        if(!graphName || graphName === 'default'){
-            gStart =' ';
+        if (!graphName || graphName === 'default') {
+            gStart = ' ';
             gEnd = ' ';
         }
-        return {gStart: gStart, gEnd: gEnd}
+        return { gStart: gStart, gEnd: gEnd };
     },
     getQueryDataTypeValue(valueType, dataType, objectValue) {
         let newValue, dtype;
@@ -262,57 +370,57 @@ export default {
             case 'bnode':
             case 'literal':
                 // automatically detect uris even in literal values
-                if(validUrl.isUri(objectValue.toString())){
-                    newValue='<'+objectValue+'>';
+                if (validUrl.isUri(objectValue.toString())) {
+                    newValue = '<' + objectValue + '>';
                     dtype = 'uri';
-                }else{
-                    newValue='"""'+objectValue+'"""';
+                } else {
+                    newValue = '"""' + objectValue + '"""';
                     dtype = 'str';
                 }
                 break;
             case 'typed-literal':
-            //handle typed-literal values
+                //handle typed-literal values
                 switch (dataType) {
                     case 'http://www.w3.org/2001/XMLSchema#integer':
                         dtype = 'xsd:integer';
-                        newValue='"'+objectValue+'"^^' + dtype;
+                        newValue = '"' + objectValue + '"^^' + dtype;
                         //to handle inconsistency in data, switch to string
-                        if(isNaN(objectValue)){
-                            newValue='"""'+objectValue+'"""';
+                        if (isNaN(objectValue)) {
+                            newValue = '"""' + objectValue + '"""';
                             dtype = 'str';
                         }
                         break;
                     case 'http://www.w3.org/2001/XMLSchema#decimal':
                         dtype = 'xsd:decimal';
-                        newValue='"'+objectValue+'"^^' + dtype;
-                        if(isNaN(objectValue)){
-                            newValue='"""'+objectValue+'"""';
+                        newValue = '"' + objectValue + '"^^' + dtype;
+                        if (isNaN(objectValue)) {
+                            newValue = '"""' + objectValue + '"""';
                             dtype = 'str';
                         }
                         break;
                     case 'http://www.w3.org/2001/XMLSchema#float':
                         dtype = 'xsd:float';
-                        newValue='"'+objectValue+'"^^' + dtype;
-                        if(isNaN(objectValue)){
-                            newValue='"""'+objectValue+'"""';
+                        newValue = '"' + objectValue + '"^^' + dtype;
+                        if (isNaN(objectValue)) {
+                            newValue = '"""' + objectValue + '"""';
                             dtype = 'str';
                         }
                         break;
                     case 'http://www.w3.org/2001/XMLSchema#double':
                         dtype = 'xsd:double';
-                        newValue='"'+objectValue+'"^^' + dtype;
-                        if(isNaN(objectValue)){
-                            newValue='"""'+objectValue+'"""';
+                        newValue = '"' + objectValue + '"^^' + dtype;
+                        if (isNaN(objectValue)) {
+                            newValue = '"""' + objectValue + '"""';
                             dtype = 'str';
                         }
                         break;
                     case 'http://www.w3.org/2001/XMLSchema#dateTime':
                         dtype = 'xsd:dateTime';
-                        newValue='"'+objectValue+'"^^' + dtype;
+                        newValue = '"' + objectValue + '"^^' + dtype;
                         break;
                     case 'http://www.w3.org/2001/XMLSchema#date':
                         dtype = 'xsd:date';
-                        newValue='"'+objectValue+'"^^' + dtype;
+                        newValue = '"' + objectValue + '"^^' + dtype;
                         break;
                     // case 'http://www.w3.org/2001/XMLSchema#gYear':
                     //     dtype = 'xsd:gYear';
@@ -320,26 +428,26 @@ export default {
                     //     break;
                     case 'http://www.w3.org/2001/XMLSchema#boolean':
                         dtype = 'xsd:boolean';
-                        newValue='"'+objectValue+'"^^' + dtype;
-                        if(isNaN(objectValue)){
-                            newValue='"""'+objectValue+'"""';
+                        newValue = '"' + objectValue + '"^^' + dtype;
+                        if (isNaN(objectValue)) {
+                            newValue = '"""' + objectValue + '"""';
                             dtype = 'str';
                         }
                         break;
                     default:
-                        newValue='"""'+objectValue+'"""';
+                        newValue = '"""' + objectValue + '"""';
                         dtype = 'str';
                 }
                 break;
             default:
                 // default: handle as string
-                newValue='"""'+objectValue+'"""';
+                newValue = '"""' + objectValue + '"""';
                 dtype = 'str';
         }
         //fix in virtuoso
-        if(dtype === 'uri'){
+        if (dtype === 'uri') {
             dtype = 'iri';
         }
-        return {dtype: dtype, value: newValue};
+        return { dtype: dtype, value: newValue };
     }
-}
+};

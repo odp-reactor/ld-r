@@ -1,0 +1,164 @@
+@prefix arco:  <https://w3id.org/arco/ontology/arco/> .
+@prefix opla:  <http://ontologydesignpatterns.org/opla/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix tiapit: <https://w3id.org/italia/onto/TI/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix odp-pat: <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cis:   <http://dati.beniculturali.it/cis/> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+
+a-loc:PreviousLocation
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196147-alternative-4> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-1> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-4> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-3> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-1> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-4> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-2>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196147-alternative-4>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeInterval/1780>
+        a                              tiapit:TimeInterval ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-2> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-2> , <https://w3id.org/arco/resource/TimeIntervalPattern/1780> ;
+        arco:endTime                   "1780" ;
+        arco:startTime                 "1780" .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-4>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196140-alternative-3>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-3> ;
+        a-loc:atSite                   <https://w3id.org/arco/resource/Site/eca775e82eba372edd44b6e8d17a1a38> ;
+        a-loc:hasLocationType          a-loc:PreviousLocation ;
+        tiapit:atTime                  <https://w3id.org/arco/resource/TimeInterval/1780-1818> .
+
+<https://w3id.org/arco/resource/TimeInterval/1860>
+        a                              tiapit:TimeInterval ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196147-alternative-4> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-4> , <https://w3id.org/arco/resource/TimeIntervalPattern/1860> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-4> ;
+        arco:endTime                   "1860" ;
+        arco:startTime                 "1860" .
+
+<https://w3id.org/arco/resource/TimeIntervalPattern/1780-1818>
+        opla:isPatternInstanceOf  odp-pat:time-interval .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-1>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196140-alternative-2>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-2> ;
+        a-loc:atSite                   <https://w3id.org/arco/resource/Site/21280a9bc5db6e705db138609c20ded6> ;
+        a-loc:hasLocationType          <https://w3id.org/arco/resource/LocationType/luogo-di-collocazione-successiva> ;
+        tiapit:atTime                  <https://w3id.org/arco/resource/TimeInterval/1780> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196147-alternative-4>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196147-alternative-4> ;
+        a-loc:atSite                   <https://w3id.org/arco/resource/Site/eca775e82eba372edd44b6e8d17a1a38> ;
+        a-loc:hasLocationType          a-loc:PreviousLocation ;
+        tiapit:atTime                  <https://w3id.org/arco/resource/TimeInterval/1860> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196142-alternative-4>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-4> ;
+        a-loc:atSite                   <https://w3id.org/arco/resource/Site/eca775e82eba372edd44b6e8d17a1a38> ;
+        a-loc:hasLocationType          a-loc:PreviousLocation ;
+        tiapit:atTime                  <https://w3id.org/arco/resource/TimeInterval/1860> .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-2>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196140-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-1> ;
+        a-loc:atSite                   <https://w3id.org/arco/resource/Site/eca775e82eba372edd44b6e8d17a1a38> ;
+        a-loc:hasLocationType          a-loc:PreviousLocation ;
+        tiapit:atTime                  <https://w3id.org/arco/resource/TimeInterval/1768> .
+
+<https://w3id.org/arco/resource/Site/21280a9bc5db6e705db138609c20ded6>
+        a                cis:Site ;
+        cis:siteAddress  <https://w3id.org/arco/resource/Address/baf8c807fbde64045fa67254dafd3e9f> .
+
+<https://w3id.org/arco/resource/Site/eca775e82eba372edd44b6e8d17a1a38>
+        a                cis:Site ;
+        cis:siteAddress  <https://w3id.org/arco/resource/Address/baf8c807fbde64045fa67254dafd3e9f> .
+
+<https://w3id.org/arco/resource/LocationType/luogo-di-collocazione-successiva>
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-2> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-2> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900196142>
+        a                              arco:CulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-1> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-2> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-4> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007125/ICCD8235007_347892.jpg> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196142-alternative-1> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196142-alternative-2> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196142-alternative-4> .
+
+<https://w3id.org/arco/resource/Address/baf8c807fbde64045fa67254dafd3e9f>
+        a           cis:SiteAddress ;
+        rdfs:label  "ITALIA, Toscana, FI, Firenze, Castello" , "ITALIA, Toscana, FI, FIRENZE" , "ITALIA, Toscana, FI, Firenze" , "Italia, Toscana, Fi, Firenze" , "ITALIA, Toscana, FI, Firenze, Casyello" , "Italia, Toscana, FI, Firenze, Castello" , "FI, Firenze" , "ITALIA, Toscana, FI, Firenze, S. Gaggio" , "ITALIA, Toscana, FI, Firenze, Arcetri" , "ITALIA, FI, Firenze" , "Toscana, FI, Firenze, 1984" , "Italia, tOSCANA, FI, Firenze" , "ITALIA, toscana, FI, Firenze" , "Fi, Firenze" , "ITALIA, TOSCANA, FI, Firenze" , "Italia, Lombardia, FI, Firenze" , "Toscana, FI, Firenze" , "Toscana, FI, Firenze, Castello" , "Italia, FI, Firenze" , "ITALIA, Toscana, FI, Firenze, Via dell'Agnolo" , "ITALIA, Toscana, FI, Firenze, Galluzzo" , "ITALIA, Toscana, FI, Firenze, castello" , "ITALIA, Toscana, Fi, Firenze" , "ITALIA, Toscana, FI, Firenze, Petraia" , "Italia, Toscana, FI, Firenze" .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-1>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196142-alternative-2>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-2> ;
+        a-loc:atSite                   <https://w3id.org/arco/resource/Site/21280a9bc5db6e705db138609c20ded6> ;
+        a-loc:hasLocationType          <https://w3id.org/arco/resource/LocationType/luogo-di-collocazione-successiva> ;
+        tiapit:atTime                  <https://w3id.org/arco/resource/TimeInterval/1780> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900196147>
+        a                              arco:CulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196147-alternative-4> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007125/ICCD8235017_347974.jpg> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196147-alternative-4> .
+
+<https://w3id.org/arco/resource/TimeIntervalPattern/1768>
+        opla:isPatternInstanceOf  odp-pat:time-interval .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-4>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196142-alternative-1>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-1> ;
+        a-loc:atSite                   <https://w3id.org/arco/resource/Site/eca775e82eba372edd44b6e8d17a1a38> ;
+        a-loc:hasLocationType          a-loc:PreviousLocation ;
+        tiapit:atTime                  <https://w3id.org/arco/resource/TimeInterval/1768> .
+
+<https://w3id.org/arco/resource/TimeIntervalPattern/1780>
+        opla:isPatternInstanceOf  odp-pat:time-interval .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-3>
+        opla:isPatternInstanceOf  a-loc:time-indexed-typed-location .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0900196140>
+        a                              arco:CulturalProperty ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-3> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-2> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-4> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-1> ;
+        foaf:depiction                 <http://www.sigecweb.beniculturali.it/images/fullsize/ICCD50007125/ICCD8235003_347962.jpg> ;
+        a-loc:hasTimeIndexedTypedLocation
+                <https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196140-alternative-1> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196140-alternative-3> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196140-alternative-2> , <https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196140-alternative-4> .
+
+<https://w3id.org/arco/resource/TimeIntervalPattern/1860>
+        opla:isPatternInstanceOf  odp-pat:time-interval .
+
+<https://w3id.org/arco/resource/TimeIndexedTypedLocation/0900196140-alternative-4>
+        a                              a-loc:TimeIndexedTypedLocation ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-4> ;
+        a-loc:atSite                   <https://w3id.org/arco/resource/Site/eca775e82eba372edd44b6e8d17a1a38> ;
+        a-loc:hasLocationType          a-loc:PreviousLocation ;
+        tiapit:atTime                  <https://w3id.org/arco/resource/TimeInterval/1860> .
+
+<https://w3id.org/arco/resource/TimeInterval/1768>
+        a                              tiapit:TimeInterval ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196142-alternative-1> , <https://w3id.org/arco/resource/TimeIntervalPattern/1768> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-1> ;
+        arco:endTime                   "1768" ;
+        arco:startTime                 "1768" .
+
+<https://w3id.org/arco/resource/TimeInterval/1780-1818>
+        a                              tiapit:TimeInterval ;
+        opla:belongsToPatternInstance  <https://w3id.org/arco/resource/TimeIntervalPattern/1780-1818> , <https://w3id.org/arco/resource/TimeIndexedTypedLocationPattern/0900196140-alternative-3> ;
+        arco:endTime                   "1780" ;
+        arco:startTime                 "1780" .

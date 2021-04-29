@@ -1,0 +1,80 @@
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix owl:	<http://www.w3.org/2002/07/owl#> . 
+@prefix xsd:	<http://www.w3.org/2001/XMLSchema#> . 
+@prefix foaf:	<http://xmlns.com/foaf/0.1/> . 
+@prefix dbp:	<http://dbpedia.org/ontology/> . 
+@prefix ex:	    <http://example.com/ns#> . 
+@prefix ottr:	<http://ns.ottr.xyz/0.4/> . 
+@prefix ax:	    <http://tpl.ottr.xyz/owl/axiom/0.1/> . 
+@prefix rstr:	<http://tpl.ottr.xyz/owl/restriction/0.1/> .
+@prefix a-dd:   <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix odp-tpl:    <http://www.ontologydesignpatterns.org/tpl#> .
+
+[] a ottr:InstanceMap ;
+  ottr:source 
+      [ a ottr:SPARQLEndpointSource ; 
+        ottr:sourceURL "https://dati.beniculturali.it/sparql" ] ;
+  ottr:query """
+            SELECT ?collection 
+                   ?members
+                      # we hack instance URI as UUID() doesn't work in virtuoso => it's new ns + other resource UUID
+                   (URI(CONCAT ("https://w3id.org/arco/resource/MeasurementCollectionPattern", STRAFTER(STR(?collection), "https://w3id.org/arco/resource/MeasurementCollection"))) as ?instanceIRI)
+                   ?cProp
+                   ?cPropLabel
+                   ?cPropType
+                   ?measLabels
+                   ?values
+            WHERE
+            {
+
+                   ?cProp a-dd:hasMeasurementCollection ?collection .
+                   ?cProp rdfs:label ?cPropLabel . FILTER langMatches(lang(?cPropLabel), "it") .
+                   ?cProp rdf:type ?cPropType .
+                  {
+                   SELECT ?collection
+                          (GROUP_CONCAT(DISTINCT ?member; SEPARATOR=";") AS ?members)
+                          (GROUP_CONCAT(DISTINCT ?value; SEPARATOR=";") AS ?values )
+                          (GROUP_CONCAT(DISTINCT ?measLabel; SEPARATOR=";") AS ?measLabels )
+                          #(COUNT(DISTINCT ?member) AS ?memberCount)
+                         WHERE
+                          {
+	                                ?collection a-dd:hasMeasurement ?member.
+                                  ?collection a a-dd:MeasurementCollection .
+                                  ?member a a-dd:Measurement .
+
+
+
+                                   ?member a-dd:hasMeasurementType ?measurementType .
+                                  ?measurementType rdf:type a-dd:MeasurementType .
+                                  ?measurementType rdfs:label ?measLabel .
+                                   FILTER langMatches(lang(?measLabel), "it") .
+
+                                  ?member a-dd:hasValue ?v .
+                                       ?v <https://w3id.org/italia/onto/MU/value> ?value . 
+                          }
+                         GROUP BY ?collection 
+                         #HAVING (count(distinct ?member) > 1)
+                  }
+            }     
+            LIMIT 45 
+""";
+
+  ottr:template odp-tpl:ExtendedMeasurementCollectionInstance ;
+  ottr:argumentMaps (
+    [ ottr:type ottr:IRI ]                          ## ?collection
+    [ ottr:type (rdf:List ottr:IRI); 
+      ottr:translationSettings [ ottr:listSep ";"]  ## ?collectionMembers
+    ]
+    [ ottr:type ottr:IRI ]                          ## ?instanceIRI
+    [ ottr:type ottr:IRI ]                          ## ?cProp
+    [ ottr:type rdfs:Literal ]                          ## ?cPropLabel
+    [ ottr:type ottr:IRI ]                          ## ?cPropType
+    [ ottr:type (rdf:List rdfs:Literal); 
+      ottr:translationSettings [ ottr:listSep ";"]  ## ?measLabels
+    ]
+    [ ottr:type (rdf:List rdfs:Literal); 
+      ottr:translationSettings [ ottr:listSep ";"]  ## ?values
+    ]
+
+  ) .
