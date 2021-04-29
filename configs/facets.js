@@ -1,7 +1,5 @@
-require("dotenv").config();
-
 const configGraph =
-    process.env.CONFIG_GRAPH || "http://localhost/ld-r/configurations";
+    process.env.CONFIG_GRAPH || "http://virtuoso.localhost/configurations";
 
 export default {
     facets: {

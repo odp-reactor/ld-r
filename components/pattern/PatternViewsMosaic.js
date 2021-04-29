@@ -4,7 +4,7 @@ import TimeIndexedTypedLocationView from './viewer/TimeIndexedTypedLocationView'
 import CollectionView from './viewer/CollectionView';
 
 import PatternService from '../../services/clientside-services/PatternService';
-import DbContext from '../../services/base/DbContext';
+import DbClient from '../../services/base/DbClient';
 import { clone, chunk } from 'lodash';
 import { Grid, Segment } from 'semantic-ui-react';
 
@@ -12,7 +12,7 @@ export default class PatternViewsMosaic extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.patternService = new PatternService(new DbContext(sparqlEndpoint));
+        this.patternService = new PatternService(new DbClient(sparqlEndpoint));
         //
         this.state = {
             patternInstances: []

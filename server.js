@@ -55,6 +55,7 @@ if (env === 'production') {
 }
 
 const server = express();
+
 // we need this because "cookie" is true in csrfProtection
 server.use(cookieParser());
 server.use(bodyParser.json());

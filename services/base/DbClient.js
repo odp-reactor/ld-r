@@ -1,6 +1,6 @@
 import { newEngine } from '@comunica/actor-init-sparql';
 
-export default class DbContext {
+export default class DbClient {
     //db is SPARQL Endpoint in this case
     constructor(dbName, options) {
         this.dbName = dbName;

@@ -18,7 +18,7 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 // import { PartWhole } from "odp-reactor/es/index";
 
 import ClassService from '../../../services/clientside-services/ClassService';
-import DbContext from '../../../services/base/DbContext';
+import DbClient from '../../../services/base/DbClient';
 
 export default class PatternNetworkView extends React.Component {
     constructor(props) {
@@ -28,7 +28,7 @@ export default class PatternNetworkView extends React.Component {
         // we need to write the code ourselves what the fuck
         // BUT it's a simple query to dynamic endpoint
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.classService = new ClassService(new DbContext(sparqlEndpoint));
+        this.classService = new ClassService(new DbClient(sparqlEndpoint));
         //
         this.state = {
             classesWithPatternsAndScores: null

@@ -19,7 +19,15 @@ import {
 import DatasetsStore from '../stores/DatasetsStore';
 import URIUtil from './utils/URIUtil';
 
+import { ServerConfigRepository } from '../services/config/ServerConfigRepository';
+import DbClient from '../services/base/DbClient';
+import { routeToGraph } from './route/routeToGraph';
+
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
+const configEndpoint = process.env.CONFIG_SPARQL_ENDPOINT_URI;
+const serverConfigRepo = new ServerConfigRepository(
+    new DbClient(configEndpoint)
+);
 
 class Datasets extends React.Component {
     constructor(props) {
@@ -131,8 +139,8 @@ class Datasets extends React.Component {
                             className="medium ui basic icon labeled button"
                             href={`${PUBLIC_URL}/wysiwyq`}
                         >
-                            <i className="large blue level down icon"></i>Import
-                            a Query
+                            <i className="large blue level down icon"></i>
+                            Import a Query
                         </NavLink>
                     </div>
                 );
@@ -151,16 +159,24 @@ class Datasets extends React.Component {
                             <div className="content">
                                 {' '}
                                 <i className="ui blue icon cubes"></i>{' '}
-                                <NavLink
-                                    href={
-                                        `${PUBLIC_URL}/dataset/1/` +
-                                        encodeURIComponent(defaultDatasetURI[0])
-                                    }
+                                {/* NAVLINK START*/}
+                                <div
+                                    // href={
+                                    //     `${PUBLIC_URL}/dataset/1/` +
+                                    //     encodeURIComponent(defaultDatasetURI[0])
+                                    // }
+                                    onClick={() => {
+                                        console.log(
+                                            'Clicked:',
+                                            defaultDatasetURI
+                                        );
+                                    }}
                                     title="go to resource list"
                                     routeName="dataset"
                                 >
                                     {defaultDatasetURI[0]}
-                                </NavLink>
+                                </div>
+                                {/* NAVLINK END*/}
                                 {/* <a
                                     href={
                                         `${PUBLIC_URL}/dataset/1/` +
@@ -262,10 +278,26 @@ class Datasets extends React.Component {
                 outputDSS = dss.map(function(ds, index) {
                     dsLink = (
                         <a
-                            href={
-                                `${PUBLIC_URL}/dataset/1/` +
-                                encodeURIComponent(ds.d)
-                            }
+                            onClick={async () => {
+                                try {
+                                    const {
+                                        sparqlEndpoint,
+                                        graph
+                                    } = await serverConfigRepo.getSparqlEndpointAndGraphByDatasetId(
+                                        ds.d
+                                    );
+                                    routeToGraph(sparqlEndpoint, graph);
+                                } catch (err) {
+                                    console.log(
+                                        '[!] Error while getting dataset config: ',
+                                        err
+                                    );
+                                }
+                            }}
+                            // href={
+                            //     `${PUBLIC_URL}/dataset/1/` +
+                            //     encodeURIComponent(ds.d)
+                            // }
                             title="go to resource list"
                         >
                             {ds.features && ds.features.datasetLabel
@@ -364,7 +396,8 @@ class Datasets extends React.Component {
                                         title="metadata"
                                         target="_blank"
                                     >
-                                        <i className="info icon"></i>metadata
+                                        <i className="info icon"></i>
+                                        metadata
                                     </a>
                                 ) : (
                                     ''

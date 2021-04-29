@@ -15,7 +15,7 @@ import { forEach } from 'lodash';
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 import ClassService from '../../../services/clientside-services/ClassService';
-import DbContext from '../../../services/base/DbContext';
+import DbClient from '../../../services/base/DbClient';
 
 export default class ClassInstances extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ export default class ClassInstances extends React.Component {
         // sparql endpoint associated to dataset else
         // we need to write the code ourselves what the fuck
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.classService = new ClassService(new DbContext(sparqlEndpoint));
+        this.classService = new ClassService(new DbClient(sparqlEndpoint));
         this.state = {
             resourcesWithPatternInstances: null
         };

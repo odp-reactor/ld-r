@@ -2,10 +2,10 @@ import GenericRepository from '../base/GenericRepository';
 import PatternQuery from '../patterns/PatternQuery';
 
 export default class PatternRepository {
-    constructor(dbContext) {
+    constructor(dbClient) {
         //classesDataMapper
         this.genericRepository = new GenericRepository(
-            dbContext
+            dbClient
             // new ClassDataMapper()
         );
         this.patternQuery = new PatternQuery();
