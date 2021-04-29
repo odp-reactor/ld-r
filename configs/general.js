@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 export default {
     //full page title
     appFullTitle: ["ODP Reactor"],
@@ -30,9 +32,9 @@ export default {
     googleAnalyticsID: "",
 
     //if set, will use the configs stored in a triple store
-    enableDynamicServerConfiguration: 0,
-    enableDynamicReactorConfiguration: 0,
-    enableDynamicFacetsConfiguration: 0,
+    enableDynamicServerConfiguration: 1,
+    enableDynamicReactorConfiguration: 1,
+    enableDynamicFacetsConfiguration: 1,
     //if set, wil allow users to create new datasets
     //only works if enableDynamicReactorConfiguration is set to 1 and triple store allows update qureies
     enableAddingNewDatasets: 1,
@@ -41,7 +43,9 @@ export default {
     //allows users to save and import a SPARQL query from/to the system: WYSIWYQ concept
     enableQuerySaveImport: 1,
     //graph that stores your configurations
-    configDatasetURI: ["http://arco.istc.cnr.it/ldr/configurations"],
+    configDatasetURI: [
+        process.env.CONFIG_GRAPH || "http://localhost/ld-r/configurations",
+    ],
     //will enable/disable auto config
     enableAutomaticConfiguration: 0,
     //the path to the upload folder
@@ -51,5 +55,5 @@ export default {
     //graph that stores your mapping configurations for imprting other formats such as CSV
     mappingsDatasetURI: ["http://ld-r.org/mappings"],
     //by default dataset will be rendered by DatasetReactor instead of FacetedBrowser
-    enableFacetedBrowser: false
+    enableFacetedBrowser: false,
 };

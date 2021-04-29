@@ -62,8 +62,8 @@ let webpackConfig = {
     },
     node: {
         setImmediate: false,
-        console: true
-        // fs: 'empty',
+        console: true,
+        fs: 'empty'
         // //net: 'empty',
         // tls: 'empty'
     },

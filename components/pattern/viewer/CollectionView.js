@@ -57,9 +57,12 @@ class CollectionView extends React.Component {
         let collection = this.state.culturalPropertyWithMeasurements;
 
         // import Collection component from odp-reactor package
-        const Collection = require('odp-reactor').Collection;
-        const Depiction = require('odp-reactor').Depiction;
-        const PropertyValueList = require('odp-reactor').PropertyValueList;
+
+        // const Collection = require('odp-reactor').Collection;
+        // const Depiction = require('odp-reactor').Depiction;
+        // const PropertyValueList = require('odp-reactor').PropertyValueList;
+
+        return null;
 
         if (collection) {
             let propertyList = {};

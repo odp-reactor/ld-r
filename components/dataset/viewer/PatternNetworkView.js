@@ -71,261 +71,265 @@ export default class PatternNetworkView extends React.Component {
     }
 
     render() {
-        if (
-            this.props.PatternStore.list &&
-            this.state.classesWithPatternsAndScores
-        ) {
-            let resetFilters = false;
-            let noTutorial = false;
-            if (this.props.RouteStore._currentNavigate) {
-                resetFilters =
-                    this.props.RouteStore._currentNavigate.route.query
-                        .resetFilters || false;
-                noTutorial = this.props.RouteStore._currentNavigate.route.query
-                    .noTutorial;
-            }
-
-            // we dependency inject the function to get instances by pattern URI
-            // node is a Graphin node
-
-            const KnowledgeGraph = require('odp-reactor').KnowledgeGraph;
-            const Resource = require('odp-reactor').Resource;
-            const scaleData = require('odp-reactor').scaleData;
-            const findMinMax = require('odp-reactor').findSliderDomain;
-            const PatternsAndClassesPage = require('odp-reactor')
-                .PatternsAndClassesPage;
-
-            const patterns = filter(this.props.PatternStore.list, p => {
-                return p.occurences !== '0';
-            });
-            const classes = this.state.classesWithPatternsAndScores;
-
-            const [minCentralityScore, maxCentralityScore] = findMinMax(
-                classes,
-                'pd'
-            );
-
-            const kg = new KnowledgeGraph();
-
-            // add pattern resource to kg
-            forEach(patterns, p => {
-                const patternResource = Resource.create({
-                    uri: p.pattern,
-                    label: p.label,
-                    description: p.description,
-                    properties: {
-                        type: 'Pattern',
-                        occurences: p.occurences,
-                        nodeSize: 15,
-                        nodeMobileSize: 15,
-                        nodeLabelSize: 20,
-                        nodeColor: 'purple',
-                        nodeBorderColor: 'purple',
-                        nodeMobileColor: 'thistle',
-                        nodeBorderMobileColor: 'purple',
-                        nodeType: 'graphin-circle',
-                        mobileNodeType: 'circle',
-                        tooltipInfo: dataInfoMap[p.pattern],
-                        iconUrl: iconMap[p.pattern],
-                        graphinProperties: {
-                            graphinPatternNodeDoubleClick: () => {
-                                if (p.occurences !== '0') {
-                                    this.context.executeAction(navigateAction, {
-                                        url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
-                                            this.props.datasetURI
-                                        )}/patterns/${encodeURIComponent(
-                                            p.pattern
-                                        )}/color/${encodeURIComponent(
-                                            'noColor'
-                                        )}${
-                                            resetFilters || noTutorial
-                                                ? '?'
-                                                : ''
-                                        }${
-                                            resetFilters
-                                                ? 'resetFilters=true&'
-                                                : ''
-                                        }${
-                                            noTutorial ? 'noTutorial=true&' : ''
-                                        }`
-                                    });
-                                }
-                            }
-                        },
-                        listProperties: {
-                            listKeys: [
-                                {
-                                    label: 'Classes and Views',
-                                    id: 'label'
-                                },
-                                {
-                                    label: 'Description',
-                                    id: 'description'
-                                },
-                                {
-                                    label: 'Occurences',
-                                    id: 'occurences'
-                                }
-                            ],
-                            listItemClick: () => {
-                                if (p.occurences !== '0') {
-                                    this.context.executeAction(navigateAction, {
-                                        url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
-                                            this.props.datasetURI
-                                        )}/patterns/${encodeURIComponent(
-                                            p.pattern
-                                        )}/color/removeThis${
-                                            resetFilters || noTutorial
-                                                ? '?'
-                                                : ''
-                                        }${
-                                            resetFilters
-                                                ? 'resetFilters=true&'
-                                                : ''
-                                        }${
-                                            noTutorial ? 'noTutorial=true&' : ''
-                                        }`
-                                    });
-                                }
-                            }
-                        }
-                    }
-                });
-                kg.addResource(patternResource);
-            });
-            const displayAlwaysOneClassPerPattern = [];
-            // add classes resources to kg and relation with patterns
-            forEach(classes, c => {
-                const classResource = Resource.create({
-                    uri: c.uri,
-                    label: c.label, // to be changed
-                    description: c.description,
-                    properties: {
-                        type: 'Class',
-                        centralityScore: c.pd,
-                        nodeSize: 60,
-                        nodeMobileSize: 60 * 5,
-                        nodeLabelSize: 20,
-                        nodeType: 'diamond',
-                        mobileNodeType: 'triangle',
-                        nodeLabelPosition: 'bottom',
-                        nodeColor: 'red',
-                        nodeBorderColor: 'red',
-                        nodeMobileColor: '#ffcccb',
-                        nodeBorderMobileColor: 'red',
-                        scaledCentralityScore: scaleInto01(
-                            c.pd,
-                            minCentralityScore,
-                            maxCentralityScore
-                        ),
-                        graphinProperties: {
-                            graphinPatternNodeDoubleClick: () => {
-                                this.context.executeAction(navigateAction, {
-                                    url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
-                                        this.props.datasetURI
-                                    )}/classes/${encodeURIComponent(c.uri)}${
-                                        resetFilters || noTutorial ? '?' : ''
-                                    }${
-                                        resetFilters ? 'resetFilters=true&' : ''
-                                    }${noTutorial ? 'noTutorial=true&' : ''}`
-                                });
-                            }
-                        },
-                        listProperties: {
-                            listKeys: [
-                                {
-                                    label: 'Class',
-                                    id: 'label'
-                                },
-                                {
-                                    label: 'Description',
-                                    id: 'description'
-                                }
-                            ],
-                            listItemClick: () => {
-                                this.context.executeAction(navigateAction, {
-                                    url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
-                                        this.props.datasetURI
-                                    )}/classes/${encodeURIComponent(c.uri)}${
-                                        resetFilters || noTutorial ? '?' : ''
-                                    }${
-                                        resetFilters ? 'resetFilters=true&' : ''
-                                    }${noTutorial ? 'noTutorial=true&' : ''}`
-                                });
-                            }
-                        }
-                    }
-                });
-                kg.addResource(classResource);
-                const relatedPattern = kg.getResource(c.pattern);
-
-                if (relatedPattern) {
-                    const classPatternRelation = Resource.create({
-                        label: 'has View',
-                        properties: {
-                            edgeLabelSize: 20,
-                            edgeWidth: 3,
-                            edgeColor: 'grey'
-                        }
-                    });
-                    kg.addTriple(
-                        classResource,
-                        classPatternRelation,
-                        relatedPattern
-                    );
-                }
-            });
-
-            // update pattern size
-            kg.forEachPattern((resourceURI, attributes) => {
-                if (kg.getResourceProperty(resourceURI, 'occurences')) {
-                    const scaledSize = Math.round(
-                        scaleData(
-                            kg.getResourceProperty(resourceURI, 'occurences'),
-                            0,
-                            350,
-                            20,
-                            80
-                        )
-                    );
-
-                    kg.updateResourceProperty(
-                        resourceURI,
-                        'nodeSize',
-                        scaledSize
-                    );
-                    kg.updateResourceProperty(
-                        resourceURI,
-                        'nodeMobileSize',
-                        scaledSize * 10
-                    );
-                }
-            });
-
-            return (
-                <PatternsAndClassesPage
-                    knowledgeGraph={kg}
-                    knowledgeGraphUri={this.props.datasetURI}
-                    resetFilters={resetFilters}
-                    noTutorial={noTutorial}
-                />
-            );
-        } else {
-            const datasetContainerStyle = {
-                height: '90vh',
-                width: '90vw',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: 'auto'
-            };
-            return (
-                <div style={datasetContainerStyle}>
-                    <CustomLoader></CustomLoader>
-                </div>
-            );
-        }
+        return null;
     }
+
+    // render() {
+    //     if (
+    //         this.props.PatternStore.list &&
+    //         this.state.classesWithPatternsAndScores
+    //     ) {
+    //         let resetFilters = false;
+    //         let noTutorial = false;
+    //         if (this.props.RouteStore._currentNavigate) {
+    //             resetFilters =
+    //                 this.props.RouteStore._currentNavigate.route.query
+    //                     .resetFilters || false;
+    //             noTutorial = this.props.RouteStore._currentNavigate.route.query
+    //                 .noTutorial;
+    //         }
+
+    //         // we dependency inject the function to get instances by pattern URI
+    //         // node is a Graphin node
+
+    //         const KnowledgeGraph = require('odp-reactor').KnowledgeGraph;
+    //         const Resource = require('odp-reactor').Resource;
+    //         const scaleData = require('odp-reactor').scaleData;
+    //         const findMinMax = require('odp-reactor').findSliderDomain;
+    //         const PatternsAndClassesPage = require('odp-reactor')
+    //             .PatternsAndClassesPage;
+
+    //         const patterns = filter(this.props.PatternStore.list, p => {
+    //             return p.occurences !== '0';
+    //         });
+    //         const classes = this.state.classesWithPatternsAndScores;
+
+    //         const [minCentralityScore, maxCentralityScore] = findMinMax(
+    //             classes,
+    //             'pd'
+    //         );
+
+    //         const kg = new KnowledgeGraph();
+
+    //         // add pattern resource to kg
+    //         forEach(patterns, p => {
+    //             const patternResource = Resource.create({
+    //                 uri: p.pattern,
+    //                 label: p.label,
+    //                 description: p.description,
+    //                 properties: {
+    //                     type: 'Pattern',
+    //                     occurences: p.occurences,
+    //                     nodeSize: 15,
+    //                     nodeMobileSize: 15,
+    //                     nodeLabelSize: 20,
+    //                     nodeColor: 'purple',
+    //                     nodeBorderColor: 'purple',
+    //                     nodeMobileColor: 'thistle',
+    //                     nodeBorderMobileColor: 'purple',
+    //                     nodeType: 'graphin-circle',
+    //                     mobileNodeType: 'circle',
+    //                     tooltipInfo: dataInfoMap[p.pattern],
+    //                     iconUrl: iconMap[p.pattern],
+    //                     graphinProperties: {
+    //                         graphinPatternNodeDoubleClick: () => {
+    //                             if (p.occurences !== '0') {
+    //                                 this.context.executeAction(navigateAction, {
+    //                                     url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+    //                                         this.props.datasetURI
+    //                                     )}/patterns/${encodeURIComponent(
+    //                                         p.pattern
+    //                                     )}/color/${encodeURIComponent(
+    //                                         'noColor'
+    //                                     )}${
+    //                                         resetFilters || noTutorial
+    //                                             ? '?'
+    //                                             : ''
+    //                                     }${
+    //                                         resetFilters
+    //                                             ? 'resetFilters=true&'
+    //                                             : ''
+    //                                     }${
+    //                                         noTutorial ? 'noTutorial=true&' : ''
+    //                                     }`
+    //                                 });
+    //                             }
+    //                         }
+    //                     },
+    //                     listProperties: {
+    //                         listKeys: [
+    //                             {
+    //                                 label: 'Classes and Views',
+    //                                 id: 'label'
+    //                             },
+    //                             {
+    //                                 label: 'Description',
+    //                                 id: 'description'
+    //                             },
+    //                             {
+    //                                 label: 'Occurences',
+    //                                 id: 'occurences'
+    //                             }
+    //                         ],
+    //                         listItemClick: () => {
+    //                             if (p.occurences !== '0') {
+    //                                 this.context.executeAction(navigateAction, {
+    //                                     url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+    //                                         this.props.datasetURI
+    //                                     )}/patterns/${encodeURIComponent(
+    //                                         p.pattern
+    //                                     )}/color/removeThis${
+    //                                         resetFilters || noTutorial
+    //                                             ? '?'
+    //                                             : ''
+    //                                     }${
+    //                                         resetFilters
+    //                                             ? 'resetFilters=true&'
+    //                                             : ''
+    //                                     }${
+    //                                         noTutorial ? 'noTutorial=true&' : ''
+    //                                     }`
+    //                                 });
+    //                             }
+    //                         }
+    //                     }
+    //                 }
+    //             });
+    //             kg.addResource(patternResource);
+    //         });
+    //         const displayAlwaysOneClassPerPattern = [];
+    //         // add classes resources to kg and relation with patterns
+    //         forEach(classes, c => {
+    //             const classResource = Resource.create({
+    //                 uri: c.uri,
+    //                 label: c.label, // to be changed
+    //                 description: c.description,
+    //                 properties: {
+    //                     type: 'Class',
+    //                     centralityScore: c.pd,
+    //                     nodeSize: 60,
+    //                     nodeMobileSize: 60 * 5,
+    //                     nodeLabelSize: 20,
+    //                     nodeType: 'diamond',
+    //                     mobileNodeType: 'triangle',
+    //                     nodeLabelPosition: 'bottom',
+    //                     nodeColor: 'red',
+    //                     nodeBorderColor: 'red',
+    //                     nodeMobileColor: '#ffcccb',
+    //                     nodeBorderMobileColor: 'red',
+    //                     scaledCentralityScore: scaleInto01(
+    //                         c.pd,
+    //                         minCentralityScore,
+    //                         maxCentralityScore
+    //                     ),
+    //                     graphinProperties: {
+    //                         graphinPatternNodeDoubleClick: () => {
+    //                             this.context.executeAction(navigateAction, {
+    //                                 url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+    //                                     this.props.datasetURI
+    //                                 )}/classes/${encodeURIComponent(c.uri)}${
+    //                                     resetFilters || noTutorial ? '?' : ''
+    //                                 }${
+    //                                     resetFilters ? 'resetFilters=true&' : ''
+    //                                 }${noTutorial ? 'noTutorial=true&' : ''}`
+    //                             });
+    //                         }
+    //                     },
+    //                     listProperties: {
+    //                         listKeys: [
+    //                             {
+    //                                 label: 'Class',
+    //                                 id: 'label'
+    //                             },
+    //                             {
+    //                                 label: 'Description',
+    //                                 id: 'description'
+    //                             }
+    //                         ],
+    //                         listItemClick: () => {
+    //                             this.context.executeAction(navigateAction, {
+    //                                 url: `${PUBLIC_URL}/datasets/${encodeURIComponent(
+    //                                     this.props.datasetURI
+    //                                 )}/classes/${encodeURIComponent(c.uri)}${
+    //                                     resetFilters || noTutorial ? '?' : ''
+    //                                 }${
+    //                                     resetFilters ? 'resetFilters=true&' : ''
+    //                                 }${noTutorial ? 'noTutorial=true&' : ''}`
+    //                             });
+    //                         }
+    //                     }
+    //                 }
+    //             });
+    //             kg.addResource(classResource);
+    //             const relatedPattern = kg.getResource(c.pattern);
+
+    //             if (relatedPattern) {
+    //                 const classPatternRelation = Resource.create({
+    //                     label: 'has View',
+    //                     properties: {
+    //                         edgeLabelSize: 20,
+    //                         edgeWidth: 3,
+    //                         edgeColor: 'grey'
+    //                     }
+    //                 });
+    //                 kg.addTriple(
+    //                     classResource,
+    //                     classPatternRelation,
+    //                     relatedPattern
+    //                 );
+    //             }
+    //         });
+
+    //         // update pattern size
+    //         kg.forEachPattern((resourceURI, attributes) => {
+    //             if (kg.getResourceProperty(resourceURI, 'occurences')) {
+    //                 const scaledSize = Math.round(
+    //                     scaleData(
+    //                         kg.getResourceProperty(resourceURI, 'occurences'),
+    //                         0,
+    //                         350,
+    //                         20,
+    //                         80
+    //                     )
+    //                 );
+
+    //                 kg.updateResourceProperty(
+    //                     resourceURI,
+    //                     'nodeSize',
+    //                     scaledSize
+    //                 );
+    //                 kg.updateResourceProperty(
+    //                     resourceURI,
+    //                     'nodeMobileSize',
+    //                     scaledSize * 10
+    //                 );
+    //             }
+    //         });
+
+    //         return (
+    //             <PatternsAndClassesPage
+    //                 knowledgeGraph={kg}
+    //                 knowledgeGraphUri={this.props.datasetURI}
+    //                 resetFilters={resetFilters}
+    //                 noTutorial={noTutorial}
+    //             />
+    //         );
+    //     } else {
+    //         const datasetContainerStyle = {
+    //             height: '90vh',
+    //             width: '90vw',
+    //             display: 'flex',
+    //             alignItems: 'center',
+    //             justifyContent: 'center',
+    //             margin: 'auto'
+    //         };
+    //         return (
+    //             <div style={datasetContainerStyle}>
+    //                 <CustomLoader></CustomLoader>
+    //             </div>
+    //         );
+    //     }
+    // }
 }
 
 PatternNetworkView.contextTypes = {

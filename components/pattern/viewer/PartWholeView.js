@@ -53,9 +53,11 @@ class PartWholeView extends React.Component {
     render() {
         let data = this.state.culturalPropertyWithParts;
 
-        const PartWhole = require('odp-reactor').PartWhole;
+        // const PartWhole = require('odp-reactor').PartWhole;
 
-        const PropertyValueList = require('odp-reactor').PropertyValueList;
+        // const PropertyValueList = require('odp-reactor').PropertyValueList;
+
+        return null;
 
         if (data) {
             const whole = { uri: data[0].complexCProp };

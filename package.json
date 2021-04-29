@@ -35,7 +35,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@christian-nja/geocoding": "^1.0.0",
     "@comunica/actor-init-sparql": "^1.19.2",
     "@datapunt/matomo-tracker-js": "^0.4.0",
     "animate.css": "^3.7.0",
@@ -75,7 +74,6 @@
     "nodemailer": "^6.0.0",
     "nodemailer-smtp-transport": "^2.7.4",
     "npm": "^6.13.2",
-    "odp-reactor": "file:../odp-reactor",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "password-hash": "^1.2.2",

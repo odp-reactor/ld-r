@@ -59,13 +59,16 @@ class TimeIndexedTypedLocationView extends React.Component {
         */
         if (process.env.BROWSER) {
             const { titls } = cloneDeep(this.state);
+
+            return null;
+
             if (titls && titls.length > 0) {
                 console.log('BUG:', titls);
-                let TimeIndexedTypedLocation = require('odp-reactor/lib/client-side')
-                    .TimeIndexedTypedLocation;
-                let ImageGrid = require('odp-reactor').ImageGrid;
-                const PropertyValueList = require('odp-reactor')
-                    .PropertyValueList;
+                // let TimeIndexedTypedLocation = require('odp-reactor/lib/client-side')
+                //     .TimeIndexedTypedLocation;
+                // let ImageGrid = require('odp-reactor').ImageGrid;
+                // const PropertyValueList = require('odp-reactor')
+                //     .PropertyValueList;
 
                 const getResource = resourceURI => {
                     this.context.executeAction(navigateAction, {
