@@ -34,6 +34,9 @@ import serverConfig from './configs/server';
 import app from './app';
 import HtmlComponent from './components/DefaultHTMLLayout';
 import { createElementWithContext } from 'fluxible-addons-react';
+import {DatasetIdService} from './services/config/DatasetIdService'
+import DbClient from './services/base/DbClient'
+import {ServerConfigRepository} from './services/config/ServerConfigRepository'
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
@@ -141,6 +144,31 @@ server.use(
     `${PUBLIC_URL}/uploaded`,
     express.static(path.join(__dirname, uploadFolder[0].replace('.', '')))
 );
+
+server.get(`${PUBLIC_URL}/datasetId`, async (req, res) => {
+    const datasetIdService = new DatasetIdService(new ServerConfigRepository( new DbClient(process.env.CONFIG_SPARQL_ENDPOINT_URI)))
+
+    if (!req.body.sparqlEndpoint || !req.body.graph) {
+        res.status(422).json({
+            error: '[!] Unprocessable request: missing either sparqlEndpoint or graph'
+        })
+    }
+
+    const datasetId = await datasetIdService.getDatasetIdFromSparqlEndpointAndGraph({ 
+        sparqlEndpoint: req.body.sparqlEndpoint, 
+        graph : req.body.graph
+    })
+    if (datasetId) {
+        res.status(200).json({
+            datasetId : datasetId
+        })
+    } else {
+        res.status(404).json({
+            error: `[!] No datasetId found for endpoint: ${req.body.sparqlEndpoint}; graph: ${req.body.graph}`
+        })
+    }
+})
+
 // Get access to the fetchr plugin instance
 let fetchrPlugin = app.getPlugin('FetchrPlugin');
 // Register our services
