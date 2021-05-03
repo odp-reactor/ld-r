@@ -294,10 +294,6 @@ class Datasets extends React.Component {
                                     );
                                 }
                             }}
-                            // href={
-                            //     `${PUBLIC_URL}/dataset/1/` +
-                            //     encodeURIComponent(ds.d)
-                            // }
                             title="go to resource list"
                         >
                             {ds.features && ds.features.datasetLabel

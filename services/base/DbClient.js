@@ -8,7 +8,7 @@ export default class DbClient {
         this.sparqlQueryingEngine = newEngine();
     }
     async executeQuery(query) {
-        console.log(query);
+        console.log('[*] LD-R query: ',query);
         let bindings;
         try {
             const result = await this.sparqlQueryingEngine.query(query, {

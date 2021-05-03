@@ -1,8 +1,4 @@
-console.log('Process');
-console.log(process.env.CONFIG_GRAPH);
-
 const configGraph = process.env.CONFIG_GRAPH;
-// || "noworking";
 
 export class ServerConfigQueryBuilder {
     constructor() {}

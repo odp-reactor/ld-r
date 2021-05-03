@@ -22,7 +22,7 @@ export class ServerConfigRepository {
         return {
             sparqlEndpoint: `${config.protocol}://${config.host}${
                 config.port != '' ? `:${config.port}` : ''
-            }/${config.path}`,
+            }${config.path}`,
             graph: config.graph
         };
     }
