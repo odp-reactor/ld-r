@@ -66,28 +66,28 @@ class DatasetReactor extends React.Component {
                         />
                     );
                     break;
-                case 'PatternNetwork':
-                    datasetReactor = (
-                        <PatternNetworkView
-                            enableAuthentication={enableAuthentication}
-                            datasetURI={datasetURI}
-                            resources={resources}
-                            page={page}
-                            total={total}
-                            error={error}
-                            config={this.configMinus(config, [
-                                'datasetReactor'
-                            ])}
-                            resourceQuery={resourceQuery}
-                            onCloneResource={this.handleCloneResource.bind(
-                                this
-                            )}
-                            onCreateResource={this.handleCreateResource.bind(
-                                this
-                            )}
-                        ></PatternNetworkView>
-                    );
-                    break;
+                // case 'PatternNetwork':
+                //     datasetReactor = (
+                //         <PatternNetworkView
+                //             enableAuthentication={enableAuthentication}
+                //             datasetURI={datasetURI}
+                //             resources={resources}
+                //             page={page}
+                //             total={total}
+                //             error={error}
+                //             config={this.configMinus(config, [
+                //                 'datasetReactor'
+                //             ])}
+                //             resourceQuery={resourceQuery}
+                //             onCloneResource={this.handleCloneResource.bind(
+                //                 this
+                //             )}
+                //             onCreateResource={this.handleCreateResource.bind(
+                //                 this
+                //             )}
+                //         ></PatternNetworkView>
+                //     );
+                //     break;
                 default:
                     datasetReactor = (
                         <Dataset

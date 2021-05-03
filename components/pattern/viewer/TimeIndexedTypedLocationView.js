@@ -25,13 +25,13 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
  */
 
 import PatternService from '../../../services/clientside-services/PatternService';
-import DbContext from '../../../services/base/DbContext';
+import DbClient from '../../../services/base/DbClient';
 
 class TimeIndexedTypedLocationView extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.patternService = new PatternService(new DbContext(sparqlEndpoint));
+        this.patternService = new PatternService(new DbClient(sparqlEndpoint));
         //
         this.state = {
             titls: null
@@ -59,13 +59,16 @@ class TimeIndexedTypedLocationView extends React.Component {
         */
         if (process.env.BROWSER) {
             const { titls } = cloneDeep(this.state);
+
+            return null;
+
             if (titls && titls.length > 0) {
                 console.log('BUG:', titls);
-                let TimeIndexedTypedLocation = require('odp-reactor/lib/client-side')
-                    .TimeIndexedTypedLocation;
-                let ImageGrid = require('odp-reactor').ImageGrid;
-                const PropertyValueList = require('odp-reactor')
-                    .PropertyValueList;
+                // let TimeIndexedTypedLocation = require('odp-reactor/lib/client-side')
+                //     .TimeIndexedTypedLocation;
+                // let ImageGrid = require('odp-reactor').ImageGrid;
+                // const PropertyValueList = require('odp-reactor')
+                //     .PropertyValueList;
 
                 const getResource = resourceURI => {
                     this.context.executeAction(navigateAction, {

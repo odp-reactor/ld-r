@@ -25,13 +25,13 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
  */
 
 import PatternService from '../../../services/clientside-services/PatternService';
-import DbContext from '../../../services/base/DbContext';
+import DbClient from '../../../services/base/DbClient';
 
 class PartWholeView extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.patternService = new PatternService(new DbContext(sparqlEndpoint));
+        this.patternService = new PatternService(new DbClient(sparqlEndpoint));
         //
         this.state = {
             culturalPropertyWithParts: null
@@ -53,9 +53,11 @@ class PartWholeView extends React.Component {
     render() {
         let data = this.state.culturalPropertyWithParts;
 
-        const PartWhole = require('odp-reactor').PartWhole;
+        // const PartWhole = require('odp-reactor').PartWhole;
 
-        const PropertyValueList = require('odp-reactor').PropertyValueList;
+        // const PropertyValueList = require('odp-reactor').PropertyValueList;
+
+        return null;
 
         if (data) {
             const whole = { uri: data[0].complexCProp };

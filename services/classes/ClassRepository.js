@@ -3,10 +3,10 @@ import ClassQuery from '../classes/ClassQuery';
 import ClassDataMapper from './ClassDataMapper';
 
 export default class ClassRepository {
-    constructor(dbContext) {
+    constructor(dbClient) {
         //classesDataMapper
         this.genericRepository = new GenericRepository(
-            dbContext
+            dbClient
             // new ClassDataMapper()
         );
         this.classQuery = new ClassQuery();

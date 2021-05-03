@@ -62,8 +62,8 @@ let webpackConfig = {
     },
     node: {
         setImmediate: false,
-        console: true
-        // fs: 'empty',
+        console: true,
+        fs: 'empty'
         // //net: 'empty',
         // tls: 'empty'
     },
@@ -74,7 +74,17 @@ let webpackConfig = {
             'process.env': {
                 NODE_ENV: JSON.stringify('dev'),
                 BROWSER: JSON.stringify('true'),
-                PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL)
+                PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
+                CONFIG_SPARQL_ENDPOINT_URI: JSON.stringify(
+                    process.env.CONFIG_SPARQL_ENDPOINT_URI
+                ),
+                CONFIG_GRAPH: JSON.stringify(process.env.CONFIG_GRAPH),
+                ODP_REACTOR_GRAPH_HOST: JSON.stringify(
+                    process.env.ODP_REACTOR_GRAPH_HOST
+                ),
+                ODP_REACTOR_GRAPH_PORT: JSON.stringify(
+                    process.env.ODP_REACTOR_GRAPH_PORT
+                )
             }
         })
     ],

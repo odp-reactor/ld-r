@@ -1,3 +1,6 @@
+const configGraph =
+    process.env.CONFIG_GRAPH || "http://virtuoso.localhost/configurations";
+
 export default {
     facets: {
         generic: {
@@ -5,7 +8,7 @@ export default {
             config: {}
         },
         //Configuration Manager: change the graph name if you use another name in your general.js config
-        "http://arco.istc.cnr.it/ldr/configurations": {
+        [configGraph]: {
             list: [
                 "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
                 "https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#scope",

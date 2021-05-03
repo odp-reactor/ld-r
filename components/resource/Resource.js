@@ -10,7 +10,7 @@ import PatternViewsMosaic from '../pattern/PatternViewsMosaic';
 import { connectToStores } from 'fluxible-addons-react';
 import GoToButton from '../GoToButton';
 import ClassRepository from '../../services/classes/ClassRepository';
-import DbContext from '../../services/base/DbContext';
+import DbClient from '../../services/base/DbClient';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
@@ -19,7 +19,7 @@ class Resource extends React.Component {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
         this.classRepository = new ClassRepository(
-            new DbContext(sparqlEndpoint)
+            new DbClient(sparqlEndpoint)
         );
         this.state = {
             patternInstancesUris: null
