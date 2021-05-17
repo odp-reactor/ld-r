@@ -1,14 +1,14 @@
 import React from 'react';
-import PartWholeView from './viewer/PartWholeView';
-import TimeIndexedTypedLocationView from './viewer/TimeIndexedTypedLocationView';
-import CollectionView from './viewer/CollectionView';
+import PartWholeVisualFrame from './viewer/PartWholeVisualFrame';
+import TimeIndexedTypedLocationVisualFrame from './viewer/TimeIndexedTypedLocationVisualFrame';
+import CollectionVisualFrame from './viewer/CollectionVisualFrame';
 
 import PatternService from '../../services/clientside-services/PatternService';
 import DbClient from '../../services/base/DbClient';
 import { clone, chunk } from 'lodash';
 import { Grid, Segment } from 'semantic-ui-react';
 
-export default class PatternViewsMosaic extends React.Component {
+export default class VisualFrameMosaic extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';

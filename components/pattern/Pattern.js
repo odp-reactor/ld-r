@@ -7,186 +7,59 @@ _________*/
 
 import PatternInstanceStore from '../../stores/PatternInstanceStore';
 import PatternStore from '../../stores/PatternStore';
-import loadPatternInstances from '../../actions/loadPatternInstances';
 
-/* Visual Patterns
-______________________________*/
+import PatternRepository from '../../services/patterns/PatternRepository'
+import { ServerConfigRepository } from '../../services/config/ServerConfigRepository';
+import {VisualFrameRepository} from '../../services/visualframes/VisualFrameRepository'
+import DbClient from '../../services/base/DbClient';
 
-import TimeIndexedTypedLocationView from './viewer/TimeIndexedTypedLocationView';
-import CollectionView from './viewer/CollectionView';
-import PartWholeView from './viewer/PartWholeView';
-
-import PatternUtil from '../../services/utils/PatternUtil';
-const patternUtil = new PatternUtil();
+const configEndpoint = process.env.CONFIG_SPARQL_ENDPOINT_URI;
+const serverConfigRepo = new ServerConfigRepository(
+    new DbClient(configEndpoint)
+);
+const visualFrameRepository = new VisualFrameRepository()
 
 export default class Pattern extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            patternType: undefined
+        }
     }
 
     componentDidMount() {
-        // loadInstances is called by PatternInstancesNetworkView
-        // if no instances
-        // we are here from a refresh on instance screen
-        // then
-        // call from this component loadPatternInstances
-        // TODO: i think if an instance is displayed there will be always data
-        //       in case not then if the pattern instance has no data for some reason doesn't
-        //       display it in PatternInstancesNetwork view
-        if (!this.props.PatternStore.instances) {
-            const datasetURI = this.props.datasetURI;
-            const patternURI = this.props.spec.instances[0].value;
-
-            if (datasetURI && patternURI) {
-                context.executeAction(loadPatternInstances, {
-                    dataset: datasetURI,
-                    pattern: patternURI
-                });
+        const getSparqlEndpointAndPatternTypeForInstance = async (datasetId, patternInstanceUri) => {
+            if (datasetId && patternInstanceUri) {
+                const {sparqlEndpoint, graph} = await serverConfigRepo.getSparqlEndpointAndGraphByDatasetId(datasetId)
+                if (sparqlEndpoint) {
+                    const patternRepo = new PatternRepository(new DbClient(sparqlEndpoint))
+                    const pattern = await patternRepo.findPattern(patternInstanceUri)
+                    if (pattern && pattern.type) {
+                        this.setState({
+                            patternType: pattern.type
+                        })
+                    }
+                }
+            } else {
+                console.log(`[!] No datasetId or pattern instances uri cannot retrieve associated sparql endpoint. Dataset Id: ${datasetId} ; Pattern Instance Uri: ${patternInstanceUri}`)
             }
         }
+        getSparqlEndpointAndPatternTypeForInstance(this.props.datasetURI, this.props.resource)
     }
 
     render() {
-        const patternComponent = this.patternReactor();
-        return (
-        // {this.props.hidePropertyName ||
-        // (this.props.config && this.props.config.hidePropertyName) ||
-        // this.props.spec.propertyURI ===
-        //     "http://ontologydesignpatterns.org/opla/isPatternInstanceOf" ? (
-        //     ""
-        // ) : (
-        //     <div className="property-title">
-        //         <div className="ui horizontal list">
-        //             <div className="item">
-        //                 <PropertyHeader
-        //                     spec={this.props.spec}
-        //                     config={this.props.config}
-        //                     size="3"
-        //                     datasetURI={this.props.datasetURI}
-        //                     resourceURI={this.props.resource}
-        //                     propertyURI={this.props.property}
-        //                 />
-        //             </div>
-        //         </div>
-        //         <div className="ui dividing header"></div>
-        //     </div>
-        // )}
-            /* <div className="ui list">
-                    <div className="item">
-                        <div className="ui form grid">
-                            <div
-                                className="twelve wide column field"
-                                style={{ margin: "auto" }}
-                            > */
-            <div>{patternComponent}</div>
-            /* </div>
-                        </div>
-                    </div>
-                </div> */
-        );
-    }
+        if (this.state.patternType) {
 
-    /**
-     * Function select the pattern view based on user static specified config
-     */
-    patternReactor() {
-        let patternView = '';
-        let patternURI;
-        console.log('WHERE THE FUCK IS RESOURCE ?');
-        console.log(this.props);
-        const [instanceResources, pURI] = this.getInstanceResources(
-            this.props.resource,
-            this.props.PatternStore.instances
-        );
-        // click on pattern instance node -> pattern visualization
-        if (
-            this.props.spec.propertyURI ===
-            'http://ontologydesignpatterns.org/opla/isPatternInstanceOf'
-        ) {
-            if (instanceResources.length > 0) {
-                // there are instances we can proceed
-                patternURI = pURI;
-                patternView = patternUtil.getView(patternURI);
-            } else {
-                // no instances we need to trigger loadInstances
-                console.log(
-                    'We are here from a refresh on instance screen. This is done in componentDidMount'
-                );
+            const VisualFrame = visualFrameRepository.findVisualFrameForPattern(this.state.patternType)
+            const visualFrameGeneralProps = { dataset : this.props.datasetURI,
+                patternInstanceUri : this.props.resource
             }
-        } else
-            patternView = patternUtil.getViewByProperty(
-                this.props.spec.propertyURI
+            const VisualFrameWithGeneralProps = React.cloneElement(VisualFrame, visualFrameGeneralProps)
+            return (
+                <div>{VisualFrameWithGeneralProps}</div>
             );
-        switch (patternView) {
-            case 'TimeIndexedTypedLocationView':
-                return (
-                    <TimeIndexedTypedLocationView
-                        showPropertyValueList={true}
-                        showImageGrid={true}
-                        pattern={patternURI}
-                        dataset={this.props.datasetURI}
-                        instanceResources={instanceResources}
-                        patternInstancesUri={[this.props.resource]}
-                    />
-                );
-            case 'CollectionView':
-                return (
-                    <CollectionView
-                        showResourceTitle={true}
-                        pattern={patternURI}
-                        dataset={this.props.datasetURI}
-                        instanceResources={instanceResources}
-                        patternInstanceUri={this.props.resource}
-                        styles={{
-                            depiction: {
-                                maxHeight: 500
-                            }
-                        }}
-                    />
-                );
-            case 'PartWholeView':
-                return (
-                    <PartWholeView
-                        showPropertyValueList={true}
-                        pattern={patternURI}
-                        dataset={this.props.datasetURI}
-                        instanceResources={instanceResources}
-                        patternInstanceUri={this.props.resource}
-                    ></PartWholeView>
-                );
-            default:
-                return instanceResources ? (
-                    // TODO: this appear after a refresh on instance page
-                    <div style={{ color: 'red' }}></div>
-                ) : null;
         }
-    }
-
-    /**
-     * @description Retrieve all the instance resources for a given instancce in a list of instances
-     *              We clean data received from fluxible service after SPARQL query
-     * @author Christian Colonna
-     * @date 23-11-2020
-     * @memberof Pattern
-     */
-    getInstanceResources(instanceURI, patternInstances) {
-        if (patternInstances) {
-            const instanceResources = [];
-            const instance = patternInstances.find(inst => {
-                return inst.instance === instanceURI;
-            });
-            const nodesAndTypes = instance.nodes.split(';');
-            nodesAndTypes.forEach(nT => {
-                const [n, t] = nT.split(' ');
-                if (t != '') {
-                    instanceResources.push({
-                        id: n,
-                        type: t
-                    });
-                }
-            });
-            return [instanceResources, instance.type];
-        } else return [[], null];
+        return null
     }
 }
 

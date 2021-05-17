@@ -5,9 +5,6 @@ import PatternInstanceStore from '../../../stores/PatternInstanceStore';
 
 import { navigateAction } from 'fluxible-router';
 
-import fetchInstanceData from './fetchInstanceData';
-
-import CustomLoader from '../../CustomLoader';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
@@ -28,7 +25,9 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 import PatternService from '../../../services/clientside-services/PatternService';
 import DbClient from '../../../services/base/DbClient';
 
-class CollectionView extends React.Component {
+// import { Collection } from "linked-data-ui"
+
+class CollectionVisualFrame extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
@@ -54,15 +53,22 @@ class CollectionView extends React.Component {
     }
 
     render() {
+
+        if (!process.env.BROWSER) {
+            return null
+        }
+
+
+
         let collection = this.state.culturalPropertyWithMeasurements;
 
         // import Collection component from odp-reactor package
 
-        // const Collection = require('odp-reactor').Collection;
+        const Collection = require('linked-data-ui').Collection;
         // const Depiction = require('odp-reactor').Depiction;
         // const PropertyValueList = require('odp-reactor').PropertyValueList;
 
-        return null;
+        // return null;
 
         if (collection) {
             let propertyList = {};
@@ -128,12 +134,12 @@ class CollectionView extends React.Component {
                             margin: 'auto'
                         }}
                     >
-                        <div style={{ margin: 'auto' }}>
+                        {/* <div style={{ margin: 'auto' }}>
                             <Depiction
                                 uri={collection[0].cProp}
                                 style={this.props.styles.depiction}
                             />
-                        </div>
+                        </div> */}
                         <div style={{ margin: 'auto', marginLeft: 30 }}>
                             <Collection
                                 members={collection.map(member => {
@@ -155,14 +161,14 @@ class CollectionView extends React.Component {
                             ></Collection>
                         </div>
                     </div>
-                    {this.props.showPropertyValueList && (
+                    {/* {this.props.showPropertyValueList && (
                         <div style={{ marginTop: 50, marginBottom: 50 }}>
                             <PropertyValueList
                                 properties={propertyList}
                                 label={false}
                             />
                         </div>
-                    )}
+                    )} */}
                 </div>
             );
         } else {
@@ -180,12 +186,12 @@ const defaultCollectionStyle = {
     }
 };
 
-CollectionView.contextTypes = {
+CollectionVisualFrame.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
-CollectionView = connectToStores(
-    CollectionView,
+CollectionVisualFrame = connectToStores(
+    CollectionVisualFrame,
     [PatternInstanceStore],
     function(context, props) {
         return {
@@ -194,4 +200,4 @@ CollectionView = connectToStores(
     }
 );
 
-export default CollectionView;
+export default CollectionVisualFrame;

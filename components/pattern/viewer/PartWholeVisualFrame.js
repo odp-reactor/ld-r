@@ -4,10 +4,6 @@ import { connectToStores } from 'fluxible-addons-react';
 import PatternInstanceStore from '../../../stores/PatternInstanceStore';
 import { navigateAction } from 'fluxible-router';
 
-import fetchInstanceData from './fetchInstanceData';
-
-import CustomLoader from '../../CustomLoader';
-
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 /**
@@ -27,7 +23,7 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 import PatternService from '../../../services/clientside-services/PatternService';
 import DbClient from '../../../services/base/DbClient';
 
-class PartWholeView extends React.Component {
+class PartWholeVisualFrame extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
@@ -51,6 +47,9 @@ class PartWholeView extends React.Component {
     }
 
     render() {
+
+        console.log('PartWholeVisualFrame props state', this.props, this.state)
+
         let data = this.state.culturalPropertyWithParts;
 
         // const PartWhole = require('odp-reactor').PartWhole;
@@ -132,11 +131,11 @@ const defaultPartWholeStyle = {
     }
 };
 
-PartWholeView.contextTypes = {
+PartWholeVisualFrame.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
-PartWholeView = connectToStores(PartWholeView, [PatternInstanceStore], function(
+PartWholeVisualFrame = connectToStores(PartWholeVisualFrame, [PatternInstanceStore], function(
     context,
     props
 ) {
@@ -145,4 +144,4 @@ PartWholeView = connectToStores(PartWholeView, [PatternInstanceStore], function(
     };
 });
 
-export default PartWholeView;
+export default PartWholeVisualFrame;

@@ -6,7 +6,7 @@ import URIUtil from '../utils/URIUtil';
 import cloneResource from '../../actions/cloneResource';
 import deleteResource from '../../actions/deleteResource';
 import { scrollToTop } from '../utils/scrollToTop';
-import PatternViewsMosaic from '../pattern/PatternViewsMosaic';
+import VisualFrameMosaic from '../pattern/VisualFrameMosaic';
 import { connectToStores } from 'fluxible-addons-react';
 import GoToButton from '../GoToButton';
 import ClassRepository from '../../services/classes/ClassRepository';
@@ -315,7 +315,7 @@ class Resource extends React.Component {
             mainDIV = (
                 <div>
                     {isResourceWithPatternInstances && (
-                        <PatternViewsMosaic
+                        <VisualFrameMosaic
                             datasetURI={this.props.datasetURI}
                             patternInstancesUris={patternInstancesUris}
                             resourceURI={this.props.resource}
@@ -333,7 +333,7 @@ class Resource extends React.Component {
                     <div className="ui grid">
                         <div className="column ui list">
                             {isResourceWithPatternInstances && (
-                                <PatternViewsMosaic
+                                <VisualFrameMosaic
                                     datasetURI={this.props.datasetURI}
                                     resourceURI={this.props.resource}
                                     patternInstancesUris={patternInstancesUris}

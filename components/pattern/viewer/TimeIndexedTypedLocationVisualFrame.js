@@ -27,7 +27,7 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 import PatternService from '../../../services/clientside-services/PatternService';
 import DbClient from '../../../services/base/DbClient';
 
-class TimeIndexedTypedLocationView extends React.Component {
+class TimeIndexedTypedLocationVisualFrame extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
@@ -39,9 +39,18 @@ class TimeIndexedTypedLocationView extends React.Component {
     }
 
     componentDidMount() {
+
+        // this component accepts more than one instance at a time
+        let patternInstancesUri;
+        if (Array.isArray(this.props.patternInstanceUri)) {
+            patternInstancesUri = this.props.patternInstanceUri
+        } else {
+            patternInstancesUri = [this.props.patternInstanceUri]
+        }
+
         const fetchData = async () => {
             const titls = await this.patternService.findCulturalPropertyWithTimeIndexedTypedLocationByUris(
-                this.props.patternInstancesUri
+                patternInstancesUri
             );
             this.setState({
                 titls: titls
@@ -58,6 +67,7 @@ class TimeIndexedTypedLocationView extends React.Component {
             _______________________________________________________________________
         */
         if (process.env.BROWSER) {
+            console.log('TimeIndexedTypedLocationVisualFrame props state', this.props, this.state)
             const { titls } = cloneDeep(this.state);
 
             return null;
@@ -196,12 +206,12 @@ class TimeIndexedTypedLocationView extends React.Component {
     }
 }
 
-TimeIndexedTypedLocationView.contextTypes = {
+TimeIndexedTypedLocationVisualFrame.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
-TimeIndexedTypedLocationView = connectToStores(
-    TimeIndexedTypedLocationView,
+TimeIndexedTypedLocationVisualFrame = connectToStores(
+    TimeIndexedTypedLocationVisualFrame,
     [PatternInstanceStore, ResourceStore],
     function(context, props) {
         return {
@@ -211,4 +221,4 @@ TimeIndexedTypedLocationView = connectToStores(
     }
 );
 
-export default TimeIndexedTypedLocationView;
+export default TimeIndexedTypedLocationVisualFrame;
