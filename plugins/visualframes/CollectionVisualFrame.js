@@ -1,37 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connectToStores } from 'fluxible-addons-react';
-import PatternInstanceStore from '../../../stores/PatternInstanceStore';
-
-import { navigateAction } from 'fluxible-router';
 
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
-/**
- * @description This component is a model for the corresponding view provided by the odp-reactor package.
- *
- * It loads data to pass to the visualization.
- * It can takes care to check browser environment.
- * It defines a visualization logic: if no minimum required data are present shift to more generic views
- * It defines interactive function for the application (onClickHandlers, fetchData ... )
- * @component
- * @param {Object} props React props
- * @author Christian Colonna
- * @class Collection
- * @extends {React.Component}
- */
 
-import PatternService from '../../../services/clientside-services/PatternService';
-import DbClient from '../../../services/base/DbClient';
 
-// import { Collection } from "linked-data-ui"
+// import PatternService from '../../../services/clientside-services/PatternService';
+// import DbClient from '../../../services/base/DbClient';
+
 
 class CollectionVisualFrame extends React.Component {
     constructor(props) {
         super(props);
-        const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.patternService = new PatternService(new DbClient(sparqlEndpoint));
+        // const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
+        // this.patternService = new PatternService(new DbClient(sparqlEndpoint));
         //
         this.state = {
             culturalPropertyWithMeasurements: null
@@ -39,17 +21,17 @@ class CollectionVisualFrame extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.state.culturalPropertyWithMeasurements) {
-            this.patternService
-                .findCulturalPropertyWithMeasurements(
-                    this.props.patternInstanceUri
-                )
-                .then(culturalPropertyWithMeasurements => {
-                    this.setState({
-                        culturalPropertyWithMeasurements: culturalPropertyWithMeasurements
-                    });
-                });
-        }
+        // if (!this.state.culturalPropertyWithMeasurements) {
+        //     this.patternService
+        //         .findCulturalPropertyWithMeasurements(
+        //             this.props.patternInstanceUri
+        //         )
+        //         .then(culturalPropertyWithMeasurements => {
+        //             this.setState({
+        //                 culturalPropertyWithMeasurements: culturalPropertyWithMeasurements
+        //             });
+        //         });
+        // }
     }
 
     render() {
@@ -63,12 +45,11 @@ class CollectionVisualFrame extends React.Component {
         let collection = this.state.culturalPropertyWithMeasurements;
 
         // import Collection component from odp-reactor package
-
         const Collection = require('odp-reactor-visualframes').Collection;
         // const Depiction = require('odp-reactor').Depiction;
         // const PropertyValueList = require('odp-reactor').PropertyValueList;
 
-        // return null;
+        return <div>Ciao</div>;
 
         if (collection) {
             let propertyList = {};
@@ -185,19 +166,5 @@ const defaultCollectionStyle = {
         width: '150%' // set this width to 120, 130, 140% to increase padding between items
     }
 };
-
-CollectionVisualFrame.contextTypes = {
-    executeAction: PropTypes.func.isRequired,
-    getUser: PropTypes.func
-};
-CollectionVisualFrame = connectToStores(
-    CollectionVisualFrame,
-    [PatternInstanceStore],
-    function(context, props) {
-        return {
-            data: context.getStore(PatternInstanceStore).getInstanceData()
-        };
-    }
-);
 
 export default CollectionVisualFrame;

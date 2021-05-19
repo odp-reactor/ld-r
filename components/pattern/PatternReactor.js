@@ -19,7 +19,7 @@ const serverConfigRepo = new ServerConfigRepository(
 );
 const visualFrameRepository = new VisualFrameRepository()
 
-export default class Pattern extends React.Component {
+export default class PatternReactor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,27 +53,29 @@ export default class Pattern extends React.Component {
             const VisualFrame = visualFrameRepository.getVisualFrame(this.state.patternType)
 
 
-            console.log(VisualFrame)
-            return <div>null</div>
+            console.log('[PatternReactor] Loaded visual frame:', VisualFrame)
 
             const visualFrameGeneralProps = { dataset : this.props.datasetURI,
                 patternInstanceUri : this.props.resource
             }
             const VisualFrameWithGeneralProps = React.cloneElement(VisualFrame, visualFrameGeneralProps)
             return (
-                <div>{VisualFrameWithGeneralProps}</div>
+                <div>
+                    <VisualFrame patternInstanceUri={this.props.resource}/>
+                </div>
+            /* {VisualFrameWithGeneralProps}</div> */
             );
         }
         return null
     }
 }
 
-Pattern.contextTypes = {
+PatternReactor.contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getUser: PropTypes.func
 };
-Pattern = connectToStores(
-    Pattern,
+PatternReactor = connectToStores(
+    PatternReactor,
     [PatternInstanceStore, PatternStore],
     function(context, props) {
         return {

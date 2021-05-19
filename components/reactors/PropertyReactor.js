@@ -10,7 +10,7 @@ import updateIndividualObjectDetail from '../../actions/updateIndividualObjectDe
 import updateAggObject from '../../actions/updateAggObject';
 import deleteAggObject from '../../actions/deleteAggObject';
 import IndividualProperty from '../property/IndividualProperty';
-import Pattern from '../pattern/Pattern';
+import PatternReactor from '../pattern/PatternReactor';
 
 class PropertyReactor extends React.Component {
     constructor(props) {
@@ -245,7 +245,7 @@ class PropertyReactor extends React.Component {
                     break;
                 case 'Pattern':
                     propertyReactor = (
-                        <Pattern
+                        <PatternReactor
                             spec={this.props.spec}
                             enableAuthentication={
                                 this.props.enableAuthentication
@@ -255,7 +255,7 @@ class PropertyReactor extends React.Component {
                             resource={this.props.resource}
                             property={this.props.property}
                             propertyPath={this.props.propertyPath}
-                        ></Pattern>
+                        ></PatternReactor>
                     );
                     break;
                 default:
