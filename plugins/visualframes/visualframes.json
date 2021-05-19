@@ -1,0 +1,4 @@
+{
+    "http://example.com/example-pattern" : "ExampleVisualFrame.js",
+    "https://w3id.org/arco/ontology/denotative-description/measurement-collection" : "CollectionVisualFrame.js"
+}

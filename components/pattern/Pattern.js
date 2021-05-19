@@ -41,7 +41,7 @@ export default class Pattern extends React.Component {
                     }
                 }
             } else {
-                console.log(`[!] No datasetId or pattern instances uri cannot retrieve associated sparql endpoint. Dataset Id: ${datasetId} ; Pattern Instance Uri: ${patternInstanceUri}`)
+                console.log(`[!] No datasetId or pattern instances uri. Cannot retrieve associated sparql endpoint. Dataset Id: ${datasetId} ; Pattern Instance Uri: ${patternInstanceUri}`)
             }
         }
         getSparqlEndpointAndPatternTypeForInstance(this.props.datasetURI, this.props.resource)
@@ -50,7 +50,12 @@ export default class Pattern extends React.Component {
     render() {
         if (this.state.patternType) {
 
-            const VisualFrame = visualFrameRepository.findVisualFrameForPattern(this.state.patternType)
+            const VisualFrame = visualFrameRepository.getVisualFrame(this.state.patternType)
+
+
+            console.log(VisualFrame)
+            return <div>null</div>
+
             const visualFrameGeneralProps = { dataset : this.props.datasetURI,
                 patternInstanceUri : this.props.resource
             }
