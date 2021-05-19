@@ -9,7 +9,8 @@ export default class GenericRepository {
         const results = this.dbClient.executeQuery(queryString);
         return this.dataMapper.parseResults(results); // parse can be a sql results parser
     }
-    upsert() {}
+    upsert(queryString) {
+    }
     save() {}
     remove() {}
 }

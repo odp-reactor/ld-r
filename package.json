@@ -34,6 +34,11 @@
       "git add"
     ]
   },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./setupTests.js"
+    ]
+  },
   "license": "Apache-2.0",
   "dependencies": {
     "@comunica/actor-init-sparql": "^1.19.2",
@@ -59,6 +64,7 @@
     "express-fileupload": "^1.1.6",
     "express-state": "^1.4.0",
     "fast-csv": "^3.4.0",
+    "fetch-sparql-endpoint": "^1.9.0",
     "flashtext.js": "^1.0.5",
     "fluxible": "^1.4.0",
     "fluxible-addons-react": "^0.2.15",
