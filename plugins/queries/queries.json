@@ -1,0 +1,4 @@
+{
+    "http://example.com/example-pattern" : "example.sparql",
+    "https://w3id.org/arco/ontology/denotative-description/measurement-collection" : "collection.sparql"
+}

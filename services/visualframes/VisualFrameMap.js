@@ -1,7 +1,7 @@
 import React from 'react'
-import CollectionVisualFrame from '../../components/pattern/viewer/CollectionVisualFrame'
-import PartWholeVisualFrame from '../../components/pattern/viewer/PartWholeVisualFrame'
-import TimeIndexedTypedLocationVisualFrame from '../../components/pattern/viewer/TimeIndexedTypedLocationVisualFrame'
+import CollectionVisualFrame from '../../components/pattern/viewer/toDeleteCollectionVisualFrame'
+import PartWholeVisualFrame from '../../components/pattern/viewer/toDeletePartWholeVisualFrame'
+import TimeIndexedTypedLocationVisualFrame from '../../components/pattern/viewer/toDeleteTimeIndexedTypedLocationVisualFrame'
 
 export const visualFrameMap = {
     'https://w3id.org/arco/ontology/denotative-description/measurement-collection' : <CollectionVisualFrame

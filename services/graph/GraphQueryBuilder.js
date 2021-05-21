@@ -1,12 +1,33 @@
 export class GraphQueryBuilder {
     create(graphUri) {
         return `
-            CREATE GRAPH <${graphUri}>
+            CREATE SILENT GRAPH <${graphUri}>
         `
     }   
     delete(graphUri) {
         return `
-            DROP GRAPH <${graphUri}>
+            CLEAR SILENT GRAPH <${graphUri}>
+        `
+    }
+    insert(graphUri, triple) {
+        return `
+            INSERT DATA {
+                GRAPH <${graphUri}> {
+                    ${triple}
+                }
+            }
+        `
+    }
+    askGraphHasTriple(graphUri) {
+        return `ASK WHERE { GRAPH <${graphUri}> { ?s ?p ?o } }`
+    }
+    getAllTriples(graphUri) {
+        return `
+            SELECT ?s ?p ?o WHERE {
+                GRAPH <${graphUri}> {
+                    ?s ?p ?o .
+                }
+            }
         `
     }
 }

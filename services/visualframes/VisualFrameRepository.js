@@ -2,7 +2,7 @@ import defaultMap from '../../plugins/visualframes/visualframes.json'
 
 export class VisualFrameRepository {
 
-    constructor(visualFrameMap, relativePath) {
+    constructor(visualFrameMap) {
         this.visualFrameMap = visualFrameMap || defaultMap
     }
 

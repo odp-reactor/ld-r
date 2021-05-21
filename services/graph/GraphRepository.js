@@ -11,6 +11,15 @@ export class GraphRepository {
         return this.dbClient.updateQuery(this.queryBuilder.create(uri))
     }
     async delete(uri) {
-        return this.dbClient.updateQuery(this.queryBuilder.delete(uri))
+        return this.dbClient.updateQuery(this.queryBuilder.delete(uri))        
+    }
+    async insertTriple(graph, triple) {
+        return this.dbClient.updateQuery(this.queryBuilder.insert(graph, triple))
+    }
+    async exists(graph) {
+        return this.dbClient.askQuery(this.queryBuilder.askGraphHasTriple(graph))
+    }
+    async getAllTriples(graph) {
+        return this.dbClient.executeQuery(this.queryBuilder.getAllTriples(graph))
     }
 }

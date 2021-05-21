@@ -1,38 +1,11 @@
 import React from 'react';
 
+import { Collection } from 'odp-reactor-visualframes'
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
-
-
-// import PatternService from '../../../services/clientside-services/PatternService';
-// import DbClient from '../../../services/base/DbClient';
-
-
 class CollectionVisualFrame extends React.Component {
-    constructor(props) {
-        super(props);
-        // const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        // this.patternService = new PatternService(new DbClient(sparqlEndpoint));
-        //
-        this.state = {
-            culturalPropertyWithMeasurements: null
-        };
-    }
 
-    componentDidMount() {
-        // if (!this.state.culturalPropertyWithMeasurements) {
-        //     this.patternService
-        //         .findCulturalPropertyWithMeasurements(
-        //             this.props.patternInstanceUri
-        //         )
-        //         .then(culturalPropertyWithMeasurements => {
-        //             this.setState({
-        //                 culturalPropertyWithMeasurements: culturalPropertyWithMeasurements
-        //             });
-        //         });
-        // }
-    }
 
     render() {
 
@@ -40,14 +13,8 @@ class CollectionVisualFrame extends React.Component {
             return null
         }
 
+        console.log('CollectionVisualFrame:', this.props)
 
-
-        let collection = this.state.culturalPropertyWithMeasurements;
-
-        // import Collection component from odp-reactor package
-        const Collection = require('odp-reactor-visualframes').Collection;
-        // const Depiction = require('odp-reactor').Depiction;
-        // const PropertyValueList = require('odp-reactor').PropertyValueList;
 
         return <div>Ciao</div>;
 

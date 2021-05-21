@@ -1,4 +1,11 @@
-export default class PatternQuery {
+import { QueryRepository } from '../query/QueryRepository';
+
+export default class PatternQueryBuilder {
+
+    constructor(patternQueryRepository) {
+        this.patternQueryRepository = patternQueryRepository || new QueryRepository()
+    }
+
     prefixes() {
         return `
         PREFIX opla: <http://ontologydesignpatterns.org/opla/>
@@ -15,11 +22,22 @@ export default class PatternQuery {
         return `
         PREFIX opla: <http://ontologydesignpatterns.org/opla/>
 
-        SELECT DISTINCT ?type (SAMPLE(?label) as ?typeLabel) WHERE {
-            <${patternInstanceUri}> opla:isPatternInstanceOf ?type .
-            ?type rdfs:label ?label .
+        SELECT DISTINCT ?uri (SAMPLE(?label) as ?label) WHERE {
+            <${patternInstanceUri}> opla:isPatternInstanceOf ?uri .
+            ?uri rdfs:label ?label .
          }
         `;
+    }
+    getPatternInstanceDataQuery(patternInstanceURI, patternURI) {
+        let patternQuery =  this.patternQueryRepository.getQuery(patternURI)
+        return this.bindPatternInstanceVariable(patternQuery, patternInstanceURI)
+    }
+    bindVariable(query, variable, binding) {
+        return query.replace(variable, `<${binding}>`)
+    }
+    bindPatternInstanceVariable(patternQuery, patternInstanceUri) {
+        const patternVariable = process.env.PATTERN_INSTANCE_URI_VARIABLE || '?patternInstanceUri'
+        return this.bindVariable(patternQuery, patternVariable, patternInstanceUri)
     }
     getCulturalPropertyWithTimeIndexedTypedLocation(patternURI) {
         return `

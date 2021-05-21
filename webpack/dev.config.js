@@ -34,6 +34,15 @@ let webpackConfig = {
     module: {
         rules: [
             {
+                test: /\.txt$/i,
+                use: [{
+                    loader: 'raw-loader',
+                    // options: {
+                    // esModule: false
+                    // }
+                }]
+            },
+            {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'

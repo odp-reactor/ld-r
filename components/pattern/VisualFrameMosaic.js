@@ -1,7 +1,7 @@
 import React from 'react';
-import PartWholeVisualFrame from './viewer/PartWholeVisualFrame';
-import TimeIndexedTypedLocationVisualFrame from './viewer/TimeIndexedTypedLocationVisualFrame';
-import CollectionVisualFrame from './viewer/CollectionVisualFrame';
+import PartWholeVisualFrame from './viewer/toDeletePartWholeVisualFrame';
+import TimeIndexedTypedLocationVisualFrame from './viewer/toDeleteTimeIndexedTypedLocationVisualFrame';
+import CollectionVisualFrame from './viewer/toDeleteCollectionVisualFrame';
 
 import PatternService from '../../services/clientside-services/PatternService';
 import DbClient from '../../services/base/DbClient';
