@@ -121,8 +121,6 @@ describe('It should return PatternInstance with pattern instance type, visualfra
 
         const patternInstance = await patternInstanceRepoWithMockedQueryBuilder.getPatternInstanceWithTypeVisualFrameAndData(patternInstanceUri)
 
-        console.log(patternInstance)
-
         const pData = patternInstance.data
         const data1 = { data: 'ex:data1' }
 

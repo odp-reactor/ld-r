@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Collection } from 'odp-reactor-visualframes'
+import { Collection, Depiction } from 'odp-reactor-visualframes'
 import { routeToResource } from '../../components/route/routeToResource'
 
 
@@ -10,11 +10,14 @@ const defaultCollectionStyle = {
     }
 };
 
+
 export default class CollectionVisualFrame extends React.Component {
 
     render() {
 
         const collection = this.props.patternInstance.data
+
+        console.log('Data:',collection)
 
         if (!collection || collection.length === 0 ) {
             return null
@@ -80,12 +83,14 @@ export default class CollectionVisualFrame extends React.Component {
                         margin: 'auto'
                     }}
                 >
-                    {/* <div style={{ margin: 'auto' }}>
-                            <Depiction
-                                uri={collection[0].cProp}
-                                style={this.props.styles.depiction}
-                            />
-                        </div> */}
+                    <div style={{ margin: 'auto' }}>
+                        <Depiction
+                            uri={culturalProperty}
+                            source={this.props.dbContext.sparqlEndpoint}
+                            style={defa}
+                            // style={this.props.styles.depiction}
+                        />
+                    </div>
                     <div style={{ margin: 'auto', marginLeft: 30 }}>
                         <Collection
                             members={collection.map(member => {

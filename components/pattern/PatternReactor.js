@@ -14,20 +14,22 @@ export default class PatternReactor extends React.Component {
         super(props);
         this.state = {
             patternInstance: undefined,
+            dbContext: undefined
         }
     }
 
     componentDidMount() {
         const getPatternInstance = async (datasetId, patternInstanceUri) => {
             if (datasetId && patternInstanceUri) {
-                const {sparqlEndpoint, graph} = await serverConfigRepo.getSparqlEndpointAndGraphByDatasetId(datasetId)
-                const dbClient = new DbClient(sparqlEndpoint)
+                const dbContext = await serverConfigRepo.getSparqlEndpointAndGraphByDatasetId(datasetId)
+                const dbClient = new DbClient(dbContext.sparqlEndpoint, dbContext.graph)
                 const patternRepo = new PatternInstanceRepository(dbClient)
-                if (sparqlEndpoint) {
+                if (dbContext && dbContext.sparqlEndpoint) {
                     const patternInstance = await patternRepo.getPatternInstanceWithTypeVisualFrameAndData(patternInstanceUri)
                     if (patternInstance) {
                         this.setState({
                             patternInstance: patternInstance,
+                            dbContext: dbContext
                         })
                     }
                 }
@@ -46,7 +48,7 @@ export default class PatternReactor extends React.Component {
             if (VisualFrame) {
                 return (
                     <div>
-                        <VisualFrame patternInstance={this.state.patternInstance} datasetId={this.props.datasetURI} />
+                        <VisualFrame patternInstance={this.state.patternInstance} dbContext={this.state.dbContext} />
                     </div>
                 );
             } else {
