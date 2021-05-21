@@ -20,14 +20,12 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
  * @extends {React.Component}
  */
 
-import PatternService from '../../../services/clientside-services/PatternService';
 import DbClient from '../../../services/base/DbClient';
 
 class PartWholeVisualFrame extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.patternService = new PatternService(new DbClient(sparqlEndpoint));
         //
         this.state = {
             culturalPropertyWithParts: null
@@ -35,15 +33,15 @@ class PartWholeVisualFrame extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.state.culturalPropertyWithParts) {
-            this.patternService
-                .findCulturalPropertyWithParts(this.props.patternInstanceUri)
-                .then(culturalPropertyWithParts => {
-                    this.setState({
-                        culturalPropertyWithParts: culturalPropertyWithParts
-                    });
-                });
-        }
+        // if (!this.state.culturalPropertyWithParts) {
+        //     this.patternService
+        //         .findCulturalPropertyWithParts(this.props.patternInstanceUri)
+        //         .then(culturalPropertyWithParts => {
+        //             this.setState({
+        //                 culturalPropertyWithParts: culturalPropertyWithParts
+        //             });
+        //         });
+        // }
     }
 
     render() {

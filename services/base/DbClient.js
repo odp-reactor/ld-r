@@ -18,7 +18,7 @@ export default class DbClient {
             });
             bindings = await result.bindings();
         } catch (e) {
-            // console.log('[!] DbContext.executeQuery error:', e);
+            console.log('[!] DbContext.executeQuery error:', e);
             bindings = undefined;
         }
         return bindings;

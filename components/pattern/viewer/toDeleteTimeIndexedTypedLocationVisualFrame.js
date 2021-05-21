@@ -24,14 +24,12 @@ const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
  * @extends {React.Component}
  */
 
-import PatternService from '../../../services/clientside-services/PatternService';
 import DbClient from '../../../services/base/DbClient';
 
 class TimeIndexedTypedLocationVisualFrame extends React.Component {
     constructor(props) {
         super(props);
         const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.patternService = new PatternService(new DbClient(sparqlEndpoint));
         //
         this.state = {
             titls: null
@@ -40,23 +38,6 @@ class TimeIndexedTypedLocationVisualFrame extends React.Component {
 
     componentDidMount() {
 
-        // this component accepts more than one instance at a time
-        let patternInstancesUri;
-        if (Array.isArray(this.props.patternInstanceUri)) {
-            patternInstancesUri = this.props.patternInstanceUri
-        } else {
-            patternInstancesUri = [this.props.patternInstanceUri]
-        }
-
-        const fetchData = async () => {
-            const titls = await this.patternService.findCulturalPropertyWithTimeIndexedTypedLocationByUris(
-                patternInstancesUri
-            );
-            this.setState({
-                titls: titls
-            });
-        };
-        fetchData();
     }
 
     render() {

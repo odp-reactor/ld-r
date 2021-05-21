@@ -1,6 +1,6 @@
 import { QueryRepository } from '../query/QueryRepository';
 
-export default class PatternQueryBuilder {
+export default class PatternInstanceQueryBuilder {
 
     constructor(patternQueryRepository) {
         this.patternQueryRepository = patternQueryRepository || new QueryRepository()

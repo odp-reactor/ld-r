@@ -34,7 +34,7 @@ let webpackConfig = {
     module: {
         rules: [
             {
-                test: /\.txt$/i,
+                test: /\.sparql$/i,
                 use: [{
                     loader: 'raw-loader',
                     // options: {

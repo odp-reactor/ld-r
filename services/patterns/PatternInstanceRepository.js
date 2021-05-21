@@ -1,5 +1,5 @@
 import GenericRepository from '../base/GenericRepository';
-import PatternQueryBuilder from './PatternQueryBuilder';
+import PatternInstanceQueryBuilder from './PatternInstanceQueryBuilder';
 import  { PatternInstance} from './PatternInstance'
 import { VisualFrameRepository } from '../visualframes/VisualFrameRepository';
 
@@ -9,7 +9,7 @@ export class PatternInstanceRepository {
             dbClient
         );
         this.visualFrameRepository = visualFrameRepository || new VisualFrameRepository()
-        this.patternQueryBuilder = patternQueryBuilder || new PatternQueryBuilder();
+        this.patternQueryBuilder = patternQueryBuilder || new PatternInstanceQueryBuilder();
     }
     async getPatternInstanceData(patternInstance) {
         if (patternInstance && patternInstance.pattern) {

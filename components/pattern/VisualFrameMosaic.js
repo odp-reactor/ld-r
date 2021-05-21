@@ -3,7 +3,6 @@ import PartWholeVisualFrame from './viewer/toDeletePartWholeVisualFrame';
 import TimeIndexedTypedLocationVisualFrame from './viewer/toDeleteTimeIndexedTypedLocationVisualFrame';
 import CollectionVisualFrame from './viewer/toDeleteCollectionVisualFrame';
 
-import PatternService from '../../services/clientside-services/PatternService';
 import DbClient from '../../services/base/DbClient';
 import { clone, chunk } from 'lodash';
 import { Grid, Segment } from 'semantic-ui-react';
@@ -11,33 +10,30 @@ import { Grid, Segment } from 'semantic-ui-react';
 export default class VisualFrameMosaic extends React.Component {
     constructor(props) {
         super(props);
-        const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.patternService = new PatternService(new DbClient(sparqlEndpoint));
-        //
         this.state = {
             patternInstances: []
         };
     }
     componentDidMount() {
-        if (this.props.patternInstancesUris) {
-            this.props.patternInstancesUris.forEach(patternInstanceUri => {
-                this.patternService
-                    .findPattern(patternInstanceUri)
-                    .then(pattern => {
-                        let newPatternInstances = clone(
-                            this.state.patternInstances
-                        );
-                        newPatternInstances.push({
-                            uri: patternInstanceUri,
-                            type: pattern.type,
-                            typeLabel: pattern.typeLabel
-                        });
-                        this.setState({
-                            patternInstances: newPatternInstances
-                        });
-                    });
-            });
-        }
+        // if (this.props.patternInstancesUris) {
+        //     this.props.patternInstancesUris.forEach(patternInstanceUri => {
+        //         this.patternService
+        //             .findPattern(patternInstanceUri)
+        //             .then(pattern => {
+        //                 let newPatternInstances = clone(
+        //                     this.state.patternInstances
+        //                 );
+        //                 newPatternInstances.push({
+        //                     uri: patternInstanceUri,
+        //                     type: pattern.type,
+        //                     typeLabel: pattern.typeLabel
+        //                 });
+        //                 this.setState({
+        //                     patternInstances: newPatternInstances
+        //                 });
+        //             });
+        //     });
+        // }
     }
     render() {
         if (this.props.patternInstancesUris.length === 0) {

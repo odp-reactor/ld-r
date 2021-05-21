@@ -16,7 +16,12 @@ export class QueryRepository {
     getQuery(patternURI){
         // we need some chunk of static path to implicitly tell webpack how to resolve this path at runtime 
         try {
-            return require('../../plugins/queries/' + this.getQueryFile(patternURI))
+            const queryModule = require('../../plugins/queries/' + this.getQueryFile(patternURI))
+            if (queryModule) {
+                return queryModule.default
+            } else {
+                return undefined
+            }
         } catch(err) {
             console.log('[!] Error: ',err)
             return undefined

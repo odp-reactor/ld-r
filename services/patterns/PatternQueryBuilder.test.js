@@ -1,9 +1,9 @@
-import PatternQueryBuilder from './PatternQueryBuilder'
+import PatternInstanceQueryBuilder from './PatternInstanceQueryBuilder'
 
 describe('Pattern query builder creates query for pattern instances', () => {
     const variable = '?subject'
     const subjectBinding = 'http://example.com/subject_1'
-    const qBuilder = new PatternQueryBuilder()
+    const qBuilder = new PatternInstanceQueryBuilder()
     test(`it should bind variable ${variable} with <${subjectBinding}>`, () => {
         const query = `
             SELECT ?object WHERE {

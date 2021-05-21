@@ -24,7 +24,7 @@ export default class PatternReactor extends React.Component {
                 const dbClient = new DbClient(sparqlEndpoint)
                 const patternRepo = new PatternInstanceRepository(dbClient)
                 if (sparqlEndpoint) {
-                    const patternInstance = await patternRepo.getPatternInstanceWithType(patternInstanceUri)
+                    const patternInstance = await patternRepo.getPatternInstanceWithTypeVisualFrameAndData(patternInstanceUri)
                     if (patternInstance) {
                         this.setState({
                             patternInstance: patternInstance,
@@ -39,14 +39,14 @@ export default class PatternReactor extends React.Component {
     }
 
     render() {
-        if (this.state.patternType) {
+        if (this.state.patternInstance) {
 
-            const VisualFrame = this.patternInstance.visualFrame
+            const VisualFrame = this.state.patternInstance.visualFrame
 
             if (VisualFrame) {
                 return (
                     <div>
-                        <VisualFrame patternInstance={patternInstance}/>
+                        <VisualFrame patternInstance={this.state.patternInstance} datasetId={this.props.datasetURI} />
                     </div>
                 );
             } else {
