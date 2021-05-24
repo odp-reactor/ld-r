@@ -57,20 +57,15 @@ let webpackConfig = {
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader!',
-            },
-
-            // {
-            //     test: /\.css$/,
-            //     use: [
-            //         {
-            //             loader: 'style-loader'
-            //         },
-            //         {
-            //             loader: 'css-loader'
-            //         }
-            //     ]
-            // }
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader'
+                    }
+                ]
+            }
         ]
     },
     node: {
