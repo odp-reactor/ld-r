@@ -1,4 +1,6 @@
 {
     "http://example.com/example-pattern" : "example.sparql",
-    "https://w3id.org/arco/ontology/denotative-description/measurement-collection" : "collection.sparql"
+    "https://w3id.org/arco/ontology/denotative-description/measurement-collection" : "collection.sparql",
+    "https://w3id.org/arco/ontology/location/cultural-property-component-of" : "culturalcomponentof.sparql",
+    "https://w3id.org/arco/ontology/location/time-indexed-typed-location" : "timedlocation.sparql"
 }
