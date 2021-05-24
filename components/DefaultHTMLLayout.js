@@ -35,6 +35,16 @@ class DefaultHTMLLayout extends React.Component {
                         rel="stylesheet"
                         type="text/css"
                     />
+                    <link
+                        href={`${PUBLIC_URL}/odp-reactor-visualframes/dist/index.css`}
+                        rel="stylesheet"
+                        type="text/css"
+                    />
+                    <link
+                        href={`${PUBLIC_URL}/odp-reactor-visualframes/dist/browser.css`}
+                        rel="stylesheet"
+                        type="text/css"
+                    />
                     {/* Vendors css bundle */
                         this.props.addAssets ? (
                             <link

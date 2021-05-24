@@ -55,18 +55,22 @@ let webpackConfig = {
                 test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
                 loader: 'file-loader'
             },
-
             {
                 test: /\.css$/,
-                use: [
-                    {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader'
-                    }
-                ]
-            }
+                loader: 'style-loader!css-loader!',
+            },
+
+            // {
+            //     test: /\.css$/,
+            //     use: [
+            //         {
+            //             loader: 'style-loader'
+            //         },
+            //         {
+            //             loader: 'css-loader'
+            //         }
+            //     ]
+            // }
         ]
     },
     node: {

@@ -1,7 +1,4 @@
 import React from 'react';
-import PartWholeVisualFrame from './viewer/toDeletePartWholeVisualFrame';
-import TimeIndexedTypedLocationVisualFrame from './viewer/toDeleteTimeIndexedTypedLocationVisualFrame';
-import CollectionVisualFrame from './viewer/toDeleteCollectionVisualFrame';
 
 import DbClient from '../../services/base/DbClient';
 import { clone, chunk } from 'lodash';
