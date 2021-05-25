@@ -28,6 +28,16 @@ export default class PatternInstanceQueryBuilder {
          }
         `;
     }
+    getPatternInstancesResourceBelongsTo(resourceUri) {
+        return `
+        PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+        
+        SELECT DISTINCT ?uri WHERE
+              {
+                <${resourceUri}> opla:belongsToPatternInstance ?uri .
+              }            
+    `;
+    }
     getPatternInstanceDataQuery(patternInstanceURI, patternURI) {
         let patternQuery =  this.patternQueryRepository.getQuery(patternURI)
         return this.bindPatternInstanceVariable(patternQuery, patternInstanceURI)

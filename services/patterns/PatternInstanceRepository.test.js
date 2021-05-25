@@ -26,12 +26,27 @@ class MockPatternInstanceQueryBuilder {
             ?uri rdfs:label ?label .
          }
         `;    }
+    getPatternInstancesResourceBelongsTo(resourceUri) {
+        return `
+        PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+        
+        SELECT DISTINCT ?uri WHERE
+              {
+                <${resourceUri}> opla:belongsToPatternInstance ?uri .
+              }            
+       `
+    }
 }
 
 
 const examplePattern = 'http://example.com/example-pattern'
 const patternInstanceUri = 'ex:pattern_instance_1'
+const patternInstanceUri2 = 'ex:pattern_instance_2'
+const examplePattern2 = 'http://example.com/example-pattern-2'
 const examplePatternLabel = 'Example Pattern'
+const examplePattern2Label = 'Example Pattern 2'
+const resource1Uri = 'ex:data1'
+const resource2Uri = 'ex:data2'
 
 const oplaPrefix = 'http://ontologydesignpatterns.org/opla/'
 
@@ -39,9 +54,14 @@ const mockTriples = [
     `<${patternInstanceUri}> <${oplaPrefix}isPatternInstanceOf> <${examplePattern}>`,
     `<${examplePattern}> rdfs:label "${examplePatternLabel}"`,
     `<${examplePattern}> rdf:type <${oplaPrefix}Pattern>`,
-    `<ex:data1> <${oplaPrefix}belongsToPatternInstance> <${patternInstanceUri}>`,
-    `<ex:data2> <${oplaPrefix}belongsToPatternInstance> <${patternInstanceUri}>`
+    `<${patternInstanceUri2}> <${oplaPrefix}isPatternInstanceOf> <${examplePattern2}>`,
+    `<${examplePattern2}> rdfs:label "${examplePattern2Label}"`,
+    `<${examplePattern2}> rdf:type <${oplaPrefix}Pattern>`,
+    `<${resource1Uri}> <${oplaPrefix}belongsToPatternInstance> <${patternInstanceUri}>`,
+    `<${resource2Uri}> <${oplaPrefix}belongsToPatternInstance> <${patternInstanceUri}>`,
+    `<${resource1Uri}> <${oplaPrefix}belongsToPatternInstance> <${patternInstanceUri2}>`,
 ]
+
 
 const checkGraph = async (graph) => {
     const hasGraph = await graphRepo.exists(graph)
@@ -137,6 +157,34 @@ describe('It should return PatternInstance with pattern instance type, visualfra
         expect(visualFrame.name).toBe('ExampleVisualFrame')
 
         await cleanGraph(testGraph3)
+    })
+    test('It should return pattern instances uris by resource partecipating in', async () => {
+        const testGraph4 = 'http://example.com/graph4'
+        const patternInstanceRepo = new PatternInstanceRepository(new DbClient(testEndpoint, testGraph4), null, null, new MockPatternInstanceQueryBuilder())
+
+        await createGraph(testGraph4)
+        await insertTriples(testGraph4, mockTriples)
+        await checkGraph(testGraph4)
+
+        const patternInstancesUris = await patternInstanceRepo.getPatternInstancesUrisByResource(resource1Uri)
+
+        expect(patternInstancesUris).toBeDefined()
+        expect(patternInstancesUris).toHaveLength(2)
+        expect(patternInstancesUris).toContainEqual(
+            {
+                uri: patternInstanceUri
+            }
+        )
+        expect(patternInstancesUris).toContainEqual(
+            {
+                uri: patternInstanceUri2
+            }
+        )
+
+        const patternInstances = await patternInstanceRepo.getPatternInstancesByResourceParticipatingInPattern(resource1Uri)
+
+        expect(patternInstances).toBeDefined()
+        expect(patternInstances).toHaveLength(2)     
     })
 })
 

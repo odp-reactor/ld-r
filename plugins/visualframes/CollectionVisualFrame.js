@@ -15,6 +15,10 @@ export default class CollectionVisualFrame extends React.Component {
 
     render() {
 
+        if (!this.props.patternInstance || !this.props.patternInstance.data) {
+            return null
+        }
+
         const collection = this.props.patternInstance.data
 
         console.log('Data:',collection)
@@ -55,7 +59,7 @@ export default class CollectionVisualFrame extends React.Component {
 
         return (
             <div>
-                {!this.props.isMosaicFrameItem && (
+                {!this.props.isMosaicFrameView && (
                     <div className="property-title">
                         <div className="ui horizontal list">
                             <div className="item">
@@ -87,7 +91,7 @@ export default class CollectionVisualFrame extends React.Component {
                         <Depiction
                             uri={culturalProperty}
                             source={this.props.dbContext.sparqlEndpoint}
-                            style={defa}
+                            // style={defa}
                             // style={this.props.styles.depiction}
                         />
                     </div>

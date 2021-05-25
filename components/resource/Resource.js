@@ -6,45 +6,17 @@ import URIUtil from '../utils/URIUtil';
 import cloneResource from '../../actions/cloneResource';
 import deleteResource from '../../actions/deleteResource';
 import { scrollToTop } from '../utils/scrollToTop';
-import VisualFrameMosaic from '../pattern/VisualFrameMosaic';
 import { connectToStores } from 'fluxible-addons-react';
+import { PatternResourceReactor } from '../pattern/PatternResourceReactor'
 import GoToButton from '../GoToButton';
-import ClassRepository from '../../services/classes/ClassRepository';
-import DbClient from '../../services/base/DbClient';
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class Resource extends React.Component {
     constructor(props) {
         super(props);
-        const sparqlEndpoint = 'https://arco.istc.cnr.it/visualPatterns/sparql';
-        this.classRepository = new ClassRepository(
-            new DbClient(sparqlEndpoint)
-        );
-        this.state = {
-            patternInstancesUris: null
-        };
     }
     componentDidMount() {
-        console.log('First Resource Component mount:', this.props.resource);
-        if (!this.state.patternInstancesUris && this.props.resource) {
-            this.classRepository
-                .findPatternInstancesResourceBelongsTo(this.props.resource)
-                .then(patternInstances => {
-                    this.setState({
-                        patternInstancesUris: patternInstances.map(p => {
-                            return p.uri;
-                        })
-                    });
-                })
-                .catch(e => {
-                    console.log(
-                        '[!] Failed to load pattern instances for resource: ',
-                        this.props.resource,
-                        e
-                    );
-                });
-        }
 
         //scroll to top of the page
         if (this.props.config && this.props.config.readOnly) {
@@ -113,31 +85,6 @@ class Resource extends React.Component {
             }
         }
 
-        // check if one of the property trigger <Pattern />
-        // we don't want <Pattern /> and <PatternMosaic />
-        // in the same screen
-        let isResourceWithPatternInstances;
-
-        // we get these URIs from url params in currentNavigate
-        // we receive this in props from navigateHandler
-        let patternInstancesUris = this.state.patternInstancesUris;
-        // if (
-        //     this.props.RouteStore &&
-        //     this.props.RouteStore._currentNavigate &&
-        //     this.props.RouteStore._currentNavigate.route &&
-        //     this.props.RouteStore._currentNavigate.route.params &&
-        //     this.props.RouteStore._currentNavigate.route.params.patternIds
-        // ) {
-        //     patternInstancesUris =
-        //         this.props.RouteStore._currentNavigate.route.params
-        //             .patternIds !== ""
-        //             ? this.props.RouteStore._currentNavigate.route.params.patternIds.split(
-        //                   "|"
-        //               )
-        //             : undefined;
-        // }
-        console.log('MOSAIC PATTERN INSTANCES URIs:', patternInstancesUris);
-
         //create a list of properties
         let list = this.props.properties.map(function(node, index) {
             //if there was no config at all or it is hidden, do not render the property
@@ -154,15 +101,6 @@ class Resource extends React.Component {
                             configReadOnly = false;
                         }
                     }
-                }
-                // if (
-                //     node.config.propertyReactor &&
-                //     node.config.propertyReactor[0] === "Pattern"
-                // ) {
-                //     isPatternView = true;
-                // }
-                if (patternInstancesUris) {
-                    isResourceWithPatternInstances = true;
                 }
                 if (
                     node.propertyURI ===
@@ -314,13 +252,10 @@ class Resource extends React.Component {
 
             mainDIV = (
                 <div>
-                    {isResourceWithPatternInstances && (
-                        <VisualFrameMosaic
-                            datasetURI={this.props.datasetURI}
-                            patternInstancesUris={patternInstancesUris}
-                            resourceURI={this.props.resource}
-                        />
-                    )}
+                    <PatternResourceReactor
+                        datasetURI={this.props.datasetURI}
+                        resourceURI={this.props.resource}
+                    />
                     <div className="ui top attached tabular menu">
                         {tabsDIV}
                     </div>
@@ -332,13 +267,10 @@ class Resource extends React.Component {
                 <div className="ui segment">
                     <div className="ui grid">
                         <div className="column ui list">
-                            {isResourceWithPatternInstances && (
-                                <VisualFrameMosaic
-                                    datasetURI={this.props.datasetURI}
-                                    resourceURI={this.props.resource}
-                                    patternInstancesUris={patternInstancesUris}
-                                />
-                            )}
+                            <PatternResourceReactor
+                                datasetURI={this.props.datasetURI}
+                                resourceURI={this.props.resource}
+                            />
                             {list}
                             {annotationDIV}
                             {annotationMetaDIV}

@@ -9,8 +9,6 @@ const serverConfigRepo = new ServerConfigRepository(
     new DbClient(configEndpoint)
 );
 
-
-
 export default class PatternReactor extends React.Component {
     constructor(props) {
         super(props);

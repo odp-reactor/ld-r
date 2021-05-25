@@ -16,9 +16,13 @@ import { routeToResource } from '../../components/route/routeToResource'
 //     }
 // };
 
-export default class PartWholeVisualFrame extends React.Component {
+export default class PartOfVisualFrame extends React.Component {
 
     render() {
+
+        if (!this.props.patternInstance || !this.props.patternInstance.data) {
+            return null
+        }
 
         console.log('PartWholeVisualFrame props state', this.props, this.state)
 

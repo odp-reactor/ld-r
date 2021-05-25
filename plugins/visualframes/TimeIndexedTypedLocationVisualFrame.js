@@ -12,6 +12,10 @@ export default class TimeIndexedTypedLocationVisualFrame extends React.Component
         */
         if (process.env.BROWSER) {
 
+            if (!this.props.patternInstance || !this.props.patternInstance.data) {
+                return null
+            }
+
             const { TimeIndexedTypedLocation } = require('odp-reactor-visualframes/dist/browser')
 
             console.log('TimeIndexedTypedLocationVisualFrame props state', this.props, this.state)
