@@ -34,7 +34,7 @@ export default class PatternReactor extends React.Component {
                     }
                 }
             } else {
-                console.log(`[!] No datasetId or pattern instances uri. Cannot retrieve associated sparql endpoint. Dataset Id: ${datasetId} ; Pattern Instance Uri: ${patternInstanceUri}`)
+                // console.log(`[!] No datasetId or pattern instances uri. Cannot retrieve associated sparql endpoint. Dataset Id: ${datasetId} ; Pattern Instance Uri: ${patternInstanceUri}`)
             }
         }
         getPatternInstance(this.props.datasetURI, this.props.resource)
