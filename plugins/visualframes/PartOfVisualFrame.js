@@ -24,8 +24,6 @@ export default class PartOfVisualFrame extends React.Component {
             return null
         }
 
-        console.log('PartWholeVisualFrame props state', this.props, this.state)
-
         const data = this.props.patternInstance.data
 
         if (data) {
@@ -83,13 +81,6 @@ export default class PartOfVisualFrame extends React.Component {
                     )} */}
                 </div>
             );
-        } else {
-            return null;
-
-            //     <div style={{ textAlign: 'center' }}>
-            //         <CustomLoader></CustomLoader>
-            //     </div>
-            // );
         }
     }
 }
