@@ -9,7 +9,7 @@ PREFIX a-dd: <https://w3id.org/arco/ontology/denotative-description/>
 
 SELECT DISTINCT 
       ?meas ?value ?unit ?cProp ?cPropLabel 
-WHERE 
+WHERE { GRAPH ?graph
 { 
  ?measurementCollection opla:belongsToPatternInstance ?patternInstanceUri .
  ?measurementCollection a-dd:hasMeasurement ?meas .
@@ -26,4 +26,5 @@ WHERE
  ?cProp rdfs:label ?cPropLabel .
  FILTER langMatches(lang(?cPropLabel), "it")
  BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
+}
 }

@@ -1,11 +1,16 @@
 import { newEngine } from '@comunica/actor-init-sparql';
 import {SparqlEndpointFetcher} from 'fetch-sparql-endpoint';
 
+import { Bindings } from '@comunica/bus-query-operation';
+import { DataFactory } from 'rdf-data-factory';
+
+const factory = new DataFactory();
+
 export default class DbClient {
     //db is SPARQL Endpoint in this case
     constructor(dbName, graph, options) {
         this.dbName = dbName;
-        this.graph = graph
+        this.graph = graph || 'default'
         this.options = options;
         this.sparqlQueryingEngine = newEngine();
         this.updateQueryingEngine = new SparqlEndpointFetcher()
@@ -13,12 +18,17 @@ export default class DbClient {
     async executeQuery(query) {
         let bindings;
         try {
-            const result = await this.sparqlQueryingEngine.query(query, {
-                sources: [{ type: 'sparql', value: this.dbName }]
-            });
+
+            const comunicaParams = Object.assign({
+                sources: [{ type: 'sparql', value: this.dbName }],
+            }, (this.graph && this.graph !== 'default') ? {initialBindings: Bindings({
+                '?graph' : factory.namedNode(this.graph)
+            })} : {})
+
+            const result = await this.sparqlQueryingEngine.query(query, comunicaParams);
             bindings = await result.bindings();
         } catch (e) {
-            console.log('[!] DbContext.executeQuery error:', e);
+            console.log('[!] DbClient.executeQuery error:', e);
             bindings = undefined;
         }
         return bindings;

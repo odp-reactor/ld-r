@@ -47,14 +47,17 @@ export class PatternResourceReactor extends React.Component {
 
         // se fanno parte di stessa istanza aggregarli e passare istanze di pattern ai visual frame
 
-
-        if (this.state.patternInstances && this.state.patternInstances.length > 0) {
-
-
-
-            return <MosaicVisualFrame patternInstances={this.state.patternInstances} dbContext={this.state.dbContext} />
-        } else {
+        if (!this.state.patternInstances) {
+            // fetching => loader
             return <div style={{textAlign:'center'}}><CustomLoader /></div>
+        } else {
+            if (this.state.patternInstances.length > 0) {
+                // fetched: length > 0 => mosaic
+                return <MosaicVisualFrame patternInstances={this.state.patternInstances} dbContext={this.state.dbContext} />
+            } else {
+                // no data => null
+                return null
+            }
         }
     }
 }

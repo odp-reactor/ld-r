@@ -23,19 +23,23 @@ export default class PatternInstanceQueryBuilder {
         PREFIX opla: <http://ontologydesignpatterns.org/opla/>
 
         SELECT DISTINCT ?uri (SAMPLE(?label) as ?label) WHERE {
+         GRAPH ?graph {
             <${patternInstanceUri}> opla:isPatternInstanceOf ?uri .
             ?uri rdfs:label ?label .
          }
+        }
         `;
     }
     getPatternInstancesResourceBelongsTo(resourceUri) {
         return `
         PREFIX opla: <http://ontologydesignpatterns.org/opla/>
         
-        SELECT DISTINCT ?uri WHERE
+        SELECT DISTINCT ?uri WHERE {
+            GRAPH ?graph
               {
                 <${resourceUri}> opla:belongsToPatternInstance ?uri .
               }            
+            }
     `;
     }
     getPatternInstanceDataQuery(patternInstanceURI, patternURI) {
