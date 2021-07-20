@@ -16,7 +16,7 @@ SELECT DISTINCT
     (SAMPLE(?locationTypeLabel) as ?locationTypeLabel)
     ?lat ?long ?addressLabel ?startTime ?endTime
     (SAMPLE(?cPropLabel) as ?cPropLabel) 
-WHERE {
+WHERE { GRAPH ?graph {
     ?culturalProperty opla:belongsToPatternInstance ?patternInstanceUri .
     ?titl opla:belongsToPatternInstance ?patternInstanceUri .
     ?culturalProperty a-loc:hasTimeIndexedTypedLocation ?titl .
@@ -52,4 +52,4 @@ WHERE {
     BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .  
     BIND ( IF (BOUND (?startTime2B),?startTime2B,'')  as ?startTime) .         
     BIND ( IF (BOUND (?endTime2B),  ?endTime2B,'')  as ?endTime) .
-} LIMIT 1       
+} } LIMIT 1       
