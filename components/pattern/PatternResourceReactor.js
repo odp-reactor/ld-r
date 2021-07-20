@@ -5,6 +5,8 @@ import {PatternInstanceRepository} from '../../services/patterns/PatternInstance
 import DbClient from '../../services/base/DbClient';
 import MosaicVisualFrame from './MosaicVisualFrame';
 
+import {CustomLoader} from '../CustomLoader'
+
 const configEndpoint = process.env.CONFIG_SPARQL_ENDPOINT_URI;
 const serverConfigRepo = new ServerConfigRepository(
     new DbClient(configEndpoint)
@@ -52,7 +54,7 @@ export class PatternResourceReactor extends React.Component {
 
             return <MosaicVisualFrame patternInstances={this.state.patternInstances} dbContext={this.state.dbContext} />
         } else {
-            return null
+            return <div style={{textAlign:'center'}}><CustomLoader /></div>
         }
     }
 }

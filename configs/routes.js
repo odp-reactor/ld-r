@@ -264,19 +264,6 @@ export default {
             context.executeAction(loadUsersList, {}, done);
         }
     },
-    // pattern: {
-    //     path: `${PUBLIC_URL}/datasets/:did/patterns/:pid/color/:c`,
-    //     method: "get",
-    //     // add checks on fetch data (catch them only if the PatternStore is empty)
-    //     handler: require("../components/dataset/viewer/PatternInstancesNetworkView"),
-    //     label: "Pattern Instances"
-    // },
-    // class: {
-    //     path: `${PUBLIC_URL}/datasets/:did/classes/:cid`,
-    //     method: "get",
-    //     handler: require("../components/dataset/viewer/ClassInstances"),
-    //     label: "Class Instances"
-    // },
     errortest: {
         path: `${PUBLIC_URL}/errortest`,
         method: "get",

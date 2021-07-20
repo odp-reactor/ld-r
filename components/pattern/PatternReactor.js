@@ -3,6 +3,7 @@ import React from 'react';
 import {PatternInstanceRepository} from '../../services/patterns/PatternInstanceRepository'
 import { ServerConfigRepository } from '../../services/config/ServerConfigRepository';
 import DbClient from '../../services/base/DbClient';
+import {CustomLoader} from '../CustomLoader'
 
 const configEndpoint = process.env.CONFIG_SPARQL_ENDPOINT_URI;
 const serverConfigRepo = new ServerConfigRepository(
@@ -55,7 +56,11 @@ export default class PatternReactor extends React.Component {
                 return <div>No visualframe found for pattern</div>
             }
         } else {
-            return null
+            return <div style={{
+                textAlign: 'center'
+            }}>
+                <CustomLoader />
+            </div>  
         }
     }
 }
