@@ -34,6 +34,15 @@ let webpackConfig = {
     module: {
         rules: [
             {
+                test: /\.sparql$/i,
+                use: [{
+                    loader: 'raw-loader',
+                    // options: {
+                    // esModule: false
+                    // }
+                }]
+            },
+            {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
@@ -46,7 +55,6 @@ let webpackConfig = {
                 test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
                 loader: 'file-loader'
             },
-
             {
                 test: /\.css$/,
                 use: [

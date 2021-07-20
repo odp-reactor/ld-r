@@ -3,6 +3,8 @@ import { ServerConfigQueryBuilder } from './ServerConfigQueryBuilder';
 
 import { UrlParser } from './UrlParser';
 
+import { DbContext } from './DbContext'
+
 export class ServerConfigRepository {
     constructor(dbClient) {
         //classesDataMapper
@@ -19,12 +21,13 @@ export class ServerConfigRepository {
         );
         const config = configRes[0];
 
-        return {
-            sparqlEndpoint: `${config.protocol}://${config.host}${
-                config.port != '' ? `:${config.port}` : ''
-            }${config.path}`,
-            graph: config.graph
-        };
+        const sparqlEndpoint = `${config.protocol}://${config.host}${
+            config.port != '' ? `:${config.port}` : ''
+        }${config.path}`
+
+        const graph = config.graph
+
+        return new DbContext(datasetId, sparqlEndpoint, graph)
     }
     async getDatasetIdBySparqlEndpointAndGraph(sparqlEndpoint, graph) {
         const { host, sparqlPath } = this.getHostAndPathBySparqlEndpoint(sparqlEndpoint)

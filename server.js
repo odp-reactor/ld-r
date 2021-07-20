@@ -129,6 +129,10 @@ server.use(
     express.static(path.join(__dirname, '/node_modules/semantic-ui-css'))
 );
 server.use(
+    `${PUBLIC_URL}/odp-reactor-visualframes`,
+    express.static(path.join(__dirname, '/node_modules/odp-reactor-visualframes'))
+);
+server.use(
     `${PUBLIC_URL}/jquery`,
     express.static(path.join(__dirname, '/node_modules/jquery'))
 );
