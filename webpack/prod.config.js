@@ -82,7 +82,9 @@ let webpackConfig = {
     },
     node: {
         setImmediate: false,
-        console: true
+        console: true,
+        fs: 'empty'
+
     },
     plugins: [
         // css files from the extract-text-plugin loader
@@ -95,7 +97,17 @@ let webpackConfig = {
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
                 BROWSER: JSON.stringify('true'),
-                PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL)
+                PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
+                CONFIG_SPARQL_ENDPOINT_URI: JSON.stringify(
+                    process.env.CONFIG_SPARQL_ENDPOINT_URI
+                ),
+                CONFIG_GRAPH: JSON.stringify(process.env.CONFIG_GRAPH),
+                ODP_REACTOR_GRAPH_HOST: JSON.stringify(
+                    process.env.ODP_REACTOR_GRAPH_HOST
+                ),
+                ODP_REACTOR_GRAPH_PORT: JSON.stringify(
+                    process.env.ODP_REACTOR_GRAPH_PORT
+                )
             }
         }),
         // Write out stats file to build directory.

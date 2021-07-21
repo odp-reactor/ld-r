@@ -14,7 +14,7 @@
   "scripts": {
     "build": "webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js &&  NODE_ENV=production npm start",
     "build:windows": "webpack --config ./webpack/prod.config.js&&set NODE_ENV=production&&npm start",
-    "build:nostart": "env-cmd webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js&&set NODE_ENV=production",
+    "build:nostart": "webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js && set NODE_ENV=production",
     "dev": "node ./webpack/dev-server.js --max-http-header-size=81000",
     "dev:windows": "node ./webpack/dev-server.js",
     "lint": "eslint --ignore-path .gitignore -c .eslintrc \"./**/*.js\"",
