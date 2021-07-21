@@ -26,9 +26,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: ld-r build test
-      run: npm install && npm run test && npm run build && npm run test 
-      env: 
-        PORT: 3000
+      run: npm install && npm run test && npm run build:nostart && npm run test 
+      env:
+        PORT: 4000
         CONFIG_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
         CONFIG_SPARQL_ENDPOINT_HOST: arco.istc.cnr.it
         CONFIG_SPARQL_ENDPOINT_PATH: /odpr/sparql
