@@ -29,14 +29,14 @@ jobs:
     - name: ld-r build test
       run: npm install && npm run test && npm run build && npm run test 
       env: 
-        PORT=3000
-        CONFIG_SPARQL_ENDPOINT_URI=https://arco.istc.cnr.it/odpr/sparql
-        CONFIG_SPARQL_ENDPOINT_HOST=arco.istc.cnr.it
-        CONFIG_SPARQL_ENDPOINT_PATH=/odpr/sparql
-        CONFIG_SPARQL_ENDPOINT_PORT=443
-        CONFIG_SPARQL_ENDPOINT_TYPE=virtuoso
-        CONFIG_GRAPH=http://odpreactor.arco.istc.cnr.it/configuration
-        ODP_REACTOR_GRAPH_HOST=https://odp-reactor-browser.vercel.app
-        ODP_REACTOR_GRAPH_PORT=443
-        TEST_SPARQL_ENDPOINT_URI=https://arco.istc.cnr.it/odpr/sparql
+        PORT: 3000
+        CONFIG_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
+        CONFIG_SPARQL_ENDPOINT_HOST: arco.istc.cnr.it
+        CONFIG_SPARQL_ENDPOINT_PATH: /odpr/sparql
+        CONFIG_SPARQL_ENDPOINT_PORT: 443
+        CONFIG_SPARQL_ENDPOINT_TYPE: virtuoso
+        CONFIG_GRAPH: http://odpreactor.arco.istc.cnr.it/configuration
+        ODP_REACTOR_GRAPH_HOST: https://odp-reactor-browser.vercel.app
+        ODP_REACTOR_GRAPH_PORT: 443
+        TEST_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
 
