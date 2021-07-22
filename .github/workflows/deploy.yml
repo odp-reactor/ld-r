@@ -30,7 +30,7 @@ jobs:
           HD_ODP_REACTOR_GRAPH_PORT: 443
           HD_TEST_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
           HD_HOST: https://odp-reactor-ldr.herokuapp.com/
-          HD_PORT: 443
+          PORT: 443
           HD_ALLOWED_ORIGINS: https://odp-reactor-ldr.herokuapp.com,https://odp-reactor-browser.vercel.app/
           ALLOWED_ORIGINS: https://odp-reactor-ldr.herokuapp.com,https://odp-reactor-browser.vercel.app/
 
