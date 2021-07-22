@@ -95,7 +95,7 @@ let webpackConfig = {
         }),
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('dev'),
+                NODE_ENV: JSON.stringify('production'),
                 BROWSER: JSON.stringify('true'),
                 PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
                 HOST: JSON.stringify(process.env.HOST),
