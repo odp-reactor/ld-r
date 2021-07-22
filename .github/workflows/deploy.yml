@@ -31,3 +31,4 @@ jobs:
           TEST_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
           HOST: https://odp-reactor-ldr.herokuapp.com/
           PORT: 443
+          ALLOWED_ORIGINS: https://odp-reactor-ldr.herokuapp.com,https://odp-reactor-browser.vercel.app/
