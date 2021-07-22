@@ -12,16 +12,14 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
+          docker_heroku_process_type: web
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "odp-reactor-ldr" #Must be unique in Heroku
           heroku_email: "odpreactor00@protonmail.com"
           branch: "develop"
-          procfile: "web: npm start"
-          healthcheck: "https://odp-reactor-ldr.herokuapp.com/health"
-          delay: 10
+          justlogin: true
         env:
           NODE_ENV: production
-          NPM_CONFIG_PRODUCTION: false
           CONFIG_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
           CONFIG_SPARQL_ENDPOINT_HOST: arco.istc.cnr.it
           CONFIG_SPARQL_ENDPOINT_PATH: /odpr/sparql
@@ -31,4 +29,12 @@ jobs:
           ODP_REACTOR_GRAPH_HOST: https://odp-reactor-browser.vercel.app
           ODP_REACTOR_GRAPH_PORT: 443
           TEST_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
+
+      - name: "push develop"
+        run: git push heroku develop
+
+      - name: "push master and build"
+        run: git push heroku develop:master
+
+
 
