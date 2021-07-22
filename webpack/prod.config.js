@@ -99,7 +99,6 @@ let webpackConfig = {
                 BROWSER: JSON.stringify('true'),
                 PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
                 HOST: JSON.stringify(process.env.HOST),
-                PORT: JSON.stringify(process.env.PORT),
                 CONFIG_SPARQL_ENDPOINT_URI: JSON.stringify(process.env.CONFIG_SPARQL_ENDPOINT_URI),
                 CONFIG_SPARQL_ENDPOINT_HOST: JSON.stringify(process.env.CONFIG_SPARQL_ENDPOINT_HOST),
                 CONFIG_SPARQL_ENDPOINT_PATH: JSON.stringify(process.env.CONFIG_SPARQL_ENDPOINT_PATH),
