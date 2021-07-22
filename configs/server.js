@@ -21,7 +21,8 @@ export default {
             host: process.env.CONFIG_SPARQL_ENDPOINT_HOST || "localhost",
             port: process.env.CONFIG_SPARQL_ENDPOINT_PORT || 8990,
             path: process.env.CONFIG_SPARQL_ENDPOINT_PATH || "/sparql",
-            endpointType: process.env.CONFIG_SPARQL_ENDPOINT_TYPE || "virtuoso"
+            endpointType: process.env.CONFIG_SPARQL_ENDPOINT_TYPE || "virtuoso",
+            protocol: process.env.CONFIG_SPARQL_ENDPOINT_PROTOCOL || "https"
         },
         "http://dpedia.org/sparql": {
             host: "dbpedia.org",
