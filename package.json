@@ -2,6 +2,9 @@
   "name": "linked-data-reactor",
   "version": "0.0.1",
   "description": "Linked Data Reactor provides a framework to view, browse and edit Linked Data in a flexible way.",
+  "engines": {
+    "node": "14.x"
+  },
   "private": false,
   "repository": {
     "type": "git",
@@ -12,7 +15,8 @@
     "url": "http://ali1k.com"
   },
   "scripts": {
-    "build": "webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js &&  NODE_ENV=production npm start",
+    "heroku-postbuild": "echo '[!] Warning: be sure heroku app has this env variable set to false to avoid pruning devDep: $ heroku config:set NPM_CONFIG_PRODUCTION=false' && webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js",
+    "build:start": "webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js &&  NODE_ENV=production npm start",
     "build:windows": "webpack --config ./webpack/prod.config.js&&set NODE_ENV=production&&npm start",
     "build:nostart": "webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js && set NODE_ENV=production",
     "dev": "node ./webpack/dev-server.js --max-http-header-size=81000",
