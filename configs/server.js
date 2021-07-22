@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 
 const configGraph =
     process.env.CONFIG_GRAPH || "http://virtuoso.localhost/configurations";
@@ -14,23 +14,12 @@ export default {
             path: "/sparql",
             endpointType: "virtuoso"
         },
-        // default: {
-        //     host: "arco.istc.cnr.it",
-        //     port: 80,
-        //     path: "/visualPatterns/sparql",
-        //     endpointType: "virtuoso"
-        // },
-        // "http://arco.istc.cnr.it/ldr/arco-toy": {
-        //     host: "arco.istc.cnr.it",
-        //     port: 80,
-        //     path: "/visualPatterns/sparql",
-        //     endpointType: "virtuoso"
-        // },
         [configGraph]: {
             host: process.env.CONFIG_SPARQL_ENDPOINT_HOST || "localhost",
             port: process.env.CONFIG_SPARQL_ENDPOINT_PORT || 8890,
             path: process.env.CONFIG_SPARQL_ENDPOINT_PATH || "/sparql",
-            endpointType: process.env.CONFIG_SPARQL_ENDPOINT_TYPE || "virtuoso"
+            endpointType: process.env.CONFIG_SPARQL_ENDPOINT_TYPE || "virtuoso",
+            protocol: process.env.CONFIG_SPARQL_ENDPOINT_PROTOCOL || "https"
         },
         "http://dpedia.org/sparql": {
             host: "dbpedia.org",
