@@ -31,10 +31,10 @@ jobs:
           TEST_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
 
       - name: "push develop"
-        run: git push https://git.heroku.com/odp-reactor-ldr.git develop
+        run: git push -f https://git.heroku.com/odp-reactor-ldr.git develop
 
       - name: "push master and build"
-        run: git push https://git.heroku.com/odp-reactor-ldr.git develop:master
+        run: git push -f https://git.heroku.com/odp-reactor-ldr.git develop:master
 
 
 
