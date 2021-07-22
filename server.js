@@ -61,7 +61,7 @@ if (env === 'production') {
 const server = express();
 
 // cors middleware
-let whitelist = ['http://localhost:4000', 'http://localhost:3000'] //'http://abc.com']
+let whitelist = ['http://localhost:4000', 'http://localhost:3000', "http://odp-reactor-ldr.herokuapp.com"] //'http://abc.com']
 
 server.use(cors({
     origin: function(origin, callback){
