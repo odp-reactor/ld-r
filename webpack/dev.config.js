@@ -83,16 +83,17 @@ let webpackConfig = {
                 NODE_ENV: JSON.stringify('dev'),
                 BROWSER: JSON.stringify('true'),
                 PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
-                CONFIG_SPARQL_ENDPOINT_URI: JSON.stringify(
-                    process.env.CONFIG_SPARQL_ENDPOINT_URI
-                ),
+                HOST: JSON.stringify(process.env.HOST),
+                PORT: JSON.stringify(process.env.PORT),
+                CONFIG_SPARQL_ENDPOINT_URI: JSON.stringify(process.env.CONFIG_SPARQL_ENDPOINT_URI),
+                CONFIG_SPARQL_ENDPOINT_HOST: JSON.stringify(process.env.CONFIG_SPARQL_ENDPOINT_HOST),
+                CONFIG_SPARQL_ENDPOINT_PATH: JSON.stringify(process.env.CONFIG_SPARQL_ENDPOINT_PATH),
+                CONFIG_SPARQL_ENDPOINT_PORT: JSON.stringify(process.env.CONFIG_SPARQL_ENDPOINT_PORT),
+                CONFIG_SPARQL_ENDPOINT_TYPE: JSON.stringify(process.env.CONFIG_SPARQL_ENDPOINT_TYPE),
                 CONFIG_GRAPH: JSON.stringify(process.env.CONFIG_GRAPH),
-                ODP_REACTOR_GRAPH_HOST: JSON.stringify(
-                    process.env.ODP_REACTOR_GRAPH_HOST
-                ),
-                ODP_REACTOR_GRAPH_PORT: JSON.stringify(
-                    process.env.ODP_REACTOR_GRAPH_PORT
-                )
+                ODP_REACTOR_GRAPH_HOST: JSON.stringify(process.env.ODP_REACTOR_GRAPH_HOST),
+                ODP_REACTOR_GRAPH_PORT: JSON.stringify(process.env.ODP_REACTOR_GRAPH_PORT),
+                TEST_SPARQL_ENDPOINT_URI: JSON.stringify(process.env.TEST_SPARQL_ENDPOINT_URI)
             }
         })
     ],
