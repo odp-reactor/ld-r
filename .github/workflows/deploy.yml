@@ -32,3 +32,5 @@ jobs:
           HD_HOST: https://odp-reactor-ldr.herokuapp.com/
           HD_PORT: 443
           HD_ALLOWED_ORIGINS: https://odp-reactor-ldr.herokuapp.com,https://odp-reactor-browser.vercel.app/
+          ALLOWED_ORIGINS: https://odp-reactor-ldr.herokuapp.com,https://odp-reactor-browser.vercel.app/
+
