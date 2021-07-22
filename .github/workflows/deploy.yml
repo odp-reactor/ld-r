@@ -17,7 +17,6 @@ jobs:
           heroku_app_name: "odp-reactor-ldr" #Must be unique in Heroku
           heroku_email: "odpreactor00@protonmail.com"
           branch: "develop"
-          justlogin: true
         env:
           NODE_ENV: production
           CONFIG_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
@@ -29,15 +28,3 @@ jobs:
           ODP_REACTOR_GRAPH_HOST: https://odp-reactor-browser.vercel.app
           ODP_REACTOR_GRAPH_PORT: 443
           TEST_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
-
-      - name: "pull from heroku develop"
-        run: git pull https://git.heroku.com/odp-reactor-ldr.git develop
-
-      - name: "push develop"
-        run: git push -f https://git.heroku.com/odp-reactor-ldr.git develop
-
-      - name: "push master and build"
-        run: git push -f https://git.heroku.com/odp-reactor-ldr.git develop:master
-
-
-
