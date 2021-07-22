@@ -1446,7 +1446,7 @@ var _LDRRouter = __webpack_require__(1058);
 
 function routeToResource(dataset, resource) {
   var router = new _LDRRouter.LDRRouter();
-  var route = "".concat(Object({"NODE_ENV":"production","BROWSER":"true","PUBLIC_URL":undefined,"CONFIG_SPARQL_ENDPOINT_URI":"http://localhost:8890/sparql","CONFIG_GRAPH":"http://virtuoso.local/configuration","ODP_REACTOR_GRAPH_HOST":"http://localhost","ODP_REACTOR_GRAPH_PORT":"4000"}).HOST, ":").concat(Object({"NODE_ENV":"production","BROWSER":"true","PUBLIC_URL":undefined,"CONFIG_SPARQL_ENDPOINT_URI":"http://localhost:8890/sparql","CONFIG_GRAPH":"http://virtuoso.local/configuration","ODP_REACTOR_GRAPH_HOST":"http://localhost","ODP_REACTOR_GRAPH_PORT":"4000"}).PORT, "/endpoints/").concat(encodeURIComponent(dataset), "/graphs/").concat(encodeURIComponent(resource));
+  var route = "".concat(Object({"NODE_ENV":"production","BROWSER":"true","PUBLIC_URL":undefined,"CONFIG_SPARQL_ENDPOINT_URI":"https://arco.istc.cnr.it/odpr/sparql","CONFIG_GRAPH":"http://odpreactor.arco.istc.cnr.it/configuration","ODP_REACTOR_GRAPH_HOST":"https://odp-reactor-browser.vercel.app","ODP_REACTOR_GRAPH_PORT":"443"}).HOST, ":").concat(Object({"NODE_ENV":"production","BROWSER":"true","PUBLIC_URL":undefined,"CONFIG_SPARQL_ENDPOINT_URI":"https://arco.istc.cnr.it/odpr/sparql","CONFIG_GRAPH":"http://odpreactor.arco.istc.cnr.it/configuration","ODP_REACTOR_GRAPH_HOST":"https://odp-reactor-browser.vercel.app","ODP_REACTOR_GRAPH_PORT":"443"}).PORT, "/endpoints/").concat(encodeURIComponent(dataset), "/graphs/").concat(encodeURIComponent(resource));
   router.navigateTo(route);
 }
 
@@ -14741,7 +14741,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var PUBLIC_URL = undefined ? undefined : '';
-var configEndpoint = "http://localhost:8890/sparql";
+var configEndpoint = "https://arco.istc.cnr.it/odpr/sparql";
 var serverConfigRepo = new _ServerConfigRepository.ServerConfigRepository(new _DbClient.default(configEndpoint));
 
 var Datasets = /*#__PURE__*/function (_React$Component) {
@@ -15215,7 +15215,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var configGraph = "http://virtuoso.local/configuration";
+var configGraph = "http://odpreactor.arco.istc.cnr.it/configuration";
 
 var ServerConfigQueryBuilder = /*#__PURE__*/function () {
   function ServerConfigQueryBuilder() {
@@ -15378,7 +15378,7 @@ var _LDRRouter = __webpack_require__(1058);
  */
 function routeToGraph(sparqlEndpoint, graph) {
   var router = new _LDRRouter.LDRRouter();
-  var route = "".concat("http://localhost", ":").concat("4000", "/endpoints/").concat(encodeURIComponent(sparqlEndpoint), "/graphs/").concat(encodeURIComponent(graph));
+  var route = "".concat("https://odp-reactor-browser.vercel.app", ":").concat("443", "/endpoints/").concat(encodeURIComponent(sparqlEndpoint), "/graphs/").concat(encodeURIComponent(graph));
   router.navigateTo(route);
 }
 
@@ -19289,7 +19289,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var configEndpoint = "http://localhost:8890/sparql";
+var configEndpoint = "https://arco.istc.cnr.it/odpr/sparql";
 var serverConfigRepo = new _ServerConfigRepository.ServerConfigRepository(new _DbClient.default(configEndpoint));
 
 var PatternReactor = /*#__PURE__*/function (_React$Component) {
@@ -19459,7 +19459,7 @@ var PatternInstanceQueryBuilder = /*#__PURE__*/function () {
   }, {
     key: "bindPatternInstanceVariable",
     value: function bindPatternInstanceVariable(patternQuery, patternInstanceUri) {
-      var patternVariable = Object({"NODE_ENV":"production","BROWSER":"true","PUBLIC_URL":undefined,"CONFIG_SPARQL_ENDPOINT_URI":"http://localhost:8890/sparql","CONFIG_GRAPH":"http://virtuoso.local/configuration","ODP_REACTOR_GRAPH_HOST":"http://localhost","ODP_REACTOR_GRAPH_PORT":"4000"}).PATTERN_INSTANCE_URI_VARIABLE || '?patternInstanceUri';
+      var patternVariable = Object({"NODE_ENV":"production","BROWSER":"true","PUBLIC_URL":undefined,"CONFIG_SPARQL_ENDPOINT_URI":"https://arco.istc.cnr.it/odpr/sparql","CONFIG_GRAPH":"http://odpreactor.arco.istc.cnr.it/configuration","ODP_REACTOR_GRAPH_HOST":"https://odp-reactor-browser.vercel.app","ODP_REACTOR_GRAPH_PORT":"443"}).PATTERN_INSTANCE_URI_VARIABLE || '?patternInstanceUri';
       return this.bindVariable(patternQuery, patternVariable, patternInstanceUri);
     }
   }]);
@@ -19785,7 +19785,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var configEndpoint = "http://localhost:8890/sparql";
+var configEndpoint = "https://arco.istc.cnr.it/odpr/sparql";
 var serverConfigRepo = new _ServerConfigRepository.ServerConfigRepository(new _DbClient.default(configEndpoint));
 
 var PatternResourceReactor = /*#__PURE__*/function (_React$Component) {
@@ -28031,7 +28031,7 @@ var _default = {
   //allows users to save and import a SPARQL query from/to the system: WYSIWYQ concept
   enableQuerySaveImport: 1,
   //graph that stores your configurations
-  configDatasetURI: ["http://virtuoso.local/configuration" || false],
+  configDatasetURI: ["http://odpreactor.arco.istc.cnr.it/configuration" || false],
   //will enable/disable auto config
   enableAutomaticConfiguration: 0,
   //the path to the upload folder
