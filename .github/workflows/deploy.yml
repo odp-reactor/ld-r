@@ -19,16 +19,16 @@ jobs:
           branch: "develop"
         env:
           NODE_ENV: production
-          CONFIG_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
-          CONFIG_SPARQL_ENDPOINT_HOST: arco.istc.cnr.it
-          CONFIG_SPARQL_ENDPOINT_PATH: /odpr/sparql
-          CONFIG_SPARQL_ENDPOINT_PORT: 443
-          CONFIG_SPARQL_ENDPOINT_TYPE: virtuoso
-          CONFIG_SPARQL_ENDPOINT_PROTOCOL: "https"
-          CONFIG_GRAPH: http://odpreactor.arco.istc.cnr.it/configuration
-          ODP_REACTOR_GRAPH_HOST: https://odp-reactor-browser.vercel.app
-          ODP_REACTOR_GRAPH_PORT: 443
-          TEST_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
-          HOST: https://odp-reactor-ldr.herokuapp.com/
-          PORT: 443
-          ALLOWED_ORIGINS: https://odp-reactor-ldr.herokuapp.com,https://odp-reactor-browser.vercel.app/
+          HD_CONFIG_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
+          HD_CONFIG_SPARQL_ENDPOINT_HOST: arco.istc.cnr.it
+          HD_CONFIG_SPARQL_ENDPOINT_PATH: /odpr/sparql
+          HD_CONFIG_SPARQL_ENDPOINT_PORT: 443
+          HD_CONFIG_SPARQL_ENDPOINT_TYPE: virtuoso
+          HD_CONFIG_SPARQL_ENDPOINT_PROTOCOL: https
+          HD_CONFIG_GRAPH: http://odpreactor.arco.istc.cnr.it/configuration
+          HD_ODP_REACTOR_GRAPH_HOST: https://odp-reactor-browser.vercel.app
+          HD_ODP_REACTOR_GRAPH_PORT: 443
+          HD_TEST_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
+          HD_HOST: https://odp-reactor-ldr.herokuapp.com/
+          HD_PORT: 443
+          HD_ALLOWED_ORIGINS: https://odp-reactor-ldr.herokuapp.com,https://odp-reactor-browser.vercel.app/
