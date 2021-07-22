@@ -16,6 +16,7 @@
   },
   "scripts": {
     "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false",
+    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=false",
     "build:start": "webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js &&  NODE_ENV=production npm start",
     "build:windows": "webpack --config ./webpack/prod.config.js&&set NODE_ENV=production&&npm start",
     "build": "webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js && set NODE_ENV=production",
