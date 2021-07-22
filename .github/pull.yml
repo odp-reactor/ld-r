@@ -2,7 +2,9 @@ version: "1"
 rules:
     - base: master
       upstream: ODPReactor:master
-      mergeMethod: hardreset
+      autoMerge: true
+      autoMergeHardReset: false
     - base: develop
       upstream: ODPReactor:develop
-      mergeMethod: hardreset
+      autoMerge: true
+      autoMergeHardReset: false
