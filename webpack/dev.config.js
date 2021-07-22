@@ -93,7 +93,9 @@ let webpackConfig = {
                 CONFIG_GRAPH: JSON.stringify(process.env.CONFIG_GRAPH),
                 ODP_REACTOR_GRAPH_HOST: JSON.stringify(process.env.ODP_REACTOR_GRAPH_HOST),
                 ODP_REACTOR_GRAPH_PORT: JSON.stringify(process.env.ODP_REACTOR_GRAPH_PORT),
-                TEST_SPARQL_ENDPOINT_URI: JSON.stringify(process.env.TEST_SPARQL_ENDPOINT_URI),            }
+                TEST_SPARQL_ENDPOINT_URI: JSON.stringify(process.env.TEST_SPARQL_ENDPOINT_URI),            
+                ALLOWED_ORIGINS: JSON.stringify(process.env.ALLOWED_ORIGINS)
+            }
         })
     ],
     devtool: 'cheap-module-source-map'
