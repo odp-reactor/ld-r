@@ -15,8 +15,7 @@
     "url": "http://ali1k.com"
   },
   "scripts": {
-    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false",
-    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=false && webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js",
+    "heroku-postbuild": "echo '[!] Warning: be sure heroku app has this env variable set to false to avoid pruning devDep: $ heroku config:set NPM_CONFIG_PRODUCTION=false' && webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js",
     "build:start": "webpack  -p --progress --optimize-minimize --config ./webpack/prod.config.js &&  NODE_ENV=production npm start",
     "build:windows": "webpack --config ./webpack/prod.config.js&&set NODE_ENV=production&&npm start",
     "dev": "node ./webpack/dev-server.js --max-http-header-size=81000",
