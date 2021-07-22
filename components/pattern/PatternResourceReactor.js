@@ -37,7 +37,9 @@ export class PatternResourceReactor extends React.Component {
                     }
                 }
             } else {
-                // console.log(`[!] No datasetId or resource uri. Cannot retrieve associated sparql endpoint. Dataset Id: ${datasetId} ; Pattern Instance Uri: ${resourceURI}`)
+                this.setState({
+                    patternInstances: []
+                })
             }
         }
         getPatternInstancesByResource(this.props.datasetURI, this.props.resourceURI)
