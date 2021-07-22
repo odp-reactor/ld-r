@@ -211,7 +211,7 @@ class NewDataset extends React.Component {
                         onClick={() => {
                             try {
                                 this.handleCreateDataset();
-                                console.log('Create dataset');
+                                console.log('Create dataset:', process.env);
                             } catch (e) {
                                 console.log(e);
                             }

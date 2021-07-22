@@ -3,6 +3,9 @@
 const configGraph =
     process.env.CONFIG_GRAPH || "http://virtuoso.localhost/configurations";
 
+
+console.log("WebPack build configuration file: config graph", configGraph)
+
 //important: first value in the array is considered as default value for the property
 //this file is visible to the server-side
 export default {
