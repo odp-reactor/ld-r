@@ -17,18 +17,6 @@ export default {
             path: "/sparql",
             endpointType: "virtuoso"
         },
-        // default: {
-        //     host: "arco.istc.cnr.it",
-        //     port: 80,
-        //     path: "/visualPatterns/sparql",
-        //     endpointType: "virtuoso"
-        // },
-        // "http://arco.istc.cnr.it/ldr/arco-toy": {
-        //     host: "arco.istc.cnr.it",
-        //     port: 80,
-        //     path: "/visualPatterns/sparql",
-        //     endpointType: "virtuoso"
-        // },
         [configGraph]: {
             host: process.env.CONFIG_SPARQL_ENDPOINT_HOST || "localhost",
             port: process.env.CONFIG_SPARQL_ENDPOINT_PORT || 8990,

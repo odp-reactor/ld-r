@@ -14,6 +14,8 @@ import url from 'url';
 import createEmptyDataset from '../actions/createEmptyDataset';
 import createFromExistingDataset from '../actions/createFromExistingDataset';
 
+import {config} from "../configs/server"
+
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
 class NewDataset extends React.Component {
@@ -211,7 +213,7 @@ class NewDataset extends React.Component {
                         onClick={() => {
                             try {
                                 this.handleCreateDataset();
-                                console.log('Create dataset:', process.env);
+                                console.log('Create dataset:', process.env, config);
                             } catch (e) {
                                 console.log(e);
                             }
