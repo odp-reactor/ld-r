@@ -30,6 +30,9 @@ jobs:
           ODP_REACTOR_GRAPH_PORT: 443
           TEST_SPARQL_ENDPOINT_URI: https://arco.istc.cnr.it/odpr/sparql
 
+      - name: "pull from heroku develop"
+        run: git pull https://git.heroku.com/odp-reactor-ldr.git develop
+
       - name: "push develop"
         run: git push -f https://git.heroku.com/odp-reactor-ldr.git develop
 
