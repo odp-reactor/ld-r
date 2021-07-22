@@ -1,10 +1,10 @@
 // require("dotenv").config();
 
+require("dotenv").config();
+
+
 const configGraph =
     process.env.CONFIG_GRAPH || "http://virtuoso.localhost/configurations";
-
-
-console.log("WebPack build configuration file: config graph", configGraph)
 
 //important: first value in the array is considered as default value for the property
 //this file is visible to the server-side
@@ -31,7 +31,7 @@ export default {
         // },
         [configGraph]: {
             host: process.env.CONFIG_SPARQL_ENDPOINT_HOST || "localhost",
-            port: process.env.CONFIG_SPARQL_ENDPOINT_PORT || 8890,
+            port: process.env.CONFIG_SPARQL_ENDPOINT_PORT || 8990,
             path: process.env.CONFIG_SPARQL_ENDPOINT_PATH || "/sparql",
             endpointType: process.env.CONFIG_SPARQL_ENDPOINT_TYPE || "virtuoso"
         },

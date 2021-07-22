@@ -65,7 +65,7 @@ let whitelist = ['http://localhost:4000', 'http://localhost:3000', "http://odp-r
 
 server.use(cors({
     origin: function(origin, callback){
-    // allow requests with no origin 
+    // allow requests with no origin
         if(!origin) return callback(null, true);
         if(whitelist.indexOf(origin) === -1){
             var message = '[!] The CORS policy for this origin doesn\'t ' +
