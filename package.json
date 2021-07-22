@@ -2,6 +2,9 @@
   "name": "linked-data-reactor",
   "version": "0.0.1",
   "description": "Linked Data Reactor provides a framework to view, browse and edit Linked Data in a flexible way.",
+  "engines": {
+    "node": "14.x"
+  },
   "private": false,
   "repository": {
     "type": "git",
