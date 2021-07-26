@@ -30,7 +30,7 @@ export default class CollectionVisualFrame extends React.Component {
         let routeToCulturalProperty = ()=>{}
         const culturalProperty = collection[0].cProp
         if (culturalProperty) {
-            routeToCulturalProperty = routeToResource(this.props.datasetId, culturalProperty)
+            routeToCulturalProperty = ()=>{routeToResource(this.props.dbContext.getDataset(), culturalProperty)}
         }
       
         // let propertyList = {};
