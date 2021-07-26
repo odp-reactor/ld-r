@@ -2,10 +2,13 @@ import { LDRRouter } from './LDRRouter'
 
 export function routeToResource(dataset, resource) {
     const router = new LDRRouter()
-    const route = `${process.env.HOST}:${
-        process.env.PORT
-    }/endpoints/${encodeURIComponent(
+    const host = process.env.HOST
+    const port = process.env.PORT
+    const protocol = port === '443' ? 'https' : 'http'
+    const route = `${protocol}://${host}:${
+        port
+    }/dataset/${encodeURIComponent(
         dataset
-    )}/graphs/${encodeURIComponent(resource)}`;
+    )}/resource/${encodeURIComponent(resource)}`;
     router.navigateTo(route)
 }
