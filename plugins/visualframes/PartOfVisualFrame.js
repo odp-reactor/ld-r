@@ -2,7 +2,8 @@ import React from 'react'
 
 import {PartWhole} from 'odp-reactor-visualframes'
 import { routeToResource } from '../../components/route/routeToResource'
-
+import { PropertyList } from '../../components/propertylist/PropertyList';
+import { PropertyValueList } from '../../components/propertylist/PropertyValueList';
 
 // const defaultPartWholeStyle = {
 //     containerStyle: {
@@ -35,29 +36,25 @@ export default class PartOfVisualFrame extends React.Component {
 
             parts = [...new Set(parts)]; //clean duplicate values
 
+            const datasetId = this.props.dbContext.getDataset()
+
             const routeToDatasetResource = (resourceUri) => {
-                routeToResource(this.props.dbContext.datasetId, resourceUri)
+                routeToResource(datasetId, resourceUri)
             }
 
-            // const getResource = resourceURI => {
-            //     this.context.executeAction(navigateAction, {
-            //         url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
-            //             this.props.dataset
-            //         )}/resource/${encodeURIComponent(resourceURI)}`
-            //     });
-            // };
+            const propertyValueList = new PropertyValueList()
+            let c = 1
+            data.forEach(part => {
+                propertyValueList.addProperty(`Component ${c} :`, {
+                    uri: part.cPropComponent,
+                    onClick : () => {
+                        routeToDatasetResource(part.cPropComponent)
+                    }
+                })
+                c++
+            })
 
-            // let propertyList = {};
-            // let c = 1;
-            // data.map(part => {
-            //     propertyList[`Component ${c} :`] = {
-            //         uri: part.cPropComponent,
-            //         onClick: () => {
-            //             getResource(part.cPropComponent);
-            //         }
-            //     };
-            //     c++;
-            // });
+            const sparqlEndpoint = this.props.dbContext.getSparqlEndpoint()
 
             return (
                 <div>
@@ -71,14 +68,12 @@ export default class PartOfVisualFrame extends React.Component {
                             // }
                         />
                     </div>
-                    {/* {this.props.showPropertyValueList && (
-                        <div style={{ marginTop: 50, marginBottom: 50 }}>
-                            <PropertyValueList
-                                properties={propertyList}
-                                label={true}
-                            />
-                        </div>
-                    )} */}
+                    <div style={{ marginTop: 50, marginBottom: 50 }}>
+                        <PropertyList
+                            propertyValueList={propertyValueList}
+                            source={sparqlEndpoint}
+                        />
+                    </div>
                 </div>
             );
         }
