@@ -5,17 +5,18 @@ import { routeToResource } from '../../components/route/routeToResource'
 import { PropertyList } from '../../components/propertylist/PropertyList';
 import { PropertyValueList } from '../../components/propertylist/PropertyValueList';
 
-// const defaultPartWholeStyle = {
-//     containerStyle: {
-//         width: 700
-//     },
-//     littleItemStyle: {
-//         width: 100
-//     },
-//     centerItemStyle: {
-//         width: 500
-//     }
-// };
+
+const defaultPartWholeStyle = {
+    containerStyle: {
+        width: 700
+    },
+    littleItemStyle: {
+        width: 100
+    },
+    centerItemStyle: {
+        width: 500
+    }
+};
 
 export default class PartOfVisualFrame extends React.Component {
 
@@ -24,6 +25,18 @@ export default class PartOfVisualFrame extends React.Component {
         if (!this.props.patternInstance || !this.props.patternInstance.data) {
             return null
         }
+
+        const partWholeStyle = this.props.isMosaicFrameView ? {
+            containerStyle : {
+                width: 500
+            },
+            littleItemStyle : {
+                width: 100
+            },
+            centerItemStyle : {
+                width: 300
+            }
+        } : defaultPartWholeStyle
 
         const data = this.props.patternInstance.data
 
@@ -56,6 +69,8 @@ export default class PartOfVisualFrame extends React.Component {
 
             const sparqlEndpoint = this.props.dbContext.getSparqlEndpoint()
 
+
+
             return (
                 <div>
                     <div style={{ textAlign: 'center', margin: 'auto' }}>
@@ -63,9 +78,7 @@ export default class PartOfVisualFrame extends React.Component {
                             parts={parts}
                             whole={whole}
                             onResourceClick={routeToDatasetResource}
-                            // styles={
-                            //     defaultPartWholeStyle
-                            // }
+                            styles={partWholeStyle}
                         />
                     </div>
                     <div style={{ marginTop: 50, marginBottom: 50 }}>
@@ -79,4 +92,5 @@ export default class PartOfVisualFrame extends React.Component {
         }
     }
 }
+
 

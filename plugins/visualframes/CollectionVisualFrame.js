@@ -10,7 +10,7 @@ import { PropertyValueList } from '../../components/propertylist/PropertyValueLi
 
 const defaultCollectionStyle = {
     collectionContainerWidth: {
-        width: '150%' // set this width to 120, 130, 140% to increase padding between items
+        width: '120%' // set this width to 120, 130, 140% to increase padding between items
     }
 };
 
@@ -89,6 +89,9 @@ export default class CollectionVisualFrame extends React.Component {
                         <Depiction
                             uri={culturalProperty}
                             source={this.props.dbContext.sparqlEndpoint}
+                            style={{
+                                width: '90%'
+                            }}
                             // style={defa}
                             // style={this.props.styles.depiction}
                         />
