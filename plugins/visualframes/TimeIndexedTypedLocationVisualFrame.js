@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {ImageGrid} from '../../components/image/ImageGrid'
 
 export default class TimeIndexedTypedLocationVisualFrame extends React.Component {
 
@@ -106,6 +107,9 @@ export default class TimeIndexedTypedLocationVisualFrame extends React.Component
                     flex: '1 0 45%'
                 };
 
+                console.log('TITLS:', titls)
+                const culturalPropertyURI = titls[0] && titls[0].culturalProperty
+
                 return (
                     <div
                         style={{
@@ -123,6 +127,11 @@ export default class TimeIndexedTypedLocationVisualFrame extends React.Component
                                 }}
                             />
                         </div>
+                        {!this.props.isMosaicFrameView && (
+                            <div style={childStyle}>
+                                <ImageGrid resourceURI={culturalPropertyURI} source={this.props.dbContext.sparqlEndpoint}/>
+                            </div>
+                        )}
                         {/* {this.props.showImageGrid && (
                             <div style={childStyle}>
                                 <ImageGrid resourceURI={culturalPropertyURI} />
