@@ -7,6 +7,8 @@ import "./PropertyList.css";
 
 export function PropertyList({ propertyValueList, title, source }) {
 
+    console.log("PropertyList:", source)
+
     const properties = propertyValueList.getProperties() || {}
   
     const keys = Object.keys(properties);
