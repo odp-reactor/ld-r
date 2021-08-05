@@ -94,7 +94,8 @@ let webpackConfig = {
                 CONFIG_GRAPH: JSON.stringify(process.env.CONFIG_GRAPH),
                 ODP_REACTOR_GRAPH_HOST: JSON.stringify(process.env.ODP_REACTOR_GRAPH_HOST),
                 ODP_REACTOR_GRAPH_PORT: JSON.stringify(process.env.ODP_REACTOR_GRAPH_PORT),
-                TEST_SPARQL_ENDPOINT_URI: JSON.stringify(process.env.TEST_SPARQL_ENDPOINT_URI),            
+                TEST_SPARQL_ENDPOINT_URI: JSON.stringify(process.env.TEST_SPARQL_ENDPOINT_URI),
+                ODP_REACTOR_SERVER_URL: JSON.stringify(process.env.ODP_REACTOR_SERVER_URL),
                 ALLOWED_ORIGINS: JSON.stringify(process.env.ALLOWED_ORIGINS)
             }
         })

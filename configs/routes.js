@@ -141,6 +141,25 @@ export default {
             context.executeAction(loadDatasets, {}, done);
         }
     },
+    queries: {
+        //if no id is provided -> will start by defaultDatasetURI in reactor.config
+        path: `${PUBLIC_URL}/queries`,
+        method: "get",
+        handler: require("../components/QueryConfigurationPage"),
+        label: "Queries",
+    },
+    newQuery: {
+        path: `${PUBLIC_URL}/addquery`,
+        method: "get",
+        handler: require("../components/AddQueryPage"),
+        label: "Add Query",
+    },
+    updateQueryt: {
+        path: `${PUBLIC_URL}/updatequery/:queryId`,
+        method: "get",
+        handler: require("../components/UpdateQueryPage"),
+        label: "Update Query",
+    },
     dataset: {
         //if no id is provided -> will start by defaultDatasetURI in reactor.config
         path: `${PUBLIC_URL}/dataset/:page?/:id?`,
