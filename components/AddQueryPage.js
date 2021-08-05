@@ -38,7 +38,7 @@ export default class AddQueryPage extends React.Component {
         console.log(this.state)
         return <div>
             <Container fluid className="ldr-padding-more">
-                <Header as="h2"><Icon name="database" color="violet"/>Add a new query</Header>
+                <Header as="h2"><Icon name="database" color="blue"/>Add a new query</Header>
                 <Form error={this.state.error.active} success={this.state.success.active} size="big">
                     <Form.Field error={isFieldError(this.state.queryObject.patternLabel)} required onChange={(e) => {
                         this.setState({
@@ -96,7 +96,7 @@ export default class AddQueryPage extends React.Component {
                                 }    
                             })
                         }}/>
-                    <Form.Button color="violet" size="big" onClick={()=>{
+                    <Form.Button color="blue" size="big" onClick={()=>{
                         this.sendQueryData()
                     }}>Add Query</Form.Button>
                     <Message error

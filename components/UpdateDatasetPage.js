@@ -2,29 +2,29 @@ import axios from 'axios'
 import React from 'react'
 
 import { Container, Header, Icon, Message, Form, Input} from 'semantic-ui-react'
-import { routeToQueries } from './route/routeToQueries'
+import { routeToDatasets } from './route/routeToDatasets'
 
 
-export default class UpdateQueryPage extends React.Component {
+export default class UpdateDatasetPage extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            queryObject : {
-                string: undefined,
-                patternUri: undefined,
-                patternLabel: undefined,
-                id: undefined
+            datasetObject : {
+                id: undefined,
+                sparqlEndpoint: undefined,
+                graph: undefined,
+                indexed: undefined
             },
             error : {
                 active: false,
                 title: 'Please compile required fields',
-                msg: 'To add a query you should compile every required field'
+                msg: 'To update a dataset you should compile every required field'
             },
             success : {
                 active: false,
-                title: 'Query succesfully created',
-                msg: 'Modify input to create a new query'
+                title: 'Dataset succesfully updated',
+                msg: 'Modify input to update current dataset'
             }
 
         }
@@ -32,12 +32,13 @@ export default class UpdateQueryPage extends React.Component {
 
     componentDidMount() {
         const pathName = window.location.pathname
-        const queryId = pathName.split('/')[2]
-        console.log('Pathname:', pathName, queryId)
+        const params = pathName.split('/')
+        const datasetId = params[params.length - 1]
+        console.log('Pathname:', pathName, datasetId)
 
-        if (!this.state.queryObject.id) {
+        if (!this.state.datasetObject.id) {
             console.log('Getting data')
-            fetch(`${process.env.ODP_REACTOR_SERVER_URL}/queries/${queryId}`) .then(response => { 
+            fetch(`${process.env.ODP_REACTOR_SERVER_URL}/datasets/${datasetId}`) .then(response => { 
                 // The response is a Response instance.
                 // You parse the data into a useable format using `.json()`
                 return response.json();
@@ -46,7 +47,7 @@ export default class UpdateQueryPage extends React.Component {
                 console.log(data);  // { "userId": 1, "id": 1, "title": "...", "body": "..." }
                 if (data.query) {
                     this.setState({
-                        queryObject: data.query
+                        datasetObject: data.dataset
                     })
                 }
             }).catch(err => {
@@ -59,22 +60,22 @@ export default class UpdateQueryPage extends React.Component {
     render() {
 
         if (this.state.success.active) {
-            routeToQueries()
+            routeToDatasets()
         }
 
         console.log(this.state)
         return <div>
             <Container fluid className="ldr-padding-more">
-                <Header as="h2"><Icon name="database" color="blue"/>Update query</Header>
+                <Header as="h2"><Icon name="cubes" color="blue"/>Update dataset</Header>
                 <Form error={this.state.error.active} success={this.state.success.active} size="big">
                     <Form.Field 
-                        error={isFieldError(this.state.queryObject.patternLabel)} required onChange={(e) => {
+                        error={isFieldError(this.state.datasetObject.sparqlEndpoint)} required onChange={(e) => {
                             this.setState({
-                                queryObject: {
-                                    string: this.state.queryObject.string,
-                                    patternUri: this.state.queryObject.patternUri,
-                                    patternLabel: e.target.value,
-                                    id: this.state.queryObject.id
+                                datasetObject: {
+                                    id: this.state.datasetObject.id,
+                                    sparqlEndpoint: e.target.value,
+                                    graph: this.state.datasetObject.graph,
+                                    indexed: this.state.datasetObject.indexed
                                 },
                                 error : {
                                     active: false
@@ -85,55 +86,35 @@ export default class UpdateQueryPage extends React.Component {
                             })
                         }}>
                         <label>
-                            Pattern Label
+                            Sparql Endpoint
                         </label>
-                        <Input value={this.state.queryObject.patternLabel} placeholder="Label of the collection indexed by the query (e.g. Measurements)"></Input>
+                        <Input value={this.state.datasetObject.sparqlEndpoint} placeholder="Sparql Endpoint"></Input>
                     </Form.Field>
-                    <Form.Field 
-                    
-                        error={isFieldError(this.state.queryObject.patternUri)} required onChange={(e) => {
-                            this.setState({
-                                queryObject: {
-                                    string: this.state.queryObject.string,
-                                    patternUri: e.target.value,
-                                    patternLabel: this.state.queryObject.patternLabel,
-                                    id: this.state.queryObject.id
-                                },
-                                error : {
-                                    active: false
-                                },
-                                success: {
-                                    active : false
-                                }
-                            })
-                        }}>
-                        <label>
-                            Pattern URI
-                        </label>
-                        <Input value={this.state.queryObject.patternUri} placeholder="Identifier of the collection indexed by the query (e.g. https://ontologydesignpatterns.org/measurement-collection)"></Input>
-                    </Form.Field>
-                    <Form.TextArea 
-                        value={this.state.queryObject.string}
-                        error={isFieldError(this.state.queryObject.string)} required label='Query' placeholder='SELECT * WHERE { ?s ?p ?o .}' style={{ minHeight: 200}} 
+                    <Form.Field                     
                         onChange={(e) => {
                             this.setState({
-                                queryObject: {
-                                    string: e.target.value,
-                                    patternUri: this.state.queryObject.patternUri,
-                                    patternLabel: this.state.queryObject.patternLabel,
-                                    id: this.state.queryObject.id
+                                datasetObject: {
+                                    id: this.state.datasetObject.id,
+                                    sparqlEndpoint: this.state.datasetObject.sparqlEndpoint,
+                                    graph: e.target.value,
+                                    indexed: this.state.datasetObject.indexed
                                 },
                                 error : {
                                     active: false
                                 },
                                 success: {
                                     active : false
-                                }    
+                                }
                             })
-                        }}/>
+                        }}>
+                        <label>
+                            Graph
+                        </label>
+                        <Input value={this.state.datasetObject.graph} placeholder="Sparql endpoint graph to be explored"></Input>
+                    </Form.Field>
                     <Form.Button color="blue" size="big" onClick={()=>{
-                        this.sendQueryData()
-                    }}>Update Query</Form.Button>
+                        this.sendDatasetData()
+                    }}>Update Dataset</Form.Button>
                     <Message error
                         header={this.state.error.title}
                         content={this.state.error.msg}
@@ -146,26 +127,26 @@ export default class UpdateQueryPage extends React.Component {
             </Container>
         </div>
     }
-    sendQueryData ()  {
-        const q = this.state.queryObject
-        if (isNotValidField(q.patternLabel) || isNotValidField(q.patternUri) || isNotValidField(q.string) || isNotValidField(q.id)) {
+    sendDatasetData ()  {
+        const d = this.state.datasetObject
+        if (isNotValidField(d.sparqlEndpoint) || isNotValidField(d.id)) {
             this.setState({
                 error: {
                     active: true,
                     title: 'Please compile required fields',
-                    msg: 'To add a query you should compile every required field'
+                    msg: 'To update a dataset you should compile every required field'
                 }
             })
             return
         }
-        axios.put(`${process.env.ODP_REACTOR_SERVER_URL}/queries`, {
-            query: q
+        axios.put(`${process.env.ODP_REACTOR_SERVER_URL}/datasets`, {
+            dataset: d
         }).then(res => {
             if (res.data.status === 'OK') {
                 this.setState({
                     success : {
                         active: true,
-                        title: 'Query succesfully update',
+                        title: 'Dataset succesfully update',
                         msg: 'Modify input to update again'        
                     }
                 })
@@ -183,7 +164,7 @@ export default class UpdateQueryPage extends React.Component {
             this.setState({
                 error: {
                     active: true,
-                    title: 'Error while updating query',
+                    title: 'Error while updating dataset',
                     msg: err.message
                 }
             })
