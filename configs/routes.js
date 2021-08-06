@@ -138,6 +138,12 @@ export default {
         handler: require("../components/DatasetsConfigurationPage"),
         label: "Datasets",
     },
+    updateDataset : {
+        path: `${PUBLIC_URL}/updatedataset/:datasetId`,
+        method: "get",
+        handler: require("../components/UpdateDatasetPage"),
+        label: "Update Dataset",
+    },
     newDataset: {
         path: `${PUBLIC_URL}/adddataset`,
         method: "get",

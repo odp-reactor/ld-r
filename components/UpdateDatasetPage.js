@@ -14,7 +14,8 @@ export default class UpdateDatasetPage extends React.Component {
                 id: undefined,
                 sparqlEndpoint: undefined,
                 graph: undefined,
-                indexed: undefined
+                label: undefined,
+                indexed: undefined,
             },
             error : {
                 active: false,
@@ -63,7 +64,7 @@ export default class UpdateDatasetPage extends React.Component {
             routeToDatasets()
         }
 
-        console.log(this.state)
+        console.log('update ',this.state)
         return <div>
             <Container fluid className="ldr-padding-more">
                 <Header as="h2"><Icon name="cubes" color="blue"/>Update dataset</Header>
@@ -75,7 +76,8 @@ export default class UpdateDatasetPage extends React.Component {
                                     id: this.state.datasetObject.id,
                                     sparqlEndpoint: e.target.value,
                                     graph: this.state.datasetObject.graph,
-                                    indexed: this.state.datasetObject.indexed
+                                    indexed: this.state.datasetObject.indexed,
+                                    label: this.state.datasetObject.label
                                 },
                                 error : {
                                     active: false

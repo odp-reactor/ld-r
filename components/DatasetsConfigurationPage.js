@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Container, List, Header, Segment, Label, Icon, Button, Message} from 'semantic-ui-react'
 import { routeToAddDataset } from './route/routeToAddDataset';
+import { routeToUpdateDataset} from './route/routeToUpdateDataset'
 
 
 const ODP_REACTOR_SERVER_URL = process.env.ODP_REACTOR_SERVER_URL ? process.env.ODP_REACTOR_SERVER_URL : '';
@@ -87,7 +88,7 @@ export default class DatasetsConfigurationPage extends React.Component {
                                 <List.Content>
                                     <List.Header>{dataset.label}</List.Header>
                                     <List.Description>{dataset.sparqlEndpoint}</List.Description>
-                                    <List.Description>{dataset.graph}</List.Description>
+                                    <List.Description>{dataset.graph ? dataset.graph : ''}</List.Description>
                                 </List.Content>
                             </List.Item>
                         })}
