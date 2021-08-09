@@ -166,8 +166,9 @@ export default class UpdateQueryPage extends React.Component {
                     success : {
                         active: true,
                         title: 'Query succesfully update',
-                        msg: 'Modify input to update again'        
-                    }
+                        msg: 'Modify input to update again',
+                    },
+                    queryObject: res.data.query
                 })
             } else {
                 this.setState({

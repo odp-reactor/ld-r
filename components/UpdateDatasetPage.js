@@ -46,7 +46,7 @@ export default class UpdateDatasetPage extends React.Component {
             }).then(data => {
                 // `data` is the parsed version of the JSON returned from the above endpoint.
                 console.log(data);  // { "userId": 1, "id": 1, "title": "...", "body": "..." }
-                if (data.query) {
+                if (data.dataset) {
                     this.setState({
                         datasetObject: data.dataset
                     })
@@ -64,7 +64,7 @@ export default class UpdateDatasetPage extends React.Component {
             routeToDatasets()
         }
 
-        console.log('update ',this.state)
+        console.log('Render: ',this.state)
         return <div>
             <Container fluid className="ldr-padding-more">
                 <Header as="h2"><Icon name="cubes" color="blue"/>Update dataset</Header>
@@ -92,6 +92,29 @@ export default class UpdateDatasetPage extends React.Component {
                         </label>
                         <Input value={this.state.datasetObject.sparqlEndpoint} placeholder="Sparql Endpoint"></Input>
                     </Form.Field>
+                    <Form.Field 
+                        error={isFieldError(this.state.datasetObject.sparqlEndpoint)} required onChange={(e) => {
+                            this.setState({
+                                datasetObject: {
+                                    id: this.state.datasetObject.id,
+                                    sparqlEndpoint: this.state.datasetObject.sparqlEndpoint,
+                                    graph: this.state.datasetObject.graph,
+                                    indexed: this.state.datasetObject.indexed,
+                                    label: e.target.value
+                                },
+                                error : {
+                                    active: false
+                                },
+                                success: {
+                                    active : false
+                                }
+                            })
+                        }}>
+                        <label>
+                            Label
+                        </label>
+                        <Input value={this.state.datasetObject.label} placeholder="Label"></Input>
+                    </Form.Field>
                     <Form.Field                     
                         onChange={(e) => {
                             this.setState({
@@ -99,7 +122,8 @@ export default class UpdateDatasetPage extends React.Component {
                                     id: this.state.datasetObject.id,
                                     sparqlEndpoint: this.state.datasetObject.sparqlEndpoint,
                                     graph: e.target.value,
-                                    indexed: this.state.datasetObject.indexed
+                                    indexed: this.state.datasetObject.indexed,
+                                    label: this.state.datasetObject.label
                                 },
                                 error : {
                                     active: false
@@ -131,7 +155,7 @@ export default class UpdateDatasetPage extends React.Component {
     }
     sendDatasetData ()  {
         const d = this.state.datasetObject
-        if (isNotValidField(d.sparqlEndpoint) || isNotValidField(d.id)) {
+        if (isNotValidField(d.sparqlEndpoint) || isNotValidField(d.label) || isNotValidField(d.id)) {
             this.setState({
                 error: {
                     active: true,
@@ -150,7 +174,8 @@ export default class UpdateDatasetPage extends React.Component {
                         active: true,
                         title: 'Dataset succesfully update',
                         msg: 'Modify input to update again'        
-                    }
+                    },
+                    datasetObject: res.data.dataset
                 })
             } else {
                 this.setState({
