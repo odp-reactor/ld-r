@@ -1,6 +1,0 @@
-{
-    "http://example.com/example-pattern" : "ExampleVisualFrame.js",
-    "https://w3id.org/arco/ontology/denotative-description/measurement-collection" : "CollectionVisualFrame.js",
-    "https://w3id.org/arco/ontology/location/cultural-property-component-of" : "PartOfVisualFrame.js",
-    "https://w3id.org/arco/ontology/location/time-indexed-typed-location" : "TimeIndexedTypedLocationVisualFrame.js"    
-}

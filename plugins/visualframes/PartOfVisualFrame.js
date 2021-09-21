@@ -2,19 +2,21 @@ import React from 'react'
 
 import {PartWhole} from 'odp-reactor-visualframes'
 import { routeToResource } from '../../components/route/routeToResource'
+import { PropertyList } from '../../components/propertylist/PropertyList';
+import { PropertyValueList } from '../../components/propertylist/PropertyValueList';
 
 
-// const defaultPartWholeStyle = {
-//     containerStyle: {
-//         width: 700
-//     },
-//     littleItemStyle: {
-//         width: 100
-//     },
-//     centerItemStyle: {
-//         width: 500
-//     }
-// };
+const defaultPartWholeStyle = {
+    containerStyle: {
+        width: 700
+    },
+    littleItemStyle: {
+        width: 100
+    },
+    centerItemStyle: {
+        width: 500
+    }
+};
 
 export default class PartOfVisualFrame extends React.Component {
 
@@ -23,6 +25,18 @@ export default class PartOfVisualFrame extends React.Component {
         if (!this.props.patternInstance || !this.props.patternInstance.data) {
             return null
         }
+
+        const partWholeStyle = this.props.isMosaicFrameView ? {
+            containerStyle : {
+                width: 500
+            },
+            littleItemStyle : {
+                width: 100
+            },
+            centerItemStyle : {
+                width: 300
+            }
+        } : defaultPartWholeStyle
 
         const data = this.props.patternInstance.data
 
@@ -35,29 +49,27 @@ export default class PartOfVisualFrame extends React.Component {
 
             parts = [...new Set(parts)]; //clean duplicate values
 
+            const datasetId = this.props.dbContext.getDataset()
+
             const routeToDatasetResource = (resourceUri) => {
-                routeToResource(this.props.dbContext.datasetId, resourceUri)
+                routeToResource(datasetId, resourceUri)
             }
 
-            // const getResource = resourceURI => {
-            //     this.context.executeAction(navigateAction, {
-            //         url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
-            //             this.props.dataset
-            //         )}/resource/${encodeURIComponent(resourceURI)}`
-            //     });
-            // };
+            const propertyValueList = new PropertyValueList()
+            let c = 1
+            data.forEach(part => {
+                propertyValueList.addProperty(`Component ${c} :`, {
+                    uri: part.cPropComponent,
+                    onClick : () => {
+                        routeToDatasetResource(part.cPropComponent)
+                    }
+                })
+                c++
+            })
 
-            // let propertyList = {};
-            // let c = 1;
-            // data.map(part => {
-            //     propertyList[`Component ${c} :`] = {
-            //         uri: part.cPropComponent,
-            //         onClick: () => {
-            //             getResource(part.cPropComponent);
-            //         }
-            //     };
-            //     c++;
-            // });
+            const sparqlEndpoint = this.props.dbContext.getSparqlEndpoint()
+
+
 
             return (
                 <div>
@@ -66,22 +78,19 @@ export default class PartOfVisualFrame extends React.Component {
                             parts={parts}
                             whole={whole}
                             onResourceClick={routeToDatasetResource}
-                            // styles={
-                            //     defaultPartWholeStyle
-                            // }
+                            styles={partWholeStyle}
                         />
                     </div>
-                    {/* {this.props.showPropertyValueList && (
-                        <div style={{ marginTop: 50, marginBottom: 50 }}>
-                            <PropertyValueList
-                                properties={propertyList}
-                                label={true}
-                            />
-                        </div>
-                    )} */}
+                    <div style={{ marginTop: 50, marginBottom: 50 }}>
+                        <PropertyList
+                            propertyValueList={propertyValueList}
+                            source={sparqlEndpoint}
+                        />
+                    </div>
                 </div>
             );
         }
     }
 }
+
 

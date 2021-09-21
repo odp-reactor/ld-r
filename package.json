@@ -36,7 +36,10 @@
   "jest": {
     "setupFilesAfterEnv": [
       "./setupTests.js"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|less)$": "<rootDir>/test/styleMock.js"
+    }
   },
   "license": "Apache-2.0",
   "dependencies": {
@@ -44,6 +47,7 @@
     "@datapunt/matomo-tracker-js": "^0.4.0",
     "animate.css": "^3.7.0",
     "async": "^3.1.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.18.3",
     "camelcase": "^5.0.0",
     "chroma-js": "^2.0.2",
@@ -92,7 +96,9 @@
     "react-dom": "^16.5.2",
     "react-dropzone": "^10.1.0",
     "react-hotjar": "^2.2.1",
+    "react-image-gallery": "^1.2.5",
     "react-leaflet": "^2.0.1",
+    "react-list": "^0.8.16",
     "react-loadable": "^5.5.0",
     "react-loader-spinner": "^3.1.14",
     "react-markdown": "^4.0.4",
@@ -114,6 +120,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.13",
+    "@babel/plugin-syntax-async-generators": "^7.8.4",
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
     "@types/js-quantities": "^1.6.2",
     "babel-cli": "^7.0.0-beta.3",
@@ -121,6 +128,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-add-module-exports": "^1.0.2",
     "babel-plugin-dev-expression": "^0.2.2",
+    "babel-plugin-syntax-async-generators": "*",
     "babel-plugin-syntax-decorators": "^7.0.0-beta.3",
     "babel-plugin-syntax-dynamic-import": "^7.0.0-beta.3",
     "babel-plugin-transform-class-properties": "^7.0.0-beta.3",

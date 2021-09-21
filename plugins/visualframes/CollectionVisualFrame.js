@@ -2,11 +2,15 @@ import React from 'react';
 
 import { Collection, Depiction } from 'odp-reactor-visualframes'
 import { routeToResource } from '../../components/route/routeToResource'
+import { PropertyList } from '../../components/propertylist/PropertyList';
+import { PropertyValueList } from '../../components/propertylist/PropertyValueList';
+
+
 
 
 const defaultCollectionStyle = {
     collectionContainerWidth: {
-        width: '150%' // set this width to 120, 130, 140% to increase padding between items
+        width: '120%' // set this width to 120, 130, 140% to increase padding between items
     }
 };
 
@@ -21,41 +25,35 @@ export default class CollectionVisualFrame extends React.Component {
 
         const collection = this.props.patternInstance.data
 
-        console.log('Data:',collection)
 
         if (!collection || collection.length === 0 ) {
             return null
         }
 
+        const propertyValueList = new PropertyValueList()
+        const datasetId = this.props.dbContext.getDataset()
+
         let routeToCulturalProperty = ()=>{}
         const culturalProperty = collection[0].cProp
         if (culturalProperty) {
-            routeToCulturalProperty = routeToResource(this.props.datasetId, culturalProperty)
+            routeToCulturalProperty = ()=>{routeToResource(datasetId, culturalProperty)}           
         }
-      
-        // let propertyList = {};
-        // if (!this.props.hideCulturalProperty) {
-        //     propertyList['Cultural Property :'] = {
-        //         uri: collection[0].cProp,
-        //         onClick: () => {
-        //             this.context.executeAction(navigateAction, {
-        //                 url: `${PUBLIC_URL}/dataset/${encodeURIComponent(
-        //                     this.props.dataset
-        //                 )}/resource/${encodeURIComponent(
-        //                     collection[0].cProp
-        //                 )}`
-        //             });
-        //         }
-        //     };
-        // }
-        // collection.forEach(c => {
-        //     let label = c.meas.split('-').pop() + ':';
 
-        //     label = label.charAt(0).toUpperCase() + label.slice(1);
-        //     propertyList[label] = {
-        //         label: `${c.value} ${c.unit}`
-        //     };
-        // });
+        if (!this.props.isMosaicFrameView) {
+            propertyValueList.addProperty('Cultural Property :', {
+                uri: culturalProperty,
+                label: collection[0].cPropLabel,
+                onClick: routeToCulturalProperty
+            })
+        }
+        collection.forEach(c => {
+            let label = c.meas.split('-').pop() + ':';
+
+            label = label.charAt(0).toUpperCase() + label.slice(1);
+            propertyValueList.addProperty(label, {
+                label: `${c.value} ${c.unit}`
+            })
+        });
 
         return (
             <div>
@@ -91,6 +89,9 @@ export default class CollectionVisualFrame extends React.Component {
                         <Depiction
                             uri={culturalProperty}
                             source={this.props.dbContext.sparqlEndpoint}
+                            style={{
+                                width: '90%'
+                            }}
                             // style={defa}
                             // style={this.props.styles.depiction}
                         />
@@ -115,14 +116,12 @@ export default class CollectionVisualFrame extends React.Component {
                         ></Collection>
                     </div>
                 </div>
-                {/* {this.props.showPropertyValueList && (
-                        <div style={{ marginTop: 50, marginBottom: 50 }}>
-                            <PropertyValueList
-                                properties={propertyList}
-                                label={false}
-                            />
-                        </div>
-                    )} */}
+                <div style={{ marginTop: 50, marginBottom: 50 }}>
+                    <PropertyList
+                        propertyValueList={propertyValueList}
+                        label={false}
+                    />
+                </div>
             </div>
         );
     }

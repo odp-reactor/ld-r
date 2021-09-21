@@ -1,0 +1,11 @@
+.property-value-item {
+    display: flex;
+    justify-content: space-between;
+    font-family: "OpenSans-Regular";
+    padding: 10px;
+}
+
+.property-value-item-ld {
+    cursor: pointer;
+    color: #4183c4;
+}

@@ -4,4 +4,10 @@ export class DbContext {
         this.sparqlEndpoint = sparqlEndpoint
         this.graph = graph
     }
+    getDataset() {
+        return this.datasetId
+    }
+    getSparqlEndpoint() {
+        return this.sparqlEndpoint
+    }
 }

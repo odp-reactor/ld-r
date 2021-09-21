@@ -70,6 +70,11 @@ class DefaultHTMLLayout extends React.Component {
                         rel="stylesheet"
                         type="text/css"
                     />
+                    <link
+                        href={`${PUBLIC_URL}/assets/css/image-gallery.css`}
+                        rel="stylesheet"
+                        type="text/css"
+                    />
                     {/* <script
                         type="text/javascript"
                         src="/assets/js/matomoAnalytics.js"
