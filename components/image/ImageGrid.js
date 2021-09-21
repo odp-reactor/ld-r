@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
-import './ImageGrid.css';
+// import 'react-image-gallery/styles/css/image-gallery.css';
 
 const { namedNode } = require('@rdfjs/data-model');
 

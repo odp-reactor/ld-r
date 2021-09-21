@@ -125,6 +125,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.13",
+    "@babel/plugin-syntax-async-generators": "^7.8.4",
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
     "@types/js-quantities": "^1.6.2",
     "babel-cli": "^7.0.0-beta.3",
@@ -132,6 +133,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-add-module-exports": "^1.0.2",
     "babel-plugin-dev-expression": "^0.2.2",
+    "babel-plugin-syntax-async-generators": "*",
     "babel-plugin-syntax-decorators": "^7.0.0-beta.3",
     "babel-plugin-syntax-dynamic-import": "^7.0.0-beta.3",
     "babel-plugin-transform-class-properties": "^7.0.0-beta.3",

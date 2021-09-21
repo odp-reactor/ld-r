@@ -1,29 +1,28 @@
-import React from "react";
-import ReactList from "react-list";
+import React from 'react';
+import ReactList from 'react-list';
 
-import {Label} from "odp-reactor-visualframes";
+import {Label} from 'odp-reactor-visualframes';
 
-import "./PropertyList.css";
 
 export function PropertyList({ propertyValueList, title, source }) {
 
-    console.log("PropertyList:", source)
+    console.log('PropertyList:', source)
 
     const properties = propertyValueList.getProperties() || {}
   
     const keys = Object.keys(properties);
     let groupIndex = 1,
         newGroupIndex,
-        separatorBorder = "";
+        separatorBorder = '';
     const renderItem = (index, key) => {
         const isLinked = properties[keys[index]].onClick ? true : false;
 
         if (properties[keys[index]].index) {
             newGroupIndex = properties[keys[index]].index;
-            separatorBorder = "";
+            separatorBorder = '';
             if (newGroupIndex && newGroupIndex !== groupIndex) {
                 // separatorBorder = "1px solid #d4d4d5";
-                separatorBorder = "1px solid grey";
+                separatorBorder = '1px solid grey';
                 groupIndex++;
             }
         }
@@ -32,25 +31,25 @@ export function PropertyList({ propertyValueList, title, source }) {
             <div
                 key={key}
                 className={`property-value-item ${
-                    isLinked ? "property-value-item-ld" : ""
+                    isLinked ? 'property-value-item-ld' : ''
                 }`}
                 style={
                     key % 2 == 0
                         ? {
-                              backgroundColor: "#f5f5f5",
-                              borderTop: separatorBorder,
-                          }
+                            backgroundColor: '#f5f5f5',
+                            borderTop: separatorBorder,
+                        }
                         : null
                 }
                 onClick={
                     isLinked ? properties[keys[index]].onClick : () => {}
                 }
             >
-                <div style={{ minWidth: "fit-content", marginRight: 50 }}>
+                <div style={{ minWidth: 'fit-content', marginRight: 50 }}>
                     {keys[index]}
                 </div>
                 <div
-                    title={isLinked ? `Click to explore resource` : ""}
+                    title={isLinked ? 'Click to explore resource' : ''}
                 >
                     {properties[keys[index]].uri && source ? (
                         <Label uri={properties[keys[index]].uri} source={source} />
@@ -67,10 +66,10 @@ export function PropertyList({ propertyValueList, title, source }) {
             {title && (
                 <h1
                     style={{
-                        backgroundColor: "#4183c4",
-                        fontFamily: "OpenSans-Regular",
+                        backgroundColor: '#4183c4',
+                        fontFamily: 'OpenSans-Regular',
                         fontSize: 18,
-                        color: "#fff",
+                        color: '#fff',
                         padding: 10,
                     }}
                 >
@@ -79,7 +78,7 @@ export function PropertyList({ propertyValueList, title, source }) {
             )}
             <div
                 style={{
-                    overflow: "auto",
+                    overflow: 'auto',
                     // border: "1px solid #d4d4d5",
                 }}
             >
