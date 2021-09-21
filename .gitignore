@@ -20,3 +20,5 @@ uploaded/*.tsv
 uploaded/*.json
 .vscode
 WORKFLOW.md
+
+.vercel
