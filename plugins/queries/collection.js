@@ -1,4 +1,4 @@
-PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+const collection = `PREFIX opla: <http://ontologydesignpatterns.org/opla/>
 PREFIX a-loc: <https://w3id.org/arco/ontology/location/>
 PREFIX cis: <http://dati.beniculturali.it/cis/>
 PREFIX tiapit: <https://w3id.org/italia/onto/TI/>
@@ -28,3 +28,5 @@ WHERE { GRAPH ?graph
  BIND ( IF (BOUND ( ?depiction2B ),   ?depiction2B,   "" )  as ?depiction   )
 }
 }
+`
+export {collection}

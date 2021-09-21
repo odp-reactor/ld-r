@@ -5,18 +5,11 @@ import {QueryRepository} from './QueryRepository'
 describe('QueryRepository return query for pattern uri:', () => {
     const exampleUri = 'http://example.com/example-pattern'
 
-    const exampleQuerFile = 'example.sparql'
-
     const exampleQuerySelect = 'SELECT ?example WHERE'
     const exampleQueryTriple = '?example a <http://example.com/Example>'
 
     const queryRepo = new QueryRepository()
 
-    test(`It should return ${exampleQuerFile} query file for ${exampleUri}`, () => {
-        const queryFile = queryRepo.getQueryFile(exampleUri)
-        expect(queryFile).toBeDefined()
-        expect(queryFile).toBe(exampleQuerFile)
-    })    
 
     // reading files is delegated to webpack during build time 
     // reading file from node and in the browser is different

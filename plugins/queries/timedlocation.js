@@ -1,4 +1,4 @@
-PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+const timedlocation = `PREFIX opla: <http://ontologydesignpatterns.org/opla/>
 PREFIX a-loc: <https://w3id.org/arco/ontology/location/>
 PREFIX cis: <http://dati.beniculturali.it/cis/>
 PREFIX tiapit: <https://w3id.org/italia/onto/TI/>
@@ -52,4 +52,6 @@ WHERE { GRAPH ?graph {
     BIND ( IF (BOUND (?addressLabel2B),?addressLabel2B,'')  as ?addressLabel ) .  
     BIND ( IF (BOUND (?startTime2B),?startTime2B,'')  as ?startTime) .         
     BIND ( IF (BOUND (?endTime2B),  ?endTime2B,'')  as ?endTime) .
-} } LIMIT 1       
+} } LIMIT 1`
+
+export {timedlocation}
