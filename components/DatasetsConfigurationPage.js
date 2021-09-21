@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Container, List, Header, Segment, Label, Icon, Button, Message} from 'semantic-ui-react'
 import { routeToAddDataset } from './route/routeToAddDataset';
+import { routeToGraph } from './route/routeToGraph';
 import { routeToUpdateDataset} from './route/routeToUpdateDataset'
 
 
@@ -83,6 +84,11 @@ export default class DatasetsConfigurationPage extends React.Component {
                                     <Button color="olive" onClick={()=>{
                                         routeToUpdateDataset(dataset.id)
                                     }}>Update</Button>
+                                </List.Content>
+                                <List.Content floated="right">
+                                    <Button color="blue" onClick={()=>{
+                                        routeToGraph(dataset.sparqlEndpoint, dataset.graph)
+                                    }}>Explore</Button>
                                 </List.Content>                                      
                                 <Icon name="cube" color="green" />
                                 <List.Content>
