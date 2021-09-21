@@ -1,4 +1,4 @@
-PREFIX opla: <http://ontologydesignpatterns.org/opla/>
+const culturalcomponentof = `PREFIX opla: <http://ontologydesignpatterns.org/opla/>
 PREFIX a-loc: <https://w3id.org/arco/ontology/location/>
 PREFIX cis: <http://dati.beniculturali.it/cis/>
 PREFIX tiapit: <https://w3id.org/italia/onto/TI/>
@@ -12,4 +12,6 @@ GRAPH ?graph {
     ?complexCProp opla:belongsToPatternInstance ?patternInstanceUri .
     ?cPropComponent arco:isCulturalPropertyComponentOf ?complexCProp .
     }
-}
+}`
+
+export {culturalcomponentof}
