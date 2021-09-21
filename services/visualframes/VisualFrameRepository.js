@@ -1,22 +1,15 @@
-import defaultMap from '../../plugins/visualframes/visualframes.json'
+import {visualFramesMap} from '../../plugins/visualframes/visualframes'
 
 export class VisualFrameRepository {
 
     constructor(visualFrameMap) {
-        this.visualFrameMap = visualFrameMap || defaultMap
+        this.visualFrameMap = visualFramesMap || visualFrameMap
     }
 
-    getVisualFrameFile(patternURI) {
-        if (this.visualFrameMap[patternURI]) {
-            return this.visualFrameMap[patternURI]
-        } else {
-            return undefined
-        }
-    }
     getVisualFrame(patternURI){
         // we need some chunk of static path to implicitly tell webpack how to resolve this path at runtime 
         try {
-            return require('../../plugins/visualframes/' + this.getVisualFrameFile(patternURI))
+            return this.visualFrameMap[patternURI]
         } catch(err) {
             return undefined
         }
