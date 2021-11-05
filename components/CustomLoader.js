@@ -10,4 +10,4 @@ const CustomLoader = props => (
     ></Loader>
 );
 
-export default CustomLoader;
+export {CustomLoader} ;

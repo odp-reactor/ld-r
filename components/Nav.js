@@ -141,6 +141,9 @@ class Nav extends React.Component {
                         <a className="item" href={`${PUBLIC_URL}/datasets`}>
                             Knowledge Graphs
                         </a>
+                        <a className="item" href={`${PUBLIC_URL}/queries`}>
+                            Queries
+                        </a>
                         <div className="right menu">
                             <div
                                 className="item link"

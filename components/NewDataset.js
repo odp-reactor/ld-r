@@ -210,7 +210,8 @@ class NewDataset extends React.Component {
                         className="ui big blue button"
                         onClick={() => {
                             try {
-                                // this.handleCreateDataset();
+                                this.handleCreateDataset();
+                                console.log('Create dataset');
                             } catch (e) {
                                 console.log(e);
                             }
