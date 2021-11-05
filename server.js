@@ -34,6 +34,10 @@ import serverConfig from './configs/server';
 import app from './app';
 import HtmlComponent from './components/DefaultHTMLLayout';
 import { createElementWithContext } from 'fluxible-addons-react';
+import {DatasetIdService} from './services/config/DatasetIdService'
+import DbClient from './services/base/DbClient'
+import {ServerConfigRepository} from './services/config/ServerConfigRepository'
+const cors = require('cors')
 
 const PUBLIC_URL = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '';
 
@@ -55,6 +59,26 @@ if (env === 'production') {
 }
 
 const server = express();
+
+
+// cors middleware
+let whitelist = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:4000', 'http://localhost:3000', 'https://odp-reactor-ldr.herokuapp.com', 'https://odp-reactor-browser.vercel.app/'] //'http://abc.com']
+
+
+
+server.use(cors({
+    origin: function(origin, callback){
+    // allow requests with no origin 
+        if(!origin) return callback(null, true);
+        if(whitelist.indexOf(origin) === -1){
+            var message = '[!] The CORS policy for this origin doesn\'t ' +
+                'allow access from the particular origin.';
+            return callback(new Error(message), false);
+        }
+        return callback(null, true);
+    }
+}));
+
 // we need this because "cookie" is true in csrfProtection
 server.use(cookieParser());
 server.use(bodyParser.json());
@@ -108,6 +132,10 @@ server.use(
     express.static(path.join(__dirname, '/node_modules/semantic-ui-css'))
 );
 server.use(
+    `${PUBLIC_URL}/odp-reactor-visualframes`,
+    express.static(path.join(__dirname, '/node_modules/odp-reactor-visualframes'))
+);
+server.use(
     `${PUBLIC_URL}/jquery`,
     express.static(path.join(__dirname, '/node_modules/jquery'))
 );
@@ -140,6 +168,36 @@ server.use(
     `${PUBLIC_URL}/uploaded`,
     express.static(path.join(__dirname, uploadFolder[0].replace('.', '')))
 );
+
+server.get(`${PUBLIC_URL}/datasetId`, async (req, res) => {
+    const datasetIdService = new DatasetIdService(new ServerConfigRepository( new DbClient(process.env.CONFIG_SPARQL_ENDPOINT_URI)))
+
+    const sparqlEndpoint = req.query.sparqlEndpoint
+    const graph = req.query.graph
+
+    console.log('Query params: ', sparqlEndpoint, graph)
+
+    if (!sparqlEndpoint || !graph) {
+        return res.status(422).json({
+            error: '[!] Unprocessable request: missing either sparqlEndpoint or graph'
+        })
+    }
+
+    const datasetId = await datasetIdService.getDatasetIdFromSparqlEndpointAndGraph({ 
+        sparqlEndpoint: sparqlEndpoint, 
+        graph : graph
+    })
+    if (datasetId) {
+        return res.status(200).json({
+            datasetId : datasetId
+        })
+    } else {
+        return res.status(404).json({
+            error: `[!] No datasetId found for endpoint: ${sparqlEndpoint}; graph: ${graph}`
+        })
+    }
+})
+
 // Get access to the fetchr plugin instance
 let fetchrPlugin = app.getPlugin('FetchrPlugin');
 // Register our services

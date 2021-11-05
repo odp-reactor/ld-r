@@ -6,7 +6,6 @@ import { enableAuthentication } from '../../configs/general';
 import Dataset from '../dataset/Dataset';
 import cloneResource from '../../actions/cloneResource';
 import createResource from '../../actions/createResource';
-import PatternNetworkView from '../dataset/viewer/PatternNetworkView';
 
 class DatasetReactor extends React.Component {
     componentDidMount() {}
@@ -64,28 +63,6 @@ class DatasetReactor extends React.Component {
                                 this
                             )}
                         />
-                    );
-                    break;
-                case 'PatternNetwork':
-                    datasetReactor = (
-                        <PatternNetworkView
-                            enableAuthentication={enableAuthentication}
-                            datasetURI={datasetURI}
-                            resources={resources}
-                            page={page}
-                            total={total}
-                            error={error}
-                            config={this.configMinus(config, [
-                                'datasetReactor'
-                            ])}
-                            resourceQuery={resourceQuery}
-                            onCloneResource={this.handleCloneResource.bind(
-                                this
-                            )}
-                            onCreateResource={this.handleCreateResource.bind(
-                                this
-                            )}
-                        ></PatternNetworkView>
                     );
                     break;
                 default:
