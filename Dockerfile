@@ -25,4 +25,4 @@ FROM node:14
 
 COPY --from=builder /ld-r /ld-r
 WORKDIR /ld-r
-CMD ["npm start"]
+ENTRYPOINT ["npm", "start"]
