@@ -1,4 +1,4 @@
-import DbContext from './base/DbContext';
+import DbClient from './base/DbClient';
 import ClassDataMapper from './classes/ClassDataMapper';
 import ClassRepository from './classes/ClassRepository';
 
@@ -11,9 +11,9 @@ const sparqlEndpoint = 'http://arco.istc.cnr.it/visualPatterns/sparql';
 export default {
     name: 'class',
     read: (req, resource, params, config, callback) => {
-        const dbContext = new DbContext(sparqlEndpoint, {});
+        const dbClient = new DbClient(sparqlEndpoint, {});
         const classDataMapper = new ClassDataMapper();
-        const classRepository = new ClassRepository(dbContext, classDataMapper);
+        const classRepository = new ClassRepository(dbClient, classDataMapper);
         if (resource === 'class.getClassesAndScores') {
             console.log('Class service called');
             const result = classRepository.findAllClassesWithCentralityScore();

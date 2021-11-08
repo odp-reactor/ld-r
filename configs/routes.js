@@ -135,11 +135,39 @@ export default {
         //if no id is provided -> will start by defaultDatasetURI in reactor.config
         path: `${PUBLIC_URL}/datasets`,
         method: "get",
-        handler: require("../components/Datasets"),
+        handler: require("../components/DatasetsConfigurationPage"),
         label: "Datasets",
-        action: (context, payload, done) => {
-            context.executeAction(loadDatasets, {}, done);
-        }
+    },
+    updateDataset : {
+        path: `${PUBLIC_URL}/updatedataset/:datasetId`,
+        method: "get",
+        handler: require("../components/UpdateDatasetPage"),
+        label: "Update Dataset",
+    },
+    newDataset: {
+        path: `${PUBLIC_URL}/adddataset`,
+        method: "get",
+        handler: require("../components/AddDatasetPage"),
+        label: "Add Dataset",
+    },
+    queries: {
+        //if no id is provided -> will start by defaultDatasetURI in reactor.config
+        path: `${PUBLIC_URL}/queries`,
+        method: "get",
+        handler: require("../components/QueryConfigurationPage"),
+        label: "Queries",
+    },
+    newQuery: {
+        path: `${PUBLIC_URL}/addquery`,
+        method: "get",
+        handler: require("../components/AddQueryPage"),
+        label: "Add Query",
+    },
+    updateQuery: {
+        path: `${PUBLIC_URL}/updatequery/:queryId`,
+        method: "get",
+        handler: require("../components/UpdateQueryPage"),
+        label: "Update Query",
     },
     dataset: {
         //if no id is provided -> will start by defaultDatasetURI in reactor.config
@@ -263,19 +291,6 @@ export default {
         action: (context, payload, done) => {
             context.executeAction(loadUsersList, {}, done);
         }
-    },
-    pattern: {
-        path: `${PUBLIC_URL}/datasets/:did/patterns/:pid/color/:c`,
-        method: "get",
-        // add checks on fetch data (catch them only if the PatternStore is empty)
-        handler: require("../components/dataset/viewer/PatternInstancesNetworkView"),
-        label: "Pattern Instances"
-    },
-    class: {
-        path: `${PUBLIC_URL}/datasets/:did/classes/:cid`,
-        method: "get",
-        handler: require("../components/dataset/viewer/ClassInstances"),
-        label: "Class Instances"
     },
     errortest: {
         path: `${PUBLIC_URL}/errortest`,

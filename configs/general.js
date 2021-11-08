@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 export default {
     //full page title
     appFullTitle: ["ODP Reactor"],
@@ -10,7 +12,7 @@ export default {
     //will prevent access if not logged in
     enableAuthentication: 0,
     //graph that stores users data, must be loaded beforehand
-    authDatasetURI: ["http://virtuoso.local/users"],
+    authDatasetURI: ["http://virtuoso.localhost/users"],
     //will allow super users to confirm and activate regiastered users
     enableUserConfirmation: 0,
     //if enabled will allow a recaptcha box in the registration form
@@ -18,7 +20,7 @@ export default {
     useGoogleRecaptcha: 0,
 
     //the domain name under which basic dynamic resources and user resources will be defined
-    baseResourceDomain: ["http://arco.istc.cnr.it/ldr/rdf"],
+    baseResourceDomain: ["http://virtuoso.localhost/"],
 
     //will enable email notifications
     enableEmailNotifications: 0,
@@ -30,9 +32,9 @@ export default {
     googleAnalyticsID: "",
 
     //if set, will use the configs stored in a triple store
-    enableDynamicServerConfiguration: 0,
-    enableDynamicReactorConfiguration: 0,
-    enableDynamicFacetsConfiguration: 0,
+    enableDynamicServerConfiguration: 1,
+    enableDynamicReactorConfiguration: 1,
+    enableDynamicFacetsConfiguration: 1,
     //if set, wil allow users to create new datasets
     //only works if enableDynamicReactorConfiguration is set to 1 and triple store allows update qureies
     enableAddingNewDatasets: 1,
@@ -41,7 +43,9 @@ export default {
     //allows users to save and import a SPARQL query from/to the system: WYSIWYQ concept
     enableQuerySaveImport: 1,
     //graph that stores your configurations
-    configDatasetURI: ["http://arco.istc.cnr.it/ldr/configurations"],
+    configDatasetURI: [
+        process.env.CONFIG_GRAPH || "http://virtuoso.localhost/configurations"
+    ],
     //will enable/disable auto config
     enableAutomaticConfiguration: 0,
     //the path to the upload folder

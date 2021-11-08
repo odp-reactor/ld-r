@@ -1,28 +1,37 @@
-FROM node:10.15
-MAINTAINER Ali Khalili "hyperir@gmail.com"
+FROM node:14 AS builder
 
 # Update aptitude with new repo
 RUN apt-get update
-# Install software
-RUN apt-get install -y git
 
-RUN mkdir /ld-r
+# clone codebase
+RUN git clone https://github.com/ODPReactor/ld-r.git /ld-r
 WORKDIR /ld-r
 
+# install webpack and dependencies
 RUN npm install webpack -g
-
-ADD package.json /ld-r/
 RUN npm install
 
-ADD . /ld-r
-#handle initial configs
-RUN if [ ! -e "/ld-r/configs/general.js" ]; then cp /ld-r/configs/general.sample.js /ld-r/configs/general.js ; fi
-RUN if [ ! -e "/ld-r/configs/server.js" ]; then cp /ld-r/configs/server.sample.js /ld-r/configs/server.js ; fi
-RUN if [ ! -e "/ld-r/configs/reactor.js" ]; then cp /ld-r/configs/reactor.sample.js /ld-r/configs/reactor.js ; fi
-RUN if [ ! -e "/ld-r/configs/facets.js" ]; then cp /ld-r/configs/facets.sample.js /ld-r/configs/facets.js ; fi
-RUN if [ ! -e "/ld-r/plugins/email/config.js" ]; then cp /ld-r/plugins/email/config.sample.js /ld-r/plugins/email/config.js ; fi
+# mapping build environemnt
+ARG PUBLIC_URL
+ARG CONFIG_SPARQL_ENDPOINT_URI
+ARG CONFIG_SPARQL_ENDPOINT_HOST
+ARG CONFIG_SPARQL_ENDPOINT_PATH
+ARG CONFIG_SPARQL_ENDPOINT_PORT
+ARG CONFIG_SPARQL_ENDPOINT_TYPE
+ARG CONFIG_SPARQL_ENDPOINT_PROTOCOL
+ARG CONFIG_GRAPH
+ARG ODP_REACTOR_GRAPH_HOST
+ARG ODP_REACTOR_GRAPH_PORT
+ARG ODP_REACTOR_SERVER_URL
 
-#specify the port used by ld-r app
-EXPOSE 4000
+# build software
+RUN npm run build:nostart
 
-ENTRYPOINT ["npm", "run", "build"]
+
+
+# create runner
+FROM node:14
+
+COPY --from=builder /ld-r /ld-r
+WORKDIR /ld-r
+ENTRYPOINT ["npm", "start"]
