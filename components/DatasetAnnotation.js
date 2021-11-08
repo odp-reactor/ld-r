@@ -602,7 +602,7 @@ class DatasetAnnotation extends React.Component {
                             ) : (
                                 <span>
                                     {' '}
-                                    ->{' '}
+                                    {' '}
                                     <b>
                                         <a
                                             href={
