@@ -4,26 +4,23 @@ version: '3'
 
 services:
    odpreactor-ld-r:
-      build: .
+      build: 
+          context: .
+          args:
+            - PUBLIC_URL
+            - CONFIG_SPARQL_ENDPOINT_URI
+            - CONFIG_SPARQL_ENDPOINT_HOST
+            - CONFIG_SPARQL_ENDPOINT_PATH
+            - CONFIG_SPARQL_ENDPOINT_PORT
+            - CONFIG_SPARQL_ENDPOINT_TYPE
+            - CONFIG_SPARQL_ENDPOINT_PROTOCOL
+            - CONFIG_GRAPH
+            - ODP_REACTOR_GRAPH_HOST
+            - ODP_REACTOR_GRAPH_PORT
+            - ODP_REACTOR_SERVER_URL
       container_name: odpreactor-ld-r
       ports:
-        # Public HTTP Port:
-        - "${ODPR_LDR_PORT-4500}:${ODPR_LDR_PORT-4500}"
-      environment:
-        - PORT=${ODPR_LDR_PORT-4500}
-        - HOST=${ODPR_LDR_HOST-localhost}
-        - ALLOWED_ORIGINS=${ODPR_LDR_ALLOWED_ORIGINS-http://localhost:3000,http://localhost:4000,http://localhost:5000}
-        - CONFIG_SPARQL_ENDPOINT_URI=${CONFIG_SPARQL_ENDPOINT_URI-http://localhost/config/sparql}
-        - CONFIG_SPARQL_ENDPOINT_HOST=${CONFIG_SPARQL_ENDPOINT_HOST-localhost}
-        - CONFIG_SPARQL_ENDPOINT_PATH=${CONFIG_SPARQL_ENDPOINT_PATH-/config/sparql}
-        - CONFIG_SPARQL_ENDPOINT_PORT=${CONFIG_SPARQL_ENDPOINT_PORT-8890}
-        - CONFIG_SPARQL_ENDPOINT_TYPE=${CONFIG_SPARQL_ENDPOINT_TYPE-virtuoso}
-        - CONFIG_SPARQL_ENDPOINT_PROTOCOL=${CONFIG_SPARQL_ENDPOINT_PROTOCOL-http}
-        - CONFIG_GRAPH=${CONFIG_GRAPH-http://localhost/ld/config}
-        - ODP_REACTOR_GRAPH_HOST=${ODP_REACTOR_GRAPH_HOST-localhost}
-        - ODP_REACTOR_GRAPH_PORT=${ODP_REACTOR_GRAPH_PORT-5000}
-        - ODP_REACTOR_SERVER_URL=${ODP_REACTOR_SERVER_URL-http://localhost:5000}
-        - TEST_SPARQL_ENDPOINT_URI=${TEST_SPARQL_ENDPOINT_URI-https://localhost/config/sparql}
-      env_file:
+        - "${PORT-6001}:${PORT-6001}"
+      env_file:        
         - .env
       restart: always
