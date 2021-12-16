@@ -53,7 +53,9 @@ export default class MosaicVisualFrame extends React.Component {
                             <div class="mosaic-view-title" style={viewTitleStyle}>
                                 {title} 
                             </div>
-                            <VisualFrame patternInstance={patternInstance} dbContext={this.props.dbContext} isMosaicFrameView={true} />
+                            <div className="pattern-view-container">
+                                <VisualFrame patternInstance={patternInstance} dbContext={this.props.dbContext} isMosaicFrameView={true} />
+                            </div>
                         </div>
                     )
                     index++
