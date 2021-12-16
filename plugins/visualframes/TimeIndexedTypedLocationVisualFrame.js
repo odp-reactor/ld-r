@@ -103,6 +103,13 @@ export default class TimeIndexedTypedLocationVisualFrame extends React.Component
                 console.log('TITLS:', titls)
                 const culturalPropertyURI = titls[0].culturalProperty
 
+                const getBrowserWidth = () => {
+                    return window.innerWidth
+                }
+                const browserWidth = getBrowserWidth()
+
+                const mapHeightWidth = browserWidth * 0.4
+
                 return (
                     <div
                         style={{
@@ -118,6 +125,13 @@ export default class TimeIndexedTypedLocationVisualFrame extends React.Component
                                 onObjectClick={() => {
                                     // getResource(culturalPropertyURI);
                                 }}
+                                styles = {{
+                                    mapStyle: {
+                                        height: mapHeightWidth,
+                                        width: mapHeightWidth
+                                    }
+                                }
+                                }
                             />
                         </div>
                         {!this.props.isMosaicFrameView && (
