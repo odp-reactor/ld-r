@@ -26,15 +26,32 @@ export default class PartOfVisualFrame extends React.Component {
             return null
         }
 
+        const getVisualFrameContainerWidth = () => {
+            const browserWidth = window.innerWidth
+            const widthAtWhichMultiCellGridBecomeSingleCell = 768
+            if (browserWidth > widthAtWhichMultiCellGridBecomeSingleCell) {
+                return browserWidth
+            } else {
+                return browserWidth * 2
+            }
+        }
+
+        const visualFrameContainerWidth = getVisualFrameContainerWidth()
+
+        const partOfContainerWidth = visualFrameContainerWidth * 1.8 / 5
+        const centerItemWidth = partOfContainerWidth * 3 / 5
+        const littleItemWidth = partOfContainerWidth * 1 / 5
+
         const partWholeStyle = this.props.isMosaicFrameView ? {
+
             containerStyle : {
-                width: 500
+                width: partOfContainerWidth
             },
             littleItemStyle : {
-                width: 100
+                width: littleItemWidth
             },
             centerItemStyle : {
-                width: 300
+                width: centerItemWidth
             }
         } : defaultPartWholeStyle
 
